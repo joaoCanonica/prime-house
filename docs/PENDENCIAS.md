@@ -14,7 +14,7 @@ Legenda: **[trava]** impede a produção · **[aviso]** não impede.
   Se o João quiser, atualizamos o texto do CLAUDE.md (precisa de ordem expressa, pois o bloco é "sem alterar").
 - **[aviso] Git LFS para `modelos-originais/`** (GLB e splat fonte): aguardando autorização do João. Até lá a pasta fica vazia e nenhum arquivo pesado entra no git.
 - **[aviso] Domínio definitivo.** `site` no `astro.config.mjs` não foi definido (necessário para sitemap e URLs canônicas na sessão 8).
-- **[aviso] Scripts ainda não implementados** (saem com erro de propósito, para nunca darem falso "verde"): `validate-config` e `audit-compliance` (sessão 2), `audit-contraste` (3), `audit-pesos` e `model:prepare` (6B), `audit-seo` (8), `audit-a11y` e `audit-lighthouse` (9). (`media:prepare` implementado na sessão 1.)
+- **[aviso] Scripts ainda não implementados** (saem com erro de propósito, para nunca darem falso "verde"): `audit-contraste` (3), `audit-pesos` e `model:prepare` (6B), `audit-seo` (8), `audit-a11y` e `audit-lighthouse` (9). (`media:prepare` na sessão 1; `validate-config` e `audit-compliance` na sessão 2.)
 
 ## Da sessão 1 (mídia)
 
@@ -27,6 +27,21 @@ Detalhes em `docs/MIDIA_CATALOGO.md`.
 - **[aviso] Áudio:** `audioLiberado=false` em tudo (trilha sem direito confirmado).
 - **[aviso] Marcas de terceiros** visíveis nos recortes de "Conforto" (Monster, Philips Walita, logos de streaming, embalagens Disney no espaço kids). Conferir na sessão 9.
 - **[aviso] ffmpeg é obrigatório no build** (`prebuild` roda `media:prepare`). Confirmar na sessão 9 se o ambiente de deploy tem ffmpeg ou se o build sobe com `public/media/` já gerado.
+
+## Da sessão 2 (config e travas)
+
+`pnpm validate-config` lista tudo o que está pendente na config (hoje: 0 erros, 0 travas, 21 avisos).
+
+- **[trava se publicado] Benefícios fixos do Plano Prime** (garantia de 14 dias, trancamento de 30 dias no anual, Sexta Prime): `bloqueante("confirmar por escrito")`. Aparecem só no preview, com selo PROVISÓRIO; o `audit-compliance` derruba a produção se o texto aparecer no HTML.
+- **[aviso] O que o Plano Prime inclui:** não há fonte; texto provisório só no preview.
+- **[aviso] Plano Duo:** a condição "2ª pessoa com 50%" fica fora do site (é preço). O texto diz só "um plano para treinar em dupla".
+- **[aviso] Feriados:** calendário nacional de 2026–2027 cadastrado. Confirmar os feriados municipais de Lages e as datas especiais (post de 14/08/2026).
+- **[aviso] Fabricante** dos halteres e da esteira não confirmado (o "100% Cimerian" fica para o maquinário).
+- **[aviso] Zonas do 3D:** todas com `fonteLayout: "pendente"` e `camera: null`. Qualquer câmera sem planta ou captura trava a produção.
+- **[aviso] Descrições das zonas** são factuais e curtas, só para estrutura: o texto final é da sessão 5.
+- **[aviso] Avaliação da Ronielle S.** começa com "Melhor academia de Lages". Só pode aparecer como citação literal, num elemento com `data-avaliacao-literal="g-004"`: o audit confere se o texto é idêntico ao do Google e só então isenta o trecho.
+- **[aviso] Razão social, CNPJ, CREF do responsável técnico, estacionamento e acessibilidade:** `opcional()`, ficam fora do site até chegarem.
+- **[aviso] Indexação desligada** (`indexar = false`) até a sessão 9, mesmo em produção.
 
 ## Do cliente (herdado do pacote de prompts, seção C)
 

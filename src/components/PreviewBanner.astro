@@ -1,0 +1,48 @@
+---
+// Faixa "em revisão": só no preview. Em produção não renderiza nada.
+import { verificarAtual } from '../config/index.ts';
+import { modoAtual } from '../config/modo.ts';
+
+const modo = modoAtual();
+const resultado = modo === 'preview' ? verificarAtual(modo) : null;
+const pendencias =
+  resultado?.achados.filter((a) => a.gravidade !== 'aviso' || a.regra !== 'opcional-vazio')
+    .length ?? 0;
+---
+
+{resultado && (
+  <div class="ph-preview" role="status" data-preview-banner>
+    <span class="ph-preview__ponto" aria-hidden="true" />
+    <strong>Em revisão</strong>
+    <span>Prévia não publicada · {pendencias} pendências em docs/PENDENCIAS.md</span>
+  </div>
+)}
+
+<style>
+  .ph-preview {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 0.75rem;
+    padding: 0.5rem 1rem;
+    background: #161719;
+    color: #e9e8e5;
+    border-bottom: 1px solid #8c8d90;
+    font:
+      500 0.8125rem/1.4 system-ui,
+      sans-serif;
+  }
+  .ph-preview strong {
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .ph-preview__ponto {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: var(--prime-laranja, #ec8a2a);
+  }
+</style>

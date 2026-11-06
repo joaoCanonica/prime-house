@@ -13,7 +13,8 @@ Site estático (Astro + TypeScript strict) da Prime House Academia, Lages/SC. O 
 ```bash
 pnpm install
 pnpm dev          # desenvolvimento
-pnpm build        # gera dist/
+pnpm build        # gera dist/ (preview)
+pnpm build:producao  # MODO=producao: travas derrubam o build
 pnpm preview      # serve dist/
 pnpm check        # astro check + ESLint + Prettier
 pnpm test         # Vitest
@@ -22,6 +23,12 @@ pnpm capturar     # build + capturas 390/1440 px, com e sem reduced-motion, em d
 
 `pnpm capturar --rotas=/,/a-casa/ --sem-build` limita rotas e reaproveita o `dist/`. A ilha 3D, quando existir, marca `[data-ilha-3d]` com `data-estado="pronto" | "erro" | "fallback"`; o script espera esse sinal (até 20 s).
 
+### Config e travas
+
+- Fonte única em `src/config/` (dados tipados com `confirmado()`, `opcional()`, `bloqueante()` e `aviso()`) e coleções em `src/content/` (schemas Zod: zonas, equipamentos, planos, diferenciais).
+- `MODO=preview` (padrão): faixa "em revisão", selos PROVISÓRIO, noindex; pendências só avisam. `pnpm build:producao` (`MODO=producao`): as travas da seção 9 derrubam o build.
+- `pnpm validate-config` roda no `prebuild`/`predev`; `pnpm audit-compliance` roda no `postbuild` e varre o `dist/` (termos vetados, mídia pendente ou `naoUsar`, benefício não confirmado, selo provisório em produção, preview sem noindex).
+
 ### Mídia
 
 - `media.manifest.json` (validado por `media.manifest.schema.json`) é a fonte única: originais, trechos de vídeo, stills e recortes, com uso, consentimento e problemas.
@@ -29,7 +36,7 @@ pnpm capturar     # build + capturas 390/1440 px, com e sem reduced-motion, em d
 - Publicável → `public/media/<id>/`; consentimento pendente → `media-privada/<id>/` (fora do git e do site); `naoUsar` → nada. Cada pasta tem um `indice.json`.
 - `pnpm media:stills` extrai os stills e refaz as folhas de contato em `docs/capturas/midia/`. Catálogo: `docs/MIDIA_CATALOGO.md`.
 
-Os scripts `validate-config`, `audit-*` e `model:prepare` são marcadores e saem com erro até a sessão que os implementa (ver `docs/PENDENCIAS.md`).
+Os scripts `audit-a11y`, `audit-lighthouse`, `audit-seo`, `audit-contraste`, `audit-pesos` e `model:prepare` são marcadores e saem com erro até a sessão que os implementa (ver `docs/PENDENCIAS.md`).
 
 ## Estrutura
 

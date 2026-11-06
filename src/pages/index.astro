@@ -1,5 +1,7 @@
 ---
-// Página temporária da fundação. Será substituída na sessão 6A.
+// Página temporária. Será substituída na sessão 6A.
+import PreviewBanner from '../components/PreviewBanner.astro';
+import { robots } from '../config/seo.ts';
 ---
 
 <!doctype html>
@@ -7,10 +9,11 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="robots" content="noindex, nofollow" />
+    <meta name="robots" content={robots()} />
     <title>Prime House Academia</title>
   </head>
   <body>
+    <PreviewBanner />
     <h1>Prime House Academia</h1>
   </body>
 </html>
