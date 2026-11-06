@@ -117,7 +117,7 @@ async function main() {
   console.log(`› preview em ${base}`);
   const preview = spawn(
     join(raiz, 'node_modules', '.bin', 'astro'),
-    ['preview', '--host', '127.0.0.1', '--port', String(porta)],
+    ['preview', '--ignore-lock', '--host', '127.0.0.1', '--port', String(porta)],
     { cwd: raiz, stdio: ['ignore', 'pipe', 'pipe'] },
   );
   let saidaPreview = '';

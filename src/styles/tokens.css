@@ -11,9 +11,10 @@
   --prime-linha: rgb(233 232 229 / 0.14); /* fios decorativos (não é texto) */
 
   /* tipo */
-  --fonte-titulo: 'Archivo PH', 'Archivo PH Fallback', 'Arial Narrow', sans-serif;
-  --fonte-texto: 'Inter Tight PH', 'Inter Tight PH Fallback', system-ui, sans-serif;
-  --fonte-acento: 'Source Serif PH', Georgia, serif;
+  --fonte-titulo: 'Archivo PH', 'Archivo PH Fb', 'Archivo PH Fb Roboto', sans-serif;
+  --fonte-texto:
+    'Inter Tight PH', 'Inter Tight PH Fb', 'Inter Tight PH Fb Roboto', system-ui, sans-serif;
+  --fonte-acento: 'Source Serif PH', 'Source Serif PH Fb', Georgia, serif;
   --largura-display: 62%;
   --largura-titulo: 75%;
 

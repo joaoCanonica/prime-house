@@ -1,0 +1,30 @@
+---
+// /_hero-a e /_hero-b (preview, noindex): o hero sozinho, para comparar interior × drone.
+import '../styles/global.css';
+import Hero from '../components/hero/Hero.astro';
+import PreviewBanner from '../components/PreviewBanner.astro';
+import { cores } from '../config/tema.ts';
+
+interface Props {
+  midia: 'interior-noite' | 'drone-noite';
+}
+const { midia } = Astro.props;
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Hero {midia === 'interior-noite' ? 'A · interior' : 'B · drone'} · Prime House Academia</title>
+    <meta name="theme-color" content={cores.breu} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <PreviewBanner />
+    <main>
+      <Hero midia={midia} />
+    </main>
+  </body>
+</html>

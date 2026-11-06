@@ -2,11 +2,20 @@
 // Rotas internas que começam com "_" (o Astro não roteia arquivos com "_": eles ficam privados).
 // Só existem no preview: em produção nenhuma página interna é gerada.
 import { modoAtual } from '../config/modo.ts';
+import HeroTeste from './_hero.astro';
 import Estilo from './_estilo.astro';
 
 export function getStaticPaths() {
-  return modoAtual() === 'preview' ? [{ params: { interna: '_estilo' } }] : [];
+  if (modoAtual() !== 'preview') return [];
+  return [
+    { params: { interna: '_estilo' } },
+    { params: { interna: '_hero-a' } },
+    { params: { interna: '_hero-b' } },
+  ];
 }
+const { interna } = Astro.params;
 ---
 
-<Estilo />
+{interna === '_estilo' && <Estilo />}
+{interna === '_hero-a' && <HeroTeste midia="interior-noite" />}
+{interna === '_hero-b' && <HeroTeste midia="drone-noite" />}

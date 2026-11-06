@@ -53,6 +53,17 @@ Detalhes em `docs/design/DESIGN_SYSTEM.md`.
 - **[aviso] `/_estilo`:** o Astro não roteia arquivos com `_`, então `src/pages/_estilo.astro` é publicado em `/_estilo/` por `src/pages/[interna].astro`, **só no preview** (em produção a rota não existe).
 - **[aviso] MDN:** `developer.mozilla.org` está bloqueado na rede da sessão; a pesquisa usou o repositório `mdn/content` e o `@mdn/browser-compat-data`.
 
+## Da sessão 4 (abertura e hero)
+
+Detalhes em `docs/design/ABERTURA_HERO.md`.
+
+- **[aviso] Escolha do hero:** A (interior) × B (drone) em `/_hero-a` e `/_hero-b`. A home usa o A. No B, no celular, o letreiro aceso fica atrás do H1 e compete com ele.
+- **[aviso] "Fazer o tour"** aponta para `#a-casa`, que só passa a existir na sessão 6B (A Casa em 3D).
+- **[aviso] Hero no desktop** usa o vídeo vertical numa moldura (resolução nativa). Tela cheia 16:9 de verdade depende dos originais horizontais.
+- **[aviso] `letreiro-aceso`** não entrou: a sequência pedida usa o teto e o logo. Fica para o manifesto ou para "Como chegar".
+- **[aviso] H1 provisório** ("O novo padrão de treino em Lages."): a sessão 5 refina.
+- **[aviso] `astro preview` no Astro 7** roda como serviço em segundo plano; os scripts de captura usam `--ignore-lock` para cada um ter o seu.
+
 ## Do cliente (herdado do pacote de prompts, seção C)
 
 - [trava] Confirmação por escrito dos benefícios fixos: garantia de 14 dias, trancamento de 30 dias no anual, Sexta Prime.

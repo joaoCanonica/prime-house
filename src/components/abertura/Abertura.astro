@@ -1,0 +1,134 @@
+---
+// Abertura "As luzes acendem" (≤ 3,0 s, uma vez por sessão). Camada Breu POR CIMA do hero já pintado:
+// o pôster do hero (LCP) carrega e pinta por baixo desde o primeiro quadro; a camada fica transparente e o revela.
+// Sem JS, com movimento reduzido ou já vista na sessão: a camada nem aparece (estado final direto).
+// ?abertura=MS congela a timeline no instante MS (capturas); ?abertura força a exibição.
+import Logo from '../marca/Logo.astro';
+import TetoDeLuz from '../marca/TetoDeLuz.astro';
+---
+
+<script is:inline>
+  // Decide antes da primeira pintura se a abertura roda (sem JS, nada disso acontece: estado final direto).
+  (() => {
+    try {
+      const q = new URLSearchParams(location.search);
+      let vista = false;
+      try {
+        vista = sessionStorage.getItem('ph-abertura') === '1';
+      } catch {
+        /* armazenamento bloqueado: trata como não vista */
+      }
+      const reduz = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (q.has('abertura') || (!vista && !reduz)) document.documentElement.dataset.abertura = 'on';
+    } catch {
+      /* qualquer falha: sem abertura */
+    }
+  })();
+</script>
+
+<div class="abertura" data-abertura-camada>
+  <div class="abertura__fundo" data-ab-fundo></div>
+  <div class="abertura__cena" aria-hidden="true">
+    <p class="abertura__hora t-rotulo t-tabular" data-ab-hora>
+      05:00
+    </p>
+    <div class="abertura__teto" data-ab-teto>
+      <TetoDeLuz />
+    </div>
+    <div class="abertura__logo" data-ab-logo>
+      <Logo variante="linha" altura={160} decorativo />
+    </div>
+  </div>
+  <button class="abertura__pular t-rotulo" type="button" data-ab-pular>
+    Pular abertura
+  </button>
+</div>
+
+<script>
+  import './abertura.ts';
+</script>
+
+<style>
+  .abertura {
+    display: none;
+  }
+  :global(html[data-abertura='on']) .abertura {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 1100;
+  }
+  .abertura__fundo {
+    position: absolute;
+    inset: 0;
+    background: var(--prime-breu);
+  }
+  .abertura__cena {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+  .abertura__hora {
+    position: absolute;
+    top: var(--esp-5);
+    left: var(--margem);
+    color: var(--prime-concreto);
+  }
+  .abertura__teto {
+    position: absolute;
+    inset: 0 0 auto;
+    height: 72%;
+  }
+  .abertura__teto :global(.teto-de-luz) {
+    height: 100%;
+    aspect-ratio: auto;
+  }
+  /* a timeline (WAAPI) controla cada luminária; nada de CSS aqui */
+  .abertura__teto :global(.luz-led) {
+    animation: none !important;
+    opacity: 0;
+  }
+  .abertura__logo {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: min(84vw, 60rem);
+    translate: -50% -50%;
+    color: var(--prime-nevoa);
+    opacity: 0;
+  }
+  .abertura__logo :global(svg) {
+    width: 100%;
+    height: auto;
+  }
+  .abertura__pular {
+    position: absolute;
+    right: var(--margem);
+    bottom: var(--esp-5);
+    min-height: 2.75rem;
+    padding: var(--esp-2) var(--esp-4);
+    background: transparent;
+    color: var(--prime-nevoa);
+    border: 1px solid rgb(255 244 224 / 0.4);
+    transition:
+      border-color var(--dur-1) var(--curva-saida),
+      box-shadow var(--dur-1) var(--curva-saida);
+  }
+  .abertura__pular:hover {
+    border-color: var(--prime-luz);
+    box-shadow: var(--luz-borda);
+  }
+  /* enquanto a abertura roda, o que entra no fim começa escondido */
+  :global(html[data-abertura='on'] [data-entra]) {
+    opacity: 0;
+  }
+  /* View Transition do logo: só o logo voa; o resto da página não faz crossfade */
+  :global(html[data-abertura]::view-transition-old(root)),
+  :global(html[data-abertura]::view-transition-new(root)) {
+    animation: none;
+  }
+  :global(::view-transition-group(ph-logo)) {
+    animation-duration: 650ms;
+    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+</style>
