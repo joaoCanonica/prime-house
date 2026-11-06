@@ -64,6 +64,18 @@ Detalhes em `docs/design/ABERTURA_HERO.md`.
 - **[aviso] H1 provisório** ("O novo padrão de treino em Lages."): a sessão 5 refina.
 - **[aviso] `astro preview` no Astro 7** roda como serviço em segundo plano; os scripts de captura usam `--ignore-lock` para cada um ter o seu.
 
+## Da sessão 5 (textos)
+
+Textos em `src/content/textos/` (fonte de cada frase real em `fontes.ts`; lista viva em `pendenciasTexto`, `index.ts`).
+
+- **[aviso] Carrossel "5 sinais":** o material baixado tem só 4 sinais (capa, 4 artes, fechamento). O quiz usa os 4 reais e o título não diz "5". Pedir a arte que falta.
+- **[aviso] H1 da home:** provisório, baseado na bio ("Novo padrão de academia em Lages").
+- **[trava se publicado] Benefícios fixos e "o que o Plano Prime inclui":** texto pronto, marcado `provisorio()`.
+- **[aviso] Sem informação:** nutricionista na equipe, estacionamento, acessibilidade, feriados municipais, e-mail para currículos, dicas de execução (sem vídeo de técnica), lista completa do maquinário.
+- **[aviso] Equipe:** a página está pronta para nome, foto, CREF/CREFITO e especialidade, com autorização. Hoje mostra só o Lucas e o texto geral.
+- **[aviso] Frases cortadas pela seção 8:** a comparação com outras academias (duas frases da marca e a fala da avaliação funcional) e as ofertas de campanha da fala do Plano Prime. Ficou só a parte positiva de cada frase.
+- **[aviso] Privacidade:** razão social, CNPJ, encarregado (DPO) e a decisão de analytics/cookies (sessão 7).
+
 ## Do cliente (herdado do pacote de prompts, seção C)
 
 - [trava] Confirmação por escrito dos benefícios fixos: garantia de 14 dias, trancamento de 30 dias no anual, Sexta Prime.
