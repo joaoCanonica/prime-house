@@ -29,6 +29,12 @@ pnpm capturar     # build + capturas 390/1440 px, com e sem reduced-motion, em d
 - `MODO=preview` (padrão): faixa "em revisão", selos PROVISÓRIO, noindex; pendências só avisam. `pnpm build:producao` (`MODO=producao`): as travas da seção 9 derrubam o build.
 - `pnpm validate-config` roda no `prebuild`/`predev`; `pnpm audit-compliance` roda no `postbuild` e varre o `dist/` (termos vetados, mídia pendente ou `naoUsar`, benefício não confirmado, selo provisório em produção, preview sem noindex).
 
+### Design system
+
+- Tokens em `src/styles/tokens.css` (cores iguais às de `src/config/tema.ts`), fontes self-hosted em `src/assets/fontes/`, assinatura "Luz de Treino" em `src/components/marca/` e componentes em `src/components/base/`.
+- Página viva: `/_estilo` (só no preview). Decisões e medições: `docs/design/DESIGN_SYSTEM.md`.
+- `pnpm audit-contraste` valida AA de cada par (roda dentro do `pnpm check`); `pnpm icones` regera favicon e apple-touch-icon.
+
 ### Mídia
 
 - `media.manifest.json` (validado por `media.manifest.schema.json`) é a fonte única: originais, trechos de vídeo, stills e recortes, com uso, consentimento e problemas.
@@ -36,7 +42,7 @@ pnpm capturar     # build + capturas 390/1440 px, com e sem reduced-motion, em d
 - Publicável → `public/media/<id>/`; consentimento pendente → `media-privada/<id>/` (fora do git e do site); `naoUsar` → nada. Cada pasta tem um `indice.json`.
 - `pnpm media:stills` extrai os stills e refaz as folhas de contato em `docs/capturas/midia/`. Catálogo: `docs/MIDIA_CATALOGO.md`.
 
-Os scripts `audit-a11y`, `audit-lighthouse`, `audit-seo`, `audit-contraste`, `audit-pesos` e `model:prepare` são marcadores e saem com erro até a sessão que os implementa (ver `docs/PENDENCIAS.md`).
+Os scripts `audit-a11y`, `audit-lighthouse`, `audit-seo`, `audit-pesos` e `model:prepare` são marcadores e saem com erro até a sessão que os implementa (ver `docs/PENDENCIAS.md`).
 
 ## Estrutura
 

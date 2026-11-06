@@ -14,7 +14,7 @@ Legenda: **[trava]** impede a produção · **[aviso]** não impede.
   Se o João quiser, atualizamos o texto do CLAUDE.md (precisa de ordem expressa, pois o bloco é "sem alterar").
 - **[aviso] Git LFS para `modelos-originais/`** (GLB e splat fonte): aguardando autorização do João. Até lá a pasta fica vazia e nenhum arquivo pesado entra no git.
 - **[aviso] Domínio definitivo.** `site` no `astro.config.mjs` não foi definido (necessário para sitemap e URLs canônicas na sessão 8).
-- **[aviso] Scripts ainda não implementados** (saem com erro de propósito, para nunca darem falso "verde"): `audit-contraste` (3), `audit-pesos` e `model:prepare` (6B), `audit-seo` (8), `audit-a11y` e `audit-lighthouse` (9). (`media:prepare` na sessão 1; `validate-config` e `audit-compliance` na sessão 2.)
+- **[aviso] Scripts ainda não implementados** (saem com erro de propósito, para nunca darem falso "verde"): `audit-pesos` e `model:prepare` (6B), `audit-seo` (8), `audit-a11y` e `audit-lighthouse` (9). (`media:prepare` na sessão 1; `validate-config` e `audit-compliance` na sessão 2.)
 
 ## Da sessão 1 (mídia)
 
@@ -42,6 +42,16 @@ Detalhes em `docs/MIDIA_CATALOGO.md`.
 - **[aviso] Avaliação da Ronielle S.** começa com "Melhor academia de Lages". Só pode aparecer como citação literal, num elemento com `data-avaliacao-literal="g-004"`: o audit confere se o texto é idêntico ao do Google e só então isenta o trecho.
 - **[aviso] Razão social, CNPJ, CREF do responsável técnico, estacionamento e acessibilidade:** `opcional()`, ficam fora do site até chegarem.
 - **[aviso] Indexação desligada** (`indexar = false`) até a sessão 9, mesmo em produção.
+
+## Da sessão 3 (design system)
+
+Detalhes em `docs/design/DESIGN_SYSTEM.md`.
+
+- **[aviso] Laranja:** medido no logo do vídeo e no avatar (matiz 34°). O `#EC8A2A` (30°) continua provisório; trocar só pelo código oficial do manual de marca.
+- **[aviso] Favicon:** o logo empilhado a 16–32 px fica ilegível. Sugestão para o João: um monograma ("PH" ou o "P" da marca) só para o ícone, se o manual de marca permitir.
+- **[aviso] Mapa:** o `MapaEstatico` é um localizador tipográfico (coordenadas, plus code, rotas). Um mapa desenhado precisa de base cartográfica com licença (OpenStreetMap, com atribuição) ou de arte do marketing; o servidor de tiles está bloqueado nesta sessão.
+- **[aviso] `/_estilo`:** o Astro não roteia arquivos com `_`, então `src/pages/_estilo.astro` é publicado em `/_estilo/` por `src/pages/[interna].astro`, **só no preview** (em produção a rota não existe).
+- **[aviso] MDN:** `developer.mozilla.org` está bloqueado na rede da sessão; a pesquisa usou o repositório `mdn/content` e o `@mdn/browser-compat-data`.
 
 ## Do cliente (herdado do pacote de prompts, seção C)
 

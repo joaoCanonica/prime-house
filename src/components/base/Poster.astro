@@ -1,0 +1,49 @@
+---
+// Imagem com LQIP: AVIF/WebP em srcset, dimensões reservadas (CLS 0) e fundo borrado até carregar.
+import { imagem, srcset } from './midia.ts';
+
+interface Props {
+  id: string;
+  alt: string;
+  sizes?: string;
+  /** true no LCP: eager + fetchpriority alto */
+  prioridade?: boolean;
+  class?: string | undefined;
+}
+const { id, alt, sizes = '100vw', prioridade = false, class: classe } = Astro.props;
+const img = imagem(id);
+const maior = img.larguras[img.larguras.length - 1];
+if (!maior) throw new Error(`[midia] "${id}" sem larguras`);
+---
+
+<picture
+  class:list={['poster', classe]}
+  style={{ backgroundImage: `url(${img.lqip})`, aspectRatio: `${maior.largura} / ${maior.altura}` }}
+>
+  <source type="image/avif" srcset={srcset(img.larguras, 'avif')} sizes={sizes} />
+  <img
+    src={maior.webp}
+    srcset={srcset(img.larguras, 'webp')}
+    sizes={sizes}
+    width={maior.largura}
+    height={maior.altura}
+    alt={alt}
+    loading={prioridade ? 'eager' : 'lazy'}
+    decoding={prioridade ? 'sync' : 'async'}
+    fetchpriority={prioridade ? 'high' : 'auto'}
+  />
+</picture>
+
+<style>
+  .poster {
+    display: block;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+  }
+  .poster img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+</style>

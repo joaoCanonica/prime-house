@@ -121,3 +121,12 @@ export function statusEm(data: Date, cfg: ConfigHorario = configHorario): Status
   }
   return { estado: 'fechado', aberto: false, texto: 'Fechado' };
 }
+
+/** Dia da semana e feriado no fuso da academia (para destacar "hoje" na tabela). */
+export function hojeEm(
+  data: Date,
+  cfg: ConfigHorario = configHorario,
+): { dia: DiaSemana; feriado: boolean } {
+  const { civil } = partesLocais(data, cfg.fuso);
+  return { dia: diaDaSemana(civil), feriado: cfg.feriados.some((f) => f.data === iso(civil)) };
+}

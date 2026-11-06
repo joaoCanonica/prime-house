@@ -1,0 +1,72 @@
+---
+// Moldura de luz: linha de 1 px (Luz) com brilho suave que liga ao entrar na tela (uma vez).
+// Envolve vídeo/imagem. Hexágono = alongado, com pontas nas laterais, como as luminárias do teto.
+interface Props {
+  forma?: 'retangulo' | 'hexagono';
+  /** respiro entre a moldura e o conteúdo, em px (a luz fica do lado de fora) */
+  respiro?: number;
+  /** proporção do bloco (ex.: "9 / 16", "16 / 9"); padrão: a do conteúdo */
+  proporcao?: string;
+  class?: string | undefined;
+}
+const { forma = 'retangulo', respiro = 10, proporcao, class: classe } = Astro.props;
+// pontas do hexágono em % da largura
+const ponta = 7;
+const pontos =
+  forma === 'hexagono'
+    ? `${ponta},0 ${100 - ponta},0 100,50 ${100 - ponta},100 ${ponta},100 0,50`
+    : '0,0 100,0 100,100 0,100';
+const clip =
+  forma === 'hexagono'
+    ? `polygon(${ponta}% 0, ${100 - ponta}% 0, 100% 50%, ${100 - ponta}% 100%, ${ponta}% 100%, 0 50%)`
+    : undefined;
+---
+
+<div
+  class:list={['moldura-luz', `moldura-luz--${forma}`, classe]}
+  data-luz
+  style={{ '--respiro': `${respiro}px`, ...(proporcao ? { aspectRatio: proporcao } : {}) }}
+>
+  <div class="moldura-luz__conteudo" style={clip ? { clipPath: clip } : undefined}>
+    <slot />
+  </div>
+  <svg
+    class="luz-svg moldura-luz__linha"
+    viewBox="0 0 100 100"
+    preserveAspectRatio="none"
+    aria-hidden="true"
+    focusable="false"
+  >
+    <polygon class="luz-led" points={pontos}></polygon>
+  </svg>
+</div>
+
+<script>
+  import '../../scripts/luz.ts';
+</script>
+
+<style>
+  .moldura-luz {
+    position: relative;
+    isolation: isolate;
+    padding: var(--respiro);
+  }
+  .moldura-luz__conteudo {
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+    background: var(--prime-grafite);
+  }
+  .moldura-luz__conteudo :global(:is(img, video, picture)) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .moldura-luz__linha {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+</style>

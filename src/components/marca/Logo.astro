@@ -1,0 +1,40 @@
+---
+// Logo a partir dos SVG originais. "PRIME HOUSE" = currentColor; "ACADEMIA" = var(--prime-laranja).
+import empilhado from '../../../media-originais/marca/primehouse-logo.svg?raw';
+import linha from '../../../media-originais/marca/primehouse-logo-linha.svg?raw';
+import mono from '../../../media-originais/marca/primehouse-logo-mono.svg?raw';
+import { comAtributos, compactarSvg } from './svg.ts';
+
+interface Props {
+  variante?: 'empilhado' | 'linha' | 'mono';
+  /** altura em px (a largura segue a proporção). Padrão: 40 */
+  altura?: number;
+  /** decorativo = sem nome acessível (quando o texto já está ao lado) */
+  decorativo?: boolean;
+  class?: string | undefined;
+}
+const { variante = 'empilhado', altura = 40, decorativo = false, class: classe } = Astro.props;
+const fontes = { empilhado, linha, mono } as const;
+const proporcao = { empilhado: 857 / 685, linha: 1482 / 160, mono: 857 / 685 } as const;
+const largura = Math.round(altura * proporcao[variante] * 10) / 10;
+
+const svg = comAtributos(compactarSvg(fontes[variante]), {
+  class: ['logo', `logo--${variante}`, classe].filter(Boolean).join(' '),
+  width: String(largura),
+  height: String(altura),
+  focusable: 'false',
+  ...(decorativo
+    ? { 'aria-hidden': 'true' }
+    : { role: 'img', 'aria-label': 'Prime House Academia' }),
+});
+---
+
+<Fragment set:html={svg} />
+
+<style is:global>
+  .logo {
+    flex: none;
+    color: inherit;
+    shape-rendering: geometricPrecision;
+  }
+</style>

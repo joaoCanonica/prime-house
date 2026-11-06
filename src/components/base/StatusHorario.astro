@@ -1,0 +1,43 @@
+---
+// Status ao vivo ("Aberto agora · até 0h"). Sem JS, mostra o horário dos dias úteis.
+interface Props {
+  class?: string | undefined;
+}
+const { class: classe } = Astro.props;
+---
+
+<p class:list={['status-horario', classe]} data-status-horario data-estado="desconhecido">
+  <span class="status-horario__luz" aria-hidden="true"></span>
+  <span data-status-texto>Segunda a sexta, das 5h à 0h</span>
+</p>
+
+<script>
+  import '../../scripts/horario-vivo.ts';
+</script>
+
+<style>
+  .status-horario {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7em;
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
+  }
+  .status-horario__luz {
+    width: 1.5rem;
+    height: 1px;
+    background: var(--prime-concreto);
+    transition:
+      background-color var(--dur-2) var(--curva-saida),
+      box-shadow var(--dur-2) var(--curva-saida);
+  }
+  [data-estado='aberto'] .status-horario__luz,
+  [data-estado='fechando'] .status-horario__luz {
+    background: var(--prime-luz);
+    box-shadow: 0 0 6px 1px rgb(255 244 224 / 0.55);
+  }
+  [data-estado='fechando'] .status-horario__luz {
+    background: var(--prime-laranja);
+    box-shadow: 0 0 6px 1px rgb(236 138 42 / 0.5);
+  }
+</style>

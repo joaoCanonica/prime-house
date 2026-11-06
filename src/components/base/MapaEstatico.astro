@@ -1,0 +1,139 @@
+---
+// Localizador estático: coordenadas, plus code e rotas. Sem mapa de terceiros carregado (privacidade e peso);
+// um mapa ilustrado próprio é pendência (docs/PENDENCIAS.md).
+import { contato } from '../../config/contato.ts';
+import Botao from './Botao.astro';
+
+interface Props {
+  class?: string | undefined;
+}
+const { class: classe } = Astro.props;
+const { lat, lng } = contato.geo.valor;
+const end = contato.endereco.valor;
+const mapas = contato.mapas.valor;
+const dms = (v: number, pos: string, neg: string) => {
+  const a = Math.abs(v);
+  const g = Math.floor(a);
+  const mf = (a - g) * 60;
+  const m = Math.floor(mf);
+  const s = ((mf - m) * 60).toFixed(1).padStart(4, '0').replace('.', ',');
+  return `${g}°${String(m).padStart(2, '0')}′${s}″ ${v < 0 ? neg : pos}`;
+};
+---
+
+<section class:list={['mapa-estatico', classe]} aria-label="Como chegar">
+  <div class="mapa-estatico__alvo" aria-hidden="true">
+    <span class="mapa-estatico__eixo mapa-estatico__eixo--h"></span>
+    <span class="mapa-estatico__eixo mapa-estatico__eixo--v"></span>
+    <span class="mapa-estatico__ponto"></span>
+  </div>
+  <div class="mapa-estatico__dados">
+    <p class="t-rotulo mapa-estatico__coord t-tabular">
+      {dms(lat, 'N', 'S')} · {dms(lng, 'L', 'O')}
+    </p>
+    <address class="mapa-estatico__endereco">
+      {end.logradouro}, {end.numero}
+      <br />
+      {end.bairro} · {end.cidade}/{end.uf}
+      <br />
+      <span class="t-secundario t-pequeno">
+        CEP {end.cep} · Plus code {contato.plusCode.valor}
+      </span>
+    </address>
+    <div class="mapa-estatico__rotas">
+      <Botao href={mapas.google} variante="secundario">
+        Google Maps
+      </Botao>
+      <Botao href={mapas.waze} variante="secundario">
+        Waze
+      </Botao>
+      <Botao href={mapas.apple} variante="secundario">
+        Apple Mapas
+      </Botao>
+    </div>
+  </div>
+</section>
+
+<style>
+  .mapa-estatico {
+    display: grid;
+    gap: var(--esp-6);
+    grid-template-columns: minmax(0, 1fr);
+    padding: var(--esp-6);
+    background: var(--prime-grafite);
+    border: 1px solid var(--prime-linha);
+  }
+  @media (min-width: 48rem) {
+    .mapa-estatico {
+      grid-template-columns: minmax(12rem, 1fr) minmax(0, 1.4fr);
+      align-items: center;
+    }
+  }
+  .mapa-estatico__alvo {
+    position: relative;
+    aspect-ratio: 1;
+    max-width: 18rem;
+    width: 100%;
+  }
+  .mapa-estatico__eixo {
+    position: absolute;
+    background: var(--prime-linha);
+  }
+  .mapa-estatico__eixo--h {
+    left: 0;
+    right: 0;
+    top: 50%;
+    height: 1px;
+  }
+  .mapa-estatico__eixo--v {
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 1px;
+  }
+  .mapa-estatico__ponto {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 22%;
+    aspect-ratio: 1;
+    translate: -50% -50%;
+    border: 1px solid var(--prime-luz);
+    box-shadow:
+      0 0 10px rgb(255 244 224 / 0.35),
+      inset 0 0 10px rgb(255 244 224 / 0.12);
+  }
+  .mapa-estatico__ponto::after {
+    content: '';
+    position: absolute;
+    inset: 42%;
+    background: var(--prime-laranja);
+  }
+  .mapa-estatico__dados {
+    display: grid;
+    gap: var(--esp-5);
+  }
+  .mapa-estatico__coord {
+    color: var(--prime-concreto);
+  }
+  .mapa-estatico__endereco {
+    font-style: normal;
+    font-family: var(--fonte-titulo);
+    font-stretch: var(--largura-titulo);
+    font-weight: 650;
+    font-size: var(--fs-h3);
+    line-height: 1.15;
+    text-transform: uppercase;
+  }
+  .mapa-estatico__endereco .t-pequeno {
+    font-family: var(--fonte-texto);
+    text-transform: none;
+    font-weight: 400;
+    font-stretch: normal;
+  }
+  .mapa-estatico__rotas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--esp-3);
+  }
+</style>

@@ -1,0 +1,469 @@
+---
+// /_estilo: o design system inteiro numa página (preview, noindex). Publicada por src/pages/[interna].astro.
+import '../styles/global.css';
+import BotaoWhatsApp from '../components/base/BotaoWhatsApp.astro';
+import Botao from '../components/base/Botao.astro';
+import Citacao from '../components/base/Citacao.astro';
+import Link from '../components/base/Link.astro';
+import MapaEstatico from '../components/base/MapaEstatico.astro';
+import MolduraVideo from '../components/base/MolduraVideo.astro';
+import Poster from '../components/base/Poster.astro';
+import Rotulo from '../components/base/Rotulo.astro';
+import StatusHorario from '../components/base/StatusHorario.astro';
+import TabelaHorario from '../components/base/TabelaHorario.astro';
+import Logo from '../components/marca/Logo.astro';
+import MolduraLuz from '../components/marca/MolduraLuz.astro';
+import NumeroGrande from '../components/marca/NumeroGrande.astro';
+import TetoDeLuz from '../components/marca/TetoDeLuz.astro';
+import PreviewBanner from '../components/PreviewBanner.astro';
+import Provisorio from '../components/Provisorio.astro';
+import { avaliacoes } from '../config/avaliacoes.ts';
+import { cores, paresContraste } from '../config/tema.ts';
+import { mensagens } from '../lib/whatsapp.ts';
+
+const L = (hex: string) => {
+  const [r = 0, g = 0, b = 0] = [1, 3, 5]
+    .map((i) => parseInt(hex.slice(i, i + 2), 16) / 255)
+    .map((v) => (v <= 0.04045 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4));
+  return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+};
+const razao = (a: string, b: string) => {
+  const x = Math.max(L(a), L(b));
+  const y = Math.min(L(a), L(b));
+  return ((x + 0.05) / (y + 0.05)).toFixed(2).replace('.', ',');
+};
+const amostras = [
+  { nome: 'Breu', token: 'breu', uso: 'fundo principal' },
+  { nome: 'Grafite', token: 'grafite', uso: 'superfícies' },
+  { nome: 'Concreto', token: 'concreto', uso: 'texto secundário, linhas' },
+  { nome: 'Névoa', token: 'nevoa', uso: 'texto; o claro raro' },
+  { nome: 'Laranja Prime', token: 'laranja', uso: 'acento pontual · PROVISÓRIO' },
+  { nome: 'Luz', token: 'luz', uso: 'molduras de LED, brilho' },
+] as const;
+const ronielle = avaliacoes.selecionadas.find((a) => a.id === 'g-004');
+const juliano = avaliacoes.selecionadas.find((a) => a.id === 'g-001');
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Design system · Prime House Academia</title>
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="theme-color" content={cores.breu} />
+  </head>
+  <body>
+    <PreviewBanner />
+    <header class="topo">
+      <Logo variante="linha" altura={22} />
+      <Rotulo ponto>Design system · /_estilo</Rotulo>
+    </header>
+
+    <main>
+      <!-- abertura -->
+      <section class="abertura">
+        <TetoDeLuz sequencial class="abertura__teto" />
+        <div class="abertura__texto quadro">
+          <Rotulo>Luz de treino</Rotulo>
+          <h1 class="t-display">
+            O novo <em class="acento">padrão</em> de treino em Lages.
+          </h1>
+          <div class="acoes">
+            <BotaoWhatsApp mensagem={mensagens.geral} />
+            <Botao href="#teto" variante="secundario">
+              Fazer o tour
+            </Botao>
+          </div>
+        </div>
+      </section>
+
+      <!-- cores -->
+      <section class="secao quadro" id="cores">
+        <Rotulo>01 · Cor</Rotulo>
+        <h2 class="t-h2">
+          Muito preto. <em class="acento">Luz</em> como desenho.
+        </h2>
+        <ul class="cores">
+          {amostras.map((a) => (
+            <li class="cor">
+              <span class="cor__amostra" style={{ background: cores[a.token] }} />
+              <span class="cor__nome">{a.nome}</span>
+              <span class="t-pequeno t-secundario t-tabular">
+                {cores[a.token]} · {a.uso}
+              </span>
+              <span class="t-pequeno t-secundario t-tabular">
+                sobre Breu {razao(cores[a.token], cores.breu)}:1
+              </span>
+            </li>
+          ))}
+        </ul>
+        <p class="t-pequeno t-secundario">
+          Pares AA validados por <code>pnpm audit-contraste</code>: {paresContraste.length} pares,
+          todos ≥ mínimo. Laranja nunca sobre Névoa.
+        </p>
+      </section>
+
+      <!-- tipografia -->
+      <section class="secao quadro" id="tipo">
+        <Rotulo>02 · Tipografia</Rotulo>
+        <div class="tipo">
+          <div>
+            <p class="t-rotulo t-secundario">Display · Archivo largura 62 · 750</p>
+            <p class="t-display">
+              Aqui você tem <em class="acento">nome</em> e história.
+            </p>
+          </div>
+          <div>
+            <p class="t-rotulo t-secundario">H1 · Archivo 62 · 720</p>
+            <p class="t-h1">
+              Sem fila de <em class="acento">aparelho</em>.
+            </p>
+          </div>
+          <div>
+            <p class="t-rotulo t-secundario">H2 · Archivo 75 · 680</p>
+            <p class="t-h2">O treino já é pesado, o ambiente não deve ser.</p>
+          </div>
+          <div>
+            <p class="t-rotulo t-secundario">H3 · Archivo 75 · 650</p>
+            <p class="t-h3">Avaliação funcional e treino individual no app</p>
+          </div>
+          <div>
+            <p class="t-rotulo t-secundario">Lead · Inter Tight</p>
+            <p class="t-lead">Cada detalhe foi pensado para você querer voltar amanhã.</p>
+          </div>
+          <div>
+            <p class="t-rotulo t-secundario">Texto 17–18 px · Inter Tight 400 · 1,6</p>
+            <p>
+              Aqui, você não precisa chegar pronto. Só precisa chegar. Antes do primeiro treino, uma
+              avaliação funcional com o professor; depois, o treino individual no app, ajustado ao
+              seu ritmo. Uma ficha é importante, mas o acompanhamento também.
+            </p>
+            <p class="t-secundario t-pequeno">Texto secundário · Concreto · 15 px</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- números -->
+      <section class="secao quadro" id="numeros">
+        <Rotulo>03 · Números verificáveis</Rotulo>
+        <div class="numeros">
+          <NumeroGrande valor="5" legenda="puxadas altas" />
+          <NumeroGrande valor="100%" legenda="maquinário Cimerian" cor="luz" />
+          <NumeroGrande valor="5h–0h" legenda="de segunda a sexta" />
+          <Provisorio motivo="garantia de 14 dias: confirmar por escrito" como="div">
+            <NumeroGrande valor="14" unidade="dias" legenda="de garantia" cor="laranja" />
+          </Provisorio>
+        </div>
+      </section>
+
+      <!-- teto -->
+      <section class="secao teto-secao" id="teto">
+        <TetoDeLuz intensidade="fundo" class="teto-secao__fundo" />
+        <div class="quadro teto-secao__texto">
+          <Rotulo>04 · Assinatura</Rotulo>
+          <h2 class="t-h2">
+            As molduras do teto <em class="acento">acendem</em>, uma vez.
+          </h2>
+          <p class="t-secundario">
+            Linha de 1 px na cor Luz, brilho suave. Ao entrar na tela: 2–3 cintilações de lâmpada
+            tubular em 280 ms e fica estável. Com movimento reduzido, já está acesa.
+          </p>
+        </div>
+      </section>
+
+      <!-- molduras -->
+      <section class="secao quadro" id="molduras">
+        <Rotulo>05 · Molduras de luz</Rotulo>
+        <div class="molduras">
+          <figure>
+            <MolduraLuz forma="retangulo" proporcao="4 / 5">
+              <Poster
+                id="still-interior"
+                alt="Sala de musculação à noite, com máquinas Cimerian sob as luzes do teto"
+                sizes="(min-width: 64rem) 30vw, 90vw"
+              />
+            </MolduraLuz>
+            <figcaption class="t-rotulo t-secundario">Retângulo · Pôster com LQIP</figcaption>
+          </figure>
+          <figure>
+            <MolduraVideo
+              id="interior-noite"
+              descricao="Interior da academia à noite: máquinas, janelas e as molduras de LED do teto"
+            />
+            <figcaption class="t-rotulo t-secundario">Vídeo vertical · loop mudo</figcaption>
+          </figure>
+          <figure class="molduras__largo">
+            <MolduraVideo
+              id="drone-noite"
+              formato="horizontal"
+              forma="hexagono"
+              descricao="Vista aérea noturna da fachada com o letreiro aceso"
+            />
+            <figcaption class="t-rotulo t-secundario">
+              Hexágono · vídeo 16:9 (720×404, só até ≈ 720 px de largura)
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- logo -->
+      <section class="secao quadro" id="logo">
+        <Rotulo>06 · Logo</Rotulo>
+        <div class="logos">
+          <Logo variante="empilhado" altura={160} />
+          <Logo variante="linha" altura={40} />
+          <span class="logos__mono">
+            <Logo variante="mono" altura={120} />
+          </span>
+        </div>
+        <p class="t-rotulo t-secundario">Nitidez · 24 · 32 · 48 · 96 px</p>
+        <div class="nitidez">
+          {(['empilhado', 'linha', 'mono'] as const).map((v) => (
+            <div class="nitidez__linha">
+              {[24, 32, 48, 96].map((h) => (
+                <Logo variante={v} altura={h} decorativo />
+              ))}
+            </div>
+          ))}
+        </div>
+        <div class="icones">
+          <img src="/favicon.svg" width="32" height="32" alt="Favicon (SVG)" />
+          <img src="/favicon.ico" width="16" height="16" alt="Favicon a 16 px" />
+          <img src="/apple-touch-icon.png" width="90" height="90" alt="Apple touch icon" />
+        </div>
+      </section>
+
+      <!-- componentes -->
+      <section class="secao quadro" id="componentes">
+        <Rotulo>07 · Componentes</Rotulo>
+        <div class="componentes">
+          <div class="acoes">
+            <BotaoWhatsApp />
+            <BotaoWhatsApp texto="Agendar avaliação" mensagem={mensagens.avaliacao} />
+            <Botao href="#teto" variante="secundario">
+              Fazer o tour
+            </Botao>
+          </div>
+          <p>
+            <Link href="https://www.instagram.com/primehouse.academia/">Instagram</Link> ·{' '}
+            <Link href="#cores">link interno</Link> ·<Rotulo ponto>Rótulo com ponto</Rotulo>
+          </p>
+          <p class="t-pequeno t-secundario">
+            Use Tab: o foco acende como LED (1 px Luz + brilho), sempre visível.
+          </p>
+          <div class="citacoes">
+            {juliano && <Citacao avaliacao={juliano} />}
+            {ronielle && <Citacao avaliacao={ronielle} />}
+          </div>
+        </div>
+      </section>
+
+      <!-- horário -->
+      <section class="secao quadro" id="horario">
+        <Rotulo>08 · Horário</Rotulo>
+        <StatusHorario />
+        <TabelaHorario />
+      </section>
+
+      <!-- mapa -->
+      <section class="secao quadro" id="mapa">
+        <Rotulo>09 · Como chegar</Rotulo>
+        <MapaEstatico />
+      </section>
+
+      <!-- movimento -->
+      <section class="secao quadro" id="movimento">
+        <Rotulo>10 · Movimento</Rotulo>
+        <ul class="t-pequeno t-tabular movimento">
+          <li>
+            <b>150 ms</b> foco, hover
+          </li>
+          <li>
+            <b>300 ms</b> troca de estado
+          </li>
+          <li>
+            <b>450 ms</b> entrada de bloco
+          </li>
+          <li>
+            <b>700 ms</b> abertura
+          </li>
+          <li>
+            <b>cubic-bezier(.16, 1, .3, 1)</b> saída precisa, sem bounce
+          </li>
+          <li>
+            <b>prefers-reduced-motion</b> estados finais
+          </li>
+        </ul>
+      </section>
+    </main>
+  </body>
+</html>
+
+<style>
+  .quadro {
+    width: min(100% - 2 * var(--margem), var(--largura-max));
+    margin-inline: auto;
+  }
+  .topo {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--esp-4);
+    padding: var(--esp-5) var(--margem);
+  }
+  .secao {
+    display: grid;
+    gap: var(--esp-6);
+    padding-block: var(--secao);
+    border-top: 1px solid var(--prime-linha);
+  }
+  .abertura {
+    position: relative;
+    min-height: min(100svh, 62rem);
+    display: grid;
+    align-items: end;
+    padding-bottom: var(--esp-8);
+    overflow: hidden;
+  }
+  .abertura__teto {
+    position: absolute;
+    inset: 0 0 auto;
+    aspect-ratio: auto;
+    height: 75%;
+  }
+  .abertura__texto {
+    position: relative;
+    display: grid;
+    gap: var(--esp-6);
+  }
+  .abertura .t-display {
+    max-width: 17ch;
+  }
+  .acoes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--esp-3);
+  }
+  .cores {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: var(--esp-5);
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 13rem), 1fr));
+  }
+  .cor {
+    display: grid;
+    align-content: start;
+    gap: var(--esp-1);
+    max-width: none;
+  }
+  .cor__amostra {
+    height: 5.5rem;
+    border: 1px solid var(--prime-linha);
+    margin-bottom: var(--esp-2);
+  }
+  .cor__nome {
+    font-weight: 600;
+  }
+  .tipo {
+    display: grid;
+    gap: var(--esp-8);
+  }
+  .tipo > div {
+    display: grid;
+    gap: var(--esp-3);
+  }
+  .numeros {
+    display: grid;
+    gap: var(--esp-8) var(--esp-6);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
+    align-items: end;
+  }
+  .teto-secao {
+    position: relative;
+    overflow: hidden;
+    min-height: 32rem;
+    align-content: end;
+  }
+  .teto-secao__fundo {
+    position: absolute;
+    inset: 0;
+    aspect-ratio: auto;
+    height: 100%;
+  }
+  .teto-secao__texto {
+    position: relative;
+    display: grid;
+    gap: var(--esp-4);
+  }
+  .molduras {
+    display: grid;
+    gap: var(--esp-7) var(--esp-6);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+    align-items: start;
+  }
+  .molduras figure {
+    display: grid;
+    gap: var(--esp-3);
+  }
+  .molduras__largo {
+    grid-column: 1 / -1;
+    max-width: 46rem;
+  }
+  .logos {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--esp-7);
+  }
+  .logos__mono {
+    color: var(--prime-luz);
+  }
+  .nitidez {
+    display: grid;
+    gap: var(--esp-5);
+  }
+  .nitidez__linha {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: end;
+    gap: var(--esp-6);
+  }
+  .icones {
+    display: flex;
+    align-items: end;
+    gap: var(--esp-5);
+  }
+  .icones img {
+    image-rendering: auto;
+  }
+  .componentes {
+    display: grid;
+    gap: var(--esp-6);
+  }
+  .citacoes {
+    display: grid;
+    gap: var(--esp-8);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 24rem), 1fr));
+  }
+  .movimento {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: var(--esp-2);
+  }
+  .movimento b {
+    color: var(--prime-luz);
+    font-weight: 600;
+    margin-inline-end: 0.6em;
+  }
+  code {
+    font-family: ui-monospace, monospace;
+    font-size: 0.9em;
+  }
+</style>

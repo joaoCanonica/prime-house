@@ -1,0 +1,64 @@
+---
+// Avaliação do Google citada literalmente (primeiro nome + inicial). O texto dentro do blockquote é idêntico
+// ao do Google: o audit-compliance confere e só então isenta o trecho (elogio literal de cliente).
+import type { Avaliacao } from '../../config/avaliacoes.ts';
+
+interface Props {
+  avaliacao: Avaliacao;
+  class?: string | undefined;
+}
+const { avaliacao, class: classe } = Astro.props;
+---
+
+<figure class:list={['citacao', classe]}>
+  <blockquote class="citacao__texto" data-avaliacao-literal={avaliacao.id}>
+    {avaliacao.texto}
+  </blockquote>
+  <figcaption class="citacao__autor">
+    <span>{avaliacao.autor}</span>
+    <a class="citacao__fonte t-rotulo" href={avaliacao.url} target="_blank" rel="noopener">
+      Avaliação no Google<span class="sr-only"> (abre em nova aba)</span>
+    </a>
+  </figcaption>
+</figure>
+
+<style>
+  .citacao {
+    display: grid;
+    gap: var(--esp-5);
+    max-width: 38ch;
+  }
+  .citacao__texto {
+    font-family: var(--fonte-acento);
+    font-style: italic;
+    font-size: clamp(1.5rem, 1.1rem + 1.6vw, 2.25rem);
+    line-height: 1.22;
+    letter-spacing: -0.01em;
+    text-wrap: pretty;
+  }
+  .citacao__texto::before {
+    content: '“';
+  }
+  .citacao__texto::after {
+    content: '”';
+  }
+  .citacao__autor {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: var(--esp-2) var(--esp-4);
+    font-weight: 600;
+  }
+  .citacao__fonte {
+    color: var(--prime-concreto);
+    text-decoration: none;
+    border-bottom: 1px solid var(--prime-linha);
+    transition:
+      color var(--dur-1) var(--curva-saida),
+      border-color var(--dur-1) var(--curva-saida);
+  }
+  .citacao__fonte:hover {
+    color: var(--prime-luz);
+    border-color: var(--prime-luz);
+  }
+</style>

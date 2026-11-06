@@ -1,0 +1,38 @@
+/* Fontes self-hosted (OFL), subset latino + pontuação, eixos recortados para o uso (docs/design/TIPOGRAFIA.md). */
+@font-face {
+  font-family: 'Archivo PH';
+  src: url('../assets/fontes/archivo-62-75.woff2') format('woff2');
+  font-weight: 600 800;
+  font-stretch: 62% 75%;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Inter Tight PH';
+  src: url('../assets/fontes/inter-tight-400-650.woff2') format('woff2');
+  font-weight: 400 650;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Source Serif PH';
+  src: url('../assets/fontes/source-serif-4-italic-display.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+/* Fallbacks métricos (reduzem o CLS na troca de fonte) */
+@font-face {
+  font-family: 'Archivo PH Fallback';
+  src: local('Arial Narrow'), local('Roboto Condensed'), local('Arial');
+  size-adjust: 88%;
+  ascent-override: 92%;
+  descent-override: 22%;
+}
+@font-face {
+  font-family: 'Inter Tight PH Fallback';
+  src: local('Arial'), local('Helvetica');
+  size-adjust: 97%;
+  ascent-override: 95%;
+  descent-override: 24%;
+}

@@ -1,0 +1,28 @@
+---
+// Rótulo em versalete (caixa alta pequena e espaçada). Ponto opcional no Laranja.
+interface Props {
+  ponto?: boolean;
+  como?: 'span' | 'p' | 'div';
+  class?: string | undefined;
+}
+const { ponto = false, como: Tag = 'span', class: classe } = Astro.props;
+---
+
+<Tag class:list={['rotulo', 't-rotulo', classe]}>
+  {ponto && <span class="rotulo__ponto" aria-hidden="true" />}
+  <slot />
+</Tag>
+
+<style>
+  .rotulo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75em;
+    color: var(--cor-secundaria, var(--prime-concreto));
+  }
+  .rotulo__ponto {
+    width: 0.5rem;
+    height: 0.5rem;
+    background: var(--prime-laranja);
+  }
+</style>

@@ -1,0 +1,12 @@
+---
+// Rotas internas que começam com "_" (o Astro não roteia arquivos com "_": eles ficam privados).
+// Só existem no preview: em produção nenhuma página interna é gerada.
+import { modoAtual } from '../config/modo.ts';
+import Estilo from './_estilo.astro';
+
+export function getStaticPaths() {
+  return modoAtual() === 'preview' ? [{ params: { interna: '_estilo' } }] : [];
+}
+---
+
+<Estilo />

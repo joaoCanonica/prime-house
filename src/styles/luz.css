@@ -1,0 +1,48 @@
+/* Assinatura "Luz de Treino": linhas de 1 px na cor Luz, com brilho suave.
+   Liga UMA vez ao entrar na tela: 2–3 cintilações de lâmpada tubular (≤ 300 ms) e fica estável.
+   Sem JS, sem suporte a (scripting) ou com movimento reduzido: já acesa, sem cintilar. */
+.luz-led {
+  fill: none;
+  stroke: var(--prime-luz);
+  stroke-width: var(--luz-traco);
+  vector-effect: non-scaling-stroke;
+  stroke-linejoin: miter;
+}
+.luz-svg {
+  /* o filtro fica parado; só a opacidade anima (barato, no compositor) */
+  filter: var(--luz-brilho);
+  overflow: visible;
+  pointer-events: none;
+}
+
+@keyframes ph-cintila {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.85;
+  }
+  18% {
+    opacity: 0.08;
+  }
+  34% {
+    opacity: 1;
+  }
+  46% {
+    opacity: 0.3;
+  }
+  62%,
+  100% {
+    opacity: 1;
+  }
+}
+
+@media (scripting: enabled) and (prefers-reduced-motion: no-preference) {
+  [data-luz]:not(.acesa) .luz-led {
+    opacity: 0;
+  }
+  [data-luz].acesa .luz-led {
+    animation: ph-cintila 280ms linear both;
+    animation-delay: calc(var(--i, 0) * var(--luz-passo, 0ms));
+  }
+}

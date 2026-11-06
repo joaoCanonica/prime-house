@@ -1,0 +1,49 @@
+---
+// Link de texto: fio fino; no hover o fio acende na cor Luz.
+interface Props {
+  href: string;
+  externo?: boolean;
+  class?: string | undefined;
+}
+const { href, externo = /^https?:/.test(href), class: classe } = Astro.props;
+---
+
+<a
+  class:list={['link', classe]}
+  href={href}
+  {...(externo ? { target: '_blank', rel: 'noopener' } : {})}
+>
+  <slot />
+  {externo && (
+    <span class="link__seta" aria-hidden="true">
+      ↗
+    </span>
+  )}
+  {externo && <span class="sr-only"> (abre em nova aba)</span>}
+</a>
+
+<style>
+  .link {
+    color: inherit;
+    text-decoration-line: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.28em;
+    text-decoration-color: color-mix(in srgb, currentColor 40%, transparent);
+    transition:
+      text-decoration-color var(--dur-1) var(--curva-saida),
+      color var(--dur-1) var(--curva-saida);
+  }
+  .link:hover {
+    color: var(--prime-luz);
+    text-decoration-color: var(--prime-luz);
+  }
+  .tema-nevoa .link:hover {
+    color: var(--prime-breu);
+    text-decoration-color: var(--prime-breu);
+  }
+  .link__seta {
+    display: inline-block;
+    margin-inline-start: 0.2em;
+    font-size: 0.85em;
+  }
+</style>

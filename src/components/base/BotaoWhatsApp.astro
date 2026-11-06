@@ -1,0 +1,20 @@
+---
+// Ação principal: "Falar com a equipe" no WhatsApp, com mensagem pronta por contexto.
+import { linkWhatsApp, mensagens } from '../../lib/whatsapp.ts';
+import Botao from './Botao.astro';
+import IconeWhatsApp from './IconeWhatsApp.astro';
+
+interface Props {
+  /** texto que já vai digitado no WhatsApp */
+  mensagem?: string;
+  texto?: string;
+  class?: string | undefined;
+}
+const { mensagem = mensagens.geral, texto = 'Falar com a equipe', class: classe } = Astro.props;
+---
+
+<Botao href={linkWhatsApp(mensagem)} variante="primario" class={classe}>
+  <IconeWhatsApp slot="icone" />
+  {texto}
+  <span class="sr-only"> no WhatsApp</span>
+</Botao>
