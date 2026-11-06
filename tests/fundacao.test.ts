@@ -25,7 +25,9 @@ describe('fundação', () => {
   });
 
   it('mídia original preservada', () => {
-    expect(existsSync(new URL('assets/primehouse-logo.svg', raiz))).toBe(true);
-    expect(existsSync(new URL('videos/snapinsta-1793897411209.mp4', raiz))).toBe(true);
+    expect(existsSync(new URL('media-originais/marca/primehouse-logo.svg', raiz))).toBe(true);
+    expect(existsSync(new URL('media-originais/videos/snapinsta-1793897411209.mp4', raiz))).toBe(
+      true,
+    );
   });
 });

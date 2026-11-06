@@ -30,6 +30,9 @@ importers:
       '@types/three':
         specifier: 0.187.0
         version: 0.187.0
+      ajv:
+        specifier: 8.20.0
+        version: 8.20.0
       astro-eslint-parser:
         specifier: 3.2.0
         version: 3.2.0

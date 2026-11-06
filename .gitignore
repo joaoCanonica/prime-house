@@ -16,3 +16,7 @@ docs/capturas/**/*.png
 # sistema/editor
 .DS_Store
 *.log
+
+# mídia: derivados com consentimento pendente e cache do prepare-media
+media-privada/
+.cache/
