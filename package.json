@@ -1,0 +1,53 @@
+{
+  "name": "primehouse-site",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Site da Prime House Academia (Lages/SC): Astro estático com ilha 3D.",
+  "engines": {
+    "node": ">=24.12.0",
+    "pnpm": ">=10.28.0"
+  },
+  "packageManager": "pnpm@10.28.0",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check && eslint . && prettier --check .",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "test": "vitest run",
+    "validate-config": "node scripts/pendente.mjs validate-config 2",
+    "audit-compliance": "node scripts/pendente.mjs audit-compliance 2",
+    "audit-a11y": "node scripts/pendente.mjs audit-a11y 9",
+    "audit-lighthouse": "node scripts/pendente.mjs audit-lighthouse 9",
+    "audit-seo": "node scripts/pendente.mjs audit-seo 8",
+    "audit-contraste": "node scripts/pendente.mjs audit-contraste 3",
+    "audit-pesos": "node scripts/pendente.mjs audit-pesos 6B",
+    "media:prepare": "node scripts/pendente.mjs media:prepare 1",
+    "model:prepare": "node scripts/pendente.mjs model:prepare 6B",
+    "capturar": "node scripts/capturar.mjs"
+  },
+  "dependencies": {
+    "astro": "7.4.7",
+    "three": "0.187.0"
+  },
+  "devDependencies": {
+    "@astrojs/check": "0.9.12",
+    "@emnapi/runtime": "1.11.3",
+    "@eslint/js": "10.0.1",
+    "@types/node": "24.19.2",
+    "@types/three": "0.187.0",
+    "astro-eslint-parser": "3.2.0",
+    "eslint": "10.14.0",
+    "eslint-plugin-astro": "3.2.1",
+    "globals": "17.14.0",
+    "playwright": "1.63.0",
+    "prettier": "3.9.10",
+    "prettier-plugin-astro": "1.1.2",
+    "sharp": "0.35.5",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.72.1",
+    "vitest": "5.1.0"
+  }
+}
