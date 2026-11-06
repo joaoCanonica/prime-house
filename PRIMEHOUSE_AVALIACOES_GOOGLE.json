@@ -1,0 +1,296 @@
+{
+  "_leiaMe": "Avaliações públicas do Google da PRIME HOUSE ACADEMIA - LAGES, coletadas em 04/11/2026 (todas as 11). Só 4 têm texto. No site: citar literal com primeiro nome + inicial, selo 'Avaliação no Google' e link. Exibir a nota só quando houver volume (meta 50+). Nunca em JSON-LD (AggregateRating autosservido). Recoletar a cada 30 dias.",
+  "fonte": {
+    "plataforma": "Google Maps",
+    "ficha": "PRIME HOUSE ACADEMIA - LAGES",
+    "categoria": "Academia",
+    "endereco": "Av. Duque de Caxias, 1253 - Frei Rogério, Lages - SC, 88508-001",
+    "telefone": "(49) 99804-3861",
+    "coordenadas": [
+      -27.8013201,
+      -50.3148959
+    ],
+    "plusCode": "5MXP+F2",
+    "urlFicha": "https://www.google.com/maps?cid=9561389130144054445",
+    "cid": "0x94e0195c2eb6c901:0x84b0e0c165847cad",
+    "site": "NÃO CADASTRADO",
+    "horarioNaFicha": "cadastrado (fecha 00:00, abre 05:00)",
+    "comodidades": [
+      "Banheiro"
+    ],
+    "pagamentos": [
+      "crédito",
+      "débito",
+      "NFC"
+    ],
+    "coletadoEm": "2026-11-04"
+  },
+  "resumo": {
+    "nota": 4.7,
+    "total": 11,
+    "distribuicao": {
+      "5": 10,
+      "4": 0,
+      "3": 0,
+      "2": 1,
+      "1": 0
+    },
+    "comTexto": 4,
+    "respondidasPeloDono": 0,
+    "exibirNotaNoSite": false,
+    "citacoesDestacadasPeloGoogle": [
+      "Os aparelhos são de excelente qualidade e a equipe formidável",
+      "Ambiente novo e limpo!",
+      "Aparelhos novos e modernos, vestiário completo."
+    ]
+  },
+  "avaliacoes": [
+    {
+      "id": "g-001",
+      "autor": "Juliano Machado",
+      "autorExibicao": "Juliano M.",
+      "nota": 5,
+      "quando": "3 meses atrás",
+      "mesAprox": "2026-08",
+      "texto": "Ambiente novo e limpo! Equipamento de altíssima qualidade.",
+      "perfilAutor": "Local Guide · 1.304 avaliações · 4.714 fotos",
+      "midia": "com 1 vídeo (0:16) e 5 fotos",
+      "respostaDoProprietario": false,
+      "usarNoSite": true,
+      "plataforma": "Google"
+    },
+    {
+      "id": "g-002",
+      "autor": "Alfredo Franco Avila Kuhn",
+      "autorExibicao": "Alfredo K.",
+      "nota": 5,
+      "quando": "2 meses atrás",
+      "mesAprox": "2026-09",
+      "texto": "Aparelhos novos e modernos, vestiário completo. Quem tem dúvidas já não precisa mais ter.",
+      "perfilAutor": "Local Guide · 3 avaliações · 7 fotos",
+      "midia": null,
+      "respostaDoProprietario": false,
+      "usarNoSite": true,
+      "plataforma": "Google"
+    },
+    {
+      "id": "g-003",
+      "autor": "Stefan Della Costa",
+      "autorExibicao": "Stefan D.",
+      "nota": 5,
+      "quando": "um mês atrás",
+      "mesAprox": "2026-10",
+      "texto": "amei",
+      "perfilAutor": "8 avaliações · 1 foto",
+      "midia": null,
+      "respostaDoProprietario": false,
+      "usarNoSite": false,
+      "plataforma": "Google"
+    },
+    {
+      "id": "g-004",
+      "autor": "Ronielle Silveira",
+      "autorExibicao": "Ronielle S.",
+      "nota": 5,
+      "quando": "4 meses atrás",
+      "mesAprox": "2026-07",
+      "texto": "Melhor academia de Lages. Os aparelhos são de excelente qualidade e a equipe formidável",
+      "perfilAutor": "Local Guide · 24 avaliações · 59 fotos",
+      "midia": null,
+      "respostaDoProprietario": false,
+      "usarNoSite": true,
+      "plataforma": "Google"
+    },
+    {
+      "id": "g-005",
+      "autor": "Ruan Mateus Silva",
+      "autorExibicao": "Ruan S.",
+      "nota": 5,
+      "quando": "um mês atrás",
+      "mesAprox": "2026-10",
+      "texto": null,
+      "perfilAutor": "Local Guide · 2 avaliações · 1 foto",
+      "midia": null,
+      "respostaDoProprietario": false,
+      "usarNoSite": false,
+      "plataforma": "Google"
+    },
+    {
+      "id": "g-006",
+      "autor": "Ketlen Pereira",
+      "autorExibicao": "Ketlen P.",
+      "nota": 5,
+      "quando": "2 meses atrás",
+      "mesAprox": "2026-09",
+      "texto": null,
+      "perfilAutor": "",
+      "midia": null,
+      "respostaDoProprietario": false,
+      "usarNoSite": false,
+      "plataforma": "Google"
+    },
+    {
+      "id": "g-007",
+      "autor": "Naiara Antunes",
+      "autorExibicao": "Naiara A.",
+      "nota": 5,
+      "quando": "3 meses atrás",
+      "mesAprox": "2026-08",
+      "texto": null,
+      "perfilAutor": "6 avaliações · 1 foto",
+      "midia": null,
+      "respostaDoProprietario": false,
+      "usarNoSite": false,
+      "plataforma": "Google"
+    },
+    {
+      "id": "g-008",
+      "autor": "Matheus Pereira",
+      "autorExibicao": "Matheus P.",
+      "nota": 5,
+      "quando": "3 meses atrás",
+      "mesAprox": "2026-08",
+      "texto": null,
+      "perfilAutor": "6 avaliações",
+      "midia": null,
+      "respostaDoProprietario": false,
+      "usarNoSite": false,
+      "plataforma": "Google"
+    },
+    {
+      "id": "g-009",
+      "autor": "Lucas Bonella de Paula",
+      "autorExibicao": "Lucas P.",
+      "nota": 5,
+      "quando": "3 meses atrás",
+      "mesAprox": "2026-08",
+      "texto": null,
+      "perfilAutor": "1 avaliação",
+      "midia": null,
+      "respostaDoProprietario": false,
+      "usarNoSite": false,
+      "plataforma": "Google"
+    },
+    {
+      "id": "g-010",
+      "autor": "Silveira003",
+      "autorExibicao": "Silveira003",
+      "nota": 2,
+      "quando": "4 meses atrás",
+      "mesAprox": "2026-07",
+      "texto": null,
+      "perfilAutor": "3 avaliações",
+      "midia": null,
+      "respostaDoProprietario": false,
+      "usarNoSite": false,
+      "plataforma": "Google"
+    },
+    {
+      "id": "g-011",
+      "autor": "Leonardo Mattia",
+      "autorExibicao": "Leonardo M.",
+      "nota": 5,
+      "quando": "5 meses atrás",
+      "mesAprox": "2026-06",
+      "texto": null,
+      "perfilAutor": "1 avaliação",
+      "midia": null,
+      "respostaDoProprietario": false,
+      "usarNoSite": false,
+      "plataforma": "Google"
+    }
+  ],
+  "alerta": "Nenhuma avaliação respondida. A de 2 estrelas (Silveira003, sem texto) deve ser respondida com cordialidade. Volume baixo para uma academia com 6,1 mil seguidores: campanha de avaliação (sem brinde) é prioridade.",
+  "concorrenciaGoogle_04_11_2026": [
+    [
+      "Winner Academia",
+      4.7,
+      541
+    ],
+    [
+      "Academia Studio Physical",
+      4.5,
+      213
+    ],
+    [
+      "Academia Nitro Gym",
+      4.8,
+      189
+    ],
+    [
+      "Academia Edge - Treinamento Físico Personalizado",
+      4.9,
+      151
+    ],
+    [
+      "Academia Copa Fitness",
+      4.8,
+      131
+    ],
+    [
+      "Academia AD3 Lages - Centro",
+      4.8,
+      112
+    ],
+    [
+      "Academia Ph.D Sports Lages Centro",
+      4.5,
+      109
+    ],
+    [
+      "Force One Academia - Lages",
+      4.7,
+      107
+    ],
+    [
+      "Academia Ph.D Sports Presidente Vargas",
+      4.7,
+      106
+    ],
+    [
+      "Academia Sport Life",
+      4.7,
+      103
+    ],
+    [
+      "Academia Ph.D Sports Marechal Floriano",
+      4.1,
+      97
+    ],
+    [
+      "Academia Engenharia do Corpo",
+      4.3,
+      87
+    ],
+    [
+      "Academia Ph.D Sports Martendal",
+      4.1,
+      80
+    ],
+    [
+      "Flex Academia",
+      3.8,
+      76
+    ],
+    [
+      "Stilo Academia Lages",
+      4.8,
+      48
+    ],
+    [
+      "Extreme Academia / Rilion Gracie",
+      5.0,
+      45
+    ],
+    [
+      "Centro de Treinamento Leivis Team",
+      4.8,
+      44
+    ],
+    [
+      "PRIME HOUSE ACADEMIA - LAGES",
+      4.7,
+      11
+    ]
+  ]
+}
