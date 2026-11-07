@@ -7,9 +7,10 @@ import Logo from '../components/marca/Logo.astro';
 import PreviewBanner from '../components/PreviewBanner.astro';
 import Rodape from '../components/secoes/Rodape.astro';
 import { comAcento } from '../components/secoes/texto.ts';
-import { robots } from '../config/seo.ts';
+import Seo from '../components/seo/Seo.astro';
+import type { No } from '../components/seo/ld.ts';
 import { cores } from '../config/tema.ts';
-import { navegacao } from '../content/textos/index.ts';
+import { navegacao, rodape } from '../content/textos/index.ts';
 import type { Meta, Texto } from '../content/textos/tipos.ts';
 
 interface Props {
@@ -21,10 +22,15 @@ interface Props {
   rota: string;
   /** mensagem pronta do botão do cabeçalho */
   mensagem?: string | undefined;
-  /** páginas como a 404 não levam o parágrafo-resposta à vista */
+  /** páginas como a 404 não levam o parágrafo-resposta à vista (nem canonical e trilha) */
   semResposta?: boolean | undefined;
+  /** JSON-LD extra da página (FAQPage, VideoObject…) */
+  ld?: (No | null)[] | undefined;
 }
-const { meta, rotulo, titulo, resposta, rota, mensagem, semResposta = false } = Astro.props;
+const { meta, rotulo, titulo, resposta, rota, mensagem, semResposta = false, ld } = Astro.props;
+const trilha = semResposta
+  ? undefined
+  : (rodape.links.find((i) => i.href === rota)?.rotulo ?? rotulo);
 ---
 
 <!doctype html>
@@ -32,9 +38,7 @@ const { meta, rotulo, titulo, resposta, rota, mensagem, semResposta = false } = 
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="robots" content={robots()} />
-    <title>{meta.title}</title>
-    <meta name="description" content={meta.description} />
+    <Seo meta={meta} rota={rota} trilha={trilha} ld={ld} semCanonical={semResposta} />
     <meta name="theme-color" content={cores.breu} />
     <link rel="icon" href="/favicon.ico" sizes="32x32" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
@@ -80,7 +84,9 @@ const { meta, rotulo, titulo, resposta, rota, mensagem, semResposta = false } = 
       <header class="interna__topo">
         <p class="t-rotulo interna__rotulo">{rotulo}</p>
         <h1 class="t-h1 interna__titulo" set:html={comAcento(titulo)} />
-        <p class:list={['t-lead interna__resposta', { 'sr-only': semResposta }]}>{resposta}</p>
+        <p class:list={['t-lead interna__resposta', { 'sr-only': semResposta }]} data-resposta>
+          {resposta}
+        </p>
       </header>
       <slot />
     </main>

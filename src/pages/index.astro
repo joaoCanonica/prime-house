@@ -17,7 +17,7 @@ import Rodape from '../components/secoes/Rodape.astro';
 import TeaserCasa from '../components/secoes/TeaserCasa.astro';
 import Visite from '../components/secoes/Visite.astro';
 import { cores } from '../config/tema.ts';
-import { robots } from '../config/seo.ts';
+import Seo from '../components/seo/Seo.astro';
 import { home, navegacao } from '../content/textos/index.ts';
 ---
 
@@ -26,9 +26,7 @@ import { home, navegacao } from '../content/textos/index.ts';
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="robots" content={robots()} />
-    <title>{home.meta.title}</title>
-    <meta name="description" content={home.meta.description} />
+    <Seo meta={home.meta} rota="/" />
     <meta name="theme-color" content={cores.breu} />
     <link rel="icon" href="/favicon.ico" sizes="32x32" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
@@ -42,7 +40,9 @@ import { home, navegacao } from '../content/textos/index.ts';
     <PreviewBanner />
     <main id="conteudo">
       <Hero midia="interior-noite" />
-      <p class="sr-only">{home.resposta}</p>
+      <p class="resposta-home t-lead" data-resposta>
+        {home.resposta}
+      </p>
       <Manifesto />
       <Numeros />
       <TeaserCasa />
@@ -72,5 +72,24 @@ import { home, navegacao } from '../content/textos/index.ts';
   }
   .pular-conteudo:focus {
     top: var(--esp-3);
+  }
+</style>
+
+<style>
+  /* parágrafo-resposta (o quê, onde, quando): logo abaixo do hero, em texto secundário */
+  .resposta-home {
+    width: min(100% - 2 * var(--margem), var(--largura-max));
+    margin: var(--esp-8) auto 0;
+    max-width: none;
+    color: var(--prime-concreto);
+  }
+  .resposta-home::before {
+    content: '';
+    display: block;
+    width: 3rem;
+    height: 1px;
+    margin-bottom: var(--esp-4);
+    background: var(--prime-luz);
+    box-shadow: 0 0 8px rgb(255 244 224 / 0.5);
   }
 </style>

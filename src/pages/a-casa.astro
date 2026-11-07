@@ -6,7 +6,7 @@ import Logo from '../components/marca/Logo.astro';
 import PreviewBanner from '../components/PreviewBanner.astro';
 import Rodape from '../components/secoes/Rodape.astro';
 import { comAcento } from '../components/secoes/texto.ts';
-import { robots } from '../config/seo.ts';
+import Seo from '../components/seo/Seo.astro';
 import { cores } from '../config/tema.ts';
 import { aCasa, navegacao } from '../content/textos/index.ts';
 ---
@@ -16,9 +16,7 @@ import { aCasa, navegacao } from '../content/textos/index.ts';
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="robots" content={robots()} />
-    <title>{aCasa.meta.title}</title>
-    <meta name="description" content={aCasa.meta.description} />
+    <Seo meta={aCasa.meta} rota="/a-casa" trilha="A Casa" />
     <meta name="theme-color" content={cores.breu} />
     <link rel="icon" href="/favicon.ico" sizes="32x32" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
@@ -40,7 +38,9 @@ import { aCasa, navegacao } from '../content/textos/index.ts';
       <header class="pagina__cabecalho">
         <p class="t-rotulo t-secundario">A Casa</p>
         <h1 class="t-h1" set:html={comAcento(aCasa.intro.titulo)} />
-        <p class="t-lead pagina__resposta">{aCasa.resposta}</p>
+        <p class="t-lead pagina__resposta" data-resposta>
+          {aCasa.resposta}
+        </p>
       </header>
       <Casa3d />
       <p class="t-pequeno t-secundario pagina__nota">{aCasa.pendenteLayout}</p>

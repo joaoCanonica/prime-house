@@ -42,7 +42,7 @@ export const faq = {
         },
         {
           p: fraseReal('Não aguento mais minha academia lotada.', F.duvidas),
-          r: 'A Prime House é de trânsito livre e foi montada para você não esperar a vez: são cinco máquinas de puxada alta, por exemplo.',
+          r: 'A Prime House é de trânsito livre e foi montada para você treinar sem lotação e sem esperar a vez: são cinco máquinas de puxada alta, por exemplo.',
           fonte: `${F.transito} · ${F.puxadas}`,
         },
         {

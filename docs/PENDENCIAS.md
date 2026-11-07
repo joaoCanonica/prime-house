@@ -113,6 +113,14 @@ Detalhes em `docs/3d/README.md` (como entregar) e `docs/3d/RELATORIO.md` (pesos 
 - **[aviso] Mensagens novas do WhatsApp:** `escolherPlano`, `maquinario`, `equipe` e `duvida` (texto nosso, no padrão das existentes). Revisar com a equipe que atende.
 - **[aviso] Escolha de plano:** pergunta o período preferido (manhã/tarde/noite) só para a mensagem; nada é guardado. Confirmar se a equipe quer essa informação.
 
+## Da sessão 8 (SEO e GEO)
+
+- **[aviso] Domínio (`SITE_URL`):** sem ele, sem canonical e com `og:image` relativa (o `audit-seo` avisa). Com `indexar = true` em produção, a falta de `SITE_URL` vira erro.
+- **[aviso] Rich Results Test e validator.schema.org:** recusam acesso automatizado a partir do ambiente de desenvolvimento (captcha e 403). O JSON-LD passou na validação local contra o vocabulário oficial (`docs/seo/validacao-local.md`, 0 erros). Rodar os dois com a URL publicada e guardar as capturas (`docs/SEO_GEO.md` §3.1).
+- **[aviso] FAQ:** o Google retirou o rich result de FAQ em 07/05/2026. O FAQPage segue no site para Bing e IAs, mas não gera destaque no Google.
+- **[aviso] Imagem social:** usa a captura 01 (≈ 900 px) a 470 px. Trocar por foto em alta da sala com as luzes acesas quando chegar.
+- **[aviso] Checklist fora do site** (ficha, avaliações sem incentivo, NAP no Instagram/WhatsApp Business/Apple/Bing, post com "2553", teste mensal): `docs/SEO_GEO.md` §3.
+
 ## Do cliente (herdado do pacote de prompts, seção C)
 
 - [trava] Confirmação por escrito dos benefícios fixos: garantia de 14 dias, trancamento de 30 dias no anual, Sexta Prime.

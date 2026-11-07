@@ -5,6 +5,8 @@ import BotaoWhatsApp from '../components/base/BotaoWhatsApp.astro';
 import MolduraVideo from '../components/base/MolduraVideo.astro';
 import Txt from '../components/secoes/Txt.astro';
 import Interna from '../layouts/Interna.astro';
+import { videoComTranscricao } from '../components/seo/video.ts';
+import { SITE_URL } from '../config/seo.ts';
 import { comoFunciona as c, legendas, videos, whatsapp } from '../content/textos/index.ts';
 ---
 
@@ -15,6 +17,14 @@ import { comoFunciona as c, legendas, videos, whatsapp } from '../content/textos
   resposta={c.resposta}
   rota="/como-funciona"
   mensagem={whatsapp.avaliacao}
+  ld={[
+    videoComTranscricao(
+      'avaliacao-funcional',
+      'Avaliação funcional na Prime House Academia',
+      '/como-funciona/',
+      SITE_URL,
+    ),
+  ]}
 >
   <ol class="cf__passos">
     {c.passos.map((p, i) => (

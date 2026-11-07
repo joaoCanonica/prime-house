@@ -5,6 +5,7 @@ import Txt from '../components/secoes/Txt.astro';
 import { ehProvisorio } from '../components/secoes/texto.ts';
 import { modoAtual } from '../config/modo.ts';
 import Interna from '../layouts/Interna.astro';
+import { faqLd, type Pergunta } from '../components/seo/ld.ts';
 import { faq, whatsapp } from '../content/textos/index.ts';
 
 const preview = modoAtual() === 'preview';
@@ -24,6 +25,7 @@ const grupos = faq.grupos
   resposta={faq.resposta}
   rota="/perguntas-frequentes"
   mensagem={whatsapp.duvida}
+  ld={[faqLd(faq.grupos.flatMap((g): Pergunta[] => [...g.perguntas]))]}
 >
   <div class="fq">
     <nav class="fq__indice" aria-label="Grupos de perguntas">
@@ -44,7 +46,7 @@ const grupos = faq.grupos
           {g.perguntas.map((q) => (
             <details class="fq__item">
               <summary>
-                <Txt texto={q.p} como="span" />
+                <Txt texto={q.p} como="h3" class="fq__pergunta" />
               </summary>
               <Txt texto={q.r} class="fq__resposta" />
             </details>
@@ -111,6 +113,14 @@ const grupos = faq.grupos
     padding: var(--esp-4) 0;
     font-weight: 600;
     font-size: 1.125rem;
+  }
+  /* a pergunta real é o título (h3) dentro do summary, com a tipografia do summary */
+  .fq__item :global(.fq__pergunta) {
+    font: inherit;
+    letter-spacing: inherit;
+    text-transform: none;
+    margin: 0;
+    max-width: none;
   }
   .fq__item summary::-webkit-details-marker {
     display: none;

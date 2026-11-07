@@ -6,6 +6,7 @@ dist/
 # derivados gerados no build (fonte em media-originais/ e modelos-originais/)
 public/media/
 public/modelos/
+public/og/
 
 # capturas de tela (geradas por pnpm capturar)
 docs/capturas/**/*.png

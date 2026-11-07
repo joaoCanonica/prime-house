@@ -10,7 +10,7 @@ export const comoFunciona = {
       'Na Prime House, academia em Lages no Frei Rogério, você começa com avaliação funcional, recebe treino individual no app e conta com fisioterapeuta.',
   },
   resposta:
-    'Na Prime House Academia, em Lages/SC, todo aluno começa com uma avaliação funcional com o professor e recebe um treino individual no app. A academia fica na Av. Duque de Caxias, 1253, no Frei Rogério, e oferece treino orientado e adaptado, com acompanhamento de fisioterapeuta.',
+    'Na Prime House Academia, em Lages/SC, todo aluno começa com uma avaliação funcional com o professor e recebe um treino individual no app. A academia fica na Av. Duque de Caxias, 1253, no Frei Rogério, e oferece treino com acompanhamento dos professores, orientado e adaptado, e acompanhamento de fisioterapeuta.',
   titulo: 'Seu treino, feito para *você*.',
   tituloFonte: fraseReal(
     'Seu treino feito para você',

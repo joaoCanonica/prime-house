@@ -10,7 +10,7 @@ export const horarios = {
       'Prime House, academia em Lages na Av. Duque de Caxias, 1253, Frei Rogério. Segunda a sexta 5h–0h, sábado 8h–18h, domingo 9h–12h e 15h–18h.',
   },
   resposta:
-    'A Prime House Academia fica na Av. Duque de Caxias, 1253, bairro Frei Rogério, em Lages/SC. Abre de segunda a sexta das 5h à meia-noite, no sábado das 8h às 18h e no domingo e feriados das 9h às 12h e das 15h às 18h.',
+    'A Prime House Academia é uma academia no Frei Rogério, em Lages/SC, na Av. Duque de Caxias, 1253. É uma academia aberta até meia-noite de segunda a sexta (das 5h às 0h), abre no sábado das 8h às 18h e também é academia aberta no domingo e nos feriados, das 9h às 12h e das 15h às 18h.',
   titulo: 'Quando *você* puder.',
   endereco: {
     rotulo: 'Endereço',
