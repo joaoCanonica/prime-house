@@ -1,0 +1,193 @@
+---
+// /horarios-e-como-chegar — gesto: o endereço gigante (com "copiar"), a fachada de dia e o drone à noite,
+// a tabela de horário ao vivo, o localizador e o mapa interativo só depois do clique (consentimento).
+import Botao from '../components/base/Botao.astro';
+import MapaEstatico from '../components/base/MapaEstatico.astro';
+import MolduraVideo from '../components/base/MolduraVideo.astro';
+import Poster from '../components/base/Poster.astro';
+import StatusHorario from '../components/base/StatusHorario.astro';
+import TabelaHorario from '../components/base/TabelaHorario.astro';
+import MolduraLuz from '../components/marca/MolduraLuz.astro';
+import Txt from '../components/secoes/Txt.astro';
+import { contato } from '../config/contato.ts';
+import { modoAtual } from '../config/modo.ts';
+import Interna from '../layouts/Interna.astro';
+import { alt, horarios as h, videos, whatsapp } from '../content/textos/index.ts';
+
+const end = contato.endereco.valor;
+const embed = `https://www.google.com/maps?q=${encodeURIComponent(`Prime House Academia, ${end.completo}`)}&output=embed`;
+---
+
+<Interna
+  meta={h.meta}
+  rotulo="Horários e como chegar"
+  titulo={h.titulo}
+  resposta={h.resposta}
+  rota="/horarios-e-como-chegar"
+  mensagem={whatsapp.visita}
+>
+  <section class="hc__endereco" aria-labelledby="endereco">
+    <h2 id="endereco" class="t-rotulo t-secundario">
+      {h.endereco.rotulo}
+    </h2>
+    <address class="hc__end">
+      {end.logradouro}, {end.numero}
+      <br />
+      {end.bairro} · {end.cidade}/{end.uf}
+    </address>
+    <p class="t-secundario">
+      CEP {end.cep} · Plus code {contato.plusCode.valor}
+    </p>
+    <button
+      type="button"
+      class="hc__copiar t-rotulo"
+      data-copiar={end.completo}
+      data-ok={h.endereco.copiado}
+    >
+      {h.endereco.copiar}
+    </button>
+    <p class="sr-only" role="status" data-copiar-status></p>
+  </section>
+
+  <section class="bloco hc__fotos" aria-label="A fachada">
+    <figure>
+      <MolduraLuz forma="retangulo" respiro={0} proporcao="9 / 14">
+        <Poster
+          id="still-fachada-dia"
+          alt={alt['still-fachada-dia']}
+          sizes="(min-width: 64rem) 24vw, 80vw"
+        />
+      </MolduraLuz>
+      <figcaption class="t-rotulo t-secundario">De dia</figcaption>
+    </figure>
+    <figure>
+      <MolduraVideo id="drone-noite" descricao={videos['drone-noite']} />
+      <figcaption class="t-rotulo t-secundario">À noite</figcaption>
+    </figure>
+  </section>
+
+  <section class="bloco" aria-labelledby="horario">
+    <h2 id="horario" class="t-h2 bloco__titulo">
+      {h.tabela.titulo}
+    </h2>
+    <StatusHorario />
+    <TabelaHorario />
+    <Txt texto={h.feriados} class="t-pequeno t-secundario" />
+  </section>
+
+  <section class="bloco" aria-labelledby="chegar">
+    <h2 id="chegar" class="t-h2 bloco__titulo">
+      {h.comoChegar.titulo}
+    </h2>
+    <p class="t-lead">{h.comoChegar.texto}</p>
+    <MapaEstatico semEndereco />
+    <div class="hc__mapa" data-mapa>
+      <p class="t-pequeno t-secundario">{h.comoChegar.mapaAviso}</p>
+      <button type="button" class="hc__copiar t-rotulo" data-mapa-abrir data-src={embed}>
+        {h.comoChegar.mapaInterativo}
+      </button>
+    </div>
+    {modoAtual() === 'preview' && (
+      <ul class="hc__extras">
+        <li>
+          <Txt texto={h.estacionamento} como="span" />
+        </li>
+        <li>
+          <Txt texto={h.acessibilidade} como="span" />
+        </li>
+      </ul>
+    )}
+    <Botao href={contato.mapas.valor.google} variante="secundario">
+      Abrir no Google Maps
+    </Botao>
+  </section>
+</Interna>
+
+<script>
+  for (const b of document.querySelectorAll<HTMLButtonElement>('[data-copiar]')) {
+    b.addEventListener('click', async () => {
+      const status = document.querySelector('[data-copiar-status]');
+      try {
+        await navigator.clipboard.writeText(b.dataset['copiar'] ?? '');
+        const antes = b.textContent;
+        b.textContent = b.dataset['ok'] ?? 'Copiado';
+        if (status) status.textContent = b.dataset['ok'] ?? 'Copiado';
+        setTimeout(() => (b.textContent = antes), 2000);
+      } catch {
+        if (status) status.textContent = b.dataset['copiar'] ?? '';
+      }
+    });
+  }
+  // mapa do Google só depois do clique: antes disso nenhum dado vai para o Google
+  for (const caixa of document.querySelectorAll<HTMLElement>('[data-mapa]')) {
+    const b = caixa.querySelector<HTMLButtonElement>('[data-mapa-abrir]');
+    b?.addEventListener('click', () => {
+      const f = document.createElement('iframe');
+      f.src = b.dataset['src'] ?? '';
+      f.title = 'Mapa interativo do Google com a localização da Prime House';
+      f.loading = 'lazy';
+      f.referrerPolicy = 'no-referrer-when-downgrade';
+      f.className = 'hc__iframe';
+      caixa.replaceChildren(f);
+    });
+  }
+</script>
+
+<style>
+  .hc__endereco {
+    display: grid;
+    gap: var(--esp-4);
+    padding-bottom: var(--esp-7);
+  }
+  .hc__end {
+    font-style: normal;
+    font-family: var(--fonte-titulo);
+    font-stretch: var(--largura-display);
+    font-weight: 750;
+    text-transform: uppercase;
+    font-size: clamp(2.5rem, 1.2rem + 5.6vw, 7rem);
+    line-height: 0.9;
+    letter-spacing: var(--ls-display);
+  }
+  .hc__copiar {
+    justify-self: start;
+    min-height: 2.75rem;
+    padding: 0.6rem 1rem;
+    background: transparent;
+    color: var(--prime-nevoa);
+    border: 1px solid rgb(255 244 224 / 0.55);
+    transition:
+      border-color var(--dur-1) var(--curva-saida),
+      box-shadow var(--dur-1) var(--curva-saida);
+  }
+  .hc__copiar:hover {
+    border-color: var(--prime-luz);
+    box-shadow: var(--luz-borda);
+  }
+  .hc__fotos {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 20rem));
+    align-items: end;
+  }
+  .hc__fotos figure {
+    display: grid;
+    gap: var(--esp-3);
+  }
+  .hc__mapa {
+    display: grid;
+    gap: var(--esp-3);
+    justify-items: start;
+  }
+  .hc__mapa :global(.hc__iframe) {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: 1px solid var(--prime-linha);
+    filter: grayscale(0.6) invert(0.9) hue-rotate(180deg);
+  }
+  .hc__extras {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: var(--esp-2);
+    color: var(--prime-concreto);
+  }
+</style>

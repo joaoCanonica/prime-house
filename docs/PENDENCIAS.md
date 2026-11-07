@@ -95,6 +95,16 @@ Detalhes em `docs/3d/README.md` (como entregar) e `docs/3d/RELATORIO.md` (pesos 
 - **[aviso] fps medido por software:** o contêiner não tem GPU (WebGL via SwiftShader). Desktop 1440: 60 fps; Android emulado (412×915, DPR 2,6, CPU 4× mais lenta): 36–60 fps. Confirmar num Android real intermediário.
 - **[aviso] Pós-build `ligar-tour`:** escreve no HTML da home a URL do chunk da ilha (import nativo) para o teaser não pôr requisições no caminho do LCP.
 
+## Da sessão 6C (páginas internas)
+
+- **[aviso] Foto do Lucas:** `/equipe` usa um quadro do vídeo `lucas-close`, que tem a legenda "coragem" queimada (não pode ser apagada, §7). Pedir uma foto real do fundador e, com autorização, dos professores e da fisioterapeuta.
+- **[aviso] Equipe:** nomes, CREF e especialidades dos professores e da fisioterapeuta ainda não informados. Em preview, a página mostra lugares marcados PROVISÓRIO; em produção, só o texto sobre a equipe e o fundador.
+- **[aviso] Vídeos dos planos:** `plano-prime` está `naoUsar` e `plano-select` aguarda consentimento; `/planos` sai sem vídeo até lá.
+- **[aviso] Vídeos de execução:** nenhum aparelho tem vídeo curto de execução; o botão "Ver execução" só aparece quando houver (`video` no equipamento).
+- **[aviso] Fotos de máquinas:** puxada alta, agachamento pêndulo e remada não têm foto própria; usam um objeto tipográfico até chegar foto.
+- **[aviso] Contato e local:** e-mail para candidaturas, estacionamento e acessibilidade pendentes (só aparecem em preview).
+- **[aviso] Layout `src/layouts/Interna.astro`:** criado fora do escopo listado para não repetir cabeçalho e rodapé em nove páginas.
+
 ## Do cliente (herdado do pacote de prompts, seção C)
 
 - [trava] Confirmação por escrito dos benefícios fixos: garantia de 14 dias, trancamento de 30 dias no anual, Sexta Prime.

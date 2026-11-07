@@ -1,0 +1,249 @@
+---
+// /maquinario — gesto: grade preta de objetos. Só equipamentos confirmados. Filtro por grupo muscular sem JS
+// (rádios + :has; sem :has, tudo aparece). Sem foto própria: objeto tipográfico em moldura de luz (nunca foto de outra máquina).
+import MolduraVideo from '../components/base/MolduraVideo.astro';
+import Poster from '../components/base/Poster.astro';
+import MolduraLuz from '../components/marca/MolduraLuz.astro';
+import Interna from '../layouts/Interna.astro';
+import { equipamentos } from '../content/dados/equipamentos.ts';
+import { zonas } from '../content/dados/zonas.ts';
+import { alt, maquinario } from '../content/textos/index.ts';
+
+const GRUPO: Record<string, [string, string]> = {
+  dorsais: ['costas', 'Costas'],
+  trapézio: ['costas', 'Costas'],
+  romboides: ['costas', 'Costas'],
+  bíceps: ['bracos', 'Braços'],
+  quadríceps: ['pernas', 'Pernas'],
+  glúteos: ['pernas', 'Pernas'],
+  posteriores: ['pernas', 'Pernas'],
+  peitoral: ['peito', 'Peito'],
+  ombros: ['ombros', 'Ombros'],
+  'corpo todo': ['corpo-todo', 'Corpo todo'],
+  cardiorrespiratório: ['cardio', 'Cardio'],
+};
+const textos = maquinario.equipamentos as Record<string, { paraQuem: string; dica: string | null }>;
+const alts = alt as Record<string, string>;
+const lista = equipamentos
+  .filter((e) => e.confirmado)
+  .map((e) => {
+    const z = zonas.find((x) => x.id === e.zona);
+    const sub = z?.subzonas?.find((s) => s.id === e.subzona);
+    return {
+      ...e,
+      grupos: [...new Set(e.musculos.map((m) => GRUPO[m]?.[0] ?? 'outros'))],
+      zonaNome: sub ? `${z?.nome} · ${sub.nome}` : (z?.nome ?? e.zona),
+      paraQuem: textos[e.id]?.paraQuem ?? '',
+    };
+  });
+const filtros = [
+  ...new Map(
+    lista.flatMap((e) => e.musculos.map((m) => GRUPO[m] ?? ['outros', 'Outros'])),
+  ).entries(),
+];
+// CSS do filtro gerado no build: cada rádio esconde os itens que não são do grupo
+const cssFiltro = filtros
+  .map(([id]) => `.maq:has(#f-${id}:checked) .maq__item:not([data-grupos~="${id}"]){display:none}`)
+  .join('\n');
+---
+
+<Interna
+  meta={maquinario.meta}
+  rotulo="Maquinário"
+  titulo={maquinario.intro.titulo}
+  resposta={maquinario.resposta}
+  rota="/maquinario"
+>
+  <Fragment slot="head">
+    <style set:html={cssFiltro} />
+  </Fragment>
+  <div class="maq">
+    <p class="maq__intro t-lead">{maquinario.intro.texto}</p>
+    <fieldset class="maq__filtro">
+      <legend class="t-rotulo">{maquinario.intro.filtro}</legend>
+      <label>
+        <input type="radio" name="grupo" id="f-todos" checked />
+        <span>{maquinario.intro.filtroTodos}</span>
+      </label>
+      {filtros.map(([id, nome]) => (
+        <label>
+          <input type="radio" name="grupo" id={`f-${id}`} />
+          <span>{nome}</span>
+        </label>
+      ))}
+    </fieldset>
+
+    <ul class="maq__grade" aria-label="Equipamentos">
+      {lista.map((e) => (
+        <li class="maq__item" data-grupos={e.grupos.join(' ')}>
+          <article>
+            <div class="maq__objeto">
+              {e.foto ? (
+                <MolduraLuz forma="retangulo" respiro={0} proporcao="4 / 5">
+                  <Poster
+                    id={e.foto}
+                    alt={alts[e.foto] ?? e.nome}
+                    sizes="(min-width: 64rem) 22vw, 45vw"
+                  />
+                </MolduraLuz>
+              ) : (
+                <MolduraLuz forma="retangulo" respiro={0} proporcao="4 / 5">
+                  <div class="maq__tipo" aria-hidden="true">
+                    <span>{e.nome}</span>
+                  </div>
+                </MolduraLuz>
+              )}
+              {e.quantidade && (
+                <span class="maq__qtd t-tabular" aria-label={`${e.quantidade} unidades`}>
+                  {e.quantidade}×
+                </span>
+              )}
+            </div>
+            <h2 class="maq__nome">{e.nome}</h2>
+            <p class="maq__musculos t-rotulo">{e.musculos.join(' · ')}</p>
+            <p class="maq__para t-pequeno">{e.paraQuem}</p>
+            <p class="maq__meta t-pequeno">
+              {e.fabricante && <span>{e.fabricante}</span>}
+              <a href={`/a-casa?zona=${e.zona}`}>{e.zonaNome}</a>
+            </p>
+            {e.video && (
+              <details class="maq__video">
+                <summary class="t-rotulo">{maquinario.intro.verExecucao}</summary>
+                <MolduraVideo id={e.video} descricao={`Execução: ${e.nome}`} />
+              </details>
+            )}
+          </article>
+        </li>
+      ))}
+    </ul>
+    <p class="t-pequeno t-secundario">{maquinario.maisEmBreve}</p>
+  </div>
+</Interna>
+
+<style>
+  .maq {
+    display: grid;
+    gap: var(--esp-6);
+  }
+  .maq__intro {
+    max-width: 44ch;
+  }
+  .maq__filtro {
+    border: 0;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--esp-2);
+    align-items: center;
+  }
+  .maq__filtro legend {
+    width: 100%;
+    margin-bottom: var(--esp-3);
+    color: var(--prime-concreto);
+  }
+  .maq__filtro label {
+    position: relative;
+  }
+  .maq__filtro input {
+    position: absolute;
+    opacity: 0;
+    inset: 0;
+    cursor: pointer;
+  }
+  .maq__filtro span {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    padding: 0 1rem;
+    border: 1px solid var(--prime-linha);
+    transition:
+      border-color var(--dur-1) var(--curva-saida),
+      box-shadow var(--dur-1) var(--curva-saida);
+  }
+  .maq__filtro input:checked + span {
+    border-color: var(--prime-luz);
+    color: var(--prime-luz);
+    box-shadow: var(--luz-borda);
+  }
+  .maq__filtro input:focus-visible + span {
+    outline: 1px solid var(--prime-luz);
+    outline-offset: 3px;
+  }
+  .maq__grade {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: var(--esp-7) var(--esp-5);
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr));
+  }
+  .maq__item {
+    max-width: none;
+  }
+  .maq__item article {
+    display: grid;
+    gap: var(--esp-2);
+  }
+  .maq__objeto {
+    position: relative;
+    margin-bottom: var(--esp-3);
+  }
+  .maq__tipo {
+    container-type: inline-size;
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: end start;
+    padding: var(--esp-4);
+    background: var(--prime-breu);
+  }
+  .maq__tipo span {
+    font-family: var(--fonte-titulo);
+    font-stretch: var(--largura-display);
+    font-weight: 740;
+    text-transform: uppercase;
+    /* cabe a palavra mais longa ("AGACHAMENTO") na largura do objeto */
+    font-size: min(2.75rem, 15cqi);
+    line-height: 0.9;
+    overflow-wrap: anywhere;
+    color: var(--prime-concreto);
+  }
+  .maq__qtd {
+    position: absolute;
+    right: var(--esp-3);
+    top: var(--esp-3);
+    font-family: var(--fonte-titulo);
+    font-stretch: var(--largura-display);
+    font-weight: 760;
+    font-size: 2.25rem;
+    line-height: 1;
+    color: var(--prime-laranja);
+  }
+  .maq__nome {
+    font-family: var(--fonte-titulo);
+    font-stretch: var(--largura-titulo);
+    font-weight: 680;
+    text-transform: uppercase;
+    font-size: var(--fs-h3);
+    line-height: 1.05;
+  }
+  .maq__musculos {
+    color: var(--prime-concreto);
+  }
+  .maq__para {
+    color: var(--prime-nevoa);
+  }
+  .maq__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--esp-1) var(--esp-4);
+    color: var(--prime-concreto);
+  }
+  .maq__meta a {
+    color: inherit;
+    text-underline-offset: 0.25em;
+  }
+  .maq__meta a:hover {
+    color: var(--prime-luz);
+  }
+</style>

@@ -1,0 +1,141 @@
+---
+// /equipe — gesto: retrato editorial. Estrutura pronta para nome, foto, CREF e especialidade; em produção só
+// aparece o que for confirmado (hoje: o fundador e o texto do time). No preview, as vagas da estrutura com selo.
+import { video } from '../components/base/midia.ts';
+import Provisorio from '../components/Provisorio.astro';
+import MolduraLuz from '../components/marca/MolduraLuz.astro';
+import { modoAtual } from '../config/modo.ts';
+import Interna from '../layouts/Interna.astro';
+import { equipe as e } from '../content/textos/index.ts';
+
+const preview = modoAtual() === 'preview';
+const posters = video('lucas-close').posters;
+const p720 = posters.find((p) => p.nome === 'poster-720');
+const p540 = posters.find((p) => p.nome === 'poster-540');
+---
+
+<Interna meta={e.meta} rotulo="Equipe" titulo={e.titulo.texto} resposta={e.resposta} rota="/equipe">
+  <section class="eq__geral" aria-label="O time">
+    <p class="t-lead">{e.geral}</p>
+    <div class="eq__dev">
+      <h2 class="t-h3">{e.desenvolvimento.titulo}</h2>
+      <p>{e.desenvolvimento.texto}</p>
+    </div>
+  </section>
+
+  <section class="bloco eq__fundador" aria-labelledby="fundador">
+    {p720 && (
+      <MolduraLuz forma="retangulo" respiro={0} proporcao="3 / 4" class="eq__foto">
+        <picture>
+          {p540 && <source type="image/avif" media="(max-width: 600px)" srcset={p540.avif} />}
+          <source type="image/avif" srcset={p720.avif} />
+          <img
+            src={p720.webp}
+            width="720"
+            height="1280"
+            alt="Lucas Moro, fundador da Prime House, em preto e branco"
+            loading="lazy"
+            decoding="async"
+          />
+        </picture>
+      </MolduraLuz>
+    )}
+    <div class="eq__fundador-texto">
+      <p class="t-rotulo t-secundario">{e.fundador.papel}</p>
+      <h2 id="fundador" class="eq__nome">
+        {e.fundador.nome}
+      </h2>
+      <p class="t-lead">{e.fundador.texto}</p>
+    </div>
+  </section>
+
+  {preview && (
+    <section class="bloco" aria-labelledby="estrutura">
+      <h2 id="estrutura" class="t-h2 bloco__titulo">
+        Quem você encontra na sala
+      </h2>
+      <ul class="eq__papeis">
+        {e.papeis.map((p) => (
+          <li>
+            <Provisorio motivo={`${p.titulo}: nomes, fotos e registros com autorização`} como="div">
+              <div class="eq__vaga" aria-hidden="true" />
+              <h3 class="t-h3">{p.titulo}</h3>
+              <p class="t-pequeno t-secundario">{p.campos.join(' · ')}</p>
+              <p class="t-pequeno">{e.vazio}</p>
+            </Provisorio>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
+</Interna>
+
+<style>
+  .eq__geral {
+    display: grid;
+    gap: var(--esp-6);
+    padding-bottom: var(--esp-8);
+  }
+  .eq__geral .t-lead {
+    max-width: 38ch;
+  }
+  .eq__dev {
+    display: grid;
+    gap: var(--esp-3);
+    max-width: 46ch;
+    padding-left: var(--esp-5);
+    border-left: 1px solid var(--prime-luz);
+  }
+  .eq__fundador {
+    align-items: end;
+  }
+  .eq__fundador :global(.eq__foto) {
+    width: min(100%, 22rem);
+  }
+  .eq__fundador :global(.eq__foto img) {
+    filter: grayscale(1);
+  }
+  .eq__fundador-texto {
+    display: grid;
+    gap: var(--esp-3);
+  }
+  .eq__nome {
+    font-family: var(--fonte-titulo);
+    font-stretch: var(--largura-display);
+    font-weight: 740;
+    text-transform: uppercase;
+    font-size: clamp(3rem, 2rem + 4vw, 5.5rem);
+    line-height: 0.88;
+    letter-spacing: var(--ls-display);
+  }
+  .eq__papeis {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: var(--esp-5);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+  }
+  .eq__papeis li {
+    max-width: none;
+  }
+  .eq__papeis :global(.ph-provisorio) {
+    display: grid;
+    gap: var(--esp-2);
+    padding: var(--esp-4);
+  }
+  .eq__vaga {
+    aspect-ratio: 3 / 4;
+    border: 1px solid var(--prime-linha);
+    margin-bottom: var(--esp-3);
+  }
+  @media (min-width: 64rem) {
+    .eq__geral {
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      align-items: start;
+    }
+    .eq__fundador {
+      grid-template-columns: minmax(16rem, 22rem) minmax(0, 1fr);
+      column-gap: var(--esp-8);
+    }
+  }
+</style>

@@ -1,0 +1,151 @@
+---
+// /perguntas-frequentes — gesto: índice de grupos e <details> nativos. Pergunta com resposta provisória só no preview.
+import BotaoWhatsApp from '../components/base/BotaoWhatsApp.astro';
+import Txt from '../components/secoes/Txt.astro';
+import { ehProvisorio } from '../components/secoes/texto.ts';
+import { modoAtual } from '../config/modo.ts';
+import Interna from '../layouts/Interna.astro';
+import { faq } from '../content/textos/index.ts';
+
+const preview = modoAtual() === 'preview';
+const grupos = faq.grupos
+  .map((g, i) => ({
+    ...g,
+    id: `grupo-${i + 1}`,
+    perguntas: g.perguntas.filter((q) => preview || !ehProvisorio(q.r)),
+  }))
+  .filter((g) => g.perguntas.length > 0);
+---
+
+<Interna
+  meta={faq.meta}
+  rotulo="Dúvidas"
+  titulo={faq.titulo}
+  resposta={faq.resposta}
+  rota="/perguntas-frequentes"
+>
+  <div class="fq">
+    <nav class="fq__indice" aria-label="Grupos de perguntas">
+      <ul>
+        {grupos.map((g) => (
+          <li>
+            <a href={`#${g.id}`}>{g.titulo}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+    <div class="fq__grupos">
+      {grupos.map((g) => (
+        <section id={g.id} class="fq__grupo" aria-labelledby={`${g.id}-t`}>
+          <h2 id={`${g.id}-t`} class="t-h2">
+            {g.titulo}
+          </h2>
+          {g.perguntas.map((q) => (
+            <details class="fq__item">
+              <summary>
+                <Txt texto={q.p} como="span" />
+              </summary>
+              <Txt texto={q.r} class="fq__resposta" />
+            </details>
+          ))}
+        </section>
+      ))}
+      <div class="fq__fim">
+        <p class="t-lead">Sua dúvida não está aqui?</p>
+        <BotaoWhatsApp />
+      </div>
+    </div>
+  </div>
+</Interna>
+
+<style>
+  .fq {
+    display: grid;
+    gap: var(--esp-7);
+  }
+  .fq__indice ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--esp-2);
+  }
+  .fq__indice a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    padding: 0 1rem;
+    border: 1px solid var(--prime-linha);
+    color: var(--prime-nevoa);
+    text-decoration: none;
+  }
+  .fq__indice a:hover {
+    border-color: var(--prime-luz);
+    box-shadow: var(--luz-borda);
+  }
+  .fq__grupos {
+    display: grid;
+    gap: var(--esp-8);
+  }
+  .fq__grupo {
+    display: grid;
+    gap: var(--esp-4);
+    scroll-margin-top: var(--esp-7);
+  }
+  .fq__grupo h2 {
+    margin-bottom: var(--esp-3);
+  }
+  .fq__item {
+    border-top: 1px solid var(--prime-linha);
+  }
+  .fq__item:last-of-type {
+    border-bottom: 1px solid var(--prime-linha);
+  }
+  .fq__item summary {
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    gap: var(--esp-4);
+    padding: var(--esp-4) 0;
+    font-weight: 600;
+    font-size: 1.125rem;
+  }
+  .fq__item summary::-webkit-details-marker {
+    display: none;
+  }
+  .fq__item summary::after {
+    content: '+';
+    flex: none;
+    width: 1.5rem;
+    text-align: center;
+    color: var(--prime-luz);
+    transition: rotate var(--dur-2) var(--curva-saida);
+  }
+  .fq__item[open] summary::after {
+    rotate: 45deg;
+  }
+  .fq__item :global(.fq__resposta) {
+    padding-bottom: var(--esp-5);
+    color: var(--prime-concreto);
+    max-width: 60ch;
+  }
+  .fq__fim {
+    display: grid;
+    gap: var(--esp-4);
+    justify-items: start;
+  }
+  @media (min-width: 64rem) {
+    .fq {
+      grid-template-columns: 14rem minmax(0, 1fr);
+      align-items: start;
+    }
+    .fq__indice {
+      position: sticky;
+      top: var(--esp-6);
+    }
+    .fq__indice ul {
+      flex-direction: column;
+    }
+  }
+</style>
