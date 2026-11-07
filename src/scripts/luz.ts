@@ -26,6 +26,19 @@ const videos = new IntersectionObserver(
   { threshold: 0.25 },
 );
 
+// o pôster só carrega perto da tela (o atributo "poster" baixaria na hora, mesmo fora da tela)
+const posters = new IntersectionObserver(
+  (entradas) => {
+    for (const e of entradas) {
+      if (!e.isIntersecting) continue;
+      const v = e.target as HTMLVideoElement;
+      if (v.dataset['poster']) v.poster = v.dataset['poster'];
+      posters.unobserve(v);
+    }
+  },
+  { rootMargin: '600px 0px' },
+);
+
 for (const caixa of document.querySelectorAll<HTMLElement>('[data-video]')) {
   const v = caixa.querySelector('video');
   const botao = caixa.querySelector<HTMLButtonElement>('[data-video-controle]');
@@ -52,4 +65,5 @@ for (const caixa of document.querySelectorAll<HTMLElement>('[data-video]')) {
   botao.hidden = false;
   atualizar();
   videos.observe(v);
+  posters.observe(v);
 }

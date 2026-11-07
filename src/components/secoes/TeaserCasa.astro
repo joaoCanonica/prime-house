@@ -1,0 +1,134 @@
+---
+// 3 · A CASA EM 3D (teaser) — gesto: um pôster escuro com as molduras de luz; nada pesado carrega sozinho.
+// A ilha 3D é da sessão 6B: ela se registra em window.__phTour3d = { carregar(alvo, zona) }. Até lá, o botão
+// avisa (preview). Política de dados: em Save-Data ou 2g nunca carrega sozinho; nos demais, só no clique por ora.
+import Botao from '../base/Botao.astro';
+import Poster from '../base/Poster.astro';
+import TetoDeLuz from '../marca/TetoDeLuz.astro';
+import { aCasa, botoes } from '../../content/textos/index.ts';
+import Secao from './Secao.astro';
+
+const destaque = ['musculacao', 'cardio', 'conveniencia'] as const;
+---
+
+<Secao id="a-casa" rotulo="A Casa em 3D" titulo={aCasa.intro.titulo} class="teaser">
+  <div class="teaser__palco" data-tour3d>
+    <div class="teaser__poster" aria-hidden="true">
+      <Poster id="captura-10" alt="" sizes="(min-width: 64rem) 60vw, 100vw" class="teaser__foto" />
+      <TetoDeLuz intensidade="plena" class="teaser__teto" />
+    </div>
+    <div class="teaser__alvo" data-tour3d-alvo></div>
+    <div class="teaser__controles">
+      <p class="t-pequeno teaser__como">{aCasa.intro.comoUsar}</p>
+      <ul class="teaser__zonas" aria-label="Zonas">
+        {destaque.map((z) => (
+          <li>
+            <a class="teaser__zona" href={`/a-casa?zona=${z}`} data-zona={z}>
+              {aCasa.zonas[z].titulo}
+            </a>
+          </li>
+        ))}
+      </ul>
+      <div class="teaser__acoes">
+        <button class="botao-carregar t-rotulo" type="button" data-tour3d-carregar>
+          {botoes.carregarTour3d}
+        </button>
+        <Botao href="/a-casa" variante="secundario">
+          {botoes.abrirTour}
+        </Botao>
+      </div>
+      <p class="t-pequeno t-secundario teaser__aviso" data-tour3d-aviso hidden role="status"></p>
+    </div>
+  </div>
+</Secao>
+
+<script>
+  import './teaser.ts';
+</script>
+
+<style>
+  .teaser__palco {
+    position: relative;
+    display: grid;
+    gap: var(--esp-5);
+  }
+  .teaser__poster {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    background: var(--prime-grafite);
+    border: 1px solid var(--prime-linha);
+  }
+  .teaser__poster :global(.teaser__foto) {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: auto !important;
+    opacity: 0.38;
+    filter: grayscale(0.4);
+  }
+  .teaser__poster :global(.teaser__teto) {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    aspect-ratio: auto;
+  }
+  .teaser__alvo:empty {
+    display: none;
+  }
+  .teaser__controles {
+    display: grid;
+    gap: var(--esp-5);
+    align-content: end;
+  }
+  .teaser__zonas {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--esp-2);
+  }
+  .teaser__zona {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    padding: 0.5rem 1rem;
+    color: var(--prime-nevoa);
+    text-decoration: none;
+    border: 1px solid var(--prime-linha);
+    transition:
+      border-color var(--dur-1) var(--curva-saida),
+      box-shadow var(--dur-1) var(--curva-saida);
+  }
+  .teaser__zona:hover {
+    border-color: var(--prime-luz);
+    box-shadow: var(--luz-borda);
+  }
+  .teaser__acoes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--esp-3);
+  }
+  .botao-carregar {
+    min-height: 3.25rem;
+    padding: 0.9rem 1.5rem;
+    background: var(--prime-luz);
+    color: var(--prime-breu);
+    border: 1px solid var(--prime-luz);
+    transition: box-shadow var(--dur-1) var(--curva-saida);
+  }
+  .botao-carregar:hover {
+    box-shadow: 0 0 18px rgb(255 244 224 / 0.45);
+  }
+  @media (min-width: 64rem) {
+    .teaser__palco {
+      grid-template-columns: minmax(0, 1.6fr) minmax(16rem, 1fr);
+      align-items: end;
+      gap: var(--esp-7);
+    }
+    .teaser__poster {
+      aspect-ratio: 16 / 10;
+    }
+  }
+</style>

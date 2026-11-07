@@ -1,0 +1,140 @@
+---
+// 11 · RODAPÉ — logo, endereço, WhatsApp e telefone escritos, horário, Instagram, CREF e CNPJ (quando informados),
+// trabalhe conosco e privacidade.
+import Link from '../base/Link.astro';
+import Logo from '../marca/Logo.astro';
+import Provisorio from '../Provisorio.astro';
+import { contato } from '../../config/contato.ts';
+import { marca } from '../../config/marca.ts';
+import { rodape, whatsapp } from '../../content/textos/index.ts';
+import { linkWhatsApp } from '../../lib/whatsapp.ts';
+
+const end = contato.endereco.valor;
+const cref = marca.crefResponsavel.valor;
+const cnpj = marca.cnpj.valor;
+---
+
+<footer class="rodape">
+  <div class="rodape__quadro">
+    <div class="rodape__marca">
+      <a href="/" aria-label="Prime House Academia, início">
+        <Logo variante="empilhado" altura={72} decorativo />
+      </a>
+      <p class="rodape__tagline">{rodape.tagline}</p>
+    </div>
+    <div>
+      <h2 class="t-rotulo rodape__titulo">{rodape.enderecoTitulo}</h2>
+      <address>
+        {end.logradouro}, {end.numero}
+        <br />
+        {end.bairro}, {end.cidade}/{end.uf}
+        <br />
+        CEP {end.cep}
+      </address>
+    </div>
+    <div>
+      <h2 class="t-rotulo rodape__titulo">{rodape.horarioTitulo}</h2>
+      <ul class="rodape__lista t-tabular">
+        {rodape.horarioResumo.map((h) => (
+          <li>{h}</li>
+        ))}
+      </ul>
+    </div>
+    <div>
+      <h2 class="t-rotulo rodape__titulo">{rodape.contatoTitulo}</h2>
+      <ul class="rodape__lista">
+        <li>
+          <Link href={linkWhatsApp(whatsapp.geral)}>WhatsApp {contato.telefone.valor}</Link>
+        </li>
+        <li>
+          <Link href={`tel:${contato.telefoneE164.valor}`}>Telefone {contato.telefone.valor}</Link>
+        </li>
+        <li>
+          <Link href={contato.instagram.valor.url}>
+            Instagram @{contato.instagram.valor.usuario}
+          </Link>
+        </li>
+      </ul>
+    </div>
+    <nav aria-label="Rodapé">
+      <h2 class="t-rotulo rodape__titulo">{rodape.linksTitulo}</h2>
+      <ul class="rodape__lista">
+        {rodape.links.map((l) => (
+          <li>
+            <Link href={l.href}>{l.rotulo}</Link>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </div>
+  <div class="rodape__legal t-pequeno">
+    {cref ? (
+      <span>
+        {rodape.responsavelTecnico.replace('{nome}', cref.nome).replace('{cref}', cref.cref)}
+      </span>
+    ) : (
+      <Provisorio motivo="CREF do responsável técnico: pendente">
+        Responsável técnico · CREF pendente
+      </Provisorio>
+    )}
+    {cnpj ? (
+      <span>{rodape.cnpj.replace('{cnpj}', cnpj)}</span>
+    ) : (
+      <Provisorio motivo="CNPJ: pendente">CNPJ pendente</Provisorio>
+    )}
+    <span>{rodape.direitos}</span>
+  </div>
+</footer>
+
+<style>
+  .rodape {
+    border-top: 1px solid var(--prime-linha);
+    padding: var(--esp-8) var(--margem) var(--esp-6);
+    background: var(--prime-breu);
+  }
+  .rodape__quadro {
+    width: min(100%, var(--largura-max));
+    margin-inline: auto;
+    display: grid;
+    gap: var(--esp-6);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
+  }
+  .rodape__marca {
+    display: grid;
+    gap: var(--esp-4);
+    align-content: start;
+    color: var(--prime-nevoa);
+  }
+  .rodape__marca a {
+    color: inherit;
+    justify-self: start;
+  }
+  .rodape__tagline {
+    font-family: var(--fonte-acento);
+    font-style: italic;
+    font-size: 1.25rem;
+  }
+  .rodape__titulo {
+    color: var(--prime-concreto);
+    margin-bottom: var(--esp-3);
+  }
+  .rodape address {
+    font-style: normal;
+  }
+  .rodape__lista {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: var(--esp-2);
+  }
+  .rodape__legal {
+    width: min(100%, var(--largura-max));
+    margin: var(--esp-7) auto 0;
+    padding-top: var(--esp-4);
+    border-top: 1px solid var(--prime-linha);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--esp-2) var(--esp-6);
+    color: var(--prime-concreto);
+  }
+</style>

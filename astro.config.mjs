@@ -8,6 +8,6 @@ export default defineConfig({
   ...(site ? { site } : {}),
   output: 'static',
   trailingSlash: 'ignore',
-  build: { format: 'directory' },
+  build: { format: 'directory', inlineStylesheets: 'always' },
   devToolbar: { enabled: false },
 });

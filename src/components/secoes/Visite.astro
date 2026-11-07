@@ -1,0 +1,86 @@
+---
+// 10 · VISITE — gesto: tudo para chegar numa tela só: drone noturno em moldura, endereço grande, horário ao vivo,
+// localizador e rotas, Instagram.
+import Link from '../base/Link.astro';
+import MapaEstatico from '../base/MapaEstatico.astro';
+import MolduraVideo from '../base/MolduraVideo.astro';
+import StatusHorario from '../base/StatusHorario.astro';
+import TabelaHorario from '../base/TabelaHorario.astro';
+import { contato } from '../../config/contato.ts';
+import { home, videos } from '../../content/textos/index.ts';
+import Secao from './Secao.astro';
+
+const v = home.visite;
+const end = contato.endereco.valor;
+---
+
+<Secao id="visite" rotulo={v.rotulo} titulo={v.titulo} tamanho="t-h1" class="visite">
+  <div class="visite__grade">
+    <div class="visite__video">
+      <MolduraVideo id="drone-noite" descricao={videos['drone-noite']} />
+    </div>
+    <div class="visite__dados">
+      <address class="visite__endereco">
+        {end.logradouro}, {end.numero}
+        <br />
+        {end.bairro} · {end.cidade}/{end.uf}
+        <br />
+        <span class="t-pequeno t-secundario">CEP {end.cep}</span>
+      </address>
+      <StatusHorario />
+      <TabelaHorario />
+      <p>
+        <Link href={contato.instagram.valor.url}>
+          @{contato.instagram.valor.usuario} no Instagram
+        </Link>
+      </p>
+    </div>
+  </div>
+  <MapaEstatico class="visite__mapa" semEndereco />
+  <p class="visite__fecho">{v.fecho.texto}</p>
+</Secao>
+
+<style>
+  .visite__grade {
+    display: grid;
+    gap: var(--esp-7);
+    margin-bottom: var(--esp-7);
+  }
+  .visite__video {
+    width: min(100%, 24rem);
+  }
+  .visite__dados {
+    display: grid;
+    gap: var(--esp-5);
+    align-content: start;
+  }
+  .visite__endereco {
+    font-style: normal;
+    font-family: var(--fonte-titulo);
+    font-stretch: var(--largura-display);
+    font-weight: 720;
+    text-transform: uppercase;
+    font-size: clamp(2rem, 1.2rem + 3vw, 3.75rem);
+    line-height: 0.95;
+    letter-spacing: var(--ls-titulo);
+  }
+  .visite__endereco .t-pequeno {
+    font-family: var(--fonte-texto);
+    font-stretch: normal;
+    text-transform: none;
+    font-weight: 400;
+    letter-spacing: 0;
+  }
+  .visite__fecho {
+    margin-top: var(--esp-7);
+    font-family: var(--fonte-acento);
+    font-style: italic;
+    font-size: clamp(1.5rem, 1.1rem + 1.6vw, 2.5rem);
+  }
+  @media (min-width: 64rem) {
+    .visite__grade {
+      grid-template-columns: minmax(16rem, 24rem) minmax(0, 1fr);
+      gap: var(--esp-8);
+    }
+  }
+</style>

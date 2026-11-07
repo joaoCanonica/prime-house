@@ -6,8 +6,10 @@ import Botao from './Botao.astro';
 
 interface Props {
   class?: string | undefined;
+  /** oculta o endereço visualmente quando a página já o mostra em destaque */
+  semEndereco?: boolean | undefined;
 }
-const { class: classe } = Astro.props;
+const { class: classe, semEndereco = false } = Astro.props;
 const { lat, lng } = contato.geo.valor;
 const end = contato.endereco.valor;
 const mapas = contato.mapas.valor;
@@ -31,7 +33,7 @@ const dms = (v: number, pos: string, neg: string) => {
     <p class="t-rotulo mapa-estatico__coord t-tabular">
       {dms(lat, 'N', 'S')} · {dms(lng, 'L', 'O')}
     </p>
-    <address class="mapa-estatico__endereco">
+    <address class:list={['mapa-estatico__endereco', { 'sr-only': semEndereco }]}>
       {end.logradouro}, {end.numero}
       <br />
       {end.bairro} · {end.cidade}/{end.uf}

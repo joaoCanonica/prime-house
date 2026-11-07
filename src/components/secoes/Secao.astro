@@ -1,0 +1,59 @@
+---
+// Moldura comum das seções da home: id, rótulo em versalete e título com acento.
+import Rotulo from '../base/Rotulo.astro';
+import type { Texto } from '../../content/textos/tipos.ts';
+import { comAcento } from './texto.ts';
+
+interface Props {
+  id: string;
+  rotulo?: string | undefined;
+  titulo?: Texto | undefined;
+  /** classe de tamanho do título */
+  tamanho?: 't-h1' | 't-h2' | 't-display' | undefined;
+  class?: string | undefined;
+  semCabecalho?: boolean | undefined;
+}
+const { id, rotulo, titulo, tamanho = 't-h2', class: classe, semCabecalho = false } = Astro.props;
+const idTitulo = `${id}-titulo`;
+---
+
+<section
+  id={id}
+  class:list={['secao', classe]}
+  aria-labelledby={titulo ? idTitulo : undefined}
+  aria-label={!titulo ? rotulo : undefined}
+>
+  <div class="secao__quadro">
+    {!semCabecalho && (rotulo || titulo) && (
+      <header class="secao__cabecalho">
+        {rotulo && <Rotulo ponto>{rotulo}</Rotulo>}
+        {titulo && (
+          <h2 id={idTitulo} class:list={['secao__titulo', tamanho]} set:html={comAcento(titulo)} />
+        )}
+      </header>
+    )}
+    <slot />
+  </div>
+</section>
+
+<style>
+  .secao {
+    position: relative;
+    padding-block: var(--secao);
+    border-top: 1px solid var(--prime-linha);
+  }
+  .secao__quadro {
+    position: relative;
+    width: min(100% - 2 * var(--margem), var(--largura-max));
+    margin-inline: auto;
+  }
+  .secao__cabecalho {
+    display: grid;
+    gap: var(--esp-4);
+    margin-bottom: clamp(2rem, 1rem + 4vw, 4.5rem);
+    max-width: 52rem;
+  }
+  .secao__titulo {
+    text-wrap: balance;
+  }
+</style>

@@ -1,0 +1,104 @@
+---
+// 2 · NÚMEROS — gesto: quatro números verificáveis em linha, separados por fios de luz.
+// "14 dias de garantia" só aparece confirmado; até lá: preview com selo PROVISÓRIO, produção com "Trânsito livre".
+import NumeroGrande from '../marca/NumeroGrande.astro';
+import Provisorio from '../Provisorio.astro';
+import { modoAtual } from '../../config/modo.ts';
+import { home } from '../../content/textos/index.ts';
+
+const preview = modoAtual() === 'preview';
+const [a, b, c, garantia] = home.numeros.itens;
+---
+
+<section id="numeros" class="numeros" aria-label={home.numeros.rotulo}>
+  <ul class="numeros__lista">
+    {a && (
+      <li>
+        <NumeroGrande valor={a.valor} legenda={a.legenda} />
+      </li>
+    )}
+    {b && (
+      <li>
+        <NumeroGrande valor={b.valor} legenda={b.legenda} cor="luz" />
+      </li>
+    )}
+    {c && (
+      <li>
+        <NumeroGrande valor={c.valor} legenda={c.legenda} />
+      </li>
+    )}
+    {garantia && (
+      <li>
+        {preview ? (
+          <Provisorio motivo={garantia.provisorio.motivo} como="div">
+            <NumeroGrande
+              valor={garantia.valor}
+              unidade={garantia.unidade}
+              legenda={garantia.legenda}
+              cor="laranja"
+            />
+          </Provisorio>
+        ) : (
+          <NumeroGrande valor="Livre" legenda="trânsito livre, no seu tempo" cor="laranja" />
+        )}
+      </li>
+    )}
+  </ul>
+</section>
+
+<style>
+  .numeros {
+    padding: var(--secao) var(--margem);
+    border-top: 1px solid var(--prime-linha);
+  }
+  .numeros__lista {
+    list-style: none;
+    padding: 0;
+    width: min(100%, var(--largura-max));
+    margin-inline: auto;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .numeros__lista li {
+    position: relative;
+    max-width: none;
+    padding: var(--esp-6) var(--esp-4);
+    display: grid;
+    align-items: end;
+  }
+  /* fios de luz entre os números */
+  .numeros__lista li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 12%;
+    bottom: 12%;
+    width: 1px;
+    background: var(--prime-luz);
+    box-shadow: 0 0 6px rgb(255 244 224 / 0.45);
+    opacity: 0.7;
+  }
+  .numeros__lista li:nth-child(odd)::before {
+    display: none;
+  }
+  .numeros__lista li:nth-child(n + 3) {
+    border-top: 1px solid rgb(255 244 224 / 0.35);
+  }
+  @media (min-width: 64rem) {
+    .numeros__lista {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+    .numeros__lista li {
+      padding: var(--esp-4) clamp(1rem, 2vw, 2.5rem);
+    }
+    .numeros__lista li:nth-child(odd)::before {
+      display: block;
+    }
+    .numeros__lista li:first-child::before {
+      display: none;
+    }
+    .numeros__lista li:nth-child(n + 3) {
+      border-top: 0;
+    }
+  }
+</style>

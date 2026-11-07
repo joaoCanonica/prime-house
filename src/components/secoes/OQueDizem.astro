@@ -1,0 +1,46 @@
+---
+// 8 · O QUE DIZEM — gesto: citações grandes, em escada; literais, com selo e link do Google. Sem nota agregada.
+import Botao from '../base/Botao.astro';
+import Citacao from '../base/Citacao.astro';
+import { avaliacoes } from '../../config/avaliacoes.ts';
+import { botoes, home } from '../../content/textos/index.ts';
+import Secao from './Secao.astro';
+
+const lista = home.prova.avaliacoes
+  .map((id) => avaliacoes.selecionadas.find((a) => a.id === id))
+  .filter((a): a is NonNullable<typeof a> => !!a);
+---
+
+<Secao id="o-que-dizem" rotulo={home.prova.rotulo} titulo={home.prova.titulo} class="dizem">
+  <ul class="dizem__lista">
+    {lista.map((a) => (
+      <li>
+        <Citacao avaliacao={a} />
+      </li>
+    ))}
+  </ul>
+  <Botao href={avaliacoes.urlFicha} variante="secundario">
+    {botoes.avaliarGoogle}
+  </Botao>
+</Secao>
+
+<style>
+  .dizem__lista {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: var(--esp-8);
+    margin-bottom: var(--esp-7);
+  }
+  .dizem__lista li {
+    max-width: none;
+  }
+  @media (min-width: 64rem) {
+    .dizem__lista li:nth-child(2) {
+      padding-inline-start: 22%;
+    }
+    .dizem__lista li:nth-child(3) {
+      padding-inline-start: 44%;
+    }
+  }
+</style>

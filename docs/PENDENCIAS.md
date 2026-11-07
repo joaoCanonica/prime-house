@@ -76,6 +76,15 @@ Textos em `src/content/textos/` (fonte de cada frase real em `fontes.ts`; lista 
 - **[aviso] Frases cortadas pela seção 8:** a comparação com outras academias (duas frases da marca e a fala da avaliação funcional) e as ofertas de campanha da fala do Plano Prime. Ficou só a parte positiva de cada frase.
 - **[aviso] Privacidade:** razão social, CNPJ, encarregado (DPO) e a decisão de analytics/cookies (sessão 7).
 
+## Da sessão 6A (home)
+
+- **[aviso] Tour 3D:** o teaser da home tem pôster, botões das zonas e a política de dados (nunca carrega sozinho em Save-Data/2g); a ilha 3D se registra em `window.__phTour3d` na sessão 6B. Até lá, o botão "Carregar o tour 3D" avisa que o tour entra na próxima etapa.
+- **[aviso] Links para páginas internas** (`/a-casa`, `/maquinario`, `/planos`, rodapé…) dão 404 até a sessão 6C/6B.
+- **[aviso] Vídeo "acompanhamento" e trecho da equipe:** consentimento pendente. A home usa o still da anilha (sem rostos) e o `lucas-close` (só o Lucas).
+- **[aviso] "Avaliar no Google"** leva à ficha (cid); o link direto de avaliação precisa do Place ID.
+- **[aviso] Garantia nos números:** em produção, "14 dias" só aparece confirmado; até lá, "Trânsito livre".
+- **[aviso] CSS embutido no HTML** (`inlineStylesheets: 'always'` no `astro.config.mjs`): tira os 2 CSS que bloqueavam a renderização (FCP 1,06 s → 0,80 s; LCP 1,96–2,05 s → 1,89 s).
+
 ## Do cliente (herdado do pacote de prompts, seção C)
 
 - [trava] Confirmação por escrito dos benefícios fixos: garantia de 14 dias, trancamento de 30 dias no anual, Sexta Prime.

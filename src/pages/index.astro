@@ -1,11 +1,24 @@
 ---
-// Home. Nesta sessão: só a abertura e o hero (as demais seções vêm na sessão 6A).
+// Home: abertura, hero e as seções da sessão 6A.
 import '../styles/global.css';
 import Abertura from '../components/abertura/Abertura.astro';
 import Hero from '../components/hero/Hero.astro';
 import PreviewBanner from '../components/PreviewBanner.astro';
+import Acompanhamento from '../components/secoes/Acompanhamento.astro';
+import BotaoFlutuante from '../components/secoes/BotaoFlutuante.astro';
+import Conforto from '../components/secoes/Conforto.astro';
+import Historia from '../components/secoes/Historia.astro';
+import Manifesto from '../components/secoes/Manifesto.astro';
+import Numeros from '../components/secoes/Numeros.astro';
+import OQueDizem from '../components/secoes/OQueDizem.astro';
+import ParaTodoCorpo from '../components/secoes/ParaTodoCorpo.astro';
+import Planos from '../components/secoes/Planos.astro';
+import Rodape from '../components/secoes/Rodape.astro';
+import TeaserCasa from '../components/secoes/TeaserCasa.astro';
+import Visite from '../components/secoes/Visite.astro';
 import { cores } from '../config/tema.ts';
 import { robots } from '../config/seo.ts';
+import { home, navegacao } from '../content/textos/index.ts';
 ---
 
 <!doctype html>
@@ -14,7 +27,8 @@ import { robots } from '../config/seo.ts';
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content={robots()} />
-    <title>Prime House Academia · Lages/SC</title>
+    <title>{home.meta.title}</title>
+    <meta name="description" content={home.meta.description} />
     <meta name="theme-color" content={cores.breu} />
     <link rel="icon" href="/favicon.ico" sizes="32x32" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
@@ -22,9 +36,41 @@ import { robots } from '../config/seo.ts';
   </head>
   <body>
     <Abertura />
+    <a class="pular-conteudo" href="#conteudo">
+      {navegacao.pularParaConteudo}
+    </a>
     <PreviewBanner />
-    <main>
+    <main id="conteudo">
       <Hero midia="interior-noite" />
+      <p class="sr-only">{home.resposta}</p>
+      <Manifesto />
+      <Numeros />
+      <TeaserCasa />
+      <Acompanhamento />
+      <ParaTodoCorpo />
+      <Conforto />
+      <Planos />
+      <OQueDizem />
+      <Historia />
+      <Visite />
     </main>
+    <Rodape />
+    <BotaoFlutuante />
   </body>
 </html>
+
+<style is:global>
+  .pular-conteudo {
+    position: absolute;
+    left: var(--esp-3);
+    top: -4rem;
+    z-index: 2000;
+    padding: var(--esp-3) var(--esp-4);
+    background: var(--prime-luz);
+    color: var(--prime-breu);
+    font-weight: 600;
+  }
+  .pular-conteudo:focus {
+    top: var(--esp-3);
+  }
+</style>

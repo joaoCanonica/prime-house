@@ -1,0 +1,64 @@
+---
+// Botão flutuante discreto no celular: aparece depois do hero e some quando "Visite" está na tela.
+import BotaoWhatsApp from '../base/BotaoWhatsApp.astro';
+---
+
+<div class="flutuante" data-flutuante hidden>
+  <BotaoWhatsApp class="flutuante__botao" />
+</div>
+
+<script>
+  const caixa = document.querySelector<HTMLElement>('[data-flutuante]');
+  const hero = document.querySelector('[data-hero]');
+  const visite = document.querySelector('#visite');
+  if (caixa && matchMedia('(max-width: 63.99rem)').matches) {
+    caixa.hidden = false;
+    let heroNaTela = true;
+    let visiteNaTela = false;
+    const atualizar = () => caixa.classList.toggle('visivel', !heroNaTela && !visiteNaTela);
+    const io = new IntersectionObserver((es) => {
+      for (const e of es) {
+        if (e.target === hero) heroNaTela = e.isIntersecting;
+        if (e.target === visite) visiteNaTela = e.isIntersecting;
+      }
+      atualizar();
+    });
+    if (hero) io.observe(hero);
+    if (visite) io.observe(visite);
+  }
+</script>
+
+<style>
+  .flutuante {
+    position: fixed;
+    left: var(--margem);
+    right: var(--margem);
+    bottom: max(var(--esp-4), env(safe-area-inset-bottom));
+    z-index: 50;
+    display: flex;
+    justify-content: center;
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    translate: 0 1rem;
+    transition:
+      opacity var(--dur-2) var(--curva-saida),
+      translate var(--dur-2) var(--curva-saida),
+      visibility 0s linear var(--dur-2);
+  }
+  .flutuante:global(.visivel) {
+    opacity: 1;
+    visibility: visible;
+    translate: 0 0;
+    pointer-events: auto;
+    transition-delay: 0s;
+  }
+  .flutuante :global(.flutuante__botao) {
+    box-shadow: 0 8px 24px rgb(12 11 10 / 0.6);
+  }
+  @media (min-width: 64rem) {
+    .flutuante {
+      display: none;
+    }
+  }
+</style>
