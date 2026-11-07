@@ -65,6 +65,10 @@ for (const palco of document.querySelectorAll<HTMLElement>('[data-tour3d]')) {
         reduzido,
       });
       palco.dataset['modo'] = '3d';
+      // medição (src/lib/medicao.ts ouve "prime:medir"; sem import para não pesar o caminho do LCP)
+      dispatchEvent(
+        new CustomEvent('prime:medir', { detail: { nome: 'tour_3d_aberto', zona: 'musculacao' } }),
+      );
       if (indice.maquete?.esquematica) palco.dataset['esquematica'] = 'sim';
     } catch (erro) {
       if (aviso) {

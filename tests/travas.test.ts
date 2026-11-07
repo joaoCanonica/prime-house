@@ -102,7 +102,7 @@ describe('audit-compliance: travas simuladas', () => {
   it('termo vetado no HTML (inclusive em link do WhatsApp codificado)', () => {
     const dir = distCom({
       'index.html': BASE(
-        '<a href="https://wa.me/5549998043861?text=Quero%20a%20matr%C3%ADcula%20gr%C3%A1tis">x</a>',
+        '<a href="https://wa.me/5549998043861?text=Ol%C3%A1!%20Quero%20a%20matr%C3%ADcula%20gr%C3%A1tis">x</a>',
       ),
     });
     const { prod, prev } = auditarAmbos(dir);

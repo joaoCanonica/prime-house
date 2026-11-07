@@ -4,9 +4,10 @@
 import Link from '../base/Link.astro';
 import Logo from '../marca/Logo.astro';
 import Provisorio from '../Provisorio.astro';
+import Consentimento from '../consentimento/Consentimento.astro';
 import { contato } from '../../config/contato.ts';
 import { marca } from '../../config/marca.ts';
-import { rodape, whatsapp } from '../../content/textos/index.ts';
+import { consentimento, rodape, whatsapp } from '../../content/textos/index.ts';
 import { linkWhatsApp } from '../../lib/whatsapp.ts';
 
 const end = contato.endereco.valor;
@@ -14,7 +15,7 @@ const cref = marca.crefResponsavel.valor;
 const cnpj = marca.cnpj.valor;
 ---
 
-<footer class="rodape">
+<footer class="rodape" data-cta-origem="rodape">
   <div class="rodape__quadro">
     <div class="rodape__marca">
       <a href="/" aria-label="Prime House Academia, início">
@@ -83,7 +84,17 @@ const cnpj = marca.cnpj.valor;
       <Provisorio motivo="CNPJ: pendente">CNPJ pendente</Provisorio>
     )}
     <span>{rodape.direitos}</span>
+    <button type="button" class="rodape__pref" data-preferencias hidden>
+      {`${consentimento.preferencias}: `}
+      <span
+        data-preferencias-estado
+        data-aceito={consentimento.estado.aceito}
+        data-recusado={consentimento.estado.recusado}
+        data-nenhum={consentimento.estado.nenhum}
+      ></span>
+    </button>
   </div>
+  <Consentimento />
 </footer>
 
 <style>
@@ -126,6 +137,20 @@ const cnpj = marca.cnpj.valor;
     padding: 0;
     display: grid;
     gap: var(--esp-2);
+  }
+  .rodape__pref {
+    font: inherit;
+    color: inherit;
+    background: none;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.28em;
+  }
+  .rodape__pref:hover {
+    color: var(--prime-luz);
   }
   .rodape__legal {
     width: min(100%, var(--largura-max));

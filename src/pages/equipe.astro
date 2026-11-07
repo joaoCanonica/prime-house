@@ -6,7 +6,7 @@ import Provisorio from '../components/Provisorio.astro';
 import MolduraLuz from '../components/marca/MolduraLuz.astro';
 import { modoAtual } from '../config/modo.ts';
 import Interna from '../layouts/Interna.astro';
-import { equipe as e } from '../content/textos/index.ts';
+import { equipe as e, whatsapp } from '../content/textos/index.ts';
 
 const preview = modoAtual() === 'preview';
 const posters = video('lucas-close').posters;
@@ -14,7 +14,14 @@ const p720 = posters.find((p) => p.nome === 'poster-720');
 const p540 = posters.find((p) => p.nome === 'poster-540');
 ---
 
-<Interna meta={e.meta} rotulo="Equipe" titulo={e.titulo.texto} resposta={e.resposta} rota="/equipe">
+<Interna
+  meta={e.meta}
+  rotulo="Equipe"
+  titulo={e.titulo.texto}
+  resposta={e.resposta}
+  rota="/equipe"
+  mensagem={whatsapp.equipe}
+>
   <section class="eq__geral" aria-label="O time">
     <p class="t-lead">{e.geral}</p>
     <div class="eq__dev">

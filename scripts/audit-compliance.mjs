@@ -73,6 +73,29 @@ function extrairAvaliacoes(html, onde, add) {
   });
 }
 
+/**
+ * Funil e LGPD (sessão 7): todo link do WhatsApp é o do linkWhatsApp() (wa.me, número com DDI, mensagem
+ * que começa com "Olá!"); nada de terceiro carrega com a página (script, iframe, imagem, CSS, preconnect).
+ */
+export function auditarFunil(html, onde, add) {
+  for (const m of html.matchAll(/href="(https:\/\/(?:wa\.me|api\.whatsapp\.com)[^"]*)"/g)) {
+    const href = m[1].replaceAll('&amp;', '&');
+    const ok = /^https:\/\/wa\.me\/55\d{10,11}\?text=[^&]+$/.test(href);
+    const texto = ok ? decodeURIComponent(new URL(href).searchParams.get('text') ?? '') : '';
+    if (!ok || !texto.startsWith('Olá!'))
+      add('erro', 'whatsapp-link', onde, `link do WhatsApp fora do padrão: ${href.slice(0, 90)}`);
+  }
+  const terceiro =
+    /<(?:script|iframe|img|source|video|audio|embed)\b[^>]*\s(?:src|srcset|poster)="(?:https?:)?\/\/|<link\b[^>]*rel="(?:stylesheet|preconnect|dns-prefetch|preload|modulepreload|prefetch)"[^>]*href="(?:https?:)?\/\/|<link\b[^>]*href="(?:https?:)?\/\/[^"]*"[^>]*rel="(?:stylesheet|preconnect|dns-prefetch|preload|modulepreload|prefetch)"/gi;
+  for (const m of html.matchAll(terceiro))
+    add(
+      'trava',
+      'terceiro-sem-consentimento',
+      onde,
+      `recurso de terceiro na carga: ${m[0].slice(0, 90)}`,
+    );
+}
+
 export function auditar({
   dir = join(RAIZ, 'dist'),
   modo = 'preview',
@@ -132,6 +155,7 @@ export function auditar({
       if (modo === 'producao' && /\sdata-preview-banner\b/.test(texto))
         add('trava', 'banner-em-producao', rel, 'faixa "em revisão" no HTML de produção');
       texto = extrairAvaliacoes(texto, rel, add);
+      auditarFunil(texto, rel, add);
     }
     const decodificado = decodificar(texto);
     const norm = normalizar(decodificado);

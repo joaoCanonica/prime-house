@@ -40,7 +40,12 @@ const preview = modoAtual() === 'preview';
         <h3 class="plano__nome">{c.nome}</h3>
         {c.gancho && <Txt texto={c.gancho} class="plano__gancho" />}
         <Txt texto={c.resumo} class="plano__resumo" />
-        <BotaoWhatsApp mensagem={c.msg} texto={`Quero o ${c.nome}`} class="plano__botao" />
+        <BotaoWhatsApp
+          mensagem={c.msg}
+          texto={`Quero o ${c.nome}`}
+          class="plano__botao"
+          plano={c.id}
+        />
       </li>
     ))}
   </ol>

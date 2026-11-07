@@ -1,5 +1,5 @@
 // Microtextos: botões, mensagens do WhatsApp por contexto, alt das imagens, descrição dos vídeos e rodapé.
-import { mensagens } from '../../lib/whatsapp.ts';
+import { mensagemEscolhaPlano, mensagemQuiz, mensagens } from '../../lib/whatsapp.ts';
 
 export const botoes = {
   falarComEquipe: 'Falar com a equipe',
@@ -20,6 +20,19 @@ export const botoes = {
   fechar: 'Fechar',
 } as const;
 
+/** Banner de consentimento (LGPD) e preferência no rodapé. */
+export const consentimento = {
+  rotulo: 'Privacidade',
+  texto:
+    'Medimos as visitas sem cookies e sem identificar você. O mapa interativo do Google usa cookies e só carrega se você aceitar.',
+  motivoMapa: 'Para abrir o mapa interativo do Google, aceite os cookies dele.',
+  aceitar: 'Aceitar',
+  recusar: 'Recusar',
+  saibaMais: 'Saiba mais',
+  preferencias: 'Preferências de cookies',
+  estado: { aceito: 'aceitos', recusado: 'recusados', nenhum: 'sem escolha' },
+} as const;
+
 /** Mensagens prontas do WhatsApp por contexto (as funções vêm de src/lib/whatsapp.ts). */
 export const whatsapp = {
   geral: mensagens.geral,
@@ -28,10 +41,10 @@ export const whatsapp = {
   planoDuo: mensagens.plano('Plano Duo'),
   avaliacao: mensagens.avaliacao,
   /** quiz da home: lista os sinais marcados */
-  avaliacaoComSinais: (sinais: readonly string[]) =>
-    sinais.length
-      ? `${mensagens.avaliacao} Me identifiquei com: ${sinais.join('; ')}`
-      : mensagens.avaliacao,
+  avaliacaoComSinais: mensagemQuiz,
+  /** escolha de plano (/planos): plano e período */
+  escolhaPlano: mensagemEscolhaPlano,
+  escolherPlano: mensagens.escolherPlano,
   adaptado: {
     mais40: mensagens.adaptado('voltar a treinar depois dos 40'),
     idosos: mensagens.adaptado('treinar com segurança na terceira idade'),
@@ -42,6 +55,9 @@ export const whatsapp = {
   },
   zona: (nomeNoTour: string) => mensagens.zona(nomeNoTour),
   trabalhe: mensagens.trabalhe,
+  maquinario: mensagens.maquinario,
+  equipe: mensagens.equipe,
+  duvida: mensagens.duvida,
   visita: 'Olá! Vim pelo site e quero marcar uma visita à Prime House.',
   convenio: 'Olá! Vim pelo site e quero saber como funciona o convênio Estar Bem.',
 } as const;

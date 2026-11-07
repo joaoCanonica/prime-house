@@ -7,7 +7,7 @@ import MolduraLuz from '../components/marca/MolduraLuz.astro';
 import Interna from '../layouts/Interna.astro';
 import { equipamentos } from '../content/dados/equipamentos.ts';
 import { zonas } from '../content/dados/zonas.ts';
-import { alt, maquinario } from '../content/textos/index.ts';
+import { alt, maquinario, whatsapp } from '../content/textos/index.ts';
 
 const GRUPO: Record<string, [string, string]> = {
   dorsais: ['costas', 'Costas'],
@@ -53,6 +53,7 @@ const cssFiltro = filtros
   titulo={maquinario.intro.titulo}
   resposta={maquinario.resposta}
   rota="/maquinario"
+  mensagem={whatsapp.maquinario}
 >
   <Fragment slot="head">
     <style set:html={cssFiltro} />

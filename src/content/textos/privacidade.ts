@@ -1,4 +1,4 @@
-// /privacidade: LGPD simples. Provisório até a sessão 7 (funil e LGPD) e os dados do controlador.
+// /privacidade: LGPD simples. Medição e consentimento definidos na sessão 7 (docs/FUNIL.md); controlador pendente.
 import { provisorio } from './tipos.ts';
 
 export const privacidade = {
@@ -24,13 +24,13 @@ export const privacidade = {
     {
       titulo: 'Mapas e vídeos de terceiros',
       texto:
-        'O mapa interativo do Google só carrega se você clicar. Antes disso, nenhum dado vai para o Google.',
+        'O mapa interativo do Google usa cookies e só carrega se você clicar e aceitar. Antes disso, nenhum dado vai para o Google. Você muda essa escolha a qualquer momento em "Preferências de cookies", no rodapé.',
     },
     {
       titulo: 'Medição de visitas',
       texto: provisorio(
-        'Se o site passar a medir visitas, será de forma agregada, sem identificar você, e esta página será atualizada.',
-        'decisão de analytics e cookies: sessão 7',
+        'O site conta visitas e cliques (por exemplo, em "Falar com a equipe" ou no tour 3D) de forma agregada, sem cookies e sem identificar você, com o Plausible, pelo próprio endereço do site. Se o seu navegador pede para não ser rastreado (Global Privacy Control ou Do Not Track), nada é contado.',
+        'medição só liga quando o domínio do site e a conta do Plausible forem definidos',
       ),
     },
     {

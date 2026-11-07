@@ -1,5 +1,6 @@
 ---
 // Ação principal: "Falar com a equipe" no WhatsApp, com mensagem pronta por contexto.
+// Sempre um <a href> pronto (funciona sem JS). origem/plano/zona viram data-cta-* para a medição.
 import { linkWhatsApp, mensagens } from '../../lib/whatsapp.ts';
 import Botao from './Botao.astro';
 import IconeWhatsApp from './IconeWhatsApp.astro';
@@ -9,11 +10,27 @@ interface Props {
   mensagem?: string;
   texto?: string;
   class?: string | undefined;
+  /** de onde veio o clique (medição); sem ela, vale o id da seção */
+  origem?: string | undefined;
+  plano?: string | undefined;
+  zona?: string | undefined;
 }
-const { mensagem = mensagens.geral, texto = 'Falar com a equipe', class: classe } = Astro.props;
+const {
+  mensagem = mensagens.geral,
+  texto = 'Falar com a equipe',
+  class: classe,
+  origem,
+  plano,
+  zona,
+} = Astro.props;
 ---
 
-<Botao href={linkWhatsApp(mensagem)} variante="primario" class={classe}>
+<Botao
+  href={linkWhatsApp(mensagem)}
+  variante="primario"
+  class={classe}
+  dados={{ 'data-cta-origem': origem, 'data-cta-plano': plano, 'data-cta-zona': zona }}
+>
   <IconeWhatsApp slot="icone" />
   {texto}
   <span class="sr-only"> no WhatsApp</span>

@@ -28,6 +28,9 @@ function iniciar(raiz: HTMLElement) {
   const celular = matchMedia('(max-width: 63.99rem)');
   const ids = zonas.map((z) => z.id);
   let tour: Tour | null = null;
+  // medição sem import cruzado: src/lib/medicao.ts ouve "prime:medir"
+  const medir = (detail: { nome: string; zona: string }) =>
+    dispatchEvent(new CustomEvent('prime:medir', { detail }));
   let indice: IndiceModelos | null = null;
 
   const daUrl = new URLSearchParams(location.search).get('zona');
@@ -120,6 +123,7 @@ function iniciar(raiz: HTMLElement) {
         aoSelecionar: (id) => ativar(id, { abrir: false }),
       });
       raiz.dataset['modo'] = '3d';
+      medir({ nome: 'tour_3d_aberto', zona: ativa || 'geral' });
       if (selo) selo.hidden = !indice.maquete.esquematica;
       if (como) como.hidden = false;
       for (const b of raiz.querySelectorAll<HTMLButtonElement>('[data-ver-real]')) b.hidden = false;
@@ -141,6 +145,7 @@ function iniciar(raiz: HTMLElement) {
   for (const b of raiz.querySelectorAll<HTMLButtonElement>('[data-ver-real]')) {
     b.addEventListener('click', async () => {
       const id = b.dataset['verReal'] ?? '';
+      medir({ nome: 'tour_3d_realismo', zona: id });
       if (tour && indice?.splats[id]) {
         abortar = new AbortController();
         mostrarEstado('Carregando a captura real…', 0, true);

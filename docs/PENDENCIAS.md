@@ -74,7 +74,7 @@ Textos em `src/content/textos/` (fonte de cada frase real em `fontes.ts`; lista 
 - **[aviso] Sem informação:** nutricionista na equipe, estacionamento, acessibilidade, feriados municipais, e-mail para currículos, dicas de execução (sem vídeo de técnica), lista completa do maquinário.
 - **[aviso] Equipe:** a página está pronta para nome, foto, CREF/CREFITO e especialidade, com autorização. Hoje mostra só o Lucas e o texto geral.
 - **[aviso] Frases cortadas pela seção 8:** a comparação com outras academias (duas frases da marca e a fala da avaliação funcional) e as ofertas de campanha da fala do Plano Prime. Ficou só a parte positiva de cada frase.
-- **[aviso] Privacidade:** razão social, CNPJ, encarregado (DPO) e a decisão de analytics/cookies (sessão 7).
+- **[aviso] Privacidade:** razão social, CNPJ e encarregado (DPO). A medição foi decidida na sessão 7 (ver abaixo).
 
 ## Da sessão 6A (home)
 
@@ -104,6 +104,14 @@ Detalhes em `docs/3d/README.md` (como entregar) e `docs/3d/RELATORIO.md` (pesos 
 - **[aviso] Fotos de máquinas:** puxada alta, agachamento pêndulo e remada não têm foto própria; usam um objeto tipográfico até chegar foto.
 - **[aviso] Contato e local:** e-mail para candidaturas, estacionamento e acessibilidade pendentes (só aparecem em preview).
 - **[aviso] Layout `src/layouts/Interna.astro`:** criado fora do escopo listado para não repetir cabeçalho e rodapé em nove páginas.
+
+## Da sessão 7 (funil e LGPD)
+
+- **[aviso] Medição desligada até haver domínio:** proposta Plausible (sem cookie, pelo próprio domínio; ver `docs/FUNIL.md` §4). Falta o João confirmar (ou escolher Umami próprio), criar a conta e preencher `medicao.dominio` em `src/config/medicao.ts`.
+- **[aviso] Proxy `/m/evento`:** depende de onde o site será hospedado (Netlify, Vercel, Cloudflare…); exemplos em `docs/FUNIL.md`.
+- **[aviso] Texto de medição em /privacidade:** segue PROVISÓRIO até a medição ligar.
+- **[aviso] Mensagens novas do WhatsApp:** `escolherPlano`, `maquinario`, `equipe` e `duvida` (texto nosso, no padrão das existentes). Revisar com a equipe que atende.
+- **[aviso] Escolha de plano:** pergunta o período preferido (manhã/tarde/noite) só para a mensagem; nada é guardado. Confirmar se a equipe quer essa informação.
 
 ## Do cliente (herdado do pacote de prompts, seção C)
 

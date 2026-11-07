@@ -20,6 +20,7 @@
     "lint": "eslint .",
     "format": "prettier --write .",
     "test": "vitest run",
+    "test:e2e": "vitest run --config vitest.e2e.config.ts",
     "validate-config": "node scripts/validate-config.mjs",
     "audit-compliance": "node scripts/audit-compliance.mjs",
     "audit-a11y": "node scripts/pendente.mjs audit-a11y 9",

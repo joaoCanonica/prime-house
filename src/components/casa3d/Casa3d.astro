@@ -185,7 +185,12 @@ const inicial = 'musculacao';
           </div>
         )}
         <div class="casa3d__botoes">
-          <BotaoWhatsApp mensagem={mensagens.zona(z.nomeNoTour)} texto="Quero conhecer esta área" />
+          <BotaoWhatsApp
+            mensagem={mensagens.zona(z.nomeNoTour)}
+            texto="Quero conhecer esta área"
+            origem="tour-3d"
+            zona={z.id}
+          />
           <button type="button" class="casa3d__real t-rotulo" data-ver-real={z.id} hidden>
             Ver de verdade
           </button>

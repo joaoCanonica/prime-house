@@ -1,5 +1,10 @@
 import { describe, expect, it } from 'vitest';
-import { linkWhatsApp, mensagens } from '../src/lib/whatsapp.ts';
+import {
+  linkWhatsApp,
+  mensagemEscolhaPlano,
+  mensagemQuiz,
+  mensagens,
+} from '../src/lib/whatsapp.ts';
 
 const texto = (link: string) => decodeURIComponent(new URL(link).searchParams.get('text') ?? '');
 
@@ -39,5 +44,35 @@ describe('WhatsApp', () => {
   it('número ausente ou inválido derruba', () => {
     expect(() => linkWhatsApp('oi', null)).toThrow(/WhatsApp ausente/);
     expect(() => linkWhatsApp('oi', '49998043861')).toThrow();
+  });
+  it('quiz: lista os sinais marcados, sem ponto duplo', () => {
+    expect(mensagemQuiz([])).toBe(mensagens.avaliacao);
+    expect(mensagemQuiz(['Sinal um.', 'Sinal dois'])).toBe(
+      'Olá! Vim pelo site e quero agendar minha avaliação funcional. Me identifiquei com: Sinal um; Sinal dois.',
+    );
+  });
+  it('escolha de plano: plano, "ainda não sei" e período', () => {
+    expect(mensagemEscolhaPlano('Plano Duo', 'noite')).toBe(
+      'Olá! Vim pelo site e quero saber sobre o Plano Duo. Prefiro treinar à noite.',
+    );
+    expect(mensagemEscolhaPlano(null, null)).toBe(
+      'Olá! Vim pelo site e quero ajuda para escolher um plano.',
+    );
+    expect(mensagemEscolhaPlano('Plano Prime', null)).toBe(mensagens.plano('Plano Prime'));
+  });
+  it('só src/lib/whatsapp.ts monta link wa.me', async () => {
+    const { readdirSync, readFileSync, statSync } = await import('node:fs');
+    const { join } = await import('node:path');
+    const fora: string[] = [];
+    const andar = (d: string) => {
+      for (const n of readdirSync(d)) {
+        const c = join(d, n);
+        if (statSync(c).isDirectory()) andar(c);
+        else if (/\.(ts|astro|mjs)$/.test(n) && /wa\.me\//.test(readFileSync(c, 'utf8')))
+          fora.push(c);
+      }
+    };
+    andar('src');
+    expect(fora.map((f) => f.replaceAll('\\', '/'))).toEqual(['src/lib/whatsapp.ts']);
   });
 });

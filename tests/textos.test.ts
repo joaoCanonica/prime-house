@@ -143,7 +143,7 @@ describe('textos: cobertura', () => {
   });
   it('mensagem do quiz lista os sinais marcados', () => {
     expect(T.whatsapp.avaliacaoComSinais(['a', 'b'])).toBe(
-      'Olá! Vim pelo site e quero agendar minha avaliação funcional. Me identifiquei com: a; b',
+      'Olá! Vim pelo site e quero agendar minha avaliação funcional. Me identifiquei com: a; b.',
     );
   });
 });

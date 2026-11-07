@@ -7,7 +7,16 @@ import { faq } from './faq.ts';
 import { home } from './home.ts';
 import { horarios } from './horarios.ts';
 import { maquinario } from './maquinario.ts';
-import { alt, botoes, legendas, navegacao, rodape, videos, whatsapp } from './micro.ts';
+import {
+  alt,
+  botoes,
+  consentimento,
+  legendas,
+  navegacao,
+  rodape,
+  videos,
+  whatsapp,
+} from './micro.ts';
 import { planos } from './planos.ts';
 import { privacidade } from './privacidade.ts';
 import { trabalheConosco } from './trabalhe-conosco.ts';
@@ -17,6 +26,7 @@ export {
   alt,
   botoes,
   comoFunciona,
+  consentimento,
   equipe,
   erro404,
   faq,
@@ -61,7 +71,7 @@ export const pendenciasTexto = [
   'Equipe: nomes, fotos, CREF/CREFITO e especialidades, com autorização.',
   'Trabalhe conosco: e-mail para currículos (hoje só WhatsApp).',
   'Maquinário: dicas de execução só quando houver vídeo de técnica do marketing; lista completa dos modelos.',
-  'Privacidade: razão social, CNPJ, encarregado (DPO) e a decisão de analytics/cookies (sessão 7).',
+  'Privacidade: razão social, CNPJ e encarregado (DPO); medição (Plausible) liga com o domínio do site.',
   'Rodapé: CREF do responsável técnico e CNPJ.',
   'Frases cortadas pela seção 8: a comparação com outras academias (duas frases da marca e a fala da avaliação funcional) e as ofertas de campanha da fala do Plano Prime.',
 ] as const;

@@ -94,4 +94,15 @@ export const planos = {
     { p: 'Tem convênio?', r: 'Sim, a Prime House faz parte da rede Estar Bem.' },
   ],
   chamada: 'Fale com a equipe e conheça as condições.',
+  /** escolha de plano: monta a mensagem do WhatsApp; nada é guardado */
+  escolha: {
+    titulo: 'Monte sua *mensagem*.',
+    instrucao: 'Escolha o plano e, se quiser, o período. A mensagem vai pronta; nada é guardado.',
+    planoLegenda: 'Plano',
+    naoSei: 'Ainda não sei',
+    periodoLegenda: 'Quando você prefere treinar',
+    periodos: { manha: 'De manhã', tarde: 'À tarde', noite: 'À noite' },
+    previa: 'Mensagem',
+    botao: 'Enviar no WhatsApp',
+  },
 } as const;

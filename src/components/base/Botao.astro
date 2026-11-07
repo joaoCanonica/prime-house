@@ -6,13 +6,22 @@ interface Props {
   variante?: 'primario' | 'secundario';
   externo?: boolean;
   class?: string | undefined;
+  /** atributos data-* extras (ex.: data-cta-origem); undefined some */
+  dados?: Record<`data-${string}`, string | undefined> | undefined;
 }
-const { href, variante = 'primario', externo = /^https?:/.test(href), class: classe } = Astro.props;
+const {
+  href,
+  variante = 'primario',
+  externo = /^https?:/.test(href),
+  class: classe,
+  dados = {},
+} = Astro.props;
 ---
 
 <a
   class:list={['botao', `botao--${variante}`, classe]}
   href={href}
+  {...dados}
   {...(externo ? { target: '_blank', rel: 'noopener' } : {})}
 >
   <slot name="icone" />

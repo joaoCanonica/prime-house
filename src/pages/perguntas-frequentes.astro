@@ -5,7 +5,7 @@ import Txt from '../components/secoes/Txt.astro';
 import { ehProvisorio } from '../components/secoes/texto.ts';
 import { modoAtual } from '../config/modo.ts';
 import Interna from '../layouts/Interna.astro';
-import { faq } from '../content/textos/index.ts';
+import { faq, whatsapp } from '../content/textos/index.ts';
 
 const preview = modoAtual() === 'preview';
 const grupos = faq.grupos
@@ -23,6 +23,7 @@ const grupos = faq.grupos
   titulo={faq.titulo}
   resposta={faq.resposta}
   rota="/perguntas-frequentes"
+  mensagem={whatsapp.duvida}
 >
   <div class="fq">
     <nav class="fq__indice" aria-label="Grupos de perguntas">
@@ -52,7 +53,7 @@ const grupos = faq.grupos
       ))}
       <div class="fq__fim">
         <p class="t-lead">Sua dúvida não está aqui?</p>
-        <BotaoWhatsApp />
+        <BotaoWhatsApp mensagem={whatsapp.duvida} />
       </div>
     </div>
   </div>

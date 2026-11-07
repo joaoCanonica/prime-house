@@ -4,7 +4,7 @@ import BotaoWhatsApp from '../base/BotaoWhatsApp.astro';
 ---
 
 <div class="flutuante" data-flutuante hidden>
-  <BotaoWhatsApp class="flutuante__botao" />
+  <BotaoWhatsApp class="flutuante__botao" origem="flutuante" />
 </div>
 
 <script>
@@ -33,7 +33,7 @@ import BotaoWhatsApp from '../base/BotaoWhatsApp.astro';
     position: fixed;
     left: var(--margem);
     right: var(--margem);
-    bottom: max(var(--esp-4), env(safe-area-inset-bottom));
+    bottom: calc(max(var(--esp-4), env(safe-area-inset-bottom)) + var(--consentimento-altura, 0px));
     z-index: 50;
     display: flex;
     justify-content: center;

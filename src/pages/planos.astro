@@ -3,6 +3,7 @@
 // benefícios fixos só confirmados (preview: selo PROVISÓRIO); convênio; perguntas em <details>.
 // Vídeos plano-prime (naoUsar) e plano-select (consentimento pendente) ficam fora até serem liberados.
 import BotaoWhatsApp from '../components/base/BotaoWhatsApp.astro';
+import EscolhaPlano from '../components/base/EscolhaPlano.astro';
 import Provisorio from '../components/Provisorio.astro';
 import Txt from '../components/secoes/Txt.astro';
 import { modoAtual } from '../config/modo.ts';
@@ -34,9 +35,19 @@ const preview = modoAtual() === 'preview';
         <h2 class="pl__nome">{c.nome}</h2>
         {c.gancho && <Txt texto={c.gancho} class="pl__gancho" />}
         <Txt texto={c.resumo} class="pl__resumo" />
-        <BotaoWhatsApp mensagem={c.msg} texto={c.botao} class="pl__cta" />
+        <BotaoWhatsApp
+          mensagem={c.msg}
+          texto={c.botao}
+          class="pl__cta"
+          origem="pagina-planos"
+          plano={c.id}
+        />
       </article>
     ))}
+  </section>
+
+  <section class="bloco">
+    <EscolhaPlano />
   </section>
 
   {preview && (
