@@ -1,23 +1,43 @@
 ---
-// 3 · A CASA EM 3D (teaser) — gesto: um pôster escuro com as molduras de luz; nada pesado carrega sozinho.
-// A ilha 3D é da sessão 6B: ela se registra em window.__phTour3d = { carregar(alvo, zona) }. Até lá, o botão
-// avisa (preview). Política de dados: em Save-Data ou 2g nunca carrega sozinho; nos demais, só no clique por ora.
+// 3 · A CASA EM 3D (teaser) — gesto: um pôster escuro com as molduras de luz; a maquete entra no lugar dele.
+// Mesma ilha da /a-casa (import dinâmico, fora do JS inicial). Nunca carrega sozinha em Save-Data/2g/movimento reduzido.
 import Botao from '../base/Botao.astro';
 import Poster from '../base/Poster.astro';
 import TetoDeLuz from '../marca/TetoDeLuz.astro';
 import { aCasa, botoes } from '../../content/textos/index.ts';
 import Secao from './Secao.astro';
+import { modoAtual } from '../../config/modo.ts';
+import { exibir } from '../../config/tipos.ts';
+import { tour3d } from '../../config/tour3d.ts';
+import { maqueteEsquematicaNoBuild } from '../../tres/build.ts';
+
+const esquematicaOk = exibir(tour3d.maqueteEsquematicaAprovada, modoAtual()) === true;
+// sem planta e sem aprovação, o 3D não abre: o botão nem aparece (fica o pôster e o tour completo em HTML)
+const tem3d = esquematicaOk || !maqueteEsquematicaNoBuild();
 
 const destaque = ['musculacao', 'cardio', 'conveniencia'] as const;
 ---
 
 <Secao id="a-casa" rotulo="A Casa em 3D" titulo={aCasa.intro.titulo} class="teaser">
-  <div class="teaser__palco" data-tour3d>
-    <div class="teaser__poster" aria-hidden="true">
-      <Poster id="captura-10" alt="" sizes="(min-width: 64rem) 60vw, 100vw" class="teaser__foto" />
-      <TetoDeLuz intensidade="plena" class="teaser__teto" />
+  <div
+    class="teaser__palco"
+    data-tour3d
+    data-esquematica-ok={String(esquematicaOk)}
+    data-modulo="__PH_TOUR_URL__"
+  >
+    <div class="teaser__poster">
+      <div class="teaser__fundo" aria-hidden="true">
+        <Poster
+          id="captura-10"
+          alt=""
+          sizes="(min-width: 64rem) 60vw, 100vw"
+          class="teaser__foto"
+        />
+        <TetoDeLuz intensidade="plena" class="teaser__teto" />
+      </div>
+      <div class="teaser__alvo" data-tour3d-alvo></div>
+      <p class="teaser__selo t-rotulo">Representação esquemática — em breve, o tour real</p>
     </div>
-    <div class="teaser__alvo" data-tour3d-alvo></div>
     <div class="teaser__controles">
       <p class="t-pequeno teaser__como">{aCasa.intro.comoUsar}</p>
       <ul class="teaser__zonas" aria-label="Zonas">
@@ -30,9 +50,11 @@ const destaque = ['musculacao', 'cardio', 'conveniencia'] as const;
         ))}
       </ul>
       <div class="teaser__acoes">
-        <button class="botao-carregar t-rotulo" type="button" data-tour3d-carregar>
-          {botoes.carregarTour3d}
-        </button>
+        {tem3d && (
+          <button class="botao-carregar t-rotulo" type="button" data-tour3d-carregar>
+            {botoes.carregarTour3d}
+          </button>
+        )}
         <Botao href="/a-casa" variante="secundario">
           {botoes.abrirTour}
         </Botao>
@@ -74,8 +96,58 @@ const destaque = ['musculacao', 'cardio', 'conveniencia'] as const;
     height: 100%;
     aspect-ratio: auto;
   }
-  .teaser__alvo:empty {
+  .teaser__fundo {
+    position: absolute;
+    inset: 0;
+  }
+  .teaser__alvo {
+    position: absolute;
+    inset: 0;
+  }
+  .teaser__alvo :global(.tour3d__canvas) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    touch-action: pan-y;
+  }
+  .teaser__alvo :global(.tour3d__rotulos) {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  .teaser__alvo :global(.tour3d__rotulo) {
+    position: absolute;
+    left: 0;
+    top: 0;
+    pointer-events: auto;
+    padding: 0.2rem 0.5rem;
+    background: rgb(12 11 10 / 0.72);
+    color: var(--prime-nevoa);
+    border: 1px solid var(--prime-linha);
+    font: 600 0.75rem/1.3 var(--fonte-texto);
+    white-space: nowrap;
+  }
+  .teaser__alvo :global(.tour3d__rotulo.ativo) {
+    border-color: var(--prime-luz);
+    box-shadow: var(--luz-borda);
+  }
+  .teaser__palco[data-modo='3d'] .teaser__fundo {
     display: none;
+  }
+  .teaser__selo {
+    display: none;
+    position: absolute;
+    top: var(--esp-3);
+    left: var(--esp-3);
+    margin: 0;
+    padding: 0.35rem 0.6rem;
+    background: rgb(12 11 10 / 0.82);
+    color: var(--prime-luz);
+    border: 1px solid rgb(255 244 224 / 0.45);
+  }
+  .teaser__palco[data-esquematica='sim'] .teaser__selo {
+    display: block;
   }
   .teaser__controles {
     display: grid;

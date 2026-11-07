@@ -10,13 +10,14 @@ import { horario } from './horario.ts';
 import { marca } from './marca.ts';
 import { modoAtual, type Modo } from './modo.ts';
 import { SITE_URL } from './seo.ts';
+import { tour3d } from './tour3d.ts';
 import { verificar, type Entrada, type ManifestoMidia } from './verificacao.ts';
 
-export { avaliacoes, contato, horario, marca };
+export { avaliacoes, contato, horario, marca, tour3d };
 
 export function entradaAtual(): Entrada {
   return {
-    config: { marca, contato, horario },
+    config: { marca, contato, horario, tour3d },
     whatsapp: contato.whatsapp,
     colecoes: { zonas, equipamentos, planos, diferenciais },
     manifesto: manifesto as ManifestoMidia,

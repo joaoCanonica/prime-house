@@ -78,12 +78,22 @@ Textos em `src/content/textos/` (fonte de cada frase real em `fontes.ts`; lista 
 
 ## Da sessão 6A (home)
 
-- **[aviso] Tour 3D:** o teaser da home tem pôster, botões das zonas e a política de dados (nunca carrega sozinho em Save-Data/2g); a ilha 3D se registra em `window.__phTour3d` na sessão 6B. Até lá, o botão "Carregar o tour 3D" avisa que o tour entra na próxima etapa.
 - **[aviso] Links para páginas internas** (`/a-casa`, `/maquinario`, `/planos`, rodapé…) dão 404 até a sessão 6C/6B.
 - **[aviso] Vídeo "acompanhamento" e trecho da equipe:** consentimento pendente. A home usa o still da anilha (sem rostos) e o `lucas-close` (só o Lucas).
 - **[aviso] "Avaliar no Google"** leva à ficha (cid); o link direto de avaliação precisa do Place ID.
 - **[aviso] Garantia nos números:** em produção, "14 dias" só aparece confirmado; até lá, "Trânsito livre".
 - **[aviso] CSS embutido no HTML** (`inlineStylesheets: 'always'` no `astro.config.mjs`): tira os 2 CSS que bloqueavam a renderização (FCP 1,06 s → 0,80 s; LCP 1,96–2,05 s → 1,89 s).
+
+## Da sessão 6B (A Casa em 3D)
+
+Detalhes em `docs/3d/README.md` (como entregar) e `docs/3d/RELATORIO.md` (pesos medidos).
+
+- **[aviso] Maquete esquemática:** sem planta, o tour usa uma maquete gerada (galpão e zonas como blocos, sem medidas reais) com o selo "Representação esquemática — em breve, o tour real". **Em produção só aparece com a aprovação do João** (`src/config/tour3d.ts` → `confirmado(true, 'João, <data>')`). Sem aprovação: `/a-casa` mostra a lista de zonas com fotos e vídeos, e a home não oferece o botão 3D.
+- **[trava se publicado] Layout das zonas:** `fonteLayout` segue `"pendente"` e `camera: null` na coleção; as poses da esquemática ficam só dentro do GLB esquemático. Com a planta, trocar para `"planta"`.
+- **[aviso] Para o tour real, pedir:** planta baixa com cotas e posição das máquinas (modelo Cimerian), desenho das luminárias de LED, e uma captura 3D por zona (`modelos-originais/splats/<zona>.ply`). Formato, escala, eixo e nomes em `docs/3d/README.md`.
+- **[aviso] KTX2:** o `toktx` (KTX-Software) não está neste ambiente; o pipeline usa WebP para as texturas até ele ser instalado no ambiente de build. A esquemática não tem texturas.
+- **[aviso] fps medido por software:** o contêiner não tem GPU (WebGL via SwiftShader). Desktop 1440: 60 fps; Android emulado (412×915, DPR 2,6, CPU 4× mais lenta): 36–60 fps. Confirmar num Android real intermediário.
+- **[aviso] Pós-build `ligar-tour`:** escreve no HTML da home a URL do chunk da ilha (import nativo) para o teaser não pôr requisições no caminho do LCP.
 
 ## Do cliente (herdado do pacote de prompts, seção C)
 
