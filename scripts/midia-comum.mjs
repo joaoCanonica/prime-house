@@ -37,6 +37,15 @@ export function destino(item) {
   return algumPendente ? 'privado' : 'publico';
 }
 
+/** No build de deploy (Vercel) só a mídia pública é gerada; a privada fica para as máquinas locais. */
+export const SO_PUBLICO = process.env.VERCEL === '1' || process.argv.includes('--so-publico');
+
+/** Item a gerar? naoUsar nunca; privado só fora do deploy. */
+export const gerar = (item) => {
+  const d = destino(item);
+  return d !== null && !(SO_PUBLICO && d === 'privado');
+};
+
 export function garantirDir(caminho) {
   mkdirSync(caminho, { recursive: true });
   return caminho;

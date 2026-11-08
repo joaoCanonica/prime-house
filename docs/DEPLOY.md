@@ -32,7 +32,7 @@ Variáveis do projeto na Vercel:
 
 **ffmpeg:** o `prepare-media` usa o ffmpeg do sistema quando existe. Senão, usa o binário estático do pacote `ffmpeg-static` (devDependency). O script de instalação dele está liberado em `package.json` → `pnpm.onlyBuiltDependencies`, porque o pnpm 10 bloqueia scripts de instalação por padrão.
 
-A imagem de build da Vercel não tem ffmpeg: o 1º deploy (08/11/2026) falhou exatamente aí, com "pnpm run build:vercel retornou 1" aos 19 s. Agora o build roda direto no Git da Vercel, sem passo manual.
+A imagem de build da Vercel não tem ffmpeg: o 1º deploy (08/11/2026) falhou exatamente aí, com "pnpm run build:vercel retornou 1" aos 19 s. Agora o build roda direto no Git da Vercel, sem passo manual. No build de deploy (`VERCEL=1`, ou `--so-publico` no `prepare-media`), só a mídia pública é gerada: vídeos com consentimento pendente e itens `naoUsar` não são processados (economiza minutos de build e não muda nada no site).
 
 ## 3. Cabeçalhos
 

@@ -11,6 +11,7 @@ import {
   exigirFerramentas,
   ffmpeg,
   garantirDir,
+  gerar,
   hashArquivo,
   hashTexto,
   indexar,
@@ -30,6 +31,7 @@ export async function extrairStills(manifesto = lerManifesto(), { log = console.
   garantirDir(DIR_STILLS);
   const saidas = new Map();
   for (const still of manifesto.stills) {
+    if (!gerar(still)) continue; // naoUsar; privado no deploy
     const origem = idx.get(still.origem);
     const fonte = join(RAIZ, origem.arquivo);
     const png = join(DIR_STILLS, `${still.id}.png`);

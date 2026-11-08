@@ -13,6 +13,7 @@ import { extrairStills } from './extract-stills.mjs';
 import {
   DIR_CACHE,
   DIR_PRIVADO,
+  SO_PUBLICO,
   DIR_PUBLICO,
   RAIZ,
   destino,
@@ -43,6 +44,8 @@ let gerados = 0;
 let reaproveitados = 0;
 
 const dirDe = (tipo) => (tipo === 'publico' ? DIR_PUBLICO : DIR_PRIVADO);
+/** Pula naoUsar (sem destino) e, no deploy, o que é privado. */
+const pular = (tipo) => !tipo || (SO_PUBLICO && tipo === 'privado');
 
 /** Executa `gerar` só se a chave mudou ou alguma saída sumiu. */
 async function comCache(nome, chave, saidas, gerar) {
@@ -157,7 +160,7 @@ function exprY(cortes) {
 
 async function derivarTrecho(tr) {
   const tipo = destino(tr);
-  if (!tipo) return;
+  if (pular(tipo)) return;
   const origem = idx.get(tr.origem);
   const fonte = join(RAIZ, origem.arquivo);
   const dir = join(dirDe(tipo), tr.id);
@@ -313,7 +316,7 @@ try {
   for (const o of manifesto.originais) {
     if (o.tipo === 'video' || o.tipo === 'marca' || !o.uso.includes('galeria-pequena')) continue;
     const tipo = destino(o);
-    if (!tipo) continue;
+    if (pular(tipo)) continue;
     await derivarImagem(o.id, tipo, join(RAIZ, o.arquivo), (s) => s, o.resolucaoMax.largura, {
       origem: o.id,
     });
@@ -321,7 +324,7 @@ try {
   // 2) recortes (diferenciais sem o texto queimado)
   for (const r of manifesto.recortes) {
     const tipo = destino(r);
-    if (!tipo) continue;
+    if (pular(tipo)) continue;
     const o = idx.get(r.origem);
     const c = r.caixa;
     await derivarImagem(
@@ -336,7 +339,7 @@ try {
   // 3) stills (quadros de vídeo)
   for (const st of manifesto.stills) {
     const tipo = destino(st);
-    if (!tipo) continue;
+    if (pular(tipo)) continue;
     await derivarImagem(st.id, tipo, stills.get(st.id), (s) => s, st.resolucaoMax.largura, {
       origem: st.origem,
       natureza: 'quadro de vídeo',
