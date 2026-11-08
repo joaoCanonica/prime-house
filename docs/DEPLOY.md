@@ -30,6 +30,8 @@ Variáveis do projeto na Vercel:
 
 **Qualquer trava ou erro derruba o deploy.** Nenhuma trava foi afrouxada para o deploy.
 
+**Tempo de deploy:** o plano Hobby roda **um build por vez**. Por isso o `vercel.json` desliga os builds da branch `claude/*` (`git.deploymentEnabled`): eles enfileiravam e atrasavam a produção. O `build-vercel` guarda as mídias geradas em `node_modules/.cache/ph-midia`, que a Vercel reaproveita entre builds, e as restaura no build seguinte. O `prepare-media` confere cada uma pelo hash e só recodifica o que mudou. O primeiro build depois disso ainda gera tudo (≈ 25 min). Para conferir no log se os seguintes reaproveitam: `[build-vercel] mídias do deploy anterior restauradas do cache` e `[midia] 0 gerado(s), N do cache`.
+
 **ffmpeg:** o `prepare-media` usa o ffmpeg do sistema quando existe. Senão, usa o binário estático do pacote `ffmpeg-static` (devDependency). O script de instalação dele está liberado em `package.json` → `pnpm.onlyBuiltDependencies`, porque o pnpm 10 bloqueia scripts de instalação por padrão.
 
 A imagem de build da Vercel não tem ffmpeg: o 1º deploy (08/11/2026) falhou exatamente aí, com "pnpm run build:vercel retornou 1" aos 19 s. Agora o build roda direto no Git da Vercel, sem passo manual. No build de deploy (`VERCEL=1`, ou `--so-publico` no `prepare-media`), só a mídia pública é gerada: vídeos com consentimento pendente e itens `naoUsar` não são processados (economiza minutos de build e não muda nada no site).
