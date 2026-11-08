@@ -1,6 +1,7 @@
 // Utilitários compartilhados pelos scripts de mídia.
 import { createHash } from 'node:crypto';
 import { execFileSync } from 'node:child_process';
+import { createRequire } from 'node:module';
 import { createReadStream, existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -73,19 +74,43 @@ export function gravarEstado(estado) {
   writeFileSync(join(DIR_CACHE, 'estado.json'), JSON.stringify(estado, null, 2) + '\n');
 }
 
-export function exigirFerramentas() {
-  for (const bin of ['ffmpeg', 'ffprobe']) {
-    try {
-      execFileSync(bin, ['-version'], { stdio: 'ignore' });
-    } catch {
-      console.error(`[midia] "${bin}" não encontrado no PATH. Instale o ffmpeg (inclui ffprobe).`);
-      process.exit(1);
+/**
+ * ffmpeg do sistema, se houver; senão, o binário estático do pacote `ffmpeg-static` (devDependency).
+ * Assim o build roda onde o ffmpeg não vem instalado (ex.: a imagem de build da Vercel).
+ */
+let binFfmpeg = null;
+function acharFfmpeg() {
+  if (binFfmpeg) return binFfmpeg;
+  try {
+    execFileSync('ffmpeg', ['-version'], { stdio: 'ignore' });
+    return (binFfmpeg = 'ffmpeg');
+  } catch {
+    /* sem ffmpeg no sistema */
+  }
+  try {
+    const p = createRequire(import.meta.url)('ffmpeg-static');
+    if (p && existsSync(p)) {
+      execFileSync(p, ['-version'], { stdio: 'ignore' });
+      console.log('[midia] sem ffmpeg no sistema: usando o do pacote ffmpeg-static');
+      return (binFfmpeg = p);
     }
+  } catch {
+    /* pacote ausente ou binário não baixado */
+  }
+  return null;
+}
+
+export function exigirFerramentas() {
+  if (!acharFfmpeg()) {
+    console.error(
+      '[midia] ffmpeg não encontrado: nem no sistema nem no pacote ffmpeg-static (rode pnpm install).',
+    );
+    process.exit(1);
   }
 }
 
 export function ffmpeg(args) {
-  execFileSync('ffmpeg', ['-hide_banner', '-loglevel', 'error', '-y', ...args], {
+  execFileSync(acharFfmpeg() ?? 'ffmpeg', ['-hide_banner', '-loglevel', 'error', '-y', ...args], {
     stdio: ['ignore', 'ignore', 'inherit'],
   });
 }

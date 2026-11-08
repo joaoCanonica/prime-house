@@ -30,10 +30,9 @@ Variáveis do projeto na Vercel:
 
 **Qualquer trava ou erro derruba o deploy.** Nenhuma trava foi afrouxada para o deploy.
 
-**ffmpeg:** o `prepare-media` exige `ffmpeg` e `ffprobe` no PATH e para com erro se faltarem. Se a imagem de build da Vercel não os tiver, use uma destas opções:
+**ffmpeg:** o `prepare-media` usa o ffmpeg do sistema quando existe. Senão, usa o binário estático do pacote `ffmpeg-static` (devDependency). O script de instalação dele está liberado em `package.json` → `pnpm.onlyBuiltDependencies`, porque o pnpm 10 bloqueia scripts de instalação por padrão.
 
-- **(recomendado) build pré-gerado:** numa máquina ou CI com ffmpeg, `vercel build --prod` e depois `vercel deploy --prebuilt --prod`. O mesmo vale para previews, sem `--prod`.
-- instalar o ffmpeg no `installCommand`, se o ambiente da Vercel permitir.
+A imagem de build da Vercel não tem ffmpeg: o 1º deploy (08/11/2026) falhou exatamente aí, com "pnpm run build:vercel retornou 1" aos 19 s. Agora o build roda direto no Git da Vercel, sem passo manual.
 
 ## 3. Cabeçalhos
 
