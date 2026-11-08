@@ -1,5 +1,5 @@
 {
-  "data": "2026-11-08T05:18:14.067Z",
+  "data": "2026-11-08T19:24:40.128Z",
   "limites": {
     "jsInicialKB": 40,
     "ilha3dKB": 180,
@@ -9,96 +9,96 @@
   "paginas": [
     {
       "rota": "/404.html",
-      "jsInicialKB": 1.9,
+      "jsInicialKB": 1.8,
       "cssEmbutidoKB": 4.3,
       "htmlKB": 15.2
     },
     {
       "rota": "/a-casa/",
-      "jsInicialKB": 5.3,
+      "jsInicialKB": 5.4,
       "cssEmbutidoKB": 5.2,
-      "htmlKB": 22.2
+      "htmlKB": 22.3
     },
     {
       "rota": "/como-funciona/",
-      "jsInicialKB": 2.4,
+      "jsInicialKB": 2.3,
       "cssEmbutidoKB": 4.9,
       "htmlKB": 18.1
     },
     {
       "rota": "/equipe/",
-      "jsInicialKB": 2.4,
+      "jsInicialKB": 2.3,
       "cssEmbutidoKB": 4.6,
-      "htmlKB": 15.9
+      "htmlKB": 16
     },
     {
       "rota": "/horarios-e-como-chegar/",
-      "jsInicialKB": 4.6,
-      "cssEmbutidoKB": 5.5,
-      "htmlKB": 19.4
+      "jsInicialKB": 6.1,
+      "cssEmbutidoKB": 6,
+      "htmlKB": 20.1
     },
     {
       "rota": "/",
-      "jsInicialKB": 9.5,
-      "cssEmbutidoKB": 8.9,
-      "htmlKB": 46.5
+      "jsInicialKB": 11,
+      "cssEmbutidoKB": 9.4,
+      "htmlKB": 47.2
     },
     {
       "rota": "/maquinario/",
-      "jsInicialKB": 2.4,
+      "jsInicialKB": 2.3,
       "cssEmbutidoKB": 5,
       "htmlKB": 19
     },
     {
       "rota": "/perguntas-frequentes/",
-      "jsInicialKB": 1.9,
+      "jsInicialKB": 1.8,
       "cssEmbutidoKB": 4.5,
-      "htmlKB": 17.3
+      "htmlKB": 17.4
     },
     {
       "rota": "/planos/",
       "jsInicialKB": 3.3,
       "cssEmbutidoKB": 4.7,
-      "htmlKB": 17.1
+      "htmlKB": 17.2
     },
     {
       "rota": "/privacidade/",
-      "jsInicialKB": 1.9,
+      "jsInicialKB": 1.8,
       "cssEmbutidoKB": 4.3,
-      "htmlKB": 15.5
+      "htmlKB": 15.7
     },
     {
       "rota": "/trabalhe-conosco/",
-      "jsInicialKB": 1.9,
+      "jsInicialKB": 1.8,
       "cssEmbutidoKB": 4.5,
       "htmlKB": 15.8
     }
   ],
   "ilha3d": {
-    "gzipKB": 164.1,
+    "gzipKB": 164.4,
     "arquivos": [
       {
-        "arquivo": "_astro/tour.C7z65nh_.js",
-        "gzipKB": 104.9
+        "arquivo": "_astro/tour.Dqd_Yevd.js",
+        "gzipKB": 23.8
       },
       {
-        "arquivo": "_astro/three.core.DbD54i2F.js",
-        "gzipKB": 56.5
+        "arquivo": "_astro/three.module.DyWELbSo.js",
+        "gzipKB": 139.7
       },
       {
-        "arquivo": "_astro/Casa3d.astro_astro_type_script_index_0_lang.CQwypegT.js",
-        "gzipKB": 2.7
+        "arquivo": "_astro/preload-helper.DygEbaNj.js",
+        "gzipKB": 0.9
       }
     ]
   },
   "sobDemanda": [
     {
-      "arquivo": "_astro/DRACOLoader.DzwBjFPG.js",
+      "arquivo": "_astro/DRACOLoader.D6X_vq69.js",
       "KB": 7.2,
       "gzipKB": 2.9
     },
     {
-      "arquivo": "_astro/KTX2Loader.BP_F4rHj.js",
+      "arquivo": "_astro/KTX2Loader.CI4xYCm5.js",
       "KB": 58,
       "gzipKB": 23.5
     },
@@ -138,7 +138,7 @@
       "gzipKB": 11.4
     },
     {
-      "arquivo": "_astro/spark.module.O4NvybtN.js",
+      "arquivo": "_astro/spark.module._lj3X_2l.js",
       "KB": 2632.7,
       "gzipKB": 919.6
     }

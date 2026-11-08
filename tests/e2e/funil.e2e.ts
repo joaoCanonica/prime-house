@@ -248,22 +248,27 @@ describe('LGPD: nada de terceiro antes do consentimento', () => {
     await c.ctx.close();
   });
 
-  it('mapa interativo: clique sem aceite só abre o banner; "Aceitar" carrega o Google', async () => {
+  it('mapa: o 3D desenhado não chama terceiros; "Mapa real" carrega o OpenFreeMap', async () => {
     const c = await abrir();
     await c.page.goto(base + '/horarios-e-como-chegar/', { waitUntil: 'networkidle' });
     await recusar(c.page);
-    await c.page.getByRole('button', { name: 'Abrir mapa interativo' }).click();
-    const banner = c.page.locator('[data-consentimento]');
-    await expect(banner.isVisible()).resolves.toBe(true);
-    await expect(banner.locator('[data-consentimento-motivo]').isVisible()).resolves.toBe(true);
-    await c.page.waitForTimeout(300);
+    await c.page.locator('[data-mapa]').scrollIntoViewIfNeeded();
+    await c.page.waitForTimeout(1500);
+    await c.page.waitForLoadState('networkidle');
+    // o desenhado (ou a foto, sem WebGL) aparece sem nenhum pedido a terceiros
     expect(c.terceiros).toEqual([]);
     expect(await c.page.locator('iframe').count()).toBe(0);
 
-    await c.page.getByRole('button', { name: 'Aceitar', exact: true }).click();
-    await c.page.locator('iframe.mapa-estatico__iframe').waitFor();
-    await c.page.waitForLoadState('networkidle');
-    expect(c.terceiros.some((u) => u.startsWith('https://www.google.com/maps'))).toBe(true);
+    await c.page.getByRole('button', { name: 'Mapa real' }).click();
+    await c.page.waitForFunction(
+      () =>
+        !!document.querySelector('[data-mapa].mapa--real') ||
+        /não carregou/.test(document.querySelector('[data-mapa-etiqueta]')?.textContent ?? ''),
+      undefined,
+      { timeout: 20_000 },
+    );
+    expect(c.terceiros.some((u) => u.startsWith('https://tiles.openfreemap.org/'))).toBe(true);
+    expect(await c.ctx.cookies()).toEqual([]);
     await c.ctx.close();
   });
 

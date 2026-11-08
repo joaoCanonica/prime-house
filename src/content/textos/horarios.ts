@@ -34,8 +34,6 @@ export const horarios = {
     titulo: 'Como chegar',
     texto:
       'Na Av. Duque de Caxias, 1253, no bairro Frei Rogério. Abra a rota no seu aplicativo de mapas.',
-    mapaInterativo: 'Abrir mapa interativo',
-    mapaAviso: 'O mapa interativo é do Google, usa cookies e só carrega se você clicar e aceitar.',
   },
   estacionamento: provisorio(
     'Informação de estacionamento em breve.',

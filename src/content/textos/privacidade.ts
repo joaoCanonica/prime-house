@@ -24,7 +24,7 @@ export const privacidade = {
     {
       titulo: 'Mapas e vídeos de terceiros',
       texto:
-        'O mapa interativo do Google usa cookies e só carrega se você clicar e aceitar. Antes disso, nenhum dado vai para o Google. Você muda essa escolha a qualquer momento em “Preferências de cookies”, no rodapé.',
+        'O mapa 3D desenhado é feito pelo próprio site. O mapa real em 3D usa os mapas do OpenFreeMap (dados do OpenStreetMap), sem cookies: ele só carrega quando você toca em “Mapa real”, ou sozinho se você aceitou os serviços de terceiros. Nessa hora, o OpenFreeMap recebe o endereço IP do seu aparelho, como acontece com qualquer site. Os botões Google Maps, Waze e Apple Mapas abrem os aplicativos deles. Você muda sua escolha a qualquer momento em “Preferências de cookies”, no rodapé.',
     },
     {
       titulo: 'Medição de visitas',

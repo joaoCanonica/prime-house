@@ -60,11 +60,13 @@ Política gerada pelo Astro (`security.csp` em `astro.config.mjs`). Todo `<scrip
 | `style-src-attr` | `'unsafe-inline'` | **exceção:** atributos `style=""` de posição (régua do horário, molduras); não executa código |
 | `worker-src` | `'self' blob:` | **exceção do 3D:** o Spark (splats) e o DRACOLoader criam workers a partir de `blob:` |
 | `img-src` | `'self' data: blob:` | LQIP embutido (`data:`) e texturas do three.js (`blob:`) |
-| `connect-src` | `'self'` | modelos, splats e a medição pelo próprio domínio (`/m/evento`) |
-| `frame-src` | `https://www.google.com` | o mapa interativo, **só depois do clique e do "Aceitar"** |
+| `connect-src` | `'self' https://tiles.openfreemap.org` | modelos, splats e a medição pelo próprio domínio (`/m/evento`); **mapa real em 3D** (estilo, blocos, fontes e ícones do OpenFreeMap), só depois do clique em "Mapa real" ou do "Aceitar" |
+| `frame-src` | `'none'` | nenhum iframe: o mapa do Google saiu (ficaram só os links de rota) |
 | `media-src`, `font-src`, `manifest-src` | `'self'` | |
 | `object-src` | `'none'` | |
 | `base-uri`, `form-action` | `'self'` | |
+
+**Mapa (08/11/2026):** o MapLibre GL é servido pelo próprio site (`maplibre-gl` 6.16.0, chunk sob demanda de ≈ 290 KB gzip + worker de ≈ 147 KB, CSS carregado só ao abrir). O worker é um módulo do próprio domínio (`worker-src 'self'`).
 
 **Verificado** (sessão 9, Chromium): nenhuma violação em todas as rotas, com a abertura, o tour 3D montado (maquete esquemática), o consentimento e o mapa.
 

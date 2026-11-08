@@ -1,5 +1,5 @@
 {
-  "data": "2026-11-08T05:31:41.747Z",
+  "data": "2026-11-08T19:28:05.510Z",
   "tags": [
     "wcag2a",
     "wcag2aa",
@@ -13,14 +13,14 @@
       "rota": "/",
       "largura": 390,
       "violacoes": [],
-      "aprovadas": 47,
+      "aprovadas": 51,
       "incompletas": 2
     },
     {
       "rota": "/",
       "largura": 1440,
       "violacoes": [],
-      "aprovadas": 47,
+      "aprovadas": 51,
       "incompletas": 2
     },
     {
@@ -56,7 +56,7 @@
       "largura": 390,
       "violacoes": [],
       "aprovadas": 39,
-      "incompletas": 0
+      "incompletas": 1
     },
     {
       "rota": "/equipe/",
@@ -69,14 +69,14 @@
       "rota": "/horarios-e-como-chegar/",
       "largura": 390,
       "violacoes": [],
-      "aprovadas": 48,
+      "aprovadas": 50,
       "incompletas": 2
     },
     {
       "rota": "/horarios-e-como-chegar/",
       "largura": 1440,
       "violacoes": [],
-      "aprovadas": 47,
+      "aprovadas": 49,
       "incompletas": 2
     },
     {
@@ -105,7 +105,7 @@
       "largura": 1440,
       "violacoes": [],
       "aprovadas": 37,
-      "incompletas": 1
+      "incompletas": 0
     },
     {
       "rota": "/planos/",
@@ -133,7 +133,7 @@
       "largura": 1440,
       "violacoes": [],
       "aprovadas": 35,
-      "incompletas": 0
+      "incompletas": 1
     },
     {
       "rota": "/trabalhe-conosco/",
@@ -147,7 +147,7 @@
       "largura": 1440,
       "violacoes": [],
       "aprovadas": 36,
-      "incompletas": 0
+      "incompletas": 1
     },
     {
       "rota": "/404.html",

@@ -1,9 +1,8 @@
 ---
-// Localizador: foto real da fachada como capa do mapa, coordenadas, plus code e rotas. O mapa interativo do
-// Google (usa cookies) só carrega no lugar da capa depois do clique E do "Aceitar" (LGPD).
-// Um mapa interativo próprio é pendência (João vai providenciar; docs/PENDENCIAS.md).
+// Localizador: mapa 3D (desenhado em Three.js, do próprio site) e, a pedido, o mapa real em 3D (MapLibre +
+// OpenFreeMap, sem chave e sem cookies), como no site do Dr. Agenor. Sem WebGL, fica a foto da fachada.
+// Coordenadas, plus code e rotas (Google Maps, Waze, Apple Mapas) ao lado.
 import { contato } from '../../config/contato.ts';
-import { consentimento } from '../../content/textos/index.ts';
 import Botao from './Botao.astro';
 import Poster from './Poster.astro';
 
@@ -16,10 +15,6 @@ const { class: classe, semEndereco = false } = Astro.props;
 const { lat, lng } = contato.geo.valor;
 const end = contato.endereco.valor;
 const mapas = contato.mapas.valor;
-// URL final do embed (a forma "maps?q=…&output=embed" redireciona para esta)
-const embed = `https://www.google.com/maps/embed?origin=mfe&pb=!1m2!2m1!1s${encodeURIComponent(
-  `Prime House Academia, ${end.logradouro}, ${end.numero}, ${end.cidade}`,
-).replace(/%20/g, '+')}`;
 const dms = (v: number, pos: string, neg: string) => {
   const a = Math.abs(v);
   const g = Math.floor(a);
@@ -31,28 +26,39 @@ const dms = (v: number, pos: string, neg: string) => {
 ---
 
 <section class:list={['mapa-estatico', classe]} aria-label="Localização e rotas">
-  <div class="mapa-estatico__mapa" data-mapa>
+  <div
+    class="mapa-estatico__mapa"
+    data-mapa
+    data-lat={lat}
+    data-lng={lng}
+    data-rotulo={`${end.logradouro}, ${end.numero}`}
+  >
     <Poster
       id="still-fachada-dia"
       alt="Fachada preta da Prime House de dia, com o nome em letras grandes"
       sizes="(min-width: 48rem) 55vw, 100vw"
       class="mapa-estatico__capa"
     />
-    <div class="mapa-estatico__abrir">
-      <button
-        type="button"
-        class="mapa-estatico__botao t-rotulo"
-        data-mapa-abrir
-        data-src={embed}
-        data-motivo={consentimento.motivoMapa}
-      >
-        <span class="mapa-estatico__pino" aria-hidden="true"></span>
-        Abrir mapa interativo
+    <canvas
+      class="mapa-estatico__canvas"
+      data-mapa-canvas
+      tabindex="0"
+      role="img"
+      aria-label={`Mapa 3D esquemático do quarteirão da Prime House, na ${end.logradouro}, ${end.numero}. Use as setas para girar.`}
+    ></canvas>
+    <div class="mapa-estatico__real" data-mapa-real></div>
+    <div class="mapa-estatico__ctl" role="group" aria-label="Tipo de mapa">
+      <button type="button" class="t-rotulo" data-mapa-modo="desenho" aria-pressed="true">
+        Desenhado
       </button>
-      <p class="t-pequeno">
-        O mapa é do Google, usa cookies e só carrega se você clicar e aceitar.
-      </p>
+      <button type="button" class="t-rotulo" data-mapa-modo="real" aria-pressed="false">
+        <span class="mapa-estatico__pino" aria-hidden="true"></span>
+        Mapa real
+      </button>
     </div>
+    <p class="mapa-estatico__etiqueta t-pequeno" data-mapa-etiqueta aria-live="polite">
+      O mapa real vem do OpenFreeMap (dados do OpenStreetMap) e só carrega quando você pede.
+    </p>
   </div>
   <div class="mapa-estatico__dados">
     <p class="t-rotulo mapa-estatico__coord t-tabular">
@@ -82,29 +88,7 @@ const dms = (v: number, pos: string, neg: string) => {
 </section>
 
 <script>
-  import {
-    abrirPreferencias,
-    aoAceitar,
-    lerConsentimento,
-  } from '../consentimento/consentimento.ts';
-
-  for (const caixa of document.querySelectorAll<HTMLElement>('[data-mapa]')) {
-    const b = caixa.querySelector<HTMLButtonElement>('[data-mapa-abrir]');
-    const abrir = () => {
-      if (!b?.isConnected) return;
-      const f = document.createElement('iframe');
-      f.src = b.dataset['src'] ?? '';
-      f.title = 'Mapa interativo do Google com a localização da Prime House';
-      f.referrerPolicy = 'no-referrer-when-downgrade';
-      f.className = 'mapa-estatico__iframe';
-      caixa.replaceChildren(f);
-    };
-    b?.addEventListener('click', () => {
-      if (lerConsentimento() === 'aceito') return abrir();
-      aoAceitar(abrir);
-      abrirPreferencias(b.dataset['motivo']);
-    });
-  }
+  import './mapa.ts';
 </script>
 
 <style>
@@ -118,17 +102,14 @@ const dms = (v: number, pos: string, neg: string) => {
   }
   @media (min-width: 48rem) {
     .mapa-estatico {
-      grid-template-columns: minmax(0, 1.5fr) minmax(16rem, 1fr);
+      grid-template-columns: minmax(0, 2.2fr) minmax(16rem, 1fr);
       align-items: center;
       gap: var(--esp-7);
-    }
-    .mapa-estatico__mapa {
-      aspect-ratio: 16 / 10;
     }
   }
   .mapa-estatico__mapa {
     position: relative;
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 4 / 5;
     overflow: hidden;
     background: var(--prime-breu);
     outline: 1px solid rgb(255 244 224 / 0.45);
@@ -141,50 +122,193 @@ const dms = (v: number, pos: string, neg: string) => {
     height: 100%;
     aspect-ratio: auto !important;
     filter: brightness(0.55) saturate(0.8);
+    transition: opacity var(--dur-3) var(--curva-saida);
   }
   .mapa-estatico__mapa :global(.mapa-estatico__capa img) {
     object-position: center 62%;
   }
-  .mapa-estatico__abrir {
-    position: absolute;
-    inset: auto 0 0;
-    display: grid;
-    gap: var(--esp-3);
-    justify-items: start;
-    padding: var(--esp-5);
-    background: rgb(12 11 10 / 0.72);
-    color: var(--prime-nevoa);
-  }
-  .mapa-estatico__botao {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.7em;
-    min-height: 3rem;
-    padding: 0.7rem 1.1rem;
-    background: var(--prime-breu);
-    color: var(--prime-nevoa);
-    border: 1px solid rgb(255 244 224 / 0.6);
-    transition:
-      border-color var(--dur-1) var(--curva-saida),
-      box-shadow var(--dur-1) var(--curva-saida);
-  }
-  .mapa-estatico__botao:hover {
-    border-color: var(--prime-luz);
-    box-shadow: var(--luz-borda);
-  }
-  .mapa-estatico__pino {
-    width: 0.6rem;
-    height: 0.6rem;
-    background: var(--prime-laranja);
-    box-shadow: 0 0 8px rgb(236 138 42 / 0.7);
-  }
-  .mapa-estatico__mapa :global(.mapa-estatico__iframe) {
+  .mapa-estatico__canvas,
+  .mapa-estatico__real {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
-    border: 0;
-    filter: grayscale(0.6) invert(0.9) hue-rotate(180deg);
+  }
+  .mapa-estatico__canvas {
+    opacity: 0;
+    cursor: grab;
+    touch-action: pan-y;
+    transition: opacity var(--dur-3) var(--curva-saida);
+  }
+  .mapa-estatico__canvas:focus-visible {
+    outline: 1px solid var(--prime-luz);
+    outline-offset: -4px;
+  }
+  .mapa-estatico__real {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--dur-3) var(--curva-saida);
+  }
+  .mapa--3d .mapa-estatico__canvas {
+    opacity: 1;
+  }
+  .mapa--3d :global(.mapa-estatico__capa) {
+    opacity: 0;
+  }
+  .mapa--real .mapa-estatico__real {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .mapa--real .mapa-estatico__canvas {
+    visibility: hidden;
+  }
+  .mapa-estatico__ctl {
+    position: absolute;
+    z-index: 2;
+    top: var(--esp-3);
+    left: var(--esp-3);
+    display: flex;
+    background: rgb(10 10 11 / 0.82);
+    border: 1px solid rgb(255 244 224 / 0.45);
+  }
+  .mapa-estatico__ctl button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6em;
+    min-height: 2.75rem;
+    padding: 0.5rem 0.9rem;
+    background: transparent;
+    color: var(--prime-concreto);
+    transition:
+      color var(--dur-1) var(--curva-saida),
+      box-shadow var(--dur-1) var(--curva-saida);
+  }
+  .mapa-estatico__ctl button[aria-pressed='true'] {
+    color: var(--prime-nevoa);
+    box-shadow: inset 0 -1px 0 var(--prime-luz);
+  }
+  .mapa-estatico__ctl button:hover {
+    color: var(--prime-luz);
+  }
+  .mapa--carregando .mapa-estatico__ctl [data-mapa-modo='real'] {
+    color: var(--prime-luz);
+  }
+  .mapa-estatico__pino {
+    width: 0.55rem;
+    height: 0.55rem;
+    background: var(--prime-laranja);
+    box-shadow: 0 0 8px rgb(236 138 42 / 0.7);
+  }
+  .mapa-estatico__etiqueta {
+    position: absolute;
+    z-index: 2;
+    left: var(--esp-3);
+    right: 4.5rem;
+    bottom: var(--esp-3);
+    padding: var(--esp-2) var(--esp-3);
+    background: rgb(10 10 11 / 0.78);
+    color: var(--prime-nevoa);
+    pointer-events: none;
+  }
+  /* no mapa real a etiqueta fica só para leitores de tela (o mapa precisa da área toda) */
+  .mapa--real .mapa-estatico__etiqueta {
+    clip-path: inset(50%);
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 0;
+  }
+
+  /* MapLibre: controles e atribuição na paleta */
+  .mapa-estatico__real :global(.maplibregl-ctrl-group) {
+    background: var(--prime-breu);
+    border: 1px solid rgb(255 244 224 / 0.45);
+    border-radius: 0;
+    box-shadow: none;
+  }
+  .mapa-estatico__real :global(.maplibregl-ctrl-group button) {
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+  .mapa-estatico__real :global(.maplibregl-ctrl-group button + button) {
+    border-top-color: rgb(255 244 224 / 0.25);
+  }
+  .mapa-estatico__real :global(.maplibregl-ctrl-icon) {
+    filter: invert(1);
+  }
+  .mapa-estatico__real :global(.maplibregl-ctrl-attrib) {
+    background: rgb(10 10 11 / 0.8);
+    color: var(--prime-concreto);
+  }
+  .mapa-estatico__real :global(.maplibregl-ctrl-attrib a) {
+    color: var(--prime-nevoa);
+  }
+  .mapa-estatico__real :global(.maplibregl-ctrl-attrib-button) {
+    filter: invert(1);
+  }
+
+  /* marcador do mapa real: placa com moldura de luz, alfinete laranja e anel que pulsa */
+  .mapa-estatico__real :global(.marcador-ph__in) {
+    position: relative;
+    display: grid;
+    justify-items: center;
+    gap: 6px;
+  }
+  .mapa-estatico__real :global(.marcador-ph__placa) {
+    display: grid;
+    justify-items: center;
+    padding: 6px 12px;
+    background: var(--prime-breu);
+    border: 1px solid var(--prime-luz);
+    box-shadow: 0 0 14px rgb(255 244 224 / 0.35);
+    font-family: var(--fonte-titulo);
+    font-stretch: var(--largura-display);
+    line-height: 1;
+    white-space: nowrap;
+  }
+  .mapa-estatico__real :global(.marcador-ph__placa b) {
+    font-weight: 760;
+    font-size: 15px;
+    letter-spacing: 0.02em;
+    color: var(--prime-nevoa);
+  }
+  .mapa-estatico__real :global(.marcador-ph__placa small) {
+    font-size: 9px;
+    letter-spacing: 0.24em;
+    color: var(--prime-laranja);
+    margin-top: 3px;
+  }
+  .mapa-estatico__real :global(.marcador-ph__pino) {
+    width: 14px;
+    height: 14px;
+    background: var(--prime-laranja);
+    transform: rotate(45deg);
+    box-shadow: 0 0 12px rgb(236 138 42 / 0.8);
+  }
+  .mapa-estatico__real :global(.marcador-ph__anel) {
+    position: absolute;
+    bottom: -6px;
+    width: 26px;
+    height: 26px;
+    border: 1px solid var(--prime-laranja);
+    border-radius: 50%;
+    animation: anel-ph 2.4s var(--curva-saida) infinite;
+  }
+  @keyframes anel-ph {
+    from {
+      transform: scale(0.4);
+      opacity: 0.9;
+    }
+    to {
+      transform: scale(2.4);
+      opacity: 0;
+    }
+  }
+  @media (min-width: 48rem) {
+    .mapa-estatico__mapa {
+      aspect-ratio: 16 / 10;
+    }
   }
   .mapa-estatico__dados {
     display: grid;

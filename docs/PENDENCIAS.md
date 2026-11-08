@@ -157,7 +157,11 @@ Detalhes em `docs/QA.md`, `docs/CONFERENCIA_FINAL.md` e `docs/DEPLOY.md`.
   - fotos de aula em "Para todo corpo";
   - o filme da inauguração em "A história";
   - a fileira "O dia a dia" com link para o Instagram.
-- **[resolvido] Mapa:** a mira desenhada (que parecia um mapa quebrado) virou a foto da fachada com "Abrir mapa interativo"; o mapa do Google carrega no lugar, depois do clique e do "Aceitar". **[aviso]** O João vai providenciar um mapa interativo próprio.
+- **[resolvido] Mapa (replicado do site do Dr. Agenor, do Marco Oliver):**
+  - **mapa 3D desenhado** em Three.js, do próprio site: quarteirões em grafite, a avenida, a Prime House acesa com o alfinete laranja e o nome da rua. Gira sozinho e com o arraste ou as setas;
+  - **mapa real em 3D:** MapLibre GL + OpenFreeMap, sem chave e sem cookies, repintado na paleta, com prédios em relevo e o marcador PRIME HOUSE ACADEMIA na Av. Duque de Caxias;
+  - o mapa real só carrega no clique em "Mapa real" (ou sozinho, se a pessoa aceitou); o iframe do Google saiu;
+  - **[aviso]** o OpenFreeMap é um serviço gratuito mantido por doações. Se sair do ar, o site volta para o mapa desenhado sozinho.
 - **[resolvido] Tour:** botão "Voltar ao site" fixo no topo de `/a-casa`.
 - **[aviso] 3D:** o João vai mandar vídeos de todos os ambientes; com eles, o layout real da maquete e o "Ver de verdade".
 - **[aviso] Lighthouse de `/a-casa`:** 82–84 de desempenho (TBT ≈ 650 ms) nesta medição. A medida é a mesma com a página anterior a esta sessão, então não é desta mudança; a causa fica para investigar. A home segue com 100.

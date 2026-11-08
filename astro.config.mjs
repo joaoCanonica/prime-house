@@ -16,7 +16,8 @@ export default defineConfig({
   //  · worker-src blob: — workers que o Spark (splats) cria a partir de blob;
   //  · img-src data: blob: — LQIP embutido e texturas do three.js;
   //  · style-src-attr 'unsafe-inline' — atributos style="" de posição (régua do horário, molduras);
-  //  · frame-src www.google.com — o mapa interativo, só depois do clique e do "Aceitar".
+  //  · connect-src tiles.openfreemap.org — o mapa real em 3D (estilo, blocos, fontes e ícones), só quando a
+  //    pessoa pede ("Mapa real") ou já aceitou os serviços de terceiros. Sem cookies.
   // frame-ancestors não vale em <meta>: vai como cabeçalho (vercel.json).
   security: {
     csp: {
@@ -26,9 +27,9 @@ export default defineConfig({
         "img-src 'self' data: blob:",
         "media-src 'self'",
         "font-src 'self'",
-        "connect-src 'self'",
+        "connect-src 'self' https://tiles.openfreemap.org",
         "worker-src 'self' blob:",
-        'frame-src https://www.google.com',
+        "frame-src 'none'",
         "object-src 'none'",
         "base-uri 'self'",
         "form-action 'self'",

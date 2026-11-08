@@ -21,3 +21,4 @@ docs/capturas/**/*.png
 # mídia: derivados com consentimento pendente e cache do prepare-media
 media-privada/
 .cache/
+tmp/

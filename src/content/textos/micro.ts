@@ -24,8 +24,9 @@ export const botoes = {
 export const consentimento = {
   rotulo: 'Privacidade',
   texto:
-    'Medimos as visitas sem cookies e sem identificar você. O mapa interativo do Google usa cookies e só carrega se você aceitar.',
-  motivoMapa: 'Para abrir o mapa interativo do Google, aceite os cookies dele.',
+    'Medimos as visitas sem cookies e sem identificar você. Se você aceitar, o mapa real em 3D (OpenFreeMap, sem cookies) já abre carregado; se recusar, ele só carrega quando você pedir.',
+  motivoMapa:
+    'O mapa real em 3D vem do OpenFreeMap, sem cookies. Aceite para que ele abra sozinho.',
   aceitar: 'Aceitar',
   recusar: 'Recusar',
   saibaMais: 'Saiba mais',
