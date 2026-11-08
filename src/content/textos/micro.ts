@@ -94,6 +94,19 @@ export const alt = {
   'still-interior': 'Sala de musculação à noite, com máquinas Cimerian sob as luzes do teto',
   'still-drone-noite': 'Fachada da Prime House vista do alto, à noite, com o letreiro aceso',
   'still-fachada-dia': 'Fachada preta da Prime House de dia, com o nome em letras grandes',
+  'cardio-esteiras': 'Dois alunos caminhando nas esteiras com tela, sob as linhas de LED do teto',
+  'fisioterapeuta-aluna':
+    'A fisioterapeuta orienta, sorrindo, uma aluna sentada numa máquina Cimerian',
+  'treino-aluna-maquina': 'Aluna apoiada no banco de uma máquina Cimerian durante a série',
+  'treino-aluna-professor':
+    'Professor de camiseta laranja acompanha uma aluna diante das janelas, à noite',
+  'treino-legpress-professora':
+    'Aluna no leg press enquanto a professora de laranja acompanha ao lado',
+  'treino-professor-alongamento':
+    'Professor ajusta a máquina para uma aluna deitada, com as janelas ao fundo',
+  'treino-professor-orientando':
+    'Professor de laranja anota o treino ao lado de um aluno na máquina',
+  'treino-puxada-professora': 'Aluna na puxada Cimerian, com a professora corrigindo a postura',
 } as const;
 
 /** Descrição de cada vídeo publicável (os vídeos são mudos). */
@@ -107,6 +120,17 @@ export const videos = {
   'fachada-dia': 'A fachada da Prime House de dia, na Av. Duque de Caxias.',
   'lucas-close': 'Lucas Moro, fundador da Prime House, fala na inauguração (em preto e branco).',
   'avaliacao-funcional': 'Lucas Moro explica a avaliação funcional e o treino individual.',
+  acompanhamento: 'Um professor ajusta a máquina e acompanha o aluno durante a série.',
+  'rotina-professor': 'Um professor acompanha o aluno no leg press, diante das janelas.',
+  'rotina-hack': 'Aluno treina na máquina hack Cimerian enquanto o professor observa.',
+  'rotina-legpress': 'Aluna faz leg press Cimerian diante das janelas da sala.',
+  'rotina-agachamento': 'Aluna faz agachamento búlgaro no smith, diante das janelas.',
+  'rotina-ombro': 'Aluno treina ombro numa máquina Cimerian.',
+  equipe: 'A equipe da Prime House, de camiseta laranja, comemora na sala de musculação.',
+  'plano-select':
+    'Uma professora apresenta o Plano Select, com legenda queimada no vídeo; o vídeo é mudo.',
+  'filme-inauguracao': 'Trechos da noite de inauguração da Prime House.',
+  'lucas-discurso': 'Lucas Moro discursa na inauguração, em preto e branco.',
 } as const;
 
 /** Legenda em HTML da fala do vídeo de avaliação funcional (o vídeo é mudo; trecho comparativo omitido, seção 8). */

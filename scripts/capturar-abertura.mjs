@@ -1,4 +1,4 @@
-// Sequência da abertura congelada em 0; 0,8; 1,4; 2,0; 3,0 s, em 390 e 1440 px (+ reduced-motion).
+// Sequência da abertura congelada em 0; 1,5; 2,7; 3,6; 4,7; 5,6 s, em 390 e 1440 px (+ reduced-motion).
 // Uso: node scripts/capturar-abertura.mjs [--porta=4332]   (usa o dist/ atual)
 // Saída: docs/capturas/<data>/abertura/*.png e docs/design/abertura-<largura>.jpg (tira para revisão)
 import { spawn } from 'node:child_process';
@@ -11,7 +11,7 @@ import sharp from 'sharp';
 const RAIZ = fileURLToPath(new URL('../', import.meta.url));
 const porta = Number(process.argv.find((a) => a.startsWith('--porta='))?.slice(8) ?? 4332);
 const base = `http://127.0.0.1:${porta}`;
-const TEMPOS = [0, 800, 1400, 2000, 3000];
+const TEMPOS = [0, 1500, 2700, 3600, 4700, 5600];
 const d = new Date();
 const dia = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
 const destino = join(RAIZ, 'docs', 'capturas', dia, 'abertura');

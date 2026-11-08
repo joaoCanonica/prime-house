@@ -1,11 +1,10 @@
 ---
 // 4 · ACOMPANHAMENTO DE VERDADE — gesto: um checklist. Marcar os sinais acende cada linha; o resultado sugere a
 // avaliação funcional e monta a mensagem do WhatsApp. Nada é guardado (só existe nesta página).
-// Vídeo "acompanhamento": consentimento pendente → still sem rostos (anilha).
-import Poster from '../base/Poster.astro';
+// Ao lado, o vídeo "acompanhamento" (professor ajustando o treino na máquina): consentimento autorizado (João, 08/11/2026).
 import IconeWhatsApp from '../base/IconeWhatsApp.astro';
-import MolduraLuz from '../marca/MolduraLuz.astro';
-import { home, whatsapp } from '../../content/textos/index.ts';
+import MolduraVideo from '../base/MolduraVideo.astro';
+import { home, videos, whatsapp } from '../../content/textos/index.ts';
 import { linkWhatsApp } from '../../lib/whatsapp.ts';
 import Secao from './Secao.astro';
 
@@ -60,13 +59,8 @@ const q = home.acompanhamento.quiz;
       </a>
     </form>
     <figure class="acomp__foto">
-      <MolduraLuz forma="hexagono" proporcao="9 / 14">
-        <Poster
-          id="still-anilha"
-          alt="Anilha preta encaixada na barra, em close"
-          sizes="(min-width: 64rem) 28vw, 80vw"
-        />
-      </MolduraLuz>
+      <MolduraVideo id="acompanhamento" descricao={videos.acompanhamento} />
+      <figcaption class="t-pequeno t-secundario">{home.acompanhamento.legendaVideo}</figcaption>
     </figure>
   </div>
 </Secao>
@@ -164,8 +158,10 @@ const q = home.acompanhamento.quiz;
       0 0 16px 1px rgb(255 244 224 / 0.3);
   }
   .acomp__foto {
-    width: min(100%, 22rem);
+    width: min(100%, 24rem);
     justify-self: center;
+    display: grid;
+    gap: var(--esp-3);
   }
   @media (min-width: 64rem) {
     .acomp__grade {

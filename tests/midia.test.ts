@@ -120,15 +120,17 @@ describe('media.manifest.json', () => {
       expect(c.uso).toEqual(expect.arrayContaining(['referencia-3d', 'galeria-pequena']));
       expect(c.resolucaoMax!.largura).toBeLessThanOrEqual(480);
     }
-    for (let n = 22; n <= 34; n++) expect(porNumero(n).consentimento).toBe('pendente');
-    expect(manifesto.recortes).toHaveLength(8);
+    // carrosséis 22–34: consentimento autorizado pelo João (08/11/2026)
+    for (let n = 22; n <= 34; n++) expect(porNumero(n).consentimento).toBe('autorizado');
+    // 8 recortes de conforto (sessão 1) + 8 de treino (carrosséis autorizados em 08/11/2026)
+    expect(manifesto.recortes).toHaveLength(16);
     for (const r of manifesto.recortes) {
       const o = originais.get(r.origem)!;
-      expect(r.uso).toContain('conforto');
+      expect(r.uso.some((u: string) => u === 'conforto' || u === 'experiencia')).toBe(true);
       expect(r.caixa.y + r.caixa.altura).toBeLessThanOrEqual(o.resolucaoOriginal!.altura);
     }
     for (const id of ['equipe', 'acompanhamento']) {
-      expect(manifesto.trechos.find((t) => t.id === id)!.consentimento).toBe('pendente');
+      expect(manifesto.trechos.find((t) => t.id === id)!.consentimento).toBe('autorizado');
     }
     expect(todos.every((i) => i.audioLiberado === false)).toBe(true);
     expect(manifesto.trechos.find((t) => t.id === 'interior-noite')!.orcamentoBytes).toBe(

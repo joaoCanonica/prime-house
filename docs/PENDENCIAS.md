@@ -146,10 +146,26 @@ Detalhes em `docs/QA.md`, `docs/CONFERENCIA_FINAL.md` e `docs/DEPLOY.md`.
 - **[aviso] O que o Plano Prime inclui:** segue sem fonte (fora da produção).
 - **[aviso] Publicação:** a conta da Vercel conectada nesta sessão é de outra pessoa (plano Hobby, que é para uso não comercial). O deploy espera a decisão do João sobre a conta.
 
+## Redesenho da home (08/11/2026, pedido do João)
+
+- **[resolvido] Abertura mais longa (5,6 s):** as luzes acendem com calma, o letreiro aparece sozinho e só então se dissolve sobre a sala. O vídeo não aparece mais por trás do letreiro.
+- **[aviso] Abertura × LCP:** o H1 já fica pintado por baixo da abertura desde o 1º quadro, mas o LCP medido na 1ª visita da sessão cresce com a abertura mais longa. Sem a abertura (2ª página em diante e Lighthouse), o LCP da home é ≈ 1,1 s.
+- **[resolvido] Acento dos títulos:** a palavra em itálico serifado virou palavra vazada com contorno de luz (a assinatura LED). O itálico ficou só nas citações reais.
+- **[resolvido] Números:** "5 máquinas de puxada alta" saiu. Entraram 7 dias por semana e 19 h por dia de segunda a sexta, tirados de `src/config/horario.ts`.
+- **[resolvido] Experiência:** a grade de recortes ("Conforto") virou 5 capítulos (professor, máquinas, cardio, pausa, detalhes), com vídeos reais e fotos.
+- **[resolvido] Mais mídia:** o vídeo do acompanhamento ficou ao lado de "Uma ficha é importante…"; os outros vídeos e fotos novos entraram nas seções da home:
+  - fotos de aula em "Para todo corpo";
+  - o filme da inauguração em "A história";
+  - a fileira "O dia a dia" com link para o Instagram.
+- **[resolvido] Mapa:** a mira desenhada (que parecia um mapa quebrado) virou a foto da fachada com "Abrir mapa interativo"; o mapa do Google carrega no lugar, depois do clique e do "Aceitar". **[aviso]** O João vai providenciar um mapa interativo próprio.
+- **[resolvido] Tour:** botão "Voltar ao site" fixo no topo de `/a-casa`.
+- **[aviso] 3D:** o João vai mandar vídeos de todos os ambientes; com eles, o layout real da maquete e o "Ver de verdade".
+- **[aviso] Lighthouse de `/a-casa`:** 82–84 de desempenho (TBT ≈ 650 ms) nesta medição. A medida é a mesma com a página anterior a esta sessão, então não é desta mudança; a causa fica para investigar. A home segue com 100.
+
 ## Do cliente (herdado do pacote de prompts, seção C)
 
 - [resolvido em 08/11/2026] Benefícios fixos confirmados (fala do Lucas no vídeo + João).
-- [trava] Autorizações de imagem de alunos, professores e fisioterapeuta.
+- [resolvido em 08/11/2026] Autorizações de imagem de alunos, professores, fisioterapeuta e equipe (João: "Sim, todos autorizados").
 - [aviso] Laranja oficial da marca (provisório #EC8A2A) e manual de marca.
 - [aviso] CREF do responsável técnico (Lucas Moro), m², nº de máquinas. CNPJ recebido em 08/11/2026.
 - [aviso] Planta baixa com medidas, lista do maquinário e captura 3D por zona.

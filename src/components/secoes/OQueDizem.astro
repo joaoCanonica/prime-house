@@ -1,5 +1,6 @@
 ---
-// 8 · O QUE DIZEM — gesto: citações grandes, em escada; literais, com selo e link do Google. Sem nota agregada.
+// 8 · O QUE DIZEM — gesto: três citações lado a lado, cada uma aberta por um fio de luz; literais, com selo e
+// link do Google. Sem nota agregada.
 import Botao from '../base/Botao.astro';
 import Citacao from '../base/Citacao.astro';
 import { avaliacoes } from '../../config/avaliacoes.ts';
@@ -29,18 +30,36 @@ const lista = home.prova.avaliacoes
     list-style: none;
     padding: 0;
     display: grid;
-    gap: var(--esp-8);
+    gap: var(--esp-7);
     margin-bottom: var(--esp-7);
   }
   .dizem__lista li {
+    position: relative;
     max-width: none;
+    padding-top: var(--esp-5);
+    border-top: 1px solid var(--prime-linha);
+  }
+  .dizem__lista li::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 0;
+    width: 3.5rem;
+    height: 1px;
+    background: var(--prime-luz);
+    box-shadow: 0 0 8px rgb(255 244 224 / 0.6);
   }
   @media (min-width: 64rem) {
-    .dizem__lista li:nth-child(2) {
-      padding-inline-start: 22%;
+    .dizem__lista {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--esp-6);
     }
-    .dizem__lista li:nth-child(3) {
-      padding-inline-start: 44%;
+    .dizem__lista li :global(.citacao) {
+      height: 100%;
+      grid-template-rows: 1fr auto;
+    }
+    .dizem__lista li :global(.citacao__texto) {
+      font-size: clamp(1.375rem, 0.9rem + 0.9vw, 1.875rem);
     }
   }
 </style>

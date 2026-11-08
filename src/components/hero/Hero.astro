@@ -1,14 +1,14 @@
 ---
-// Hero da home. O pôster do vídeo é o LCP: <img fetchpriority="high"> no HTML desde o início; o vídeo
-// (mudo, loop) entra por cima só quando já está tocando. Desktop: vídeo vertical numa moldura de luz alta,
-// em resolução nativa (o 16:9 disponível tem só 720×404). Mobile: o vídeo sangra na tela.
+// Hero da home. Celular: um vídeo de tela cheia (a sala com as molduras de LED). Desktop: tríptico de três
+// vídeos verticais reais lado a lado, separados por fios de luz (treino com professor · a sala · leg press),
+// em resolução nativa (as fontes são verticais 720×1280). O pôster central é o LCP; os vídeos entram depois
+// (ou quando a abertura manda). Texto grande por cima, na família do título.
 import Botao from '../base/Botao.astro';
 import BotaoWhatsApp from '../base/BotaoWhatsApp.astro';
 import { video } from '../base/midia.ts';
 import Rotulo from '../base/Rotulo.astro';
 import StatusHorario from '../base/StatusHorario.astro';
 import Logo from '../marca/Logo.astro';
-import MolduraLuz from '../marca/MolduraLuz.astro';
 import { contato } from '../../config/contato.ts';
 import { mensagens } from '../../lib/whatsapp.ts';
 
@@ -17,20 +17,33 @@ interface Props {
 }
 const { midia = 'interior-noite' } = Astro.props;
 
-const DESCRICAO = {
-  'interior-noite':
-    'Sala de musculação da Prime House à noite: máquinas Cimerian sob as molduras de LED do teto',
-  'drone-noite': 'Vista aérea noturna da fachada da Prime House, com o letreiro aceso',
-} as const;
+const PAINEIS = [
+  {
+    id: 'rotina-hack',
+    lado: true,
+    alt: 'Aluno treinando na máquina hack com o professor ao lado',
+  },
+  {
+    id: midia,
+    lado: false,
+    alt:
+      midia === 'interior-noite'
+        ? 'Sala de musculação da Prime House à noite: máquinas Cimerian sob as molduras de LED do teto'
+        : 'Vista aérea noturna da fachada da Prime House, com o letreiro aceso',
+  },
+  { id: 'rotina-legpress', lado: true, alt: 'Aluna no leg press Cimerian, diante das janelas' },
+] as const;
 
-const v = video(midia);
-const poster = (nome: string) => v.posters.find((p) => p.nome === nome);
-const p540 = poster('poster-540');
-const p720 = poster('poster-720');
-if (!p540 || !p720) throw new Error(`[hero] "${midia}" sem pôster vertical`);
-const fontes = v.variantes
-  .filter((x) => !x.horizontal && !x.som)
-  .sort((a, b) => a.altura - b.altura || (a.formato === 'webm' ? -1 : 1));
+const paineis = PAINEIS.map((p) => {
+  const v = video(p.id);
+  const p540 = v.posters.find((x) => x.nome === 'poster-540');
+  const p720 = v.posters.find((x) => x.nome === 'poster-720');
+  if (!p540 || !p720) throw new Error(`[hero] "${p.id}" sem pôster vertical`);
+  const fontes = v.variantes
+    .filter((x) => !x.horizontal && !x.som)
+    .sort((a, b) => a.altura - b.altura || (a.formato === 'webm' ? -1 : 1));
+  return { ...p, v, p540, p720, fontes };
+});
 const end = contato.endereco.valor;
 ---
 
@@ -42,40 +55,47 @@ const end = contato.endereco.valor;
     </a>
   </header>
 
-  <div class="hero__midia" data-hero-midia>
-    <MolduraLuz forma="retangulo" respiro={0} class="hero__moldura">
-      <picture class="hero__poster" style={{ backgroundImage: `url(${v.lqip})` }}>
-        <source type="image/avif" media="(max-width: 600px)" srcset={p540.avif} />
-        <source type="image/avif" srcset={p720.avif} />
-        <source type="image/webp" media="(max-width: 600px)" srcset={p540.webp} />
-        <img
-          src={p720.webp}
-          width="720"
-          height="1280"
-          alt={DESCRICAO[midia]}
-          fetchpriority="high"
-          loading="eager"
-          decoding="async"
-        />
-      </picture>
-      <video
-        class="hero__video"
-        muted
-        playsinline
-        loop
-        preload="none"
-        aria-hidden="true"
-        data-hero-video
+  <div class="hero__palco" data-hero-palco>
+    {paineis.map((p) => (
+      <div
+        class:list={['hero__painel', { 'hero__painel--lado': p.lado }]}
+        {...(p.lado ? {} : { 'data-hero-midia': '' })}
       >
-        {fontes.map((x) => (
-          <source
-            src={x.arquivo}
-            type={`video/${x.formato}`}
-            media={x.altura < 1280 ? '(max-width: 600px)' : undefined}
+        <picture class="hero__poster" style={{ backgroundImage: `url(${p.v.lqip})` }}>
+          <source type="image/avif" media="(max-width: 600px)" srcset={p.p540.avif} />
+          <source type="image/avif" srcset={p.p720.avif} />
+          <source type="image/webp" media="(max-width: 600px)" srcset={p.p540.webp} />
+          <img
+            src={p.p720.webp}
+            width="720"
+            height="1280"
+            alt={p.alt}
+            {...(p.lado
+              ? { loading: 'lazy', fetchpriority: 'low' }
+              : { loading: 'eager', fetchpriority: 'high' })}
+            decoding="async"
           />
-        ))}
-      </video>
-    </MolduraLuz>
+        </picture>
+        <video
+          class="hero__video"
+          muted
+          playsinline
+          loop
+          preload="none"
+          aria-hidden="true"
+          data-hero-video
+          {...(p.lado ? { 'data-lado': '' } : {})}
+        >
+          {p.fontes.map((x) => (
+            <source
+              src={x.arquivo}
+              type={`video/${x.formato}`}
+              media={x.altura < 1280 ? '(max-width: 600px)' : undefined}
+            />
+          ))}
+        </video>
+      </div>
+    ))}
     <button class="hero__pausa t-rotulo" type="button" data-hero-pausa hidden>
       <span data-rotulo-pausar>Pausar vídeo</span>
       <span data-rotulo-tocar hidden>
@@ -84,16 +104,16 @@ const end = contato.endereco.valor;
     </button>
   </div>
 
-  <div class="hero__texto" data-entra>
+  <div class="hero__texto">
     <Rotulo ponto>Musculação · Trânsito livre · Lages</Rotulo>
     <h1 class="hero__titulo" id="hero-titulo" tabindex="-1">
-      O novo <em class="acento">padrão</em> de treino em Lages.
+      O novo <span class="acento">padrão</span> de treino em Lages.
     </h1>
-    <p class="hero__apoio t-lead">
+    <p class="hero__apoio t-lead" data-entra>
       100% maquinário Cimerian, atendimento de verdade e um espaço pensado para você querer voltar
       amanhã.
     </p>
-    <div class="hero__acoes">
+    <div class="hero__acoes" data-entra>
       <BotaoWhatsApp mensagem={mensagens.geral} origem="hero" />
       <Botao href="#a-casa" variante="secundario">
         Fazer o tour
@@ -138,30 +158,28 @@ const end = contato.endereco.valor;
     color: var(--prime-nevoa);
     padding: var(--esp-2) 0;
   }
-  :global(html[data-abertura='on']:not([data-logo='cabecalho'])) .hero__logo {
-    visibility: hidden;
-  }
 
-  /* ----- mídia: no mobile sangra ----- */
-  .hero__midia {
+  /* ----- palco: no celular, um painel de tela cheia ----- */
+  .hero__palco {
     position: absolute;
     inset: 0;
     z-index: -1;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
   }
-  .hero__midia :global(.hero__moldura) {
-    position: absolute;
-    inset: 0;
-    aspect-ratio: auto !important;
+  .hero__painel {
+    position: relative;
+    overflow: hidden;
   }
-  .hero__midia :global(.hero__moldura .moldura-luz__linha) {
+  .hero__painel--lado {
     display: none;
   }
-  .hero__midia::after {
+  .hero__palco::after {
     /* véu uniforme (não é degradê) para o texto ler sobre o vídeo */
     content: '';
     position: absolute;
     inset: 0;
-    background: rgb(12 11 10 / 0.52);
+    background: rgb(12 11 10 / 0.5);
     pointer-events: none;
   }
   .hero__poster,
@@ -184,7 +202,7 @@ const end = contato.endereco.valor;
   }
   .hero__video {
     opacity: 0;
-    transition: opacity var(--dur-2) var(--curva-saida);
+    transition: opacity var(--dur-3) var(--curva-saida);
   }
   .hero__video:global(.tocando) {
     opacity: 1;
@@ -218,12 +236,12 @@ const end = contato.endereco.valor;
   .hero__titulo {
     font-family: var(--fonte-titulo);
     font-stretch: var(--largura-display);
-    font-weight: 750;
+    font-weight: 780;
     text-transform: uppercase;
     font-size: clamp(3.25rem, 1.4rem + 7.6vw, 7.5rem);
-    line-height: var(--lh-display);
-    letter-spacing: var(--ls-display);
-    max-width: 11ch;
+    line-height: 0.88;
+    letter-spacing: -0.01em;
+    max-width: 10ch;
   }
   .hero__titulo:focus {
     outline: none;
@@ -250,50 +268,47 @@ const end = contato.endereco.valor;
     opacity: 0.86;
   }
 
-  /* ----- desktop: moldura com margem generosa, sem sangrar ----- */
+  /* ----- desktop: tríptico de tela cheia, fios de luz entre os painéis ----- */
   @media (min-width: 64rem) {
     .hero {
       height: 100svh;
-      min-height: 40rem;
-      grid-template-columns: minmax(0, 1fr) auto minmax(13rem, 17rem);
+      min-height: 42rem;
+      grid-template-columns: minmax(0, 1fr) minmax(14rem, 18rem);
       grid-template-rows: auto minmax(0, 1fr);
-      column-gap: clamp(2rem, 4vw, 5rem);
-      row-gap: var(--esp-5);
+      column-gap: var(--esp-8);
       padding: var(--esp-5) var(--margem) var(--margem);
     }
     .hero__topo {
       grid-column: 1 / -1;
     }
-    .hero__midia {
-      position: relative;
-      inset: auto;
-      z-index: 0;
-      grid-column: 2;
-      grid-row: 2;
-      height: 100%;
-      aspect-ratio: 9 / 16;
-      justify-self: center;
+    .hero__palco {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1px;
+      background: rgb(255 244 224 / 0.55);
+      box-shadow: 0 0 18px rgb(255 244 224 / 0.12);
     }
-    .hero__midia::after {
-      display: none;
-    }
-    .hero__midia :global(.hero__moldura .moldura-luz__linha) {
+    .hero__painel--lado {
       display: block;
+    }
+    .hero__palco::after {
+      background: rgb(12 11 10 / 0.58);
     }
     .hero__pausa {
       top: auto;
-      right: var(--esp-3);
-      bottom: var(--esp-3);
+      right: var(--margem);
+      bottom: calc(var(--margem) + 9rem);
     }
     .hero__texto {
       grid-column: 1;
       grid-row: 2;
+      gap: var(--esp-4);
     }
     .hero__titulo {
-      font-size: clamp(3.5rem, 0.6rem + 5.6vw, 7.75rem);
+      font-size: clamp(3.25rem, 0.5rem + 4.2vw, 6.25rem);
+      max-width: 11ch;
     }
     .hero__info {
-      grid-column: 3;
+      grid-column: 2;
       grid-row: 2;
       align-self: end;
     }

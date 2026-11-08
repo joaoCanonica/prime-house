@@ -1,6 +1,6 @@
 ---
 // 9 · A HISTÓRIA — gesto: uma linha do tempo horizontal (vertical no celular) com 5 marcos de luz, e o Lucas em P&B.
-// lucas-discurso e equipe: consentimento pendente → usa lucas-close (só o Lucas, autorizado).
+// Ao lado: o Lucas em P&B e o filme da inauguração (consentimento autorizado pelo João, 08/11/2026).
 import MolduraVideo from '../base/MolduraVideo.astro';
 import { home, videos } from '../../content/textos/index.ts';
 import Secao from './Secao.astro';
@@ -15,10 +15,16 @@ const h = home.historia;
       <p class="t-lead">{h.intro}</p>
       <p class="historia__origem">{h.origem.texto}</p>
     </div>
-    <figure class="historia__video">
-      <MolduraVideo id="lucas-close" descricao={videos['lucas-close']} />
-      <figcaption class="t-rotulo t-secundario">Lucas Moro · inauguração, 30/04/2026</figcaption>
-    </figure>
+    <div class="historia__videos">
+      <figure class="historia__video historia__video--pb">
+        <MolduraVideo id="lucas-close" descricao={videos['lucas-close']} />
+        <figcaption class="t-rotulo t-secundario">Lucas Moro · fundador</figcaption>
+      </figure>
+      <figure class="historia__video historia__video--desce">
+        <MolduraVideo id="filme-inauguracao" descricao={videos['filme-inauguracao']} />
+        <figcaption class="t-rotulo t-secundario">A inauguração · 30/04/2026</figcaption>
+      </figure>
+    </div>
   </div>
   <ol class="linha">
     {h.marcos.map((m) => (
@@ -51,12 +57,21 @@ const h = home.historia;
     font-size: 1.5rem;
     line-height: 1.3;
   }
+  .historia__videos {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--esp-4);
+    align-items: start;
+    max-width: 34rem;
+  }
   .historia__video {
-    width: min(100%, 20rem);
     display: grid;
     gap: var(--esp-3);
   }
-  .historia__video :global(video) {
+  .historia__video--desce {
+    margin-top: var(--esp-8);
+  }
+  .historia__video--pb :global(video) {
     filter: grayscale(1);
   }
   .linha {
@@ -109,8 +124,9 @@ const h = home.historia;
       grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
       align-items: start;
     }
-    .historia__video {
+    .historia__videos {
       justify-self: end;
+      width: 100%;
     }
     .linha {
       grid-template-columns: repeat(5, minmax(0, 1fr));

@@ -1,5 +1,5 @@
 {
-  "data": "2026-11-08T00:24:02.354Z",
+  "data": "2026-11-08T05:31:41.747Z",
   "tags": [
     "wcag2a",
     "wcag2aa",
@@ -27,14 +27,14 @@
       "rota": "/a-casa/",
       "largura": 390,
       "violacoes": [],
-      "aprovadas": 45,
-      "incompletas": 0
+      "aprovadas": 43,
+      "incompletas": 1
     },
     {
       "rota": "/a-casa/",
       "largura": 1440,
       "violacoes": [],
-      "aprovadas": 45,
+      "aprovadas": 43,
       "incompletas": 2
     },
     {

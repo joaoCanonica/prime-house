@@ -36,6 +36,8 @@ try {
           await new Promise((ok) => setTimeout(ok, 60));
         }
         scrollTo(0, 0);
+        // espera as transições (ex.: o botão flutuante sumindo) terminarem antes de medir o contraste
+        await new Promise((ok) => setTimeout(ok, 600));
       });
       await p
         .waitForFunction(

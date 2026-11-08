@@ -1,0 +1,175 @@
+---
+// 6 · A EXPERIÊNCIA — gesto: capítulos, um por ambiente, que alternam lado. Cada um junta vídeo real e fotos
+// da casa num mosaico com molduras de luz: o professor na sala, as máquinas, o cardio, a pausa, os detalhes.
+import MolduraVideo from '../base/MolduraVideo.astro';
+import Poster from '../base/Poster.astro';
+import MolduraLuz from '../marca/MolduraLuz.astro';
+import { alt, home, videos } from '../../content/textos/index.ts';
+import Secao from './Secao.astro';
+
+const s = home.experiencia;
+const altDe = (id: string) => (alt as Record<string, string>)[id] ?? '';
+const descDe = (id: string) => (videos as Record<string, string>)[id] ?? '';
+// mosaico (3 peças): a primeira alta à esquerda e duas empilhadas à direita; par: duas fotos desencontradas
+const arranjo = (m: readonly { tipo: string }[]) => (m.length === 3 ? 'mosaico' : 'par');
+---
+
+<Secao id="experiencia" rotulo={s.rotulo} titulo={s.titulo} class="exp">
+  <ol class="exp__capitulos">
+    {s.capitulos.map((c, i) => {
+      const tipo = arranjo(c.midias);
+      return (
+        <li
+          class:list={['exp__capitulo', { 'exp__capitulo--inverso': i % 2 === 1 }]}
+          id={`experiencia-${c.id}`}
+        >
+          <div class="exp__texto">
+            <span class="exp__n t-tabular" aria-hidden="true">
+              {String(i + 1).padStart(2, '0')}
+            </span>
+            <p class="t-rotulo exp__rotulo">{c.rotulo}</p>
+            <h3 class="exp__titulo">{c.titulo}</h3>
+            <p class="exp__corpo">{c.texto}</p>
+          </div>
+          <div class={`exp__midias exp__midias--${tipo}`}>
+            {c.midias.map((m, k) => (
+              <div class={`exp__peca exp__peca--${k + 1}`}>
+                {m.tipo === 'video' ? (
+                  <MolduraVideo id={m.id} descricao={descDe(m.id)} class="exp__moldura" />
+                ) : (
+                  <MolduraLuz class="exp__moldura">
+                    <Poster
+                      id={m.id}
+                      alt={altDe(m.id)}
+                      sizes="(min-width: 64rem) 28vw, 50vw"
+                      class="exp__foto"
+                    />
+                  </MolduraLuz>
+                )}
+              </div>
+            ))}
+          </div>
+        </li>
+      );
+    })}
+  </ol>
+</Secao>
+
+<style>
+  .exp__capitulos {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: clamp(4rem, 2rem + 7vw, 9rem);
+  }
+  .exp__capitulo {
+    max-width: none;
+    display: grid;
+    gap: var(--esp-6);
+  }
+  .exp__texto {
+    display: grid;
+    align-content: center;
+    gap: var(--esp-3);
+    max-width: 30rem;
+  }
+  .exp__n {
+    font-family: var(--fonte-titulo);
+    font-stretch: var(--largura-display);
+    font-weight: 700;
+    font-size: clamp(2.5rem, 1.6rem + 3vw, 4.5rem);
+    line-height: 1;
+    color: transparent;
+    -webkit-text-stroke: 1px var(--prime-luz);
+    text-shadow: 0 0 0.3em rgb(255 244 224 / 0.2);
+  }
+  .exp__rotulo {
+    color: var(--prime-laranja);
+    margin-top: var(--esp-3);
+  }
+  .exp__titulo {
+    font-family: var(--fonte-titulo);
+    font-stretch: var(--largura-display);
+    font-weight: 720;
+    text-transform: uppercase;
+    font-size: var(--fs-h3);
+    line-height: 1;
+    text-wrap: balance;
+  }
+  .exp__corpo {
+    color: var(--prime-nevoa);
+    opacity: 0.88;
+  }
+
+  /* ----- mídias ----- */
+  .exp__midias {
+    display: grid;
+    gap: var(--esp-3);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .exp__peca {
+    position: relative;
+    min-width: 0;
+    min-height: 0;
+  }
+  .exp__peca :global(.exp__moldura) {
+    --respiro: 6px !important;
+  }
+  .exp__peca :global(.exp__foto) {
+    width: 100%;
+    height: 100%;
+    filter: saturate(0.9);
+  }
+
+  /* mosaico: vídeo vertical à esquerda, duas peças empilhadas à direita, sem altura própria */
+  .exp__midias--mosaico {
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+  }
+  .exp__midias--mosaico .exp__peca--1 :global(.exp__foto) {
+    aspect-ratio: 4 / 5 !important;
+  }
+  .exp__midias--mosaico .exp__peca--1 {
+    grid-row: 1 / 3;
+  }
+  .exp__midias--mosaico .exp__peca:not(.exp__peca--1) :global(.exp__moldura) {
+    position: absolute;
+    inset: 0;
+    aspect-ratio: auto !important;
+  }
+  .exp__midias--mosaico .exp__peca:not(.exp__peca--1) :global(:is(.exp__foto, .video-moldura)) {
+    aspect-ratio: auto !important;
+    height: 100%;
+  }
+
+  /* par: a primeira maior; a segunda desce */
+  .exp__midias--par {
+    grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+    align-items: start;
+  }
+  .exp__midias--par .exp__peca--2 {
+    margin-top: clamp(2rem, 1rem + 6vw, 7rem);
+  }
+
+  @media (min-width: 64rem) {
+    .exp__capitulo {
+      grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+      column-gap: clamp(3rem, 1rem + 5vw, 7rem);
+      align-items: center;
+    }
+    .exp__capitulo--inverso .exp__texto {
+      grid-column: 2;
+      grid-row: 1;
+    }
+    .exp__capitulo--inverso .exp__midias {
+      grid-column: 1;
+      grid-row: 1;
+    }
+    .exp__midias {
+      gap: var(--esp-4);
+    }
+    .exp__midias--mosaico {
+      max-width: 46rem;
+    }
+  }
+</style>

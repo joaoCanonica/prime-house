@@ -1,8 +1,11 @@
 ---
-// Localizador estático: coordenadas, plus code e rotas. Sem mapa de terceiros carregado (privacidade e peso);
-// um mapa ilustrado próprio é pendência (docs/PENDENCIAS.md).
+// Localizador: foto real da fachada como capa do mapa, coordenadas, plus code e rotas. O mapa interativo do
+// Google (usa cookies) só carrega no lugar da capa depois do clique E do "Aceitar" (LGPD).
+// Um mapa interativo próprio é pendência (João vai providenciar; docs/PENDENCIAS.md).
 import { contato } from '../../config/contato.ts';
+import { consentimento } from '../../content/textos/index.ts';
 import Botao from './Botao.astro';
+import Poster from './Poster.astro';
 
 interface Props {
   class?: string | undefined;
@@ -13,6 +16,10 @@ const { class: classe, semEndereco = false } = Astro.props;
 const { lat, lng } = contato.geo.valor;
 const end = contato.endereco.valor;
 const mapas = contato.mapas.valor;
+// URL final do embed (a forma "maps?q=…&output=embed" redireciona para esta)
+const embed = `https://www.google.com/maps/embed?origin=mfe&pb=!1m2!2m1!1s${encodeURIComponent(
+  `Prime House Academia, ${end.logradouro}, ${end.numero}, ${end.cidade}`,
+).replace(/%20/g, '+')}`;
 const dms = (v: number, pos: string, neg: string) => {
   const a = Math.abs(v);
   const g = Math.floor(a);
@@ -24,10 +31,28 @@ const dms = (v: number, pos: string, neg: string) => {
 ---
 
 <section class:list={['mapa-estatico', classe]} aria-label="Localização e rotas">
-  <div class="mapa-estatico__alvo" aria-hidden="true">
-    <span class="mapa-estatico__eixo mapa-estatico__eixo--h"></span>
-    <span class="mapa-estatico__eixo mapa-estatico__eixo--v"></span>
-    <span class="mapa-estatico__ponto"></span>
+  <div class="mapa-estatico__mapa" data-mapa>
+    <Poster
+      id="still-fachada-dia"
+      alt="Fachada preta da Prime House de dia, com o nome em letras grandes"
+      sizes="(min-width: 48rem) 55vw, 100vw"
+      class="mapa-estatico__capa"
+    />
+    <div class="mapa-estatico__abrir">
+      <button
+        type="button"
+        class="mapa-estatico__botao t-rotulo"
+        data-mapa-abrir
+        data-src={embed}
+        data-motivo={consentimento.motivoMapa}
+      >
+        <span class="mapa-estatico__pino" aria-hidden="true"></span>
+        Abrir mapa interativo
+      </button>
+      <p class="t-pequeno">
+        O mapa é do Google, usa cookies e só carrega se você clicar e aceitar.
+      </p>
+    </div>
   </div>
   <div class="mapa-estatico__dados">
     <p class="t-rotulo mapa-estatico__coord t-tabular">
@@ -56,60 +81,110 @@ const dms = (v: number, pos: string, neg: string) => {
   </div>
 </section>
 
+<script>
+  import {
+    abrirPreferencias,
+    aoAceitar,
+    lerConsentimento,
+  } from '../consentimento/consentimento.ts';
+
+  for (const caixa of document.querySelectorAll<HTMLElement>('[data-mapa]')) {
+    const b = caixa.querySelector<HTMLButtonElement>('[data-mapa-abrir]');
+    const abrir = () => {
+      if (!b?.isConnected) return;
+      const f = document.createElement('iframe');
+      f.src = b.dataset['src'] ?? '';
+      f.title = 'Mapa interativo do Google com a localização da Prime House';
+      f.referrerPolicy = 'no-referrer-when-downgrade';
+      f.className = 'mapa-estatico__iframe';
+      caixa.replaceChildren(f);
+    };
+    b?.addEventListener('click', () => {
+      if (lerConsentimento() === 'aceito') return abrir();
+      aoAceitar(abrir);
+      abrirPreferencias(b.dataset['motivo']);
+    });
+  }
+</script>
+
 <style>
   .mapa-estatico {
     display: grid;
     gap: var(--esp-6);
     grid-template-columns: minmax(0, 1fr);
-    padding: var(--esp-6);
+    padding: var(--esp-4);
     background: var(--prime-grafite);
     border: 1px solid var(--prime-linha);
   }
   @media (min-width: 48rem) {
     .mapa-estatico {
-      grid-template-columns: minmax(12rem, 1fr) minmax(0, 1.4fr);
+      grid-template-columns: minmax(0, 1.5fr) minmax(16rem, 1fr);
       align-items: center;
+      gap: var(--esp-7);
+    }
+    .mapa-estatico__mapa {
+      aspect-ratio: 16 / 10;
     }
   }
-  .mapa-estatico__alvo {
+  .mapa-estatico__mapa {
     position: relative;
-    aspect-ratio: 1;
-    max-width: 18rem;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: var(--prime-breu);
+    outline: 1px solid rgb(255 244 224 / 0.45);
+    box-shadow: 0 0 18px rgb(255 244 224 / 0.12);
+  }
+  .mapa-estatico__mapa :global(.mapa-estatico__capa) {
+    position: absolute;
+    inset: 0;
     width: 100%;
+    height: 100%;
+    aspect-ratio: auto !important;
+    filter: brightness(0.55) saturate(0.8);
   }
-  .mapa-estatico__eixo {
+  .mapa-estatico__mapa :global(.mapa-estatico__capa img) {
+    object-position: center 62%;
+  }
+  .mapa-estatico__abrir {
     position: absolute;
-    background: var(--prime-linha);
+    inset: auto 0 0;
+    display: grid;
+    gap: var(--esp-3);
+    justify-items: start;
+    padding: var(--esp-5);
+    background: rgb(12 11 10 / 0.72);
+    color: var(--prime-nevoa);
   }
-  .mapa-estatico__eixo--h {
-    left: 0;
-    right: 0;
-    top: 50%;
-    height: 1px;
+  .mapa-estatico__botao {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7em;
+    min-height: 3rem;
+    padding: 0.7rem 1.1rem;
+    background: var(--prime-breu);
+    color: var(--prime-nevoa);
+    border: 1px solid rgb(255 244 224 / 0.6);
+    transition:
+      border-color var(--dur-1) var(--curva-saida),
+      box-shadow var(--dur-1) var(--curva-saida);
   }
-  .mapa-estatico__eixo--v {
-    top: 0;
-    bottom: 0;
-    left: 50%;
-    width: 1px;
+  .mapa-estatico__botao:hover {
+    border-color: var(--prime-luz);
+    box-shadow: var(--luz-borda);
   }
-  .mapa-estatico__ponto {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    width: 22%;
-    aspect-ratio: 1;
-    translate: -50% -50%;
-    border: 1px solid var(--prime-luz);
-    box-shadow:
-      0 0 10px rgb(255 244 224 / 0.35),
-      inset 0 0 10px rgb(255 244 224 / 0.12);
-  }
-  .mapa-estatico__ponto::after {
-    content: '';
-    position: absolute;
-    inset: 42%;
+  .mapa-estatico__pino {
+    width: 0.6rem;
+    height: 0.6rem;
     background: var(--prime-laranja);
+    box-shadow: 0 0 8px rgb(236 138 42 / 0.7);
+  }
+  .mapa-estatico__mapa :global(.mapa-estatico__iframe) {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    filter: grayscale(0.6) invert(0.9) hue-rotate(180deg);
   }
   .mapa-estatico__dados {
     display: grid;

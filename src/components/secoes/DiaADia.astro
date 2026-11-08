@@ -1,0 +1,86 @@
+---
+// 10 · O DIA A DIA — gesto: uma fileira de vídeos verticais, como o feed, e o convite para seguir no Instagram.
+// Vídeos com consentimento autorizado (João, 08/11/2026). Tocam só visíveis; cada um tem o seu botão de pausa.
+import Botao from '../base/Botao.astro';
+import MolduraVideo from '../base/MolduraVideo.astro';
+import { contato } from '../../config/contato.ts';
+import { home, videos } from '../../content/textos/index.ts';
+import Secao from './Secao.astro';
+
+const s = home.diaADia;
+const descDe = (id: string) => (videos as Record<string, string>)[id] ?? '';
+const insta = contato.instagram.valor;
+---
+
+<Secao id="dia-a-dia" rotulo={s.rotulo} titulo={s.titulo} class="dia">
+  <div class="dia__topo">
+    <p class="t-lead dia__texto">{s.texto}</p>
+    <Botao href={insta.url} variante="secundario" dados={{ 'data-cta-origem': 'instagram' }}>
+      {s.botao}
+    </Botao>
+  </div>
+  <ul class="dia__feed">
+    {s.videos.map((id, i) => (
+      <li class:list={['dia__item', { 'dia__item--desce': i % 2 === 1 }]}>
+        <MolduraVideo id={id} descricao={descDe(id)} />
+      </li>
+    ))}
+  </ul>
+  <p class="dia__arroba t-rotulo">
+    <a href={insta.url} target="_blank" rel="noopener">
+      @{insta.usuario}
+      <span class="sr-only"> no Instagram (abre em nova aba)</span>
+    </a>
+  </p>
+</Secao>
+
+<style>
+  .dia__topo {
+    display: grid;
+    gap: var(--esp-5);
+    justify-items: start;
+    margin-bottom: var(--esp-7);
+  }
+  .dia__texto {
+    max-width: 40ch;
+    color: var(--prime-nevoa);
+  }
+  .dia__feed {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--esp-3);
+    align-items: start;
+  }
+  .dia__item {
+    max-width: none;
+  }
+  .dia__item--desce {
+    margin-top: var(--esp-7);
+  }
+  .dia__arroba {
+    margin-top: var(--esp-6);
+    text-align: end;
+  }
+  .dia__arroba a {
+    color: var(--prime-concreto);
+    text-decoration: none;
+    border-bottom: 1px solid var(--prime-linha);
+  }
+  .dia__arroba a:hover {
+    color: var(--prime-luz);
+    border-color: var(--prime-luz);
+  }
+  @media (min-width: 64rem) {
+    .dia__topo {
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: end;
+      margin-top: calc(-1 * var(--esp-7));
+    }
+    .dia__feed {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: var(--esp-4);
+    }
+  }
+</style>

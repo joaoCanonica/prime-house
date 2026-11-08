@@ -3,7 +3,7 @@
 interface Props {
   valor: string;
   /** parte menor ao lado do número (ex.: "dias") */
-  unidade?: string;
+  unidade?: string | undefined;
   legenda: string;
   /** cor do número */
   cor?: 'luz' | 'laranja' | 'nevoa';

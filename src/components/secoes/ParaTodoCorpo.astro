@@ -1,11 +1,14 @@
 ---
 // 5 · PARA TODO CORPO — gesto: três colunas editoriais, numeradas, cada uma aberta por um fio de luz.
-// Sem fotos de alunos (consentimento pendente): só texto.
-import { home } from '../../content/textos/index.ts';
+// Cada coluna abre com uma foto real de aula (recortes dos carrosséis "Nunca é tarde"; consentimento autorizado).
+import Poster from '../base/Poster.astro';
+import MolduraLuz from '../marca/MolduraLuz.astro';
+import { alt, home } from '../../content/textos/index.ts';
 import Secao from './Secao.astro';
 import Txt from './Txt.astro';
 
 const s = home.paraTodoCorpo;
+const altDe = (id: string) => (alt as Record<string, string>)[id] ?? '';
 ---
 
 <Secao id="para-todo-corpo" rotulo={s.rotulo} titulo={s.titulo} tamanho="t-h1" class="corpo">
@@ -13,6 +16,9 @@ const s = home.paraTodoCorpo;
   <ol class="corpo__colunas">
     {s.colunas.map((c, i) => (
       <li class="corpo__coluna">
+        <MolduraLuz class="corpo__moldura" respiro={6}>
+          <Poster id={c.midia} alt={altDe(c.midia)} sizes="(min-width: 56rem) 30vw, 92vw" />
+        </MolduraLuz>
         <span class="corpo__n t-tabular" aria-hidden="true">
           {String(i + 1).padStart(2, '0')}
         </span>
@@ -43,17 +49,13 @@ const s = home.paraTodoCorpo;
     display: grid;
     align-content: start;
     gap: var(--esp-4);
-    padding-top: var(--esp-6);
     max-width: none;
   }
-  .corpo__coluna::before {
-    content: '';
-    position: absolute;
-    inset: 0 auto auto 0;
-    width: 3.5rem;
-    height: 1px;
-    background: var(--prime-luz);
-    box-shadow: 0 0 6px rgb(255 244 224 / 0.6);
+  .corpo__coluna :global(.corpo__moldura) {
+    margin-bottom: var(--esp-3);
+  }
+  .corpo__coluna :global(.corpo__moldura .poster) {
+    aspect-ratio: 5 / 4 !important;
   }
   .corpo__n {
     font-family: var(--fonte-titulo);

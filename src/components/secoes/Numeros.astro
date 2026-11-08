@@ -1,39 +1,24 @@
 ---
 // 2 · NÚMEROS — gesto: quatro números verificáveis em linha, separados por fios de luz.
-// "14 dias de garantia": benefício confirmado pelo João (08/11/2026), fala do Lucas no vídeo do Plano Prime.
+// Horário: config/horario.ts (seg–sex 5h–0h; sáb; dom e feriados). "14 dias de garantia": confirmado pelo João (08/11/2026).
 import NumeroGrande from '../marca/NumeroGrande.astro';
 import { home } from '../../content/textos/index.ts';
 
-const [a, b, c, garantia] = home.numeros.itens;
+const cores = ['nevoa', 'luz', 'nevoa', 'laranja'] as const;
 ---
 
 <section id="numeros" class="numeros" aria-label={home.numeros.rotulo}>
   <ul class="numeros__lista">
-    {a && (
-      <li>
-        <NumeroGrande valor={a.valor} legenda={a.legenda} />
-      </li>
-    )}
-    {b && (
-      <li>
-        <NumeroGrande valor={b.valor} legenda={b.legenda} cor="luz" />
-      </li>
-    )}
-    {c && (
-      <li>
-        <NumeroGrande valor={c.valor} legenda={c.legenda} />
-      </li>
-    )}
-    {garantia && (
+    {home.numeros.itens.map((n, i) => (
       <li>
         <NumeroGrande
-          valor={garantia.valor}
-          unidade={garantia.unidade}
-          legenda={garantia.legenda}
-          cor="laranja"
+          valor={n.valor}
+          unidade={'unidade' in n ? n.unidade : undefined}
+          legenda={n.legenda}
+          cor={cores[i] ?? 'nevoa'}
         />
       </li>
-    )}
+    ))}
   </ul>
 </section>
 
@@ -49,6 +34,10 @@ const [a, b, c, garantia] = home.numeros.itens;
     margin-inline: auto;
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  /* mesma escala para os quatro (a do mais largo, "100%"): números do mesmo tamanho */
+  .numeros__lista :global(.numero-grande) {
+    --numero-em: 2.2 !important;
   }
   .numeros__lista li {
     position: relative;

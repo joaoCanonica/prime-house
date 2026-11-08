@@ -1,5 +1,5 @@
 ---
-// Abertura "As luzes acendem" (≤ 3,0 s, uma vez por sessão). Camada Breu POR CIMA do hero já pintado:
+// Abertura "As luzes acendem" (5,6 s, uma vez por sessão, com "Pular"). Camada Breu POR CIMA do hero já pintado:
 // o pôster do hero (LCP) carrega e pinta por baixo desde o primeiro quadro; a camada fica transparente e o revela.
 // Sem JS, com movimento reduzido ou já vista na sessão: a camada nem aparece (estado final direto).
 // ?abertura=MS congela a timeline no instante MS (capturas); ?abertura força a exibição.
@@ -77,7 +77,10 @@ import TetoDeLuz from '../marca/TetoDeLuz.astro';
   .abertura__teto {
     position: absolute;
     inset: 0 0 auto;
-    height: 72%;
+    height: 60%;
+    /* o teto se apaga para o fundo (sem corte seco) */
+    -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent);
+    mask-image: linear-gradient(to bottom, #000 55%, transparent);
   }
   .abertura__teto :global(.teto-de-luz) {
     height: 100%;
@@ -88,10 +91,11 @@ import TetoDeLuz from '../marca/TetoDeLuz.astro';
     animation: none !important;
     opacity: 0;
   }
+  /* o letreiro fica logo abaixo das luzes acesas, como na fachada */
   .abertura__logo {
     position: absolute;
     left: 50%;
-    top: 50%;
+    top: 74%;
     width: min(84vw, 60rem);
     translate: -50% -50%;
     color: var(--prime-nevoa);
@@ -121,14 +125,5 @@ import TetoDeLuz from '../marca/TetoDeLuz.astro';
   /* enquanto a abertura roda, o que entra no fim começa escondido */
   :global(html[data-abertura='on'] [data-entra]) {
     opacity: 0;
-  }
-  /* View Transition do logo: só o logo voa; o resto da página não faz crossfade */
-  :global(html[data-abertura]::view-transition-old(root)),
-  :global(html[data-abertura]::view-transition-new(root)) {
-    animation: none;
-  }
-  :global(::view-transition-group(ph-logo)) {
-    animation-duration: 650ms;
-    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
   }
 </style>

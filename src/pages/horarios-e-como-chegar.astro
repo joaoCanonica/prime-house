@@ -12,10 +12,9 @@ import Txt from '../components/secoes/Txt.astro';
 import { contato } from '../config/contato.ts';
 import { modoAtual } from '../config/modo.ts';
 import Interna from '../layouts/Interna.astro';
-import { alt, consentimento, horarios as h, videos, whatsapp } from '../content/textos/index.ts';
+import { alt, horarios as h, videos, whatsapp } from '../content/textos/index.ts';
 
 const end = contato.endereco.valor;
-const embed = `https://www.google.com/maps?q=${encodeURIComponent(`Prime House Academia, ${end.completo}`)}&output=embed`;
 ---
 
 <Interna
@@ -81,18 +80,6 @@ const embed = `https://www.google.com/maps?q=${encodeURIComponent(`Prime House A
     </h2>
     <p class="t-lead">{h.comoChegar.texto}</p>
     <MapaEstatico semEndereco />
-    <div class="hc__mapa" data-mapa>
-      <p class="t-pequeno t-secundario">{h.comoChegar.mapaAviso}</p>
-      <button
-        type="button"
-        class="hc__copiar t-rotulo"
-        data-mapa-abrir
-        data-src={embed}
-        data-motivo={consentimento.motivoMapa}
-      >
-        {h.comoChegar.mapaInterativo}
-      </button>
-    </div>
     {modoAtual() === 'preview' && (
       <ul class="hc__extras">
         <li>
@@ -110,12 +97,6 @@ const embed = `https://www.google.com/maps?q=${encodeURIComponent(`Prime House A
 </Interna>
 
 <script>
-  import {
-    abrirPreferencias,
-    aoAceitar,
-    lerConsentimento,
-  } from '../components/consentimento/consentimento.ts';
-
   for (const b of document.querySelectorAll<HTMLButtonElement>('[data-copiar]')) {
     b.addEventListener('click', async () => {
       const status = document.querySelector('[data-copiar-status]');
@@ -128,24 +109,6 @@ const embed = `https://www.google.com/maps?q=${encodeURIComponent(`Prime House A
       } catch {
         if (status) status.textContent = b.dataset['copiar'] ?? '';
       }
-    });
-  }
-  // mapa do Google (usa cookies) só depois do clique E do "Aceitar": antes disso nenhum dado vai para o Google
-  for (const caixa of document.querySelectorAll<HTMLElement>('[data-mapa]')) {
-    const b = caixa.querySelector<HTMLButtonElement>('[data-mapa-abrir]');
-    const abrir = () => {
-      if (!b?.isConnected) return;
-      const f = document.createElement('iframe');
-      f.src = b.dataset['src'] ?? '';
-      f.title = 'Mapa interativo do Google com a localização da Prime House';
-      f.referrerPolicy = 'no-referrer-when-downgrade';
-      f.className = 'hc__iframe';
-      caixa.replaceChildren(f);
-    };
-    b?.addEventListener('click', () => {
-      if (lerConsentimento() === 'aceito') return abrir();
-      aoAceitar(abrir);
-      abrirPreferencias(b.dataset['motivo']);
     });
   }
 </script>
@@ -188,17 +151,6 @@ const embed = `https://www.google.com/maps?q=${encodeURIComponent(`Prime House A
   .hc__fotos figure {
     display: grid;
     gap: var(--esp-3);
-  }
-  .hc__mapa {
-    display: grid;
-    gap: var(--esp-3);
-    justify-items: start;
-  }
-  .hc__mapa :global(.hc__iframe) {
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    border: 1px solid var(--prime-linha);
-    filter: grayscale(0.6) invert(0.9) hue-rotate(180deg);
   }
   .hc__extras {
     list-style: none;

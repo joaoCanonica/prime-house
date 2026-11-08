@@ -33,6 +33,9 @@ import { aCasa, navegacao } from '../content/textos/index.ts';
         <Logo variante="linha" altura={22} decorativo />
         <span class="sr-only">Prime House Academia, início</span>
       </a>
+      <a href="/" class="topo__voltar t-rotulo" data-voltar>
+        <span aria-hidden="true">←</span> Voltar<span class="topo__voltar-mais"> ao site</span>
+      </a>
     </header>
     <main id="conteudo" class="pagina">
       <header class="pagina__cabecalho">
@@ -48,6 +51,23 @@ import { aCasa, navegacao } from '../content/textos/index.ts';
     <Rodape />
   </body>
 </html>
+
+<script>
+  // "Voltar": se veio de uma página do próprio site, volta para ela (no mesmo ponto da rolagem); senão, vai ao início
+  const voltar = document.querySelector<HTMLAnchorElement>('[data-voltar]');
+  voltar?.addEventListener('click', (e) => {
+    let mesmoSite = false;
+    try {
+      mesmoSite = !!document.referrer && new URL(document.referrer).origin === location.origin;
+    } catch {
+      /* referrer inválido: vai ao início */
+    }
+    if (mesmoSite && history.length > 1) {
+      e.preventDefault();
+      history.back();
+    }
+  });
+</script>
 
 <style is:global>
   .pular-conteudo {
@@ -66,7 +86,46 @@ import { aCasa, navegacao } from '../content/textos/index.ts';
 </style>
 <style>
   .topo {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--esp-4);
     padding: var(--esp-5) var(--margem);
+    background: rgb(10 10 11 / 0.86);
+    border-bottom: 1px solid var(--prime-linha);
+  }
+  .topo__voltar {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6em;
+    min-height: 2.75rem;
+    padding: 0.5rem 1rem;
+    color: var(--prime-nevoa);
+    text-decoration: none;
+    border: 1px solid rgb(255 244 224 / 0.55);
+    transition:
+      border-color var(--dur-1) var(--curva-saida),
+      box-shadow var(--dur-1) var(--curva-saida);
+  }
+  @media (max-width: 26rem) {
+    .topo__voltar-mais {
+      display: none;
+    }
+    .topo__logo :global(svg) {
+      height: 16px;
+      width: auto;
+    }
+    .topo__voltar {
+      padding-inline: 0.75rem;
+    }
+  }
+  .topo__voltar:hover,
+  .topo__voltar:focus-visible {
+    border-color: var(--prime-luz);
+    box-shadow: var(--luz-borda);
   }
   .topo__logo {
     color: var(--prime-nevoa);

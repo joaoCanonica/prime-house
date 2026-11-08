@@ -20,20 +20,24 @@ const end = contato.endereco.valor;
       <MolduraVideo id="drone-noite" descricao={videos['drone-noite']} />
     </div>
     <div class="visite__dados">
-      <address class="visite__endereco">
-        {end.logradouro}, {end.numero}
-        <br />
-        {end.bairro} · {end.cidade}/{end.uf}
-        <br />
-        <span class="t-pequeno t-secundario">CEP {end.cep}</span>
-      </address>
-      <StatusHorario />
-      <TabelaHorario />
-      <p>
-        <Link href={contato.instagram.valor.url}>
-          @{contato.instagram.valor.usuario} no Instagram
-        </Link>
-      </p>
+      <div class="visite__onde">
+        <address class="visite__endereco">
+          {end.logradouro}, {end.numero}
+          <br />
+          {end.bairro} · {end.cidade}/{end.uf}
+          <br />
+          <span class="t-pequeno t-secundario">CEP {end.cep}</span>
+        </address>
+        <StatusHorario />
+        <p>
+          <Link href={contato.instagram.valor.url}>
+            @{contato.instagram.valor.usuario} no Instagram
+          </Link>
+        </p>
+      </div>
+      <div class="visite__horario">
+        <TabelaHorario />
+      </div>
     </div>
   </div>
   <MapaEstatico class="visite__mapa" semEndereco />
@@ -49,10 +53,14 @@ const end = contato.endereco.valor;
   .visite__video {
     width: min(100%, 24rem);
   }
-  .visite__dados {
+  .visite__dados,
+  .visite__onde {
     display: grid;
-    gap: var(--esp-5);
+    gap: var(--esp-6);
     align-content: start;
+  }
+  .visite__onde {
+    gap: var(--esp-5);
   }
   .visite__endereco {
     font-style: normal;
@@ -79,8 +87,16 @@ const end = contato.endereco.valor;
   }
   @media (min-width: 64rem) {
     .visite__grade {
-      grid-template-columns: minmax(16rem, 24rem) minmax(0, 1fr);
+      grid-template-columns: minmax(14rem, 20rem) minmax(0, 1fr);
       gap: var(--esp-8);
+      align-items: start;
+    }
+    .visite__dados {
+      grid-template-columns: minmax(0, 1.2fr) minmax(16rem, 1fr);
+      gap: var(--esp-7);
+    }
+    .visite__horario {
+      padding-top: var(--esp-2);
     }
   }
 </style>

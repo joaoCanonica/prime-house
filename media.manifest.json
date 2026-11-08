@@ -1,8 +1,8 @@
 {
   "$schema": "./media.manifest.schema.json",
   "versao": 1,
-  "atualizado": "2026-11-06",
-  "nota": "Fonte única da mídia. Originais em media-originais/ (intactos). Derivados gerados por pnpm media:prepare: publicáveis em public/media/, com consentimento pendente em media-privada/ (fora do git e do site).",
+  "atualizado": "2026-11-08",
+  "nota": "Fonte única da mídia. Originais em media-originais/ (intactos). Derivados gerados por pnpm media:prepare: publicáveis em public/media/, com consentimento pendente em media-privada/ (fora do git e do site). Consentimento de imagem dos alunos, professores, equipe e convidados: João (WAXLO), 08/11/2026: \"Sim, todos autorizados\".",
   "originais": [
     {
       "id": "captura-00",
@@ -547,14 +547,11 @@
       "pessoas": [
         {
           "quem": "alunos e/ou professores reais",
-          "consentimento": "pendente"
+          "consentimento": "autorizado"
         }
       ],
       "audioLiberado": false,
-      "problemas": [
-        "texto queimado na arte (não apagar por IA: só recorte)",
-        "alunos reais identificáveis: não publicar a foto; só o texto (sessão 5)"
-      ],
+      "problemas": ["texto queimado na arte (não apagar por IA: só recorte)"],
       "edicoes": [],
       "naoUsar": false,
       "uso": ["texto-sessao-5"],
@@ -563,7 +560,7 @@
         "altura": 1350
       },
       "resolucaoMax": null,
-      "consentimento": "pendente"
+      "consentimento": "autorizado"
     },
     {
       "id": "nunca-e-tarde-2",
@@ -576,14 +573,11 @@
       "pessoas": [
         {
           "quem": "alunos e/ou professores reais",
-          "consentimento": "pendente"
+          "consentimento": "autorizado"
         }
       ],
       "audioLiberado": false,
-      "problemas": [
-        "texto queimado na arte (não apagar por IA: só recorte)",
-        "alunos reais identificáveis: não publicar a foto; só o texto (sessão 5)"
-      ],
+      "problemas": ["texto queimado na arte (não apagar por IA: só recorte)"],
       "edicoes": [],
       "naoUsar": false,
       "uso": ["texto-sessao-5"],
@@ -592,7 +586,7 @@
         "altura": 1350
       },
       "resolucaoMax": null,
-      "consentimento": "pendente"
+      "consentimento": "autorizado"
     },
     {
       "id": "nunca-e-tarde-3",
@@ -605,14 +599,11 @@
       "pessoas": [
         {
           "quem": "alunos e/ou professores reais",
-          "consentimento": "pendente"
+          "consentimento": "autorizado"
         }
       ],
       "audioLiberado": false,
-      "problemas": [
-        "texto queimado na arte (não apagar por IA: só recorte)",
-        "alunos reais identificáveis: não publicar a foto; só o texto (sessão 5)"
-      ],
+      "problemas": ["texto queimado na arte (não apagar por IA: só recorte)"],
       "edicoes": [],
       "naoUsar": false,
       "uso": ["texto-sessao-5"],
@@ -621,7 +612,7 @@
         "altura": 1350
       },
       "resolucaoMax": null,
-      "consentimento": "pendente"
+      "consentimento": "autorizado"
     },
     {
       "id": "nunca-e-tarde-4",
@@ -634,14 +625,11 @@
       "pessoas": [
         {
           "quem": "alunos e/ou professores reais",
-          "consentimento": "pendente"
+          "consentimento": "autorizado"
         }
       ],
       "audioLiberado": false,
-      "problemas": [
-        "texto queimado na arte (não apagar por IA: só recorte)",
-        "alunos reais identificáveis: não publicar a foto; só o texto (sessão 5)"
-      ],
+      "problemas": ["texto queimado na arte (não apagar por IA: só recorte)"],
       "edicoes": [],
       "naoUsar": false,
       "uso": ["texto-sessao-5"],
@@ -650,7 +638,7 @@
         "altura": 1350
       },
       "resolucaoMax": null,
-      "consentimento": "pendente"
+      "consentimento": "autorizado"
     },
     {
       "id": "nunca-e-tarde-5",
@@ -663,14 +651,11 @@
       "pessoas": [
         {
           "quem": "alunos e/ou professores reais",
-          "consentimento": "pendente"
+          "consentimento": "autorizado"
         }
       ],
       "audioLiberado": false,
-      "problemas": [
-        "texto queimado na arte (não apagar por IA: só recorte)",
-        "alunos reais identificáveis: não publicar a foto; só o texto (sessão 5)"
-      ],
+      "problemas": ["texto queimado na arte (não apagar por IA: só recorte)"],
       "edicoes": [],
       "naoUsar": false,
       "uso": ["texto-sessao-5"],
@@ -679,7 +664,7 @@
         "altura": 1350
       },
       "resolucaoMax": null,
-      "consentimento": "pendente"
+      "consentimento": "autorizado"
     },
     {
       "id": "nunca-e-tarde-6",
@@ -692,14 +677,11 @@
       "pessoas": [
         {
           "quem": "fisioterapeuta e aluna",
-          "consentimento": "pendente"
+          "consentimento": "autorizado"
         }
       ],
       "audioLiberado": false,
-      "problemas": [
-        "texto queimado na arte (não apagar por IA: só recorte)",
-        "alunos reais identificáveis: não publicar a foto; só o texto (sessão 5)"
-      ],
+      "problemas": ["texto queimado na arte (não apagar por IA: só recorte)"],
       "edicoes": [],
       "naoUsar": false,
       "uso": ["texto-sessao-5"],
@@ -708,7 +690,7 @@
         "altura": 1350
       },
       "resolucaoMax": null,
-      "consentimento": "pendente"
+      "consentimento": "autorizado"
     },
     {
       "id": "nunca-e-tarde-7",
@@ -721,14 +703,11 @@
       "pessoas": [
         {
           "quem": "alunos e/ou professores reais",
-          "consentimento": "pendente"
+          "consentimento": "autorizado"
         }
       ],
       "audioLiberado": false,
-      "problemas": [
-        "texto queimado na arte (não apagar por IA: só recorte)",
-        "alunos reais identificáveis: não publicar a foto; só o texto (sessão 5)"
-      ],
+      "problemas": ["texto queimado na arte (não apagar por IA: só recorte)"],
       "edicoes": [],
       "naoUsar": false,
       "uso": ["texto-sessao-5"],
@@ -737,7 +716,7 @@
         "altura": 1350
       },
       "resolucaoMax": null,
-      "consentimento": "pendente"
+      "consentimento": "autorizado"
     },
     {
       "id": "cinco-sinais-1",
@@ -750,14 +729,11 @@
       "pessoas": [
         {
           "quem": "alunos e professores reais",
-          "consentimento": "pendente"
+          "consentimento": "autorizado"
         }
       ],
       "audioLiberado": false,
-      "problemas": [
-        "texto queimado na arte (não apagar por IA: só recorte)",
-        "alunos reais identificáveis: não publicar a foto; só o texto (sessão 5)"
-      ],
+      "problemas": ["texto queimado na arte (não apagar por IA: só recorte)"],
       "edicoes": [],
       "naoUsar": false,
       "uso": ["texto-sessao-5"],
@@ -766,7 +742,7 @@
         "altura": 1350
       },
       "resolucaoMax": null,
-      "consentimento": "pendente"
+      "consentimento": "autorizado"
     },
     {
       "id": "cinco-sinais-2",
@@ -779,14 +755,11 @@
       "pessoas": [
         {
           "quem": "alunos e professores reais",
-          "consentimento": "pendente"
+          "consentimento": "autorizado"
         }
       ],
       "audioLiberado": false,
-      "problemas": [
-        "texto queimado na arte (não apagar por IA: só recorte)",
-        "alunos reais identificáveis: não publicar a foto; só o texto (sessão 5)"
-      ],
+      "problemas": ["texto queimado na arte (não apagar por IA: só recorte)"],
       "edicoes": [],
       "naoUsar": false,
       "uso": ["texto-sessao-5"],
@@ -795,7 +768,7 @@
         "altura": 1350
       },
       "resolucaoMax": null,
-      "consentimento": "pendente"
+      "consentimento": "autorizado"
     },
     {
       "id": "cinco-sinais-3",
@@ -808,14 +781,11 @@
       "pessoas": [
         {
           "quem": "alunos e professores reais",
-          "consentimento": "pendente"
+          "consentimento": "autorizado"
         }
       ],
       "audioLiberado": false,
-      "problemas": [
-        "texto queimado na arte (não apagar por IA: só recorte)",
-        "alunos reais identificáveis: não publicar a foto; só o texto (sessão 5)"
-      ],
+      "problemas": ["texto queimado na arte (não apagar por IA: só recorte)"],
       "edicoes": [],
       "naoUsar": false,
       "uso": ["texto-sessao-5"],
@@ -824,7 +794,7 @@
         "altura": 1350
       },
       "resolucaoMax": null,
-      "consentimento": "pendente"
+      "consentimento": "autorizado"
     },
     {
       "id": "cinco-sinais-4",
@@ -837,14 +807,11 @@
       "pessoas": [
         {
           "quem": "alunos e professores reais",
-          "consentimento": "pendente"
+          "consentimento": "autorizado"
         }
       ],
       "audioLiberado": false,
-      "problemas": [
-        "texto queimado na arte (não apagar por IA: só recorte)",
-        "alunos reais identificáveis: não publicar a foto; só o texto (sessão 5)"
-      ],
+      "problemas": ["texto queimado na arte (não apagar por IA: só recorte)"],
       "edicoes": [],
       "naoUsar": false,
       "uso": ["texto-sessao-5"],
@@ -853,7 +820,7 @@
         "altura": 1350
       },
       "resolucaoMax": null,
-      "consentimento": "pendente"
+      "consentimento": "autorizado"
     },
     {
       "id": "cinco-sinais-5",
@@ -866,14 +833,11 @@
       "pessoas": [
         {
           "quem": "alunos e professores reais",
-          "consentimento": "pendente"
+          "consentimento": "autorizado"
         }
       ],
       "audioLiberado": false,
-      "problemas": [
-        "texto queimado na arte (não apagar por IA: só recorte)",
-        "alunos reais identificáveis: não publicar a foto; só o texto (sessão 5)"
-      ],
+      "problemas": ["texto queimado na arte (não apagar por IA: só recorte)"],
       "edicoes": [],
       "naoUsar": false,
       "uso": ["texto-sessao-5"],
@@ -882,7 +846,7 @@
         "altura": 1350
       },
       "resolucaoMax": null,
-      "consentimento": "pendente"
+      "consentimento": "autorizado"
     },
     {
       "id": "cinco-sinais-6",
@@ -895,14 +859,11 @@
       "pessoas": [
         {
           "quem": "alunos e professores reais",
-          "consentimento": "pendente"
+          "consentimento": "autorizado"
         }
       ],
       "audioLiberado": false,
-      "problemas": [
-        "texto queimado na arte (não apagar por IA: só recorte)",
-        "alunos reais identificáveis: não publicar a foto; só o texto (sessão 5)"
-      ],
+      "problemas": ["texto queimado na arte (não apagar por IA: só recorte)"],
       "edicoes": [],
       "naoUsar": false,
       "uso": ["texto-sessao-5"],
@@ -911,7 +872,7 @@
         "altura": 1350
       },
       "resolucaoMax": null,
-      "consentimento": "pendente"
+      "consentimento": "autorizado"
     },
     {
       "id": "marca-logo",
@@ -1044,7 +1005,7 @@
         },
         {
           "quem": "equipe, convidados e público",
-          "consentimento": "pendente"
+          "consentimento": "autorizado"
         }
       ],
       "audioLiberado": false,
@@ -1066,7 +1027,7 @@
         "largura": 720,
         "altura": 1280
       },
-      "consentimento": "pendente"
+      "consentimento": "autorizado"
     },
     {
       "id": "video-rotina",
@@ -1078,7 +1039,7 @@
       "pessoas": [
         {
           "quem": "alunos e professores",
-          "consentimento": "pendente"
+          "consentimento": "autorizado"
         }
       ],
       "audioLiberado": false,
@@ -1100,7 +1061,7 @@
         "largura": 720,
         "altura": 1280
       },
-      "consentimento": "pendente"
+      "consentimento": "autorizado"
     },
     {
       "id": "video-plano-prime",
@@ -1180,7 +1141,7 @@
       "pessoas": [
         {
           "quem": "professora (nome pendente)",
-          "consentimento": "pendente"
+          "consentimento": "autorizado"
         }
       ],
       "audioLiberado": false,
@@ -1202,7 +1163,7 @@
         "largura": 720,
         "altura": 1280
       },
-      "consentimento": "pendente"
+      "consentimento": "autorizado"
     }
   ],
   "trechos": [
@@ -1379,7 +1340,7 @@
         },
         {
           "quem": "equipe de laranja",
-          "consentimento": "pendente"
+          "consentimento": "autorizado"
         }
       ],
       "problemas": [],
@@ -1401,7 +1362,7 @@
       },
       "posterEm": 23.4,
       "uso": ["historia"],
-      "consentimento": "pendente",
+      "consentimento": "autorizado",
       "ajuste": "início −0,5 s: a comemoração começa no corte de 22,46 s",
       "inteiro": false,
       "resolucaoMax": {
@@ -1419,7 +1380,7 @@
         },
         {
           "quem": "convidados em inserções coloridas (8,46–10,0 s; 13,46–15,25 s)",
-          "consentimento": "pendente"
+          "consentimento": "autorizado"
         }
       ],
       "problemas": [
@@ -1444,7 +1405,7 @@
       },
       "posterEm": 17.5,
       "uso": ["historia"],
-      "consentimento": "pendente",
+      "consentimento": "autorizado",
       "ajuste": "início +0,25 s (1º quadro P&B) e fim +0,5 s (corte em 19,96 s)",
       "inteiro": false,
       "resolucaoMax": {
@@ -1522,7 +1483,7 @@
       "pessoas": [
         {
           "quem": "alunos e professores",
-          "consentimento": "pendente"
+          "consentimento": "autorizado"
         }
       ],
       "problemas": [],
@@ -1544,7 +1505,7 @@
       },
       "posterEm": 10.5,
       "uso": ["acompanhamento", "b-roll"],
-      "consentimento": "pendente",
+      "consentimento": "autorizado",
       "ajuste": "início +0,3 s: corte da fachada em 2,27 s",
       "inteiro": false,
       "resolucaoMax": {
@@ -1562,7 +1523,7 @@
         },
         {
           "quem": "equipe, convidados e público",
-          "consentimento": "pendente"
+          "consentimento": "autorizado"
         }
       ],
       "problemas": ["termina com o logo antigo (raster) sobreposto"],
@@ -1581,7 +1542,7 @@
       "pedido": null,
       "posterEm": 39.5,
       "uso": ["historia"],
-      "consentimento": "pendente",
+      "consentimento": "autorizado",
       "ajuste": null,
       "inteiro": true,
       "resolucaoMax": {
@@ -1668,7 +1629,7 @@
       "pessoas": [
         {
           "quem": "professora (nome pendente)",
-          "consentimento": "pendente"
+          "consentimento": "autorizado"
         }
       ],
       "problemas": ["título queimado \"SEU TREINO COM ACOMPANHAMENTO EXCLUSIVO\""],
@@ -1687,9 +1648,189 @@
       "pedido": null,
       "posterEm": 8,
       "uso": ["pagina-planos"],
-      "consentimento": "pendente",
+      "consentimento": "autorizado",
       "ajuste": null,
       "inteiro": true,
+      "resolucaoMax": {
+        "largura": 720,
+        "altura": 1280
+      }
+    },
+    {
+      "natureza": "trecho-de-video",
+      "audioLiberado": false,
+      "pessoas": [
+        {
+          "quem": "alunos e professores",
+          "consentimento": "autorizado"
+        }
+      ],
+      "problemas": [],
+      "naoUsar": false,
+      "loop": true,
+      "fala": null,
+      "saidas": {
+        "alturas": [1280, 960],
+        "formatos": ["mp4", "webm"]
+      },
+      "edicoes": ["corte de trecho", "áudio removido (mudo)"],
+      "id": "rotina-hack",
+      "origem": "video-rotina",
+      "in": 2.5,
+      "out": 4.8,
+      "pedido": {
+        "in": 2.5,
+        "out": 4.8
+      },
+      "posterEm": 3.4,
+      "uso": ["experiencia", "b-roll"],
+      "consentimento": "autorizado",
+      "ajuste": null,
+      "inteiro": false,
+      "resolucaoMax": {
+        "largura": 720,
+        "altura": 1280
+      }
+    },
+    {
+      "natureza": "trecho-de-video",
+      "audioLiberado": false,
+      "pessoas": [
+        {
+          "quem": "alunos e professores",
+          "consentimento": "autorizado"
+        }
+      ],
+      "problemas": [],
+      "naoUsar": false,
+      "loop": true,
+      "fala": null,
+      "saidas": {
+        "alturas": [1280, 960],
+        "formatos": ["mp4", "webm"]
+      },
+      "edicoes": ["corte de trecho", "áudio removido (mudo)"],
+      "id": "rotina-agachamento",
+      "origem": "video-rotina",
+      "in": 5.0,
+      "out": 7.3,
+      "pedido": {
+        "in": 5.0,
+        "out": 7.3
+      },
+      "posterEm": 6.0,
+      "uso": ["experiencia", "b-roll"],
+      "consentimento": "autorizado",
+      "ajuste": null,
+      "inteiro": false,
+      "resolucaoMax": {
+        "largura": 720,
+        "altura": 1280
+      }
+    },
+    {
+      "natureza": "trecho-de-video",
+      "audioLiberado": false,
+      "pessoas": [
+        {
+          "quem": "alunos e professores",
+          "consentimento": "autorizado"
+        }
+      ],
+      "problemas": [],
+      "naoUsar": false,
+      "loop": true,
+      "fala": null,
+      "saidas": {
+        "alturas": [1280, 960],
+        "formatos": ["mp4", "webm"]
+      },
+      "edicoes": ["corte de trecho", "áudio removido (mudo)"],
+      "id": "rotina-legpress",
+      "origem": "video-rotina",
+      "in": 7.5,
+      "out": 9.9,
+      "pedido": {
+        "in": 7.5,
+        "out": 9.9
+      },
+      "posterEm": 8.5,
+      "uso": ["experiencia", "b-roll"],
+      "consentimento": "autorizado",
+      "ajuste": null,
+      "inteiro": false,
+      "resolucaoMax": {
+        "largura": 720,
+        "altura": 1280
+      }
+    },
+    {
+      "natureza": "trecho-de-video",
+      "audioLiberado": false,
+      "pessoas": [
+        {
+          "quem": "alunos e professores",
+          "consentimento": "autorizado"
+        }
+      ],
+      "problemas": [],
+      "naoUsar": false,
+      "loop": true,
+      "fala": null,
+      "saidas": {
+        "alturas": [1280, 960],
+        "formatos": ["mp4", "webm"]
+      },
+      "edicoes": ["corte de trecho", "áudio removido (mudo)"],
+      "id": "rotina-professor",
+      "origem": "video-rotina",
+      "in": 18.2,
+      "out": 20.4,
+      "pedido": {
+        "in": 18.2,
+        "out": 20.4
+      },
+      "posterEm": 19.2,
+      "uso": ["experiencia", "b-roll"],
+      "consentimento": "autorizado",
+      "ajuste": null,
+      "inteiro": false,
+      "resolucaoMax": {
+        "largura": 720,
+        "altura": 1280
+      }
+    },
+    {
+      "natureza": "trecho-de-video",
+      "audioLiberado": false,
+      "pessoas": [
+        {
+          "quem": "alunos e professores",
+          "consentimento": "autorizado"
+        }
+      ],
+      "problemas": [],
+      "naoUsar": false,
+      "loop": true,
+      "fala": null,
+      "saidas": {
+        "alturas": [1280, 960],
+        "formatos": ["mp4", "webm"]
+      },
+      "edicoes": ["corte de trecho", "áudio removido (mudo)"],
+      "id": "rotina-ombro",
+      "origem": "video-rotina",
+      "in": 20.5,
+      "out": 22.9,
+      "pedido": {
+        "in": 20.5,
+        "out": 22.9
+      },
+      "posterEm": 21.5,
+      "uso": ["experiencia", "b-roll"],
+      "consentimento": "autorizado",
+      "ajuste": null,
+      "inteiro": false,
       "resolucaoMax": {
         "largura": 720,
         "altura": 1280
@@ -2048,6 +2189,230 @@
         "embalagens com personagens licenciados (Disney) visíveis",
         "conferido: sem crianças na imagem, só brinquedos e material de desenho"
       ],
+      "naoUsar": false
+    },
+    {
+      "id": "treino-legpress-professora",
+      "origem": "nunca-e-tarde-1",
+      "natureza": "recorte",
+      "caixa": {
+        "x": 0,
+        "y": 0,
+        "largura": 1080,
+        "altura": 860
+      },
+      "uso": ["experiencia"],
+      "legendaOriginal": "Na Prime House, cada pessoa tem sua história, seu ritmo e seus objetivos.",
+      "resolucaoMax": {
+        "largura": 1080,
+        "altura": 860
+      },
+      "consentimento": "autorizado",
+      "pessoas": [
+        {
+          "quem": "alunos e professores",
+          "consentimento": "autorizado"
+        }
+      ],
+      "audioLiberado": false,
+      "edicoes": ["recorte que remove o texto queimado (sem IA)"],
+      "problemas": [],
+      "naoUsar": false
+    },
+    {
+      "id": "treino-professor-alongamento",
+      "origem": "nunca-e-tarde-2",
+      "natureza": "recorte",
+      "caixa": {
+        "x": 0,
+        "y": 0,
+        "largura": 1080,
+        "altura": 860
+      },
+      "uso": ["experiencia"],
+      "legendaOriginal": "Treinar equilíbrio e força também contribui para mais segurança nas atividades do dia a dia.",
+      "resolucaoMax": {
+        "largura": 1080,
+        "altura": 860
+      },
+      "consentimento": "autorizado",
+      "pessoas": [
+        {
+          "quem": "alunos e professores",
+          "consentimento": "autorizado"
+        }
+      ],
+      "audioLiberado": false,
+      "edicoes": ["recorte que remove o texto queimado (sem IA)"],
+      "problemas": [],
+      "naoUsar": false
+    },
+    {
+      "id": "cardio-esteiras",
+      "origem": "nunca-e-tarde-3",
+      "natureza": "recorte",
+      "caixa": {
+        "x": 0,
+        "y": 0,
+        "largura": 1080,
+        "altura": 860
+      },
+      "uso": ["experiencia"],
+      "legendaOriginal": "Envelhecer faz parte da vida. Perder sua independência não precisa fazer parte dos seus planos.",
+      "resolucaoMax": {
+        "largura": 1080,
+        "altura": 860
+      },
+      "consentimento": "autorizado",
+      "pessoas": [
+        {
+          "quem": "alunos e professores",
+          "consentimento": "autorizado"
+        }
+      ],
+      "audioLiberado": false,
+      "edicoes": ["recorte que remove o texto queimado (sem IA)"],
+      "problemas": [],
+      "naoUsar": false
+    },
+    {
+      "id": "treino-aluna-maquina",
+      "origem": "nunca-e-tarde-5",
+      "natureza": "recorte",
+      "caixa": {
+        "x": 0,
+        "y": 0,
+        "largura": 1080,
+        "altura": 860
+      },
+      "uso": ["experiencia"],
+      "legendaOriginal": "Mais qualidade de vida hoje. Mais autonomia para o amanhã.",
+      "resolucaoMax": {
+        "largura": 1080,
+        "altura": 860
+      },
+      "consentimento": "autorizado",
+      "pessoas": [
+        {
+          "quem": "alunos e professores",
+          "consentimento": "autorizado"
+        }
+      ],
+      "audioLiberado": false,
+      "edicoes": ["recorte que remove o texto queimado (sem IA)"],
+      "problemas": [],
+      "naoUsar": false
+    },
+    {
+      "id": "fisioterapeuta-aluna",
+      "origem": "nunca-e-tarde-6",
+      "natureza": "recorte",
+      "caixa": {
+        "x": 0,
+        "y": 0,
+        "largura": 1080,
+        "altura": 860
+      },
+      "uso": ["experiencia"],
+      "legendaOriginal": "O cuidado com você não tem idade.",
+      "resolucaoMax": {
+        "largura": 1080,
+        "altura": 860
+      },
+      "consentimento": "autorizado",
+      "pessoas": [
+        {
+          "quem": "alunos e professores",
+          "consentimento": "autorizado"
+        }
+      ],
+      "audioLiberado": false,
+      "edicoes": ["recorte que remove o texto queimado (sem IA)"],
+      "problemas": [],
+      "naoUsar": false
+    },
+    {
+      "id": "treino-professor-orientando",
+      "origem": "cinco-sinais-1",
+      "natureza": "recorte",
+      "caixa": {
+        "x": 0,
+        "y": 0,
+        "largura": 1080,
+        "altura": 740
+      },
+      "uso": ["experiencia"],
+      "legendaOriginal": "Você aumenta a carga sem ter certeza de que consegue manter a técnica.",
+      "resolucaoMax": {
+        "largura": 1080,
+        "altura": 740
+      },
+      "consentimento": "autorizado",
+      "pessoas": [
+        {
+          "quem": "alunos e professores",
+          "consentimento": "autorizado"
+        }
+      ],
+      "audioLiberado": false,
+      "edicoes": ["recorte que remove o texto queimado (sem IA)"],
+      "problemas": [],
+      "naoUsar": false
+    },
+    {
+      "id": "treino-aluna-professor",
+      "origem": "cinco-sinais-3",
+      "natureza": "recorte",
+      "caixa": {
+        "x": 0,
+        "y": 0,
+        "largura": 1080,
+        "altura": 740
+      },
+      "uso": ["experiencia"],
+      "legendaOriginal": "5 sinais de que seu treino precisa de mais atenção.",
+      "resolucaoMax": {
+        "largura": 1080,
+        "altura": 740
+      },
+      "consentimento": "autorizado",
+      "pessoas": [
+        {
+          "quem": "alunos e professores",
+          "consentimento": "autorizado"
+        }
+      ],
+      "audioLiberado": false,
+      "edicoes": ["recorte que remove o texto queimado (sem IA)"],
+      "problemas": [],
+      "naoUsar": false
+    },
+    {
+      "id": "treino-puxada-professora",
+      "origem": "cinco-sinais-5",
+      "natureza": "recorte",
+      "caixa": {
+        "x": 0,
+        "y": 0,
+        "largura": 1080,
+        "altura": 740
+      },
+      "uso": ["experiencia"],
+      "legendaOriginal": "Você termina a sessão sem entender o que está tentando desenvolver.",
+      "resolucaoMax": {
+        "largura": 1080,
+        "altura": 740
+      },
+      "consentimento": "autorizado",
+      "pessoas": [
+        {
+          "quem": "alunos e professores",
+          "consentimento": "autorizado"
+        }
+      ],
+      "audioLiberado": false,
+      "edicoes": ["recorte que remove o texto queimado (sem IA)"],
+      "problemas": [],
       "naoUsar": false
     }
   ]

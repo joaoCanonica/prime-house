@@ -261,7 +261,7 @@ describe('LGPD: nada de terceiro antes do consentimento', () => {
     expect(await c.page.locator('iframe').count()).toBe(0);
 
     await c.page.getByRole('button', { name: 'Aceitar', exact: true }).click();
-    await c.page.locator('iframe.hc__iframe').waitFor();
+    await c.page.locator('iframe.mapa-estatico__iframe').waitFor();
     await c.page.waitForLoadState('networkidle');
     expect(c.terceiros.some((u) => u.startsWith('https://www.google.com/maps'))).toBe(true);
     await c.ctx.close();

@@ -81,9 +81,14 @@ export const home = {
   numeros: {
     rotulo: 'Em números',
     itens: [
-      { valor: '5', legenda: 'máquinas de puxada alta', fonte: F.puxadas },
+      { valor: '7', legenda: 'dias por semana, com domingo e feriados', fonte: F.horario },
       { valor: '100%', legenda: 'maquinário Cimerian', fonte: F.cimerian100 },
-      { valor: '5h–0h', legenda: 'de segunda a sexta', fonte: F.horario },
+      {
+        valor: '19',
+        unidade: 'h',
+        legenda: 'abertos por dia, de segunda a sexta (5h–0h)',
+        fonte: F.horario,
+      },
       {
         valor: '14',
         unidade: 'dias',
@@ -133,6 +138,7 @@ export const home = {
       ),
       botao: 'Agendar avaliação funcional',
     },
+    legendaVideo: 'Na sala, o professor ajusta a máquina e acompanha cada série.',
   },
 
   paraTodoCorpo: {
@@ -145,6 +151,7 @@ export const home = {
     colunas: [
       {
         titulo: 'Começando agora',
+        midia: 'treino-aluna-maquina',
         textos: [
           fraseReal('Aqui, você não precisa chegar pronto. Só precisa chegar.', F.frasesMarca),
           fraseReal(
@@ -155,6 +162,7 @@ export const home = {
       },
       {
         titulo: '+40 e idosos',
+        midia: 'treino-legpress-professora',
         textos: [
           fraseReal(
             'Treinar equilíbrio e força também contribui para mais segurança nas atividades do dia a dia.',
@@ -168,6 +176,7 @@ export const home = {
       },
       {
         titulo: 'Treino adaptado',
+        midia: 'fisioterapeuta-aluna',
         textos: [
           'Treino orientado e adaptado, com acompanhamento de fisioterapeuta, para quem convive com artrose, está no pós-AVC, tem lipedema ou está gestante.',
           'Conte sua história para a equipe antes de começar.',
@@ -181,71 +190,87 @@ export const home = {
     ),
   },
 
-  conforto: {
-    rotulo: 'Conforto',
+  experiencia: {
+    rotulo: 'A experiência',
     titulo: fraseReal(
       'Tem lugar que a gente vai para treinar. E tem lugar que dá *vontade* de voltar no dia seguinte.',
       F.frasesMarca,
       'Tem lugar que a gente vai pra treinar. E tem lugar que dá vontade de voltar no dia seguinte.',
     ),
-    itens: [
+    capitulos: [
       {
-        id: 'cafe',
-        titulo: 'Café',
-        legenda: 'Para antes ou depois do treino.',
-        midia: 'conforto-cafe',
-        fonte: F.diferenciais,
+        id: 'professor',
+        rotulo: 'Na sala',
+        titulo: 'Professor do lado, não só na ficha.',
+        texto:
+          'Avaliação funcional na entrada, treino individual no app e professores na sala, em desenvolvimento contínuo. Eles ajustam a máquina, corrigem a execução e acompanham a série.',
+        midias: [
+          { tipo: 'video', id: 'rotina-professor' },
+          { tipo: 'imagem', id: 'treino-professor-orientando' },
+          { tipo: 'imagem', id: 'conforto-treino-app' },
+        ],
+        fonte: `${F.avaliacaoFuncional} · ${F.professores} · ${F.diferenciais}`,
       },
       {
-        id: 'lanches',
-        titulo: 'Lanches',
-        legenda: 'Para quando a fome aparece no meio do dia.',
-        midia: 'conforto-lanches',
-        fonte: F.diferenciais,
+        id: 'maquinas',
+        rotulo: 'As máquinas',
+        titulo: '100% Cimerian, sem fila de aparelho.',
+        texto:
+          'Todo o maquinário é Cimerian, marca nacional: hack, leg press, agachamento pêndulo, remadas e puxadas. Trânsito livre: você monta o treino no seu tempo.',
+        midias: [
+          { tipo: 'video', id: 'rotina-hack' },
+          { tipo: 'imagem', id: 'treino-puxada-professora' },
+          { tipo: 'video', id: 'rotina-agachamento' },
+        ],
+        fonte: `${F.cimerian100} · ${F.pendulo} · ${F.remadas} · ${F.transito}`,
       },
       {
-        id: 'geladeira',
-        titulo: 'Geladeira',
-        legenda: 'Bebidas geladas à mão.',
-        midia: 'conforto-geladeira',
-        fonte: F.diferenciais,
+        id: 'cardio',
+        rotulo: 'Cardio',
+        titulo: 'Esteira com tela, sala climatizada.',
+        texto:
+          'Esteiras com TV (YouTube, Netflix, Disney+, Prime Video e Spotify na tela) e a sala inteira climatizada, do inverno de Lages ao verão.',
+        midias: [
+          { tipo: 'imagem', id: 'cardio-esteiras' },
+          { tipo: 'imagem', id: 'conforto-esteira-tv' },
+        ],
+        fonte: `${F.esteiraTv} · ${F.cardio} · ${F.climatizacao}`,
       },
       {
-        id: 'banheiro',
-        titulo: 'Banheiro completo',
-        legenda: 'Banheiro e vestiário completos.',
-        midia: 'conforto-banheiro',
+        id: 'pausa',
+        rotulo: 'A pausa',
+        titulo: 'Café, lanches e geladeira.',
+        texto:
+          'Um café antes do treino, um lanche no meio do dia e bebida gelada à mão. O treino já é pesado; o ambiente não deve ser.',
+        midias: [
+          { tipo: 'imagem', id: 'conforto-cafe' },
+          { tipo: 'imagem', id: 'conforto-lanches' },
+          { tipo: 'imagem', id: 'conforto-geladeira' },
+        ],
+        fonte: `${F.diferenciais} · ${F.frasesMarca}`,
+      },
+      {
+        id: 'cuidado',
+        rotulo: 'Os detalhes',
+        titulo: 'Vestiário completo e um canto para as crianças.',
+        texto:
+          'Banheiro e vestiário completos para sair do treino direto para o trabalho, e um espaço kids para quem treina com os filhos por perto.',
+        midias: [
+          { tipo: 'imagem', id: 'conforto-banheiro' },
+          { tipo: 'imagem', id: 'conforto-espaco-kids' },
+        ],
         fonte: `${F.diferenciais} · ${F.googleBanheiro}`,
       },
-      {
-        id: 'climatizacao',
-        titulo: 'Climatização',
-        legenda: 'A sala inteira climatizada.',
-        midia: null,
-        fonte: F.climatizacao,
-      },
-      {
-        id: 'esteira',
-        titulo: 'Esteira com TV',
-        legenda: 'YouTube, Netflix, Disney+, Prime Video e Spotify na tela.',
-        midia: 'conforto-esteira-tv',
-        fonte: F.esteiraTv,
-      },
-      {
-        id: 'kids',
-        titulo: 'Espaço kids',
-        legenda: 'Um canto para as crianças enquanto você treina.',
-        midia: 'conforto-espaco-kids',
-        fonte: F.diferenciais,
-      },
-      {
-        id: 'app',
-        titulo: 'Treino no app',
-        legenda: 'Seu treino individual na palma da mão.',
-        midia: 'conforto-treino-app',
-        fonte: F.diferenciais,
-      },
     ],
+  },
+
+  diaADia: {
+    rotulo: 'O dia a dia',
+    titulo: 'A rotina da casa, *ao vivo* no Instagram.',
+    texto:
+      'Treinos, equipe, novidades e os bastidores. Siga a Prime House para ver como é o dia a dia antes de vir.',
+    botao: 'Seguir @primehouse.academia',
+    videos: ['rotina-ombro', 'equipe', 'rotina-legpress', 'plano-select'],
   },
 
   planos: {

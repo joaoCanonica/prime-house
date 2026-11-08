@@ -3,9 +3,9 @@
 import BotaoWhatsApp from '../base/BotaoWhatsApp.astro';
 ---
 
-<div class="flutuante" data-flutuante hidden>
+<aside class="flutuante" data-flutuante aria-label="Falar com a equipe no WhatsApp" hidden>
   <BotaoWhatsApp class="flutuante__botao" origem="flutuante" />
-</div>
+</aside>
 
 <script>
   const caixa = document.querySelector<HTMLElement>('[data-flutuante]');

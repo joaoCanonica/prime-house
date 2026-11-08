@@ -4,6 +4,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { auditar } from '../scripts/audit-compliance.mjs';
+import manifestoAtual from '../media.manifest.json' with { type: 'json' };
 import { entradaAtual } from '../src/config/index.ts';
 import { bloqueante, confirmado } from '../src/config/tipos.ts';
 import { verificar, type Entrada } from '../src/config/verificacao.ts';
@@ -45,7 +46,10 @@ describe('validate-config: travas simuladas', () => {
     esperaTrava(e2, 'equipamento-nao-confirmado');
   });
   it('mídia com consentimento pendente referenciada', () => {
+    // todos autorizados desde 08/11/2026: a pendência é simulada no manifesto clonado
     const e = clonar();
+    const t = e.manifesto.trechos.find((x) => x.id === 'acompanhamento')!;
+    t.consentimento = 'pendente';
     (e.colecoes.zonas[1] as { midia: string[] }).midia.push('acompanhamento');
     esperaTrava(e, 'midia-consentimento-pendente');
   });
@@ -79,9 +83,9 @@ function distCom(arquivos: Record<string, string>, pastasMidia: string[] = []) {
   for (const p of pastasMidia) mkdirSync(join(dir, 'media', p), { recursive: true });
   return dir;
 }
-const auditarAmbos = (dir: string) => ({
-  prod: auditar({ dir, modo: 'producao' }),
-  prev: auditar({ dir, modo: 'preview' }),
+const auditarAmbos = (dir: string, manifesto?: typeof manifestoAtual) => ({
+  prod: auditar({ dir, modo: 'producao', ...(manifesto ? { manifesto } : {}) }),
+  prev: auditar({ dir, modo: 'preview', ...(manifesto ? { manifesto } : {}) }),
 });
 const regrasDe = (r: { achados: { regra: string }[] }) => r.achados.map((a) => a.regra);
 
@@ -127,7 +131,10 @@ describe('audit-compliance: travas simuladas', () => {
       { 'index.html': BASE('<video src="/media/equipe/equipe-720x1280.mp4"></video>') },
       ['equipe'],
     );
-    const { prod, prev } = auditarAmbos(dir);
+    // todos autorizados desde 08/11/2026: a pendência é simulada num manifesto clonado
+    const m = structuredClone(manifestoAtual);
+    m.trechos.find((x) => x.id === 'equipe')!.consentimento = 'pendente';
+    const { prod, prev } = auditarAmbos(dir, m);
     expect(regrasDe(prod).filter((r) => r === 'midia-consentimento-pendente')).toHaveLength(2);
     expect(prod.ok).toBe(false);
     expect(prev.ok).toBe(true);

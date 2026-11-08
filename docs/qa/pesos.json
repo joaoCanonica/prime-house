@@ -1,5 +1,5 @@
 {
-  "data": "2026-11-08T02:59:02.261Z",
+  "data": "2026-11-08T05:18:14.067Z",
   "limites": {
     "jsInicialKB": 40,
     "ilha3dKB": 180,
@@ -11,67 +11,67 @@
       "rota": "/404.html",
       "jsInicialKB": 1.9,
       "cssEmbutidoKB": 4.3,
-      "htmlKB": 15
+      "htmlKB": 15.2
     },
     {
       "rota": "/a-casa/",
-      "jsInicialKB": 5.1,
-      "cssEmbutidoKB": 5,
-      "htmlKB": 21.7
+      "jsInicialKB": 5.3,
+      "cssEmbutidoKB": 5.2,
+      "htmlKB": 22.2
     },
     {
       "rota": "/como-funciona/",
       "jsInicialKB": 2.4,
       "cssEmbutidoKB": 4.9,
-      "htmlKB": 17.9
+      "htmlKB": 18.1
     },
     {
       "rota": "/equipe/",
       "jsInicialKB": 2.4,
-      "cssEmbutidoKB": 4.5,
-      "htmlKB": 15.8
+      "cssEmbutidoKB": 4.6,
+      "htmlKB": 15.9
     },
     {
       "rota": "/horarios-e-como-chegar/",
-      "jsInicialKB": 4.5,
-      "cssEmbutidoKB": 5.3,
-      "htmlKB": 18.9
+      "jsInicialKB": 4.6,
+      "cssEmbutidoKB": 5.5,
+      "htmlKB": 19.4
     },
     {
       "rota": "/",
-      "jsInicialKB": 9.2,
-      "cssEmbutidoKB": 8.4,
-      "htmlKB": 37.1
+      "jsInicialKB": 9.5,
+      "cssEmbutidoKB": 8.9,
+      "htmlKB": 46.5
     },
     {
       "rota": "/maquinario/",
       "jsInicialKB": 2.4,
-      "cssEmbutidoKB": 4.9,
-      "htmlKB": 18.8
+      "cssEmbutidoKB": 5,
+      "htmlKB": 19
     },
     {
       "rota": "/perguntas-frequentes/",
       "jsInicialKB": 1.9,
       "cssEmbutidoKB": 4.5,
-      "htmlKB": 17.2
+      "htmlKB": 17.3
     },
     {
       "rota": "/planos/",
       "jsInicialKB": 3.3,
       "cssEmbutidoKB": 4.7,
-      "htmlKB": 17
+      "htmlKB": 17.1
     },
     {
       "rota": "/privacidade/",
       "jsInicialKB": 1.9,
-      "cssEmbutidoKB": 4.2,
-      "htmlKB": 15.3
+      "cssEmbutidoKB": 4.3,
+      "htmlKB": 15.5
     },
     {
       "rota": "/trabalhe-conosco/",
       "jsInicialKB": 1.9,
-      "cssEmbutidoKB": 4.4,
-      "htmlKB": 15.6
+      "cssEmbutidoKB": 4.5,
+      "htmlKB": 15.8
     }
   ],
   "ilha3d": {
@@ -152,17 +152,17 @@
   ],
   "splats": [],
   "videos": {
-    "arquivos": 32,
-    "totalMB": 16.75,
+    "arquivos": 72,
+    "totalMB": 84.87,
     "maior": {
-      "arquivo": "media/avaliacao-funcional/avaliacao-funcional-720x1280.f453295e.mp4",
-      "bytes": 2796493,
-      "MB": 2.67
+      "arquivo": "media/filme-inauguracao/filme-inauguracao-720x1280.6909d286.mp4",
+      "bytes": 8340716,
+      "MB": 7.95
     }
   },
   "imagens": {
-    "arquivos": 134,
-    "totalMB": 4
+    "arquivos": 222,
+    "totalMB": 6.51
   },
   "fontes": [
     {
