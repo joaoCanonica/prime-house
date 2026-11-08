@@ -86,15 +86,19 @@ describe('coleções', () => {
     expect(equipamentos.every((e) => e.confirmado)).toBe(true);
     expect(equipamentos.find((e) => e.id === 'puxada-alta')?.quantidade).toBe(5);
   });
-  it('planos sem preço; benefícios fixos bloqueantes', () => {
+  it('planos sem preço; benefícios fixos confirmados pelo João (08/11/2026), com fonte', () => {
     expect(planos.map((p) => p.id)).toEqual(['prime', 'select', 'duo']);
     expect(JSON.stringify(planos)).not.toMatch(/R\$|\d+\s?%/);
     const prime = planos.find((p) => p.id === 'prime');
     expect(prime?.beneficios.map((b) => [b.id, b.estado])).toEqual([
-      ['garantia-14-dias', 'bloqueante'],
-      ['trancamento-30-dias', 'bloqueante'],
-      ['sexta-prime', 'bloqueante'],
+      ['garantia-14-dias', 'confirmado'],
+      ['trancamento-30-dias', 'confirmado'],
+      ['sexta-prime', 'confirmado'],
     ]);
+    for (const b of prime?.beneficios ?? [])
+      expect(b.estado === 'confirmado' && b.fonte).toMatch(/Lucas.*João/);
+    // o que o Plano Prime inclui segue sem fonte: bloqueante
+    expect(prime?.inclui.estado).toBe('bloqueante');
   });
   it('config atual: sem erro nem trava; preview e produção publicáveis', () => {
     for (const modo of ['preview', 'producao'] as const) {

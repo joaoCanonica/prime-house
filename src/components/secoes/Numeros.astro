@@ -1,12 +1,9 @@
 ---
 // 2 · NÚMEROS — gesto: quatro números verificáveis em linha, separados por fios de luz.
-// "14 dias de garantia" só aparece confirmado; até lá: preview com selo PROVISÓRIO, produção com "Trânsito livre".
+// "14 dias de garantia": benefício confirmado pelo João (08/11/2026), fala do Lucas no vídeo do Plano Prime.
 import NumeroGrande from '../marca/NumeroGrande.astro';
-import Provisorio from '../Provisorio.astro';
-import { modoAtual } from '../../config/modo.ts';
 import { home } from '../../content/textos/index.ts';
 
-const preview = modoAtual() === 'preview';
 const [a, b, c, garantia] = home.numeros.itens;
 ---
 
@@ -29,18 +26,12 @@ const [a, b, c, garantia] = home.numeros.itens;
     )}
     {garantia && (
       <li>
-        {preview ? (
-          <Provisorio motivo={garantia.provisorio.motivo} como="div">
-            <NumeroGrande
-              valor={garantia.valor}
-              unidade={garantia.unidade}
-              legenda={garantia.legenda}
-              cor="laranja"
-            />
-          </Provisorio>
-        ) : (
-          <NumeroGrande valor="Livre" legenda="trânsito livre, no seu tempo" cor="laranja" />
-        )}
+        <NumeroGrande
+          valor={garantia.valor}
+          unidade={garantia.unidade}
+          legenda={garantia.legenda}
+          cor="laranja"
+        />
       </li>
     )}
   </ul>

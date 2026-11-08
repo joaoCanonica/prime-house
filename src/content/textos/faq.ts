@@ -2,8 +2,6 @@
 import { F } from './fontes.ts';
 import { fraseReal, provisorio, type Texto } from './tipos.ts';
 
-const CONFIRMAR = 'benefício fixo: confirmar por escrito com a academia';
-
 interface Pergunta {
   readonly p: Texto;
   readonly r: Texto;
@@ -126,23 +124,17 @@ export const faq = {
         },
         {
           p: 'O que é a Sexta Prime?',
-          r: provisorio(
-            'Toda sexta-feira, você pode trazer um amigo ou familiar para treinar com você.',
-            CONFIRMAR,
-          ),
+          r: 'Toda sexta-feira, você pode trazer um amigo ou familiar para treinar com você.',
           fonte: F.beneficiosLucas,
         },
         {
           p: 'Tem garantia?',
-          r: provisorio(
-            'Sim: 14 dias. Se você vier e não gostar de qualquer coisa, a academia devolve 100% do valor.',
-            CONFIRMAR,
-          ),
+          r: 'Sim: 14 dias. Se você vier e não gostar de qualquer coisa, a academia devolve 100% do valor.',
           fonte: F.beneficiosLucas,
         },
         {
           p: 'Posso trancar o plano?',
-          r: provisorio('No plano anual, você pode trancar por 30 dias e usar depois.', CONFIRMAR),
+          r: 'No plano anual, você pode trancar por 30 dias e usar depois.',
           fonte: F.beneficiosLucas,
         },
         {

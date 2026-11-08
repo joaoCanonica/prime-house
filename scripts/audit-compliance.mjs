@@ -100,6 +100,7 @@ export function auditar({
   dir = join(RAIZ, 'dist'),
   modo = 'preview',
   manifesto = manifestoPadrao,
+  planosDados = planos,
 } = {}) {
   const achados = [];
   const add = (gravidade, regra, onde, mensagem) =>
@@ -115,7 +116,7 @@ export function auditar({
   const naoUsarArquivos = manifesto.originais
     .filter((o) => o.naoUsar)
     .map((o) => basename(o.arquivo));
-  const beneficiosPendentes = planos
+  const beneficiosPendentes = planosDados
     .flatMap((p) => [p.inclui, ...p.beneficios])
     .filter((b) => b.estado === 'bloqueante')
     .map((b) => ({ id: b.id, texto: normalizar(b.texto) }));

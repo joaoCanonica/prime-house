@@ -76,7 +76,15 @@ Mídias publicadas em produção: 20, conferidas no manifesto e nos quadros. Os 
 | Campanha de avaliação | sem incentivo (política "Fake engagement" do Google), em `docs/SEO_GEO.md` §3.3 |
 | Indexação | `noindex` em tudo até a autorização (sessão 9: `indexar` continua `false`, **decisão do João**) |
 
-## 6. O que depende do João antes de publicar
+## 6. Respostas do João (08/11/2026)
+
+- **CNPJ e responsável técnico:** CNPJ 64.525.617/0001-03 no rodapé, em `/privacidade` e no JSON-LD. Responsável técnico: Lucas Moro. O CREF entra quando chegar (não achado em busca pública).
+- **Benefícios fixos:** confirmados (fala do Lucas no vídeo do Plano Prime e confirmação do João) e publicados. A garantia de 14 dias com devolução integral passa a ser oferta pública: a academia precisa cumpri-la como está escrita (CDC, art. 30).
+- **Maquete esquemática:** aprovada, com o selo.
+- **Decisões de marca:** ficam como estão.
+- `audit-compliance` e `validate-config` em produção: 0 erros e 0 travas.
+
+## 7. O que ainda depende do João (texto original da sessão 9)
 
 1. **CREF do responsável técnico** (e CNPJ/razão social) para o rodapé e para `/privacidade`.
 2. **Confirmação por escrito dos benefícios fixos**, se quiser publicá-los. Sem ela, ficam fora.

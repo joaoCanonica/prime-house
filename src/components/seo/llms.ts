@@ -28,17 +28,22 @@ export function gerarLlms(base: string | null): string {
         ? `${p.nome} (${p.inclui.texto.replace(/\.$/, '')})`
         : p.nome,
     );
+  const beneficios = planos
+    .flatMap((p) => p.beneficios)
+    .filter((b) => b.estado === 'confirmado')
+    .map((b) => b.texto.replace(/\.$/, ''));
   const link = (p: (typeof paginas)[number]) => `- [${p.nome}](${url(p.rota)}): ${p.resposta}`;
 
   return `# ${nap.nome}
 
 > ${home.resposta}
 
-- O que é: academia de musculação independente, de trânsito livre, em Lages/SC. Inaugurada em ${dataBr(marca.inauguracao.valor)}. Fundador: ${marca.fundador.valor}.
+- O que é: academia de musculação independente, de trânsito livre, em Lages/SC. Inaugurada em ${dataBr(marca.inauguracao.valor)}. Fundador e responsável técnico: ${marca.fundador.valor}. CNPJ ${marca.cnpj.valor}.
 - Endereço: ${nap.endereco}. Plus code ${contato.plusCode.valor}. Coordenadas ${contato.geo.valor.lat}, ${contato.geo.valor.lng}.
 - Horário: ${horarios.tabela.linhas.map((l) => `${l.dias.toLowerCase()}, ${l.horario}`).join('; ')}. (feriados nacionais; nos municipais, confirme com a equipe).
 - Maquinário: 100% ${marca.maquinario.valor} (marca nacional). Confirmados: ${equip.join('; ')}.
 - Planos (os valores não são divulgados no site; as condições são passadas pela equipe): ${pls.join('; ')}.
+- Benefícios: ${beneficios.join('; ')}.
 - Diferenciais: ${difs.join('; ')}.
 - Treino: avaliação funcional com o professor, treino individual no app, treino orientado e adaptado, com acompanhamento de fisioterapeuta.
 - Como falar: WhatsApp ${nap.telefone} (${linkWhatsApp(whatsapp.geral)}); Instagram @${contato.instagram.valor.usuario} (${contato.instagram.valor.url}); Google Maps: ${contato.mapas.valor.google}.

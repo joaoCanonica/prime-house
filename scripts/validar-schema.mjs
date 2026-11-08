@@ -94,8 +94,8 @@ function validarNo(v, no, caminho, erros) {
         if (m && v.membros.has(m[1])) {
           const ok = v.membros.get(m[1]).some((t) => p.faixa.some((f) => v.ancestrais(t).has(f)));
           if (!ok) erros.push(`${onde}: ${m[1]} não é valor de ${p.faixa.join(', ')}`);
-        } else if (/^https?:\/\//.test(x)) {
-          // URL como referência a um Thing (é assim no exemplo de trilha do Google: "item": "https://…")
+        } else if (/^(https?:\/\/|\/)/.test(x)) {
+          // URL como referência a um Thing (absoluta, ou relativa à raiz quando ainda não há SITE_URL)
         } else if (
           p.faixa.includes('Duration') &&
           /^P(?!$)(\d+Y)?(\d+M)?(\d+D)?(T(\d+H)?(\d+M)?(\d+(\.\d+)?S)?)?$/.test(x)

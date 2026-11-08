@@ -3,7 +3,6 @@
 // trabalhe conosco e privacidade.
 import Link from '../base/Link.astro';
 import Logo from '../marca/Logo.astro';
-import Provisorio from '../Provisorio.astro';
 import Consentimento from '../consentimento/Consentimento.astro';
 import { contato } from '../../config/contato.ts';
 import { marca } from '../../config/marca.ts';
@@ -11,7 +10,7 @@ import { consentimento, rodape, whatsapp } from '../../content/textos/index.ts';
 import { linkWhatsApp } from '../../lib/whatsapp.ts';
 
 const end = contato.endereco.valor;
-const cref = marca.crefResponsavel.valor;
+const rt = marca.responsavelTecnico.valor;
 const cnpj = marca.cnpj.valor;
 ---
 
@@ -69,20 +68,11 @@ const cnpj = marca.cnpj.valor;
     </nav>
   </div>
   <div class="rodape__legal t-pequeno">
-    {cref ? (
-      <span>
-        {rodape.responsavelTecnico.replace('{nome}', cref.nome).replace('{cref}', cref.cref)}
-      </span>
-    ) : (
-      <Provisorio motivo="CREF do responsável técnico: pendente">
-        Responsável técnico · CREF pendente
-      </Provisorio>
-    )}
-    {cnpj ? (
-      <span>{rodape.cnpj.replace('{cnpj}', cnpj)}</span>
-    ) : (
-      <Provisorio motivo="CNPJ: pendente">CNPJ pendente</Provisorio>
-    )}
+    <span>
+      {rodape.responsavelTecnico.replace('{nome}', rt.nome)}
+      {rt.cref && rodape.cref.replace('{cref}', rt.cref)}
+    </span>
+    <span>{rodape.cnpj.replace('{cnpj}', cnpj)}</span>
     <span>{rodape.direitos}</span>
     <button type="button" class="rodape__pref" data-preferencias hidden>
       {`${consentimento.preferencias}: `}

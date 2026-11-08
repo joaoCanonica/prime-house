@@ -88,10 +88,7 @@ export const home = {
         valor: '14',
         unidade: 'dias',
         legenda: 'de garantia',
-        provisorio: provisorio('14 dias de garantia', 'benefício fixo: confirmar por escrito'),
-        fonte: F.beneficiosLucas,
-        /** usado enquanto a garantia não for confirmada */
-        alternativa: { valor: 'Livre', legenda: 'trânsito: treine no seu tempo' },
+        fonte: `${F.beneficiosLucas} · confirmado pelo João (08/11/2026)`,
       },
     ],
   },

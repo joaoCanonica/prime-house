@@ -1,9 +1,7 @@
 ---
 // 7 · PLANOS — gesto: três colunas tipográficas, sem caixas nem preço; o Select dentro de uma moldura de luz.
-// "O que inclui" do Prime e os benefícios fixos são provisórios: preview com selo, produção sem.
+// Benefícios fixos confirmados (08/11/2026). "O que inclui" do Prime segue provisório (Txt: selo no preview, fora da produção).
 import BotaoWhatsApp from '../base/BotaoWhatsApp.astro';
-import Provisorio from '../Provisorio.astro';
-import { modoAtual } from '../../config/modo.ts';
 import { home, planos, whatsapp } from '../../content/textos/index.ts';
 import Secao from './Secao.astro';
 import Txt from './Txt.astro';
@@ -26,7 +24,6 @@ const colunas = [
   },
   { id: 'duo', nome: p.duo.nome, resumo: p.duo.resumo, gancho: null, msg: whatsapp.planoDuo },
 ] as const;
-const preview = modoAtual() === 'preview';
 ---
 
 <Secao id="planos" rotulo={home.planos.rotulo} titulo={home.planos.titulo} class="planos">
@@ -49,20 +46,16 @@ const preview = modoAtual() === 'preview';
       </li>
     ))}
   </ol>
-  {preview && (
-    <div class="planos__beneficios">
-      <h3 class="t-rotulo t-secundario">{planos.beneficios.titulo}</h3>
-      <ul>
-        {planos.beneficios.itens.map((b) => (
-          <li>
-            <Provisorio motivo={b.texto.motivo} como="div">
-              <strong>{b.titulo}.</strong> {b.texto.texto}
-            </Provisorio>
-          </li>
-        ))}
-      </ul>
-    </div>
-  )}
+  <div class="planos__beneficios">
+    <h3 class="t-rotulo t-secundario">{planos.beneficios.titulo}</h3>
+    <ul>
+      {planos.beneficios.itens.map((b) => (
+        <li>
+          <strong>{b.titulo}.</strong> {b.texto}
+        </li>
+      ))}
+    </ul>
+  </div>
   <p class="planos__chamada t-lead">{home.planos.chamada}</p>
 </Secao>
 

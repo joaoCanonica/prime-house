@@ -2,6 +2,7 @@ import { existsSync, readFileSync } from 'node:fs';
 import { NodeIO } from '@gltf-transform/core';
 import { ALL_EXTENSIONS } from '@gltf-transform/extensions';
 import { MeshoptDecoder } from 'meshoptimizer';
+import { tour3d } from '../src/config/tour3d.ts';
 import { describe, expect, it } from 'vitest';
 import { verificarAtual } from '../src/config/index.ts';
 import { zonas } from '../src/content/dados/zonas.ts';
@@ -15,10 +16,13 @@ describe('tour 3D: regras', () => {
       expect(z.camera).toBeNull();
     }
   });
-  it('maquete esquemática: aviso no validate-config e não aparece em produção sem aprovação', () => {
+  it('maquete esquemática: aprovada pelo João, com fonte; a produção segue publicável', () => {
+    expect(tour3d.maqueteEsquematicaAprovada.estado).toBe('confirmado');
+    expect(
+      tour3d.maqueteEsquematicaAprovada.estado === 'confirmado' &&
+        tour3d.maqueteEsquematicaAprovada.fonte,
+    ).toMatch(/João/);
     const r = verificarAtual('producao');
-    const a = r.achados.find((x) => x.onde === 'tour3d.maqueteEsquematicaAprovada');
-    expect(a?.gravidade).toBe('aviso');
     expect(r.ok).toBe(true);
   });
 });

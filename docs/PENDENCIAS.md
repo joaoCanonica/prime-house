@@ -134,11 +134,23 @@ Detalhes em `docs/QA.md`, `docs/CONFERENCIA_FINAL.md` e `docs/DEPLOY.md`.
 - **[aviso] WebKit:** 1 erro de JS intermitente em 1 de 8 rodadas do teste de teclado (não reproduzido em 5 tentativas). Conferir num iPhone real.
 - **[aviso] fps e memória medidos por software** (sem GPU). Conferir num Android intermediário real.
 
+## Respostas do João (08/11/2026)
+
+- **[resolvido] CNPJ 64.525.617/0001-03** (dígitos verificadores conferidos): no rodapé, em `/privacidade` e no JSON-LD (`taxID`).
+- **[resolvido] Responsável técnico: Lucas Moro** no rodapé. **[aviso] CREF:** não encontrado em busca pública em 08/11/2026. Entra em `src/config/marca.ts` (`responsavelTecnico.cref`) quando o João enviar.
+- **[resolvido] Benefícios fixos** (garantia de 14 dias com devolução integral, trancamento de 30 dias no anual, Sexta Prime): confirmados pela fala do Lucas no vídeo do Plano Prime e pelo João. Publicados em `/planos`, na home (número "14 dias") e na FAQ. As ofertas de campanha do mesmo vídeo ("matrícula gratuita", "primeiro mês por nossa conta") seguem fora (seção 8), e o vídeo segue `naoUsar`.
+- **[resolvido] Maquete esquemática aprovada** para produção, com o selo "Representação esquemática". A recepção ganhou foto (parede com o logo). **[aviso]** O layout real e o "Ver de verdade" esperam os vídeos da academia completa que o João vai conseguir.
+- **[resolvido] Decisões de marca:** H1, "atendimento de verdade" e a foto da esteira ficam como estão.
+- **[aviso] Foto do Lucas:** a enviada tem 150×150 px (fica borrada no site). Pedir o arquivo original.
+- **[aviso] Abertura × LCP:** o João vai avaliar e retornar.
+- **[aviso] O que o Plano Prime inclui:** segue sem fonte (fora da produção).
+- **[aviso] Publicação:** a conta da Vercel conectada nesta sessão é de outra pessoa (plano Hobby, que é para uso não comercial). O deploy espera a decisão do João sobre a conta.
+
 ## Do cliente (herdado do pacote de prompts, seção C)
 
-- [trava] Confirmação por escrito dos benefícios fixos: garantia de 14 dias, trancamento de 30 dias no anual, Sexta Prime.
+- [resolvido em 08/11/2026] Benefícios fixos confirmados (fala do Lucas no vídeo + João).
 - [trava] Autorizações de imagem de alunos, professores e fisioterapeuta.
 - [aviso] Laranja oficial da marca (provisório #EC8A2A) e manual de marca.
-- [aviso] CREF do responsável técnico, CNPJ, m², nº de máquinas.
+- [aviso] CREF do responsável técnico (Lucas Moro), m², nº de máquinas. CNPJ recebido em 08/11/2026.
 - [aviso] Planta baixa com medidas, lista do maquinário e captura 3D por zona.
 - [aviso] Fotos em alta do interior e arquivos originais dos vídeos.

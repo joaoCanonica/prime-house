@@ -1,5 +1,5 @@
 {
-  "data": "2026-11-08T00:20:32.649Z",
+  "data": "2026-11-08T02:59:02.261Z",
   "limites": {
     "jsInicialKB": 40,
     "ilha3dKB": 180,
@@ -17,61 +17,61 @@
       "rota": "/a-casa/",
       "jsInicialKB": 5.1,
       "cssEmbutidoKB": 5,
-      "htmlKB": 21.3
+      "htmlKB": 21.7
     },
     {
       "rota": "/como-funciona/",
       "jsInicialKB": 2.4,
       "cssEmbutidoKB": 4.9,
-      "htmlKB": 17.8
+      "htmlKB": 17.9
     },
     {
       "rota": "/equipe/",
       "jsInicialKB": 2.4,
       "cssEmbutidoKB": 4.5,
-      "htmlKB": 15.6
+      "htmlKB": 15.8
     },
     {
       "rota": "/horarios-e-como-chegar/",
       "jsInicialKB": 4.5,
       "cssEmbutidoKB": 5.3,
-      "htmlKB": 18.8
+      "htmlKB": 18.9
     },
     {
       "rota": "/",
       "jsInicialKB": 9.2,
       "cssEmbutidoKB": 8.4,
-      "htmlKB": 36.7
+      "htmlKB": 37.1
     },
     {
       "rota": "/maquinario/",
       "jsInicialKB": 2.4,
-      "cssEmbutidoKB": 5,
+      "cssEmbutidoKB": 4.9,
       "htmlKB": 18.8
     },
     {
       "rota": "/perguntas-frequentes/",
       "jsInicialKB": 1.9,
-      "cssEmbutidoKB": 4.4,
-      "htmlKB": 16.7
+      "cssEmbutidoKB": 4.5,
+      "htmlKB": 17.2
     },
     {
       "rota": "/planos/",
       "jsInicialKB": 3.3,
       "cssEmbutidoKB": 4.7,
-      "htmlKB": 16.6
+      "htmlKB": 17
     },
     {
       "rota": "/privacidade/",
       "jsInicialKB": 1.9,
       "cssEmbutidoKB": 4.2,
-      "htmlKB": 15.1
+      "htmlKB": 15.3
     },
     {
       "rota": "/trabalhe-conosco/",
       "jsInicialKB": 1.9,
-      "cssEmbutidoKB": 4.3,
-      "htmlKB": 15.5
+      "cssEmbutidoKB": 4.4,
+      "htmlKB": 15.6
     }
   ],
   "ilha3d": {

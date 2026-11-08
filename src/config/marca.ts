@@ -18,6 +18,13 @@ export const marca = {
   maquinario: confirmado('Cimerian', 'post de 25/08/2026 ("100% equipada")'),
   // Rodapé (seção 8): entram quando informados.
   razaoSocial: opcional<string>(),
-  cnpj: opcional<string>(),
-  crefResponsavel: opcional<{ nome: string; cref: string }>(),
+  cnpj: confirmado(
+    '64.525.617/0001-03',
+    'João (WAXLO), 08/11/2026 · dígitos verificadores conferidos',
+  ),
+  /** responsável técnico: o CREF entra quando o João enviar (busca pública em 08/11/2026 não achou) */
+  responsavelTecnico: confirmado<{ nome: string; cref: string | null }>(
+    { nome: 'Lucas Moro', cref: null },
+    'João (WAXLO), 08/11/2026',
+  ),
 } as const;

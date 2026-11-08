@@ -1,8 +1,10 @@
-// Planos sem preço ("Fale com a equipe e conheça as condições"). Benefícios fixos: bloqueante até confirmação por escrito.
+// Planos sem preço ("Fale com a equipe e conheça as condições"). Benefícios fixos confirmados pelo João em 08/11/2026
+// (são os da fala do Lucas no vídeo do Plano Prime; as ofertas de campanha do mesmo vídeo ficam fora: seção 8).
 import type { z } from 'astro/zod';
 import type { plano } from '../schemas.ts';
 
-const CONFIRMAR = 'confirmar por escrito';
+const BENEFICIOS =
+  'fala do Lucas Moro no vídeo "Benefícios do Plano Prime" + confirmação do João (08/11/2026)';
 
 export const planos: z.input<typeof plano>[] = [
   {
@@ -19,20 +21,20 @@ export const planos: z.input<typeof plano>[] = [
       {
         id: 'garantia-14-dias',
         texto: 'Garantia de 14 dias, com devolução integral.',
-        estado: 'bloqueante',
-        rotulo: CONFIRMAR,
+        estado: 'confirmado',
+        fonte: BENEFICIOS,
       },
       {
         id: 'trancamento-30-dias',
         texto: 'No plano anual, trancamento de até 30 dias.',
-        estado: 'bloqueante',
-        rotulo: CONFIRMAR,
+        estado: 'confirmado',
+        fonte: BENEFICIOS,
       },
       {
         id: 'sexta-prime',
         texto: 'Sexta Prime: toda sexta, traga um amigo ou familiar para treinar com você.',
-        estado: 'bloqueante',
-        rotulo: CONFIRMAR,
+        estado: 'confirmado',
+        fonte: BENEFICIOS,
       },
     ],
     fonte: 'vídeo "Benefícios do Plano Prime" (Lucas)',

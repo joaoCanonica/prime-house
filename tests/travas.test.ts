@@ -146,10 +146,28 @@ describe('audit-compliance: travas simuladas', () => {
     const dir = distCom({
       'planos/index.html': BASE('<li>Garantia de 14 dias, com devolução integral.</li>'),
     });
-    const r = auditar({ dir, modo: 'producao' });
+    // benefício ainda pendente (bloqueante): a trava vale para qualquer benefício não confirmado
+    const planosDados = [
+      {
+        id: 'prime' as const,
+        ordem: 1,
+        nome: 'Plano Prime',
+        fonte: 'teste',
+        inclui: { id: 'x', texto: 'X.', estado: 'confirmado' as const, fonte: 'f' },
+        beneficios: [
+          {
+            id: 'garantia',
+            texto: 'Garantia de 14 dias, com devolução integral.',
+            estado: 'bloqueante' as const,
+            rotulo: 'r',
+          },
+        ],
+      },
+    ];
+    const r = auditar({ dir, modo: 'producao', planosDados });
     expect(regrasDe(r)).toContain('beneficio-nao-confirmado');
     expect(r.ok).toBe(false);
-    expect(auditar({ dir, modo: 'preview' }).ok).toBe(true);
+    expect(auditar({ dir, modo: 'preview', planosDados }).ok).toBe(true);
   });
   it('selo PROVISÓRIO ou faixa de revisão em produção', () => {
     const dir = distCom({

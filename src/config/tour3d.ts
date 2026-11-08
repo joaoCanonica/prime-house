@@ -1,10 +1,10 @@
-// Tour 3D. A maquete ESQUEMÁTICA (sem planta) só vai para produção com aprovação expressa do João.
-import { bloqueante } from './tipos.ts';
+// Tour 3D. A maquete ESQUEMÁTICA (sem planta) vai para produção com o selo "Representação esquemática".
+// Aprovada pelo João em 08/11/2026. Com a planta ou a captura real, trocar fonteLayout das zonas (docs/3d/README.md).
+import { confirmado } from './tipos.ts';
 
 export const tour3d = {
-  /** preview: mostra (com selo); produção: só quando virar confirmado(true, 'João, <data>') */
-  maqueteEsquematicaAprovada: bloqueante<boolean>(
-    'aprovação do João para publicar a maquete esquemática',
+  maqueteEsquematicaAprovada: confirmado(
     true,
+    'João (WAXLO), 08/11/2026: "o resto pode subir" (vídeos da academia completa virão depois)',
   ),
 } as const;

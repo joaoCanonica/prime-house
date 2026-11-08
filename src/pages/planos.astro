@@ -1,12 +1,10 @@
 ---
 // /planos — gesto: três colunas lado a lado como uma tabela de leitura (sem preço), CTA por plano;
-// benefícios fixos só confirmados (preview: selo PROVISÓRIO); convênio; perguntas em <details>.
+// benefícios fixos confirmados (08/11/2026); convênio; perguntas em <details>.
 // Vídeos plano-prime (naoUsar) e plano-select (consentimento pendente) ficam fora até serem liberados.
 import BotaoWhatsApp from '../components/base/BotaoWhatsApp.astro';
 import EscolhaPlano from '../components/base/EscolhaPlano.astro';
-import Provisorio from '../components/Provisorio.astro';
 import Txt from '../components/secoes/Txt.astro';
-import { modoAtual } from '../config/modo.ts';
 import Interna from '../layouts/Interna.astro';
 import { planos, whatsapp } from '../content/textos/index.ts';
 
@@ -16,7 +14,6 @@ const colunas = [
   { id: 'select', ...p.select, msg: whatsapp.planoSelect },
   { id: 'duo', ...p.duo, gancho: null, msg: whatsapp.planoDuo },
 ];
-const preview = modoAtual() === 'preview';
 ---
 
 <Interna
@@ -50,23 +47,19 @@ const preview = modoAtual() === 'preview';
     <EscolhaPlano />
   </section>
 
-  {preview && (
-    <section class="bloco" aria-labelledby="beneficios">
-      <h2 id="beneficios" class="t-h2 bloco__titulo">
-        {planos.beneficios.titulo}
-      </h2>
-      <ul class="pl__beneficios">
-        {planos.beneficios.itens.map((b) => (
-          <li>
-            <Provisorio motivo={b.texto.motivo} como="div">
-              <h3 class="t-h3">{b.titulo}</h3>
-              <p>{b.texto.texto}</p>
-            </Provisorio>
-          </li>
-        ))}
-      </ul>
-    </section>
-  )}
+  <section class="bloco" aria-labelledby="beneficios">
+    <h2 id="beneficios" class="t-h2 bloco__titulo">
+      {planos.beneficios.titulo}
+    </h2>
+    <ul class="pl__beneficios">
+      {planos.beneficios.itens.map((b) => (
+        <li>
+          <h3 class="t-h3">{b.titulo}</h3>
+          <p>{b.texto}</p>
+        </li>
+      ))}
+    </ul>
+  </section>
 
   <section class="bloco pl__convenio" aria-labelledby="convenio">
     <h2 id="convenio" class="t-h2 bloco__titulo">

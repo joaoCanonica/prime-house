@@ -113,6 +113,7 @@ export function academiaLd({ base, descricao, imagem }: OpcoesAcademia): No {
     image: [absoluta(base, imagem)],
     logo: absoluta(base, '/icone-512.png'),
     telephone: nap.telefoneE164,
+    taxID: marca.cnpj.valor,
     address: {
       '@type': 'PostalAddress',
       streetAddress: `${end.logradouro}, ${end.numero}, ${end.bairro}`,

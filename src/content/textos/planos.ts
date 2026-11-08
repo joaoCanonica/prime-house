@@ -1,8 +1,6 @@
-// /planos: três planos sem preço; benefícios fixos PROVISÓRIOS até confirmação por escrito; convênio Estar Bem.
+// /planos: três planos sem preço; benefícios fixos confirmados (08/11/2026); convênio Estar Bem.
 import { F } from './fontes.ts';
 import { fraseReal, provisorio } from './tipos.ts';
-
-const CONFIRMAR = 'benefício fixo: confirmar por escrito com a academia';
 
 export const planos = {
   rota: '/planos',
@@ -51,28 +49,19 @@ export const planos = {
       {
         id: 'garantia-14-dias',
         titulo: 'Garantia de 14 dias',
-        texto: provisorio(
-          'Se você vier e não gostar de qualquer coisa, a academia devolve 100% do valor.',
-          CONFIRMAR,
-        ),
+        texto: 'Se você vier e não gostar de qualquer coisa, a academia devolve 100% do valor.',
         fonte: `${F.beneficiosLucas} ("Se você vir e não gostar de qualquer coisa, a gente devolve 100% do teu dinheiro")`,
       },
       {
         id: 'trancamento-30-dias',
         titulo: 'Trancamento',
-        texto: provisorio(
-          'No plano anual, você pode trancar por 30 dias e usar depois.',
-          CONFIRMAR,
-        ),
+        texto: 'No plano anual, você pode trancar por 30 dias e usar depois.',
         fonte: `${F.beneficiosLucas} ("no plano anual você ainda pode trancar ele por trinta dias e usar depois")`,
       },
       {
         id: 'sexta-prime',
         titulo: 'Sexta Prime',
-        texto: provisorio(
-          'Toda sexta-feira, traga um amigo ou familiar para treinar com você.',
-          CONFIRMAR,
-        ),
+        texto: 'Toda sexta-feira, traga um amigo ou familiar para treinar com você.',
         fonte: `${F.beneficiosLucas} ("toda sexta-feira algum amigo ou algum familiar pra treinar junto contigo")`,
       },
     ],

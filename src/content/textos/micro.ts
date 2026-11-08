@@ -137,8 +137,9 @@ export const rodape = {
     'Sáb · 8h às 18h',
     'Dom e feriados · 9h às 12h e 15h às 18h',
   ],
-  /** "{cref}" e "{cnpj}" entram quando informados (marca.ts); até lá, a linha some */
-  responsavelTecnico: 'Responsável técnico: {nome} · CREF {cref}',
+  /** responsável técnico; o " · CREF {cref}" entra quando o número for informado (marca.ts) */
+  responsavelTecnico: 'Responsável técnico: {nome}',
+  cref: ' · CREF {cref}',
   cnpj: 'CNPJ {cnpj}',
   direitos: '© 2026 Prime House Academia. Lages/SC.',
 } as const;

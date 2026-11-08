@@ -10,7 +10,7 @@ export const zonas: z.input<typeof zona>[] = [
     nomeNoTour: 'recepção',
     descricao: 'Entrada e atendimento.',
     equipamentos: [],
-    midia: [],
+    midia: ['conforto-parede-logo'],
     camera: null,
     fonteLayout: 'pendente',
   },

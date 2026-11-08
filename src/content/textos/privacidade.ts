@@ -40,11 +40,9 @@ export const privacidade = {
     },
     {
       titulo: 'Quem é o responsável',
-      texto: provisorio(
-        'Prime House Academia · razão social, CNPJ e contato do encarregado em breve.',
-        'razão social, CNPJ e encarregado (DPO): pendentes',
-      ),
+      texto:
+        'Prime House Academia, CNPJ 64.525.617/0001-03, Av. Duque de Caxias, 1253, Frei Rogério, Lages/SC. Para pedidos sobre os seus dados, fale com a academia pelo WhatsApp (49) 99804-3861.',
     },
   ],
-  atualizado: '2026-11-06',
+  atualizado: '2026-11-08',
 } as const;
