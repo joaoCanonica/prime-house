@@ -1,0 +1,19 @@
+- img "Sala de musculação à noite, com máquinas Cimerian sob as luzes do teto"
+- status: Carregando a maquete…
+- tablist "Zonas da academia":
+  - tab "Recepção"
+  - tab "Musculação"
+  - tab "Cardio" [selected]
+  - tab "Vestiários"
+  - tab "Avaliação e fisioterapia"
+  - tab "Conveniência"
+  - tab "Espaço kids"
+- tabpanel "Cardio":
+  - heading "Cardio" [level=2]
+  - paragraph: "Esteiras com tela: YouTube, Netflix, Disney+, Prime Video e Spotify enquanto você caminha ou corre."
+  - heading "Equipamentos confirmados" [level=3]
+  - list:
+    - listitem: Esteira com TV cardiorrespiratório
+  - img "Tela da esteira com os aplicativos de vídeo e música"
+  - link "Quero conhecer esta área no WhatsApp (abre em nova aba)":
+    - /url: https://wa.me/5549998043861?text=Ol%C3%A1!%20Vi%20a%20%C3%A1rea%20de%20cardio%20no%20tour%20do%20site%20e%20quero%20conhecer%20de%20perto.

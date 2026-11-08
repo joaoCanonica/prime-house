@@ -1,0 +1,114 @@
+---
+// /trabalhe-conosco — gesto: um quadro de vagas sóbrio (três áreas) e o passo a passo; candidatura pelo WhatsApp.
+import BotaoWhatsApp from '../components/base/BotaoWhatsApp.astro';
+import Provisorio from '../components/Provisorio.astro';
+import Interna from '../layouts/Interna.astro';
+import { trabalheConosco as t, whatsapp } from '../content/textos/index.ts';
+---
+
+<Interna
+  meta={t.meta}
+  rotulo="Trabalhe conosco"
+  titulo={t.titulo.texto}
+  resposta={t.resposta}
+  rota="/trabalhe-conosco"
+  mensagem={whatsapp.trabalhe}
+>
+  <p class="t-lead tc__valor">{t.valorizamos}</p>
+  <ul class="tc__areas" aria-label="Áreas">
+    {t.areas.map((a, i) => (
+      <li>
+        <span class="tc__n t-tabular" aria-hidden="true">
+          {String(i + 1).padStart(2, '0')}
+        </span>
+        <h2 class="tc__titulo">{a.titulo}</h2>
+        <p>{a.texto}</p>
+      </li>
+    ))}
+  </ul>
+  <p class="t-pequeno t-secundario tc__aviso">{t.aviso}</p>
+
+  <section class="bloco" aria-labelledby="candidatar">
+    <h2 id="candidatar" class="t-h2 bloco__titulo">
+      {t.comoCandidatar.titulo}
+    </h2>
+    <ol class="tc__passos">
+      {t.comoCandidatar.passos.map((p) => (
+        <li>{p}</li>
+      ))}
+    </ol>
+    <div class="tc__acoes">
+      <BotaoWhatsApp mensagem={whatsapp.trabalhe} texto={t.comoCandidatar.botao} />
+      {!t.comoCandidatar.email && (
+        <Provisorio motivo="e-mail para currículos: pendente">
+          Também por e-mail (endereço em breve).
+        </Provisorio>
+      )}
+    </div>
+  </section>
+</Interna>
+
+<style>
+  .tc__valor {
+    max-width: 36ch;
+    margin-bottom: var(--esp-7);
+  }
+  .tc__areas {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    border-top: 1px solid var(--prime-linha);
+  }
+  .tc__areas li {
+    display: grid;
+    grid-template-columns: 3rem minmax(0, 1fr);
+    gap: var(--esp-1) var(--esp-4);
+    padding: var(--esp-5) 0;
+    border-bottom: 1px solid var(--prime-linha);
+    max-width: none;
+  }
+  .tc__areas li p {
+    grid-column: 2;
+    color: var(--prime-concreto);
+  }
+  .tc__n {
+    color: var(--prime-laranja);
+    font-weight: 600;
+  }
+  .tc__titulo {
+    font-family: var(--fonte-titulo);
+    font-stretch: var(--largura-display);
+    font-weight: 740;
+    text-transform: uppercase;
+    font-size: clamp(2rem, 1.4rem + 2.4vw, 3.5rem);
+    line-height: 0.9;
+  }
+  .tc__aviso {
+    margin-top: var(--esp-5);
+  }
+  .tc__passos {
+    display: grid;
+    gap: var(--esp-3);
+    padding-left: 1.25rem;
+    max-width: 52ch;
+  }
+  .tc__passos li::marker {
+    color: var(--prime-laranja);
+    font-weight: 600;
+  }
+  .tc__acoes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--esp-4);
+    align-items: center;
+  }
+  @media (min-width: 64rem) {
+    .tc__areas li {
+      grid-template-columns: 4rem minmax(0, 22rem) minmax(0, 1fr);
+      align-items: baseline;
+    }
+    .tc__areas li p {
+      grid-column: 3;
+    }
+  }
+</style>

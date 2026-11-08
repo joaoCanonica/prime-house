@@ -1,0 +1,98 @@
+---
+// 404 — gesto: uma moldura de luz APAGADA que acende quando o ponteiro (ou o foco) chega nela; três caminhos.
+import Interna from '../layouts/Interna.astro';
+import { erro404 } from '../content/textos/index.ts';
+import { linkWhatsApp, mensagens } from '../lib/whatsapp.ts';
+
+const caminhos = erro404.caminhos.map((c) =>
+  c.href === 'whatsapp'
+    ? { ...c, href: linkWhatsApp(mensagens.geral), externo: true }
+    : { ...c, externo: false },
+);
+---
+
+<Interna
+  meta={erro404.meta}
+  rotulo="Erro 404"
+  titulo={erro404.titulo}
+  resposta={erro404.resposta}
+  rota="/404"
+  semResposta
+>
+  <div class="e404">
+    <p class="t-lead">{erro404.texto}</p>
+    <nav class="e404__moldura" aria-label="Para onde ir">
+      <svg class="e404__linha" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+        <polygon points="7,0 93,0 100,50 93,100 7,100 0,50"></polygon>
+      </svg>
+      <ul>
+        {caminhos.map((c) => (
+          <li>
+            <a href={c.href} {...(c.externo ? { target: '_blank', rel: 'noopener' } : {})}>
+              {c.rotulo}
+              {c.externo && <span class="sr-only"> (abre o WhatsApp)</span>}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </div>
+</Interna>
+
+<style>
+  .e404 {
+    display: grid;
+    gap: var(--esp-7);
+  }
+  .e404__moldura {
+    position: relative;
+    padding: clamp(2rem, 1rem + 4vw, 4rem) clamp(2.5rem, 1rem + 6vw, 6rem);
+    max-width: 44rem;
+  }
+  .e404__linha {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    pointer-events: none;
+  }
+  .e404__linha polygon {
+    fill: none;
+    stroke: var(--prime-luz);
+    stroke-width: 1px;
+    vector-effect: non-scaling-stroke;
+    opacity: 0.12;
+    transition:
+      opacity var(--dur-2) var(--curva-saida),
+      filter var(--dur-2) var(--curva-saida);
+  }
+  .e404__moldura:hover .e404__linha polygon,
+  .e404__moldura:focus-within .e404__linha polygon {
+    opacity: 1;
+    filter: drop-shadow(0 0 2px rgb(255 244 224 / 0.9)) drop-shadow(0 0 8px rgb(255 244 224 / 0.35));
+  }
+  .e404__moldura ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: var(--esp-2);
+  }
+  .e404__moldura a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 3rem;
+    font-family: var(--fonte-titulo);
+    font-stretch: var(--largura-display);
+    font-weight: 720;
+    text-transform: uppercase;
+    font-size: clamp(1.75rem, 1.2rem + 2vw, 2.75rem);
+    line-height: 1;
+    color: var(--prime-nevoa);
+    text-decoration: none;
+  }
+  .e404__moldura a:hover {
+    color: var(--prime-luz);
+  }
+</style>

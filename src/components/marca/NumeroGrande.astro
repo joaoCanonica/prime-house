@@ -1,0 +1,66 @@
+---
+// Número verificável gigante (tabular) com legenda em versalete. Ex.: 5 · 100% · 5h–0h · 14 dias.
+interface Props {
+  valor: string;
+  /** parte menor ao lado do número (ex.: "dias") */
+  unidade?: string;
+  legenda: string;
+  /** cor do número */
+  cor?: 'luz' | 'laranja' | 'nevoa';
+  class?: string | undefined;
+}
+const { valor, unidade, legenda, cor = 'nevoa', class: classe } = Astro.props;
+// largura aproximada (em) no Archivo 62 · 760, para o número nunca passar do contêiner
+const LARG: Record<string, number> = { '%': 0.78, '–': 0.52, h: 0.5, ' ': 0.22 };
+const em =
+  [...valor].reduce((t, c) => t + (LARG[c] ?? 0.47), 0) +
+  (unidade ? 0.32 * (unidade.length * 0.5 + 0.12) : 0);
+---
+
+<figure
+  class:list={['numero-grande', `numero-grande--${cor}`, classe]}
+  style={{ '--numero-em': em.toFixed(2) }}
+>
+  <span class="numero-grande__valor">
+    {valor}
+    {unidade && <span class="numero-grande__unidade">{unidade}</span>}
+  </span>
+  <figcaption class="numero-grande__legenda t-rotulo">{legenda}</figcaption>
+</figure>
+
+<style>
+  .numero-grande {
+    container-type: inline-size;
+    display: grid;
+    gap: var(--esp-3);
+    justify-items: start;
+  }
+  .numero-grande__valor {
+    font-family: var(--fonte-titulo);
+    font-stretch: var(--largura-display);
+    font-weight: 760;
+    font-size: min(var(--fs-numero), 100cqi / var(--numero-em));
+    line-height: 0.8;
+    letter-spacing: var(--ls-numero);
+    font-variant-numeric: tabular-nums lining-nums;
+    white-space: nowrap;
+    /* compensa o espaço lateral do primeiro algarismo */
+    margin-inline-start: -0.04em;
+  }
+  .numero-grande__unidade {
+    font-size: 0.32em;
+    letter-spacing: -0.01em;
+    margin-inline-start: 0.12em;
+    font-weight: 700;
+  }
+  .numero-grande--luz .numero-grande__valor {
+    color: var(--prime-luz);
+  }
+  .numero-grande--laranja .numero-grande__valor {
+    color: var(--prime-laranja);
+  }
+  .numero-grande__legenda {
+    color: var(--prime-concreto);
+    max-width: 26ch;
+  }
+</style>

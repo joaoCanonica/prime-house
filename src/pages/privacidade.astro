@@ -1,0 +1,50 @@
+---
+// /privacidade — gesto: a página clara (Névoa), texto longo legível; seções provisórias só no preview.
+import Txt from '../components/secoes/Txt.astro';
+import { ehProvisorio } from '../components/secoes/texto.ts';
+import { modoAtual } from '../config/modo.ts';
+import Interna from '../layouts/Interna.astro';
+import { privacidade as pv } from '../content/textos/index.ts';
+
+const preview = modoAtual() === 'preview';
+const secoes = pv.secoes.filter((s) => preview || !ehProvisorio(s.texto));
+const [a, m, d] = pv.atualizado.split('-');
+---
+
+<Interna meta={pv.meta} rotulo="LGPD" titulo={pv.titulo} resposta={pv.resposta} rota="/privacidade">
+  <article class="pv tema-nevoa">
+    {secoes.map((s) => (
+      <section class="pv__secao">
+        <h2 class="pv__titulo">{s.titulo}</h2>
+        <Txt texto={s.texto} />
+      </section>
+    ))}
+    <p class="pv__data t-pequeno">
+      Atualizado em {d}/{m}/{a}.
+    </p>
+  </article>
+</Interna>
+
+<style>
+  .pv {
+    display: grid;
+    gap: var(--esp-6);
+    padding: clamp(1.5rem, 1rem + 4vw, 5rem);
+  }
+  .pv__secao {
+    display: grid;
+    gap: var(--esp-3);
+    max-width: 62ch;
+  }
+  .pv__titulo {
+    font-family: var(--fonte-titulo);
+    font-stretch: var(--largura-titulo);
+    font-weight: 680;
+    text-transform: uppercase;
+    font-size: var(--fs-h3);
+    color: var(--prime-grafite);
+  }
+  .pv__data {
+    color: var(--prime-concreto-escuro);
+  }
+</style>

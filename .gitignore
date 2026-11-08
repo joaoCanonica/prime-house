@@ -1,0 +1,23 @@
+# dependências e build
+node_modules/
+dist/
+.astro/
+
+# derivados gerados no build (fonte em media-originais/ e modelos-originais/)
+public/media/
+public/modelos/
+public/og/
+
+# capturas de tela (geradas por pnpm capturar)
+docs/capturas/**/*.png
+
+# ambiente
+.env*
+
+# sistema/editor
+.DS_Store
+*.log
+
+# mídia: derivados com consentimento pendente e cache do prepare-media
+media-privada/
+.cache/

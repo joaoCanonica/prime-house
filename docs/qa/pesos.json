@@ -1,0 +1,182 @@
+{
+  "data": "2026-11-08T02:59:02.261Z",
+  "limites": {
+    "jsInicialKB": 40,
+    "ilha3dKB": 180,
+    "glbMB": 3,
+    "splatMB": 40
+  },
+  "paginas": [
+    {
+      "rota": "/404.html",
+      "jsInicialKB": 1.9,
+      "cssEmbutidoKB": 4.3,
+      "htmlKB": 15
+    },
+    {
+      "rota": "/a-casa/",
+      "jsInicialKB": 5.1,
+      "cssEmbutidoKB": 5,
+      "htmlKB": 21.7
+    },
+    {
+      "rota": "/como-funciona/",
+      "jsInicialKB": 2.4,
+      "cssEmbutidoKB": 4.9,
+      "htmlKB": 17.9
+    },
+    {
+      "rota": "/equipe/",
+      "jsInicialKB": 2.4,
+      "cssEmbutidoKB": 4.5,
+      "htmlKB": 15.8
+    },
+    {
+      "rota": "/horarios-e-como-chegar/",
+      "jsInicialKB": 4.5,
+      "cssEmbutidoKB": 5.3,
+      "htmlKB": 18.9
+    },
+    {
+      "rota": "/",
+      "jsInicialKB": 9.2,
+      "cssEmbutidoKB": 8.4,
+      "htmlKB": 37.1
+    },
+    {
+      "rota": "/maquinario/",
+      "jsInicialKB": 2.4,
+      "cssEmbutidoKB": 4.9,
+      "htmlKB": 18.8
+    },
+    {
+      "rota": "/perguntas-frequentes/",
+      "jsInicialKB": 1.9,
+      "cssEmbutidoKB": 4.5,
+      "htmlKB": 17.2
+    },
+    {
+      "rota": "/planos/",
+      "jsInicialKB": 3.3,
+      "cssEmbutidoKB": 4.7,
+      "htmlKB": 17
+    },
+    {
+      "rota": "/privacidade/",
+      "jsInicialKB": 1.9,
+      "cssEmbutidoKB": 4.2,
+      "htmlKB": 15.3
+    },
+    {
+      "rota": "/trabalhe-conosco/",
+      "jsInicialKB": 1.9,
+      "cssEmbutidoKB": 4.4,
+      "htmlKB": 15.6
+    }
+  ],
+  "ilha3d": {
+    "gzipKB": 164.1,
+    "arquivos": [
+      {
+        "arquivo": "_astro/tour.C7z65nh_.js",
+        "gzipKB": 104.9
+      },
+      {
+        "arquivo": "_astro/three.core.DbD54i2F.js",
+        "gzipKB": 56.5
+      },
+      {
+        "arquivo": "_astro/Casa3d.astro_astro_type_script_index_0_lang.CQwypegT.js",
+        "gzipKB": 2.7
+      }
+    ]
+  },
+  "sobDemanda": [
+    {
+      "arquivo": "_astro/DRACOLoader.DzwBjFPG.js",
+      "KB": 7.2,
+      "gzipKB": 2.9
+    },
+    {
+      "arquivo": "_astro/KTX2Loader.BP_F4rHj.js",
+      "KB": 58,
+      "gzipKB": 23.5
+    },
+    {
+      "arquivo": "_astro/basis_transcoder.VXdx5NbI.wasm",
+      "KB": 515,
+      "gzipKB": 241.7
+    },
+    {
+      "arquivo": "_astro/basis_transcoder.o4Hde_L7.js",
+      "KB": 56.2,
+      "gzipKB": 14.8
+    },
+    {
+      "arquivo": "_astro/draco_decoder.C32yEggz.wasm",
+      "KB": 279,
+      "gzipKB": 86.4
+    },
+    {
+      "arquivo": "_astro/draco_decoder.Z1_iN-Ht.wasm",
+      "KB": 187.9,
+      "gzipKB": 61.9
+    },
+    {
+      "arquivo": "_astro/draco_decoder.fzg4nYZr.js",
+      "KB": 702.5,
+      "gzipKB": 143.9
+    },
+    {
+      "arquivo": "_astro/draco_wasm_wrapper.DxJM36Ib.js",
+      "KB": 57.4,
+      "gzipKB": 11.5
+    },
+    {
+      "arquivo": "_astro/draco_wasm_wrapper.fZCQGLGb.js",
+      "KB": 57.1,
+      "gzipKB": 11.4
+    },
+    {
+      "arquivo": "_astro/spark.module.O4NvybtN.js",
+      "KB": 2632.7,
+      "gzipKB": 919.6
+    }
+  ],
+  "glbs": [
+    {
+      "arquivo": "modelos/maquete.26fcdc08.glb",
+      "MB": 0.02,
+      "brotliEstimadoKB": 3.8
+    }
+  ],
+  "splats": [],
+  "videos": {
+    "arquivos": 32,
+    "totalMB": 16.75,
+    "maior": {
+      "arquivo": "media/avaliacao-funcional/avaliacao-funcional-720x1280.f453295e.mp4",
+      "bytes": 2796493,
+      "MB": 2.67
+    }
+  },
+  "imagens": {
+    "arquivos": 134,
+    "totalMB": 4
+  },
+  "fontes": [
+    {
+      "arquivo": "_astro/archivo-62-75.BAyqDyiN.woff2",
+      "KB": 34.9
+    },
+    {
+      "arquivo": "_astro/inter-tight-400-650.BEp3X3AH.woff2",
+      "KB": 25
+    },
+    {
+      "arquivo": "_astro/source-serif-4-italic-display.B_xFrS3G.woff2",
+      "KB": 18.4
+    }
+  ],
+  "fontesTotalKB": 78.3
+}

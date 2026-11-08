@@ -1,0 +1,39 @@
+---
+// Conteúdo que depende de confirmação: no preview aparece com selo PROVISÓRIO; em produção some.
+import { modoAtual } from '../config/modo.ts';
+
+interface Props {
+  /** por que é provisório (vira o title do selo) */
+  motivo: string;
+  /** elemento envolvente (padrão: span) */
+  como?: 'span' | 'div' | 'li';
+}
+const { motivo, como: Tag = 'span' } = Astro.props;
+const mostrar = modoAtual() === 'preview';
+---
+
+{mostrar && (
+  <Tag class="ph-provisorio" data-provisorio title={`Provisório: ${motivo}`}>
+    <slot />
+    <span class="ph-provisorio__selo">Provisório</span>
+  </Tag>
+)}
+
+<style>
+  .ph-provisorio {
+    outline: 1px dashed #8c8d90;
+    outline-offset: 2px;
+  }
+  .ph-provisorio__selo {
+    display: inline-block;
+    margin-inline-start: 0.5em;
+    padding: 0 0.4em;
+    border: 1px solid currentColor;
+    font:
+      600 0.6875rem/1.6 system-ui,
+      sans-serif;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    vertical-align: middle;
+  }
+</style>

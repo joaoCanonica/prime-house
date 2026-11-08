@@ -1,0 +1,301 @@
+---
+// Hero da home. O pôster do vídeo é o LCP: <img fetchpriority="high"> no HTML desde o início; o vídeo
+// (mudo, loop) entra por cima só quando já está tocando. Desktop: vídeo vertical numa moldura de luz alta,
+// em resolução nativa (o 16:9 disponível tem só 720×404). Mobile: o vídeo sangra na tela.
+import Botao from '../base/Botao.astro';
+import BotaoWhatsApp from '../base/BotaoWhatsApp.astro';
+import { video } from '../base/midia.ts';
+import Rotulo from '../base/Rotulo.astro';
+import StatusHorario from '../base/StatusHorario.astro';
+import Logo from '../marca/Logo.astro';
+import MolduraLuz from '../marca/MolduraLuz.astro';
+import { contato } from '../../config/contato.ts';
+import { mensagens } from '../../lib/whatsapp.ts';
+
+interface Props {
+  midia?: 'interior-noite' | 'drone-noite';
+}
+const { midia = 'interior-noite' } = Astro.props;
+
+const DESCRICAO = {
+  'interior-noite':
+    'Sala de musculação da Prime House à noite: máquinas Cimerian sob as molduras de LED do teto',
+  'drone-noite': 'Vista aérea noturna da fachada da Prime House, com o letreiro aceso',
+} as const;
+
+const v = video(midia);
+const poster = (nome: string) => v.posters.find((p) => p.nome === nome);
+const p540 = poster('poster-540');
+const p720 = poster('poster-720');
+if (!p540 || !p720) throw new Error(`[hero] "${midia}" sem pôster vertical`);
+const fontes = v.variantes
+  .filter((x) => !x.horizontal && !x.som)
+  .sort((a, b) => a.altura - b.altura || (a.formato === 'webm' ? -1 : 1));
+const end = contato.endereco.valor;
+---
+
+<section class="hero" data-hero aria-labelledby="hero-titulo">
+  <header class="hero__topo">
+    <a class="hero__logo" href="/" data-logo-destino>
+      <Logo variante="linha" altura={22} decorativo />
+      <span class="sr-only">Prime House Academia, início</span>
+    </a>
+  </header>
+
+  <div class="hero__midia" data-hero-midia>
+    <MolduraLuz forma="retangulo" respiro={0} class="hero__moldura">
+      <picture class="hero__poster" style={{ backgroundImage: `url(${v.lqip})` }}>
+        <source type="image/avif" media="(max-width: 600px)" srcset={p540.avif} />
+        <source type="image/avif" srcset={p720.avif} />
+        <source type="image/webp" media="(max-width: 600px)" srcset={p540.webp} />
+        <img
+          src={p720.webp}
+          width="720"
+          height="1280"
+          alt={DESCRICAO[midia]}
+          fetchpriority="high"
+          loading="eager"
+          decoding="async"
+        />
+      </picture>
+      <video
+        class="hero__video"
+        muted
+        playsinline
+        loop
+        preload="none"
+        aria-hidden="true"
+        data-hero-video
+      >
+        {fontes.map((x) => (
+          <source
+            src={x.arquivo}
+            type={`video/${x.formato}`}
+            media={x.altura < 1280 ? '(max-width: 600px)' : undefined}
+          />
+        ))}
+      </video>
+    </MolduraLuz>
+    <button class="hero__pausa t-rotulo" type="button" data-hero-pausa hidden>
+      <span data-rotulo-pausar>Pausar vídeo</span>
+      <span data-rotulo-tocar hidden>
+        Tocar vídeo
+      </span>
+    </button>
+  </div>
+
+  <div class="hero__texto" data-entra>
+    <Rotulo ponto>Musculação · Trânsito livre · Lages</Rotulo>
+    <h1 class="hero__titulo" id="hero-titulo" tabindex="-1">
+      O novo <em class="acento">padrão</em> de treino em Lages.
+    </h1>
+    <p class="hero__apoio t-lead">
+      100% maquinário Cimerian, atendimento de verdade e um espaço pensado para você querer voltar
+      amanhã.
+    </p>
+    <div class="hero__acoes">
+      <BotaoWhatsApp mensagem={mensagens.geral} origem="hero" />
+      <Botao href="#a-casa" variante="secundario">
+        Fazer o tour
+      </Botao>
+    </div>
+  </div>
+
+  <div class="hero__info" data-entra>
+    <StatusHorario />
+    <p class="t-pequeno hero__endereco">
+      {end.logradouro}, {end.numero}
+      <br />
+      {end.bairro} · {end.cidade}/{end.uf}
+    </p>
+  </div>
+</section>
+
+<script>
+  import './hero.ts';
+</script>
+
+<style>
+  .hero {
+    position: relative;
+    isolation: isolate;
+    min-height: 100svh;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto 1fr auto auto;
+    gap: var(--esp-6);
+    padding: var(--esp-5) var(--margem) var(--esp-7);
+    overflow: clip;
+  }
+  .hero__topo {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+  }
+  .hero__logo {
+    display: inline-flex;
+    color: var(--prime-nevoa);
+    padding: var(--esp-2) 0;
+  }
+  :global(html[data-abertura='on']:not([data-logo='cabecalho'])) .hero__logo {
+    visibility: hidden;
+  }
+
+  /* ----- mídia: no mobile sangra ----- */
+  .hero__midia {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+  }
+  .hero__midia :global(.hero__moldura) {
+    position: absolute;
+    inset: 0;
+    aspect-ratio: auto !important;
+  }
+  .hero__midia :global(.hero__moldura .moldura-luz__linha) {
+    display: none;
+  }
+  .hero__midia::after {
+    /* véu uniforme (não é degradê) para o texto ler sobre o vídeo */
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgb(12 11 10 / 0.52);
+    pointer-events: none;
+  }
+  .hero__poster,
+  .hero__video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .hero__poster {
+    display: block;
+    background-size: cover;
+    background-position: center;
+  }
+  .hero__poster img,
+  .hero__video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .hero__video {
+    opacity: 0;
+    transition: opacity var(--dur-2) var(--curva-saida);
+  }
+  .hero__video:global(.tocando) {
+    opacity: 1;
+  }
+  .hero__pausa {
+    position: absolute;
+    z-index: 3;
+    top: var(--esp-5);
+    right: var(--margem);
+    min-height: 2.75rem;
+    padding: var(--esp-2) var(--esp-3);
+    background: rgb(12 11 10 / 0.6);
+    color: var(--prime-nevoa);
+    border: 1px solid rgb(255 244 224 / 0.35);
+    transition:
+      border-color var(--dur-1) var(--curva-saida),
+      box-shadow var(--dur-1) var(--curva-saida);
+  }
+  .hero__pausa:hover {
+    border-color: var(--prime-luz);
+    box-shadow: var(--luz-borda);
+  }
+
+  /* ----- texto ----- */
+  .hero__texto {
+    grid-row: 3;
+    display: grid;
+    gap: var(--esp-5);
+    align-content: end;
+  }
+  .hero__titulo {
+    font-family: var(--fonte-titulo);
+    font-stretch: var(--largura-display);
+    font-weight: 750;
+    text-transform: uppercase;
+    font-size: clamp(3.25rem, 1.4rem + 7.6vw, 7.5rem);
+    line-height: var(--lh-display);
+    letter-spacing: var(--ls-display);
+    max-width: 11ch;
+  }
+  .hero__titulo:focus {
+    outline: none;
+  }
+  .hero__apoio {
+    max-width: 34ch;
+    color: var(--prime-nevoa);
+  }
+  .hero__acoes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--esp-3);
+    margin-top: var(--esp-2);
+  }
+  .hero__info {
+    grid-row: 4;
+    display: grid;
+    gap: var(--esp-2);
+    padding-top: var(--esp-4);
+    border-top: 1px solid var(--prime-linha);
+  }
+  .hero__endereco {
+    color: var(--prime-nevoa);
+    opacity: 0.86;
+  }
+
+  /* ----- desktop: moldura com margem generosa, sem sangrar ----- */
+  @media (min-width: 64rem) {
+    .hero {
+      height: 100svh;
+      min-height: 40rem;
+      grid-template-columns: minmax(0, 1fr) auto minmax(13rem, 17rem);
+      grid-template-rows: auto minmax(0, 1fr);
+      column-gap: clamp(2rem, 4vw, 5rem);
+      row-gap: var(--esp-5);
+      padding: var(--esp-5) var(--margem) var(--margem);
+    }
+    .hero__topo {
+      grid-column: 1 / -1;
+    }
+    .hero__midia {
+      position: relative;
+      inset: auto;
+      z-index: 0;
+      grid-column: 2;
+      grid-row: 2;
+      height: 100%;
+      aspect-ratio: 9 / 16;
+      justify-self: center;
+    }
+    .hero__midia::after {
+      display: none;
+    }
+    .hero__midia :global(.hero__moldura .moldura-luz__linha) {
+      display: block;
+    }
+    .hero__pausa {
+      top: auto;
+      right: var(--esp-3);
+      bottom: var(--esp-3);
+    }
+    .hero__texto {
+      grid-column: 1;
+      grid-row: 2;
+    }
+    .hero__titulo {
+      font-size: clamp(3.5rem, 0.6rem + 5.6vw, 7.75rem);
+    }
+    .hero__info {
+      grid-column: 3;
+      grid-row: 2;
+      align-self: end;
+    }
+  }
+</style>

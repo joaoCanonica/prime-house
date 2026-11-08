@@ -1,0 +1,82 @@
+---
+// Botão (link): primário = Laranja (a ação principal); secundário = contorno de luz.
+// Cantos retos. Hover e foco: a borda acende como LED.
+interface Props {
+  href: string;
+  variante?: 'primario' | 'secundario';
+  externo?: boolean;
+  class?: string | undefined;
+  /** atributos data-* extras (ex.: data-cta-origem); undefined some */
+  dados?: Record<`data-${string}`, string | undefined> | undefined;
+}
+const {
+  href,
+  variante = 'primario',
+  externo = /^https?:/.test(href),
+  class: classe,
+  dados = {},
+} = Astro.props;
+---
+
+<a
+  class:list={['botao', `botao--${variante}`, classe]}
+  href={href}
+  {...dados}
+  {...(externo ? { target: '_blank', rel: 'noopener' } : {})}
+>
+  <slot name="icone" />
+  <span class="botao__texto">
+    <slot />
+  </span>
+  {externo && <span class="sr-only"> (abre em nova aba)</span>}
+</a>
+
+<style>
+  .botao {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6em;
+    min-height: 3.25rem;
+    padding: 0.9rem 1.5rem;
+    font-family: var(--fonte-texto);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid transparent;
+    transition:
+      box-shadow var(--dur-1) var(--curva-saida),
+      border-color var(--dur-1) var(--curva-saida),
+      background-color var(--dur-2) var(--curva-saida),
+      color var(--dur-2) var(--curva-saida);
+  }
+  .botao--primario {
+    background: var(--prime-laranja);
+    color: var(--prime-breu);
+  }
+  .botao--primario:hover {
+    box-shadow:
+      0 0 0 1px var(--prime-breu),
+      0 0 0 2px var(--prime-luz),
+      0 0 16px 1px rgb(255 244 224 / 0.3);
+  }
+  .botao--secundario {
+    background: transparent;
+    color: var(--prime-nevoa);
+    border-color: rgb(255 244 224 / 0.55);
+  }
+  .botao--secundario:hover {
+    border-color: var(--prime-luz);
+    color: var(--prime-luz);
+    box-shadow:
+      0 0 12px 0 rgb(255 244 224 / 0.3),
+      inset 0 0 10px 0 rgb(255 244 224 / 0.08);
+  }
+  .botao:active {
+    transition-duration: 0ms;
+    box-shadow: none;
+  }
+</style>

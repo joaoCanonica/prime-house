@@ -1,0 +1,243 @@
+{
+  "data": "2026-11-08T00:29:23.900Z",
+  "lighthouse": "13.6.0",
+  "meta": {
+    "performance": 95,
+    "accessibility": 100,
+    "best-practices": 95,
+    "seo": 95
+  },
+  "rotas": [
+    {
+      "rota": "/",
+      "execucoes": [
+        71,
+        98,
+        100
+      ],
+      "desempenho": 98,
+      "acessibilidade": 100,
+      "boasPraticas": 100,
+      "seo": 66,
+      "seoSemNoindex": 100,
+      "lcpMs": 799,
+      "fcpMs": 799,
+      "tbtMs": 130,
+      "cls": 0,
+      "siMs": 2832,
+      "bytes": 528496,
+      "falhasA11y": [],
+      "falhasBP": []
+    },
+    {
+      "rota": "/a-casa/",
+      "execucoes": [
+        97,
+        99,
+        99
+      ],
+      "desempenho": 99,
+      "acessibilidade": 100,
+      "boasPraticas": 100,
+      "seo": 66,
+      "seoSemNoindex": 100,
+      "lcpMs": 1952,
+      "fcpMs": 837,
+      "tbtMs": 43,
+      "cls": 0,
+      "siMs": 837,
+      "bytes": 144170,
+      "falhasA11y": [],
+      "falhasBP": []
+    },
+    {
+      "rota": "/como-funciona/",
+      "execucoes": [
+        100,
+        100,
+        100
+      ],
+      "desempenho": 100,
+      "acessibilidade": 100,
+      "boasPraticas": 100,
+      "seo": 63,
+      "seoSemNoindex": 100,
+      "lcpMs": 780,
+      "fcpMs": 780,
+      "tbtMs": 8,
+      "cls": 0,
+      "siMs": 780,
+      "bytes": 107060,
+      "falhasA11y": [],
+      "falhasBP": []
+    },
+    {
+      "rota": "/equipe/",
+      "execucoes": [
+        100,
+        100,
+        100
+      ],
+      "desempenho": 100,
+      "acessibilidade": 100,
+      "boasPraticas": 100,
+      "seo": 66,
+      "seoSemNoindex": 100,
+      "lcpMs": 772,
+      "fcpMs": 772,
+      "tbtMs": 19,
+      "cls": 0.001,
+      "siMs": 772,
+      "bytes": 117252,
+      "falhasA11y": [],
+      "falhasBP": []
+    },
+    {
+      "rota": "/horarios-e-como-chegar/",
+      "execucoes": [
+        100,
+        100,
+        100
+      ],
+      "desempenho": 100,
+      "acessibilidade": 100,
+      "boasPraticas": 100,
+      "seo": 66,
+      "seoSemNoindex": 100,
+      "lcpMs": 857,
+      "fcpMs": 857,
+      "tbtMs": 0,
+      "cls": 0,
+      "siMs": 857,
+      "bytes": 193165,
+      "falhasA11y": [],
+      "falhasBP": []
+    },
+    {
+      "rota": "/maquinario/",
+      "execucoes": [
+        100,
+        100,
+        100
+      ],
+      "desempenho": 100,
+      "acessibilidade": 100,
+      "boasPraticas": 100,
+      "seo": 66,
+      "seoSemNoindex": 100,
+      "lcpMs": 772,
+      "fcpMs": 772,
+      "tbtMs": 3,
+      "cls": 0.001,
+      "siMs": 772,
+      "bytes": 163897,
+      "falhasA11y": [],
+      "falhasBP": []
+    },
+    {
+      "rota": "/perguntas-frequentes/",
+      "execucoes": [
+        100,
+        100,
+        100
+      ],
+      "desempenho": 100,
+      "acessibilidade": 100,
+      "boasPraticas": 100,
+      "seo": 63,
+      "seoSemNoindex": 100,
+      "lcpMs": 770,
+      "fcpMs": 770,
+      "tbtMs": 42,
+      "cls": 0,
+      "siMs": 770,
+      "bytes": 104753,
+      "falhasA11y": [],
+      "falhasBP": []
+    },
+    {
+      "rota": "/planos/",
+      "execucoes": [
+        100,
+        100,
+        100
+      ],
+      "desempenho": 100,
+      "acessibilidade": 100,
+      "boasPraticas": 100,
+      "seo": 63,
+      "seoSemNoindex": 100,
+      "lcpMs": 855,
+      "fcpMs": 855,
+      "tbtMs": 0,
+      "cls": 0.001,
+      "siMs": 855,
+      "bytes": 107092,
+      "falhasA11y": [],
+      "falhasBP": []
+    },
+    {
+      "rota": "/privacidade/",
+      "execucoes": [
+        100,
+        100,
+        100
+      ],
+      "desempenho": 100,
+      "acessibilidade": 100,
+      "boasPraticas": 100,
+      "seo": 63,
+      "seoSemNoindex": 100,
+      "lcpMs": 771,
+      "fcpMs": 771,
+      "tbtMs": 0,
+      "cls": 0,
+      "siMs": 771,
+      "bytes": 103098,
+      "falhasA11y": [],
+      "falhasBP": []
+    },
+    {
+      "rota": "/trabalhe-conosco/",
+      "execucoes": [
+        100,
+        100,
+        100
+      ],
+      "desempenho": 100,
+      "acessibilidade": 100,
+      "boasPraticas": 100,
+      "seo": 63,
+      "seoSemNoindex": 100,
+      "lcpMs": 769,
+      "fcpMs": 769,
+      "tbtMs": 0,
+      "cls": 0.011,
+      "siMs": 769,
+      "bytes": 103423,
+      "falhasA11y": [],
+      "falhasBP": []
+    },
+    {
+      "rota": "/404.html",
+      "execucoes": [
+        100,
+        100,
+        100
+      ],
+      "desempenho": 100,
+      "acessibilidade": 100,
+      "boasPraticas": 100,
+      "seo": 63,
+      "seoSemNoindex": 100,
+      "lcpMs": 767,
+      "fcpMs": 767,
+      "tbtMs": 4,
+      "cls": 0.001,
+      "siMs": 767,
+      "bytes": 103001,
+      "falhasA11y": [],
+      "falhasBP": []
+    }
+  ]
+}

@@ -1,0 +1,92 @@
+---
+// /a-casa: o tour pela Prime House (maquete 3D + lista de zonas em HTML + fallback em imagem/vídeo).
+import '../styles/global.css';
+import Casa3d from '../components/casa3d/Casa3d.astro';
+import Logo from '../components/marca/Logo.astro';
+import PreviewBanner from '../components/PreviewBanner.astro';
+import Rodape from '../components/secoes/Rodape.astro';
+import { comAcento } from '../components/secoes/texto.ts';
+import Seo from '../components/seo/Seo.astro';
+import { cores } from '../config/tema.ts';
+import { aCasa, navegacao } from '../content/textos/index.ts';
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <Seo meta={aCasa.meta} rota="/a-casa" trilha="A Casa" />
+    <meta name="theme-color" content={cores.breu} />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="preload" href="/modelos/indice.json" as="fetch" crossorigin="anonymous" />
+  </head>
+  <body>
+    <a class="pular-conteudo" href="#conteudo">
+      {navegacao.pularParaConteudo}
+    </a>
+    <PreviewBanner />
+    <header class="topo" data-cta-origem="cabecalho">
+      <a href="/" class="topo__logo">
+        <Logo variante="linha" altura={22} decorativo />
+        <span class="sr-only">Prime House Academia, início</span>
+      </a>
+    </header>
+    <main id="conteudo" class="pagina">
+      <header class="pagina__cabecalho">
+        <p class="t-rotulo t-secundario">A Casa</p>
+        <h1 class="t-h1" set:html={comAcento(aCasa.intro.titulo)} />
+        <p class="t-lead pagina__resposta" data-resposta>
+          {aCasa.resposta}
+        </p>
+      </header>
+      <Casa3d />
+      <p class="t-pequeno t-secundario pagina__nota">{aCasa.pendenteLayout}</p>
+    </main>
+    <Rodape />
+  </body>
+</html>
+
+<style is:global>
+  .pular-conteudo {
+    position: absolute;
+    left: var(--esp-3);
+    top: -4rem;
+    z-index: 2000;
+    padding: var(--esp-3) var(--esp-4);
+    background: var(--prime-luz);
+    color: var(--prime-breu);
+    font-weight: 600;
+  }
+  .pular-conteudo:focus {
+    top: var(--esp-3);
+  }
+</style>
+<style>
+  .topo {
+    padding: var(--esp-5) var(--margem);
+  }
+  .topo__logo {
+    color: var(--prime-nevoa);
+    display: inline-flex;
+  }
+  .pagina {
+    width: min(100% - 2 * var(--margem), var(--largura-max));
+    margin: 0 auto;
+    padding-bottom: var(--secao);
+    display: grid;
+    gap: var(--esp-6);
+  }
+  .pagina__cabecalho {
+    display: grid;
+    gap: var(--esp-4);
+    max-width: 60rem;
+    padding-top: var(--esp-6);
+  }
+  .pagina__resposta {
+    max-width: 52ch;
+    color: var(--prime-concreto);
+  }
+</style>

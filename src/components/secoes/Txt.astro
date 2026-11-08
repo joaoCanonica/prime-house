@@ -1,0 +1,28 @@
+---
+// Renderiza um Texto do conteúdo. Provisório: no preview com selo PROVISÓRIO; em produção, nada.
+import Provisorio from '../Provisorio.astro';
+import { modoAtual } from '../../config/modo.ts';
+import type { Texto } from '../../content/textos/tipos.ts';
+import { comAcento, ehProvisorio } from './texto.ts';
+
+interface Props {
+  texto: Texto;
+  como?: 'p' | 'span' | 'h2' | 'h3' | 'li' | 'blockquote' | 'div';
+  class?: string | undefined;
+}
+const { texto, como: Tag = 'p', class: classe } = Astro.props;
+const prov = ehProvisorio(texto);
+const mostrar = !prov || modoAtual() === 'preview';
+const html = comAcento(texto);
+---
+
+{mostrar &&
+  (prov ? (
+    <Tag class={classe}>
+      <Provisorio motivo={texto.motivo}>
+        <Fragment set:html={html} />
+      </Provisorio>
+    </Tag>
+  ) : (
+    <Tag class={classe} set:html={html} />
+  ))}

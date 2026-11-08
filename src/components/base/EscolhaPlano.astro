@@ -1,0 +1,174 @@
+---
+// Escolha de plano: rádios nativos montam a mensagem do WhatsApp (src/lib/whatsapp.ts). Nada é guardado.
+// Sem JS: o link é direto, com a mensagem geral.
+import { comAcento } from '../secoes/texto.ts';
+import { planos } from '../../content/textos/index.ts';
+import { linkWhatsApp, mensagens, periodos } from '../../lib/whatsapp.ts';
+import IconeWhatsApp from './IconeWhatsApp.astro';
+
+const t = planos.escolha;
+const opcoes = [
+  { id: 'prime', nome: planos.itens.prime.nome },
+  { id: 'select', nome: planos.itens.select.nome },
+  { id: 'duo', nome: planos.itens.duo.nome },
+] as const;
+const ids = Object.keys(periodos) as (keyof typeof periodos)[];
+---
+
+<form class="escolha" data-escolha-plano aria-labelledby="escolha-titulo">
+  <h2 id="escolha-titulo" class="t-h2" set:html={comAcento(t.titulo)} />
+  <p class="t-secundario">{t.instrucao}</p>
+  <fieldset class="escolha__grupo">
+    <legend class="t-rotulo">{t.planoLegenda}</legend>
+    {opcoes.map((o) => (
+      <label class="escolha__opcao">
+        <input type="radio" name="plano" value={o.nome} data-id={o.id} />
+        <span>{o.nome}</span>
+      </label>
+    ))}
+    <label class="escolha__opcao">
+      <input type="radio" name="plano" value="" data-id="nao-sei" />
+      <span>{t.naoSei}</span>
+    </label>
+  </fieldset>
+  <fieldset class="escolha__grupo">
+    <legend class="t-rotulo">{t.periodoLegenda}</legend>
+    {ids.map((id) => (
+      <label class="escolha__opcao">
+        <input type="radio" name="periodo" value={id} />
+        <span>{t.periodos[id]}</span>
+      </label>
+    ))}
+  </fieldset>
+  <div class="escolha__previa">
+    <span class="t-rotulo t-secundario">{t.previa}</span>
+    <output class="escolha__texto" data-escolha-texto aria-live="polite">
+      {mensagens.geral}
+    </output>
+  </div>
+  <a
+    class="escolha__botao"
+    href={linkWhatsApp(mensagens.geral)}
+    target="_blank"
+    rel="noopener"
+    data-escolha-link
+    data-cta-origem="escolha-plano"
+  >
+    <IconeWhatsApp />
+    <span>{t.botao}</span>
+    <span class="sr-only"> (abre em nova aba)</span>
+  </a>
+</form>
+
+<script>
+  import { linkWhatsApp, mensagemEscolhaPlano, type Periodo } from '../../lib/whatsapp.ts';
+
+  for (const form of document.querySelectorAll<HTMLFormElement>('[data-escolha-plano]')) {
+    const link = form.querySelector<HTMLAnchorElement>('[data-escolha-link]');
+    const saida = form.querySelector<HTMLOutputElement>('[data-escolha-texto]');
+    const atualizar = () => {
+      const plano = form.querySelector<HTMLInputElement>('input[name="plano"]:checked');
+      const periodo = form.querySelector<HTMLInputElement>('input[name="periodo"]:checked');
+      const texto = mensagemEscolhaPlano(
+        plano?.value || null,
+        (periodo?.value as Periodo | undefined) ?? null,
+      );
+      if (saida) saida.value = texto;
+      if (link) {
+        link.href = linkWhatsApp(texto);
+        if (plano?.value) link.dataset['ctaPlano'] = plano.dataset['id'] ?? '';
+        else delete link.dataset['ctaPlano'];
+      }
+    };
+    form.addEventListener('change', atualizar);
+    form.addEventListener('submit', (e) => e.preventDefault());
+    atualizar();
+  }
+</script>
+
+<style>
+  .escolha {
+    display: grid;
+    gap: var(--esp-5);
+    max-width: 44rem;
+  }
+  .escolha__grupo {
+    border: 0;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--esp-2);
+  }
+  .escolha__grupo legend {
+    width: 100%;
+    margin-bottom: var(--esp-3);
+    color: var(--prime-concreto);
+  }
+  .escolha__opcao {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--prime-linha);
+    cursor: pointer;
+    transition:
+      border-color var(--dur-1) var(--curva-saida),
+      box-shadow var(--dur-1) var(--curva-saida);
+  }
+  .escolha__opcao input {
+    position: absolute;
+    opacity: 0;
+    width: 1px;
+    height: 1px;
+  }
+  .escolha__opcao:hover {
+    border-color: rgb(255 244 224 / 0.55);
+  }
+  .escolha__opcao:has(input:checked) {
+    border-color: var(--prime-luz);
+    color: var(--prime-luz);
+    box-shadow: 0 0 10px rgb(255 244 224 / 0.25);
+  }
+  .escolha__opcao:has(input:focus-visible) {
+    outline: 1px solid var(--prime-luz);
+    outline-offset: 2px;
+  }
+  .escolha__previa {
+    display: grid;
+    gap: var(--esp-2);
+    padding: var(--esp-4);
+    background: var(--prime-grafite);
+    border-left: 1px solid var(--prime-luz);
+  }
+  .escolha__texto {
+    font-family: var(--fonte-acento);
+    font-style: italic;
+    font-size: 1.125rem;
+    line-height: 1.4;
+  }
+  .escolha__botao {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6em;
+    justify-self: start;
+    min-height: 3.25rem;
+    padding: 0.9rem 1.5rem;
+    background: var(--prime-laranja);
+    color: var(--prime-breu);
+    font-weight: 600;
+    font-size: 0.9375rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: box-shadow var(--dur-1) var(--curva-saida);
+  }
+  .escolha__botao:hover,
+  .escolha__botao:focus-visible {
+    box-shadow:
+      0 0 0 1px var(--prime-breu),
+      0 0 0 2px var(--prime-luz),
+      0 0 16px 1px rgb(255 244 224 / 0.3);
+  }
+</style>

@@ -1,0 +1,89 @@
+---
+// Vídeo mudo em loop dentro da MolduraLuz. Toca só visível e sem movimento reduzido; botão de pausa sempre
+// disponível (WCAG 2.2.2). preload="none" + pôster AVIF/WebP: nada pesa antes de aparecer.
+import MolduraLuz from '../marca/MolduraLuz.astro';
+import { video } from './midia.ts';
+
+interface Props {
+  id: string;
+  /** descrição do que o vídeo mostra (o vídeo é mudo) */
+  descricao: string;
+  formato?: 'vertical' | 'horizontal';
+  forma?: 'retangulo' | 'hexagono';
+  class?: string | undefined;
+}
+const { id, descricao, formato = 'vertical', forma = 'retangulo', class: classe } = Astro.props;
+const v = video(id);
+const horizontal = formato === 'horizontal';
+const vars = v.variantes
+  .filter((x) => x.horizontal === horizontal && !x.som)
+  // a menor (com media) primeiro; em cada tamanho, WebM antes de MP4
+  .sort((a, b) => a.altura - b.altura || (a.formato === 'webm' ? -1 : 1));
+const ref = vars.at(-1);
+if (!ref) throw new Error(`[midia] "${id}" sem variante ${formato}`);
+const poster = v.posters.find((p) => p.nome === (horizontal ? 'poster-16x9-720' : 'poster-720'));
+// variante menor para telas pequenas
+const media = (x: { altura: number; horizontal: boolean }) =>
+  !x.horizontal && x.altura < 1280 ? '(max-width: 600px)' : undefined;
+---
+
+<MolduraLuz forma={forma} proporcao={`${ref.largura} / ${ref.altura}`} class={classe}>
+  <div class="video-moldura" data-video>
+    <video
+      muted
+      playsinline
+      loop={v.loop}
+      preload="none"
+      data-poster={poster?.webp}
+      width={ref.largura}
+      height={ref.altura}
+      aria-label={descricao}
+      style={{ backgroundImage: `url(${v.lqip})` }}
+    >
+      {vars.map((x) => (
+        <source src={x.arquivo} type={`video/${x.formato}`} media={media(x)} />
+      ))}
+    </video>
+    <button class="video-moldura__controle t-rotulo" type="button" data-video-controle hidden>
+      <span data-rotulo-pausar>Pausar</span>
+      <span data-rotulo-tocar hidden>
+        Tocar
+      </span>
+    </button>
+  </div>
+</MolduraLuz>
+
+<style>
+  .video-moldura,
+  .video-moldura video {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  .video-moldura video {
+    object-fit: cover;
+    background-size: cover;
+  }
+  .video-moldura__controle {
+    position: absolute;
+    right: var(--esp-3);
+    bottom: var(--esp-3);
+    padding: var(--esp-2) var(--esp-3);
+    min-height: 2.75rem;
+    background: rgb(12 11 10 / 0.72);
+    color: var(--prime-nevoa);
+    border: 1px solid var(--prime-linha);
+    transition:
+      border-color var(--dur-1) var(--curva-saida),
+      box-shadow var(--dur-1) var(--curva-saida);
+  }
+  /* no hexágono, foge da ponta recortada */
+  :global(.moldura-luz--hexagono) .video-moldura__controle {
+    right: 50%;
+    translate: 50% 0;
+  }
+  .video-moldura__controle:hover {
+    border-color: var(--prime-luz);
+    box-shadow: var(--luz-borda);
+  }
+</style>

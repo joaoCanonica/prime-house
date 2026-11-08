@@ -1,0 +1,95 @@
+/* Fontes self-hosted (OFL), subset latino + pontuação, eixos recortados para o uso (docs/design/TIPOGRAFIA.md). */
+@font-face {
+  font-family: 'Archivo PH';
+  src: url('../assets/fontes/archivo-62-75.woff2') format('woff2');
+  font-weight: 600 800;
+  font-stretch: 62% 75%;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Inter Tight PH';
+  src: url('../assets/fontes/inter-tight-400-650.woff2') format('woff2');
+  font-weight: 400 650;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Source Serif PH';
+  src: url('../assets/fontes/source-serif-4-italic-display.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+/* Fallbacks com métricas casadas (CLS ≈ 0 na troca de fonte). Larguras medidas no Chromium com o texto real
+   (sessão 4): size-adjust = largura da fonte da marca ÷ largura do fallback; ascent/descent = métrica ÷ size-adjust.
+   Arial = Liberation Sans (mesmas métricas); Roboto = Android; Times = Liberation Serif. */
+@font-face {
+  font-family: 'Archivo PH Fb';
+  src:
+    local('Arial Bold'), local('Arial-BoldMT'), local('Liberation Sans Bold'),
+    local('LiberationSans-Bold');
+  font-weight: 600 800;
+  size-adjust: 67.7%;
+  ascent-override: 129.7%;
+  descent-override: 31%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Archivo PH Fb Roboto';
+  src: local('Roboto Bold'), local('Roboto-Bold');
+  font-weight: 600 800;
+  size-adjust: 73.4%;
+  ascent-override: 119.6%;
+  descent-override: 28.6%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Inter Tight PH Fb';
+  src: local('Arial'), local('ArialMT'), local('Liberation Sans'), local('LiberationSans-Regular');
+  font-weight: 400 549;
+  size-adjust: 95.6%;
+  ascent-override: 101.4%;
+  descent-override: 25.2%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Inter Tight PH Fb';
+  src:
+    local('Arial Bold'), local('Arial-BoldMT'), local('Liberation Sans Bold'),
+    local('LiberationSans-Bold');
+  font-weight: 550 700;
+  size-adjust: 92.2%;
+  ascent-override: 105.1%;
+  descent-override: 26.1%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Inter Tight PH Fb Roboto';
+  src: local('Roboto'), local('Roboto-Regular');
+  font-weight: 400 549;
+  size-adjust: 96.7%;
+  ascent-override: 100.2%;
+  descent-override: 24.9%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Inter Tight PH Fb Roboto';
+  src: local('Roboto Bold'), local('Roboto-Bold');
+  font-weight: 550 700;
+  size-adjust: 99.8%;
+  ascent-override: 97.1%;
+  descent-override: 24.1%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Source Serif PH Fb';
+  src:
+    local('Times New Roman Italic'), local('TimesNewRomanPS-ItalicMT'),
+    local('Liberation Serif Italic'), local('LiberationSerif-Italic');
+  font-style: italic;
+  size-adjust: 95.3%;
+  ascent-override: 108.7%;
+  descent-override: 35.2%;
+  line-gap-override: 0%;
+}

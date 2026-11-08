@@ -1,0 +1,85 @@
+---
+// 5 · PARA TODO CORPO — gesto: três colunas editoriais, numeradas, cada uma aberta por um fio de luz.
+// Sem fotos de alunos (consentimento pendente): só texto.
+import { home } from '../../content/textos/index.ts';
+import Secao from './Secao.astro';
+import Txt from './Txt.astro';
+
+const s = home.paraTodoCorpo;
+---
+
+<Secao id="para-todo-corpo" rotulo={s.rotulo} titulo={s.titulo} tamanho="t-h1" class="corpo">
+  <p class="t-lead corpo__intro">{s.intro.texto}</p>
+  <ol class="corpo__colunas">
+    {s.colunas.map((c, i) => (
+      <li class="corpo__coluna">
+        <span class="corpo__n t-tabular" aria-hidden="true">
+          {String(i + 1).padStart(2, '0')}
+        </span>
+        <h3 class="t-h3">{c.titulo}</h3>
+        {c.textos.map((t) => (
+          <Txt texto={t} class="corpo__texto" />
+        ))}
+      </li>
+    ))}
+  </ol>
+  <p class="corpo__fecho">{s.fecho.texto}</p>
+</Secao>
+
+<style>
+  .corpo__intro {
+    max-width: 36ch;
+    margin-bottom: var(--esp-8);
+    color: var(--prime-concreto);
+  }
+  .corpo__colunas {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: var(--esp-7) var(--esp-6);
+  }
+  .corpo__coluna {
+    position: relative;
+    display: grid;
+    align-content: start;
+    gap: var(--esp-4);
+    padding-top: var(--esp-6);
+    max-width: none;
+  }
+  .corpo__coluna::before {
+    content: '';
+    position: absolute;
+    inset: 0 auto auto 0;
+    width: 3.5rem;
+    height: 1px;
+    background: var(--prime-luz);
+    box-shadow: 0 0 6px rgb(255 244 224 / 0.6);
+  }
+  .corpo__n {
+    font-family: var(--fonte-titulo);
+    font-stretch: var(--largura-display);
+    font-weight: 700;
+    font-size: 2.5rem;
+    line-height: 1;
+    color: var(--prime-laranja);
+  }
+  .corpo__coluna :global(.corpo__texto) {
+    color: var(--prime-nevoa);
+  }
+  .corpo__coluna :global(.corpo__texto + .corpo__texto) {
+    color: var(--prime-concreto);
+  }
+  .corpo__fecho {
+    margin-top: var(--esp-8);
+    font-family: var(--fonte-acento);
+    font-style: italic;
+    font-size: clamp(1.5rem, 1.1rem + 1.6vw, 2.5rem);
+    line-height: 1.2;
+    max-width: 28ch;
+  }
+  @media (min-width: 56rem) {
+    .corpo__colunas {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+</style>

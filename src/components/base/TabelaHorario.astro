@@ -1,0 +1,163 @@
+---
+// Tabela de horário como peça gráfica: cada dia numa régua de 24 h; os períodos abertos são tubos de luz.
+// "Hoje" é marcado no navegador (fuso de Lages). Os dados vêm da config confirmada.
+import { configHorario, type Intervalo } from '../../config/horario.ts';
+import { formatarHora } from '../../lib/horario.ts';
+
+interface Props {
+  class?: string | undefined;
+}
+const { class: classe } = Astro.props;
+
+const min = (h: string) => {
+  const [a = '0', b = '0'] = h.split(':');
+  return Number(a) * 60 + Number(b);
+};
+const faixa = (iv: readonly Intervalo[]) =>
+  iv.map(([a, b]) => `${formatarHora(min(a))}–${formatarHora(min(b))}`).join(' e ');
+const linhas = [
+  { dia: '1', nome: 'Segunda', iv: configHorario.semana[1] },
+  { dia: '2', nome: 'Terça', iv: configHorario.semana[2] },
+  { dia: '3', nome: 'Quarta', iv: configHorario.semana[3] },
+  { dia: '4', nome: 'Quinta', iv: configHorario.semana[4] },
+  { dia: '5', nome: 'Sexta', iv: configHorario.semana[5] },
+  { dia: '6', nome: 'Sábado', iv: configHorario.semana[6] },
+  { dia: '0', nome: 'Domingo', iv: configHorario.semana[0] },
+  { dia: 'feriado', nome: 'Feriados', iv: configHorario.feriado },
+];
+const marcas = [0, 6, 12, 18, 24];
+---
+
+<table class:list={['tabela-horario', classe]}>
+  <caption class="sr-only">Horário de funcionamento</caption>
+  <thead>
+    <tr>
+      <th scope="col" class="t-rotulo">
+        Dia
+      </th>
+      <th scope="col" class="t-rotulo">
+        Horário
+      </th>
+      <th scope="col" class="tabela-horario__regua">
+        <span class="sr-only">Régua do dia (0h a 24h)</span>
+        {marcas.map((h) => (
+          <span aria-hidden="true" style={{ left: `${(h / 24) * 100}%` }}>
+            {h}h
+          </span>
+        ))}
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    {linhas.map((l) => (
+      <tr data-dia={l.dia}>
+        <th scope="row">
+          {l.nome}
+          <span class="tabela-horario__hoje t-rotulo">hoje</span>
+        </th>
+        <td class="t-tabular">{faixa(l.iv)}</td>
+        <td class="tabela-horario__barra" aria-hidden="true">
+          {l.iv.map(([a, b]) => (
+            <span
+              style={{
+                left: `${(min(a) / 1440) * 100}%`,
+                width: `${((min(b) - min(a)) / 1440) * 100}%`,
+              }}
+            />
+          ))}
+        </td>
+      </tr>
+    ))}
+  </tbody>
+</table>
+
+<script>
+  import '../../scripts/horario-vivo.ts';
+</script>
+
+<style>
+  .tabela-horario {
+    width: 100%;
+    border-collapse: collapse;
+    font-variant-numeric: tabular-nums;
+  }
+  .tabela-horario th,
+  .tabela-horario td {
+    padding: 0.85rem 0;
+    text-align: start;
+    vertical-align: middle;
+    border-bottom: 1px solid var(--prime-linha);
+    font-weight: 400;
+  }
+  .tabela-horario thead th {
+    color: var(--prime-concreto);
+    font-weight: 600;
+    padding-block: 0 0.75rem;
+  }
+  .tabela-horario tbody th {
+    font-weight: 600;
+    width: 9.5rem;
+    white-space: nowrap;
+  }
+  .tabela-horario td:nth-child(2) {
+    width: 12rem;
+    color: var(--prime-concreto);
+  }
+  .tabela-horario__regua,
+  .tabela-horario__barra {
+    position: relative;
+    min-width: 8rem;
+  }
+  .tabela-horario__regua span[aria-hidden] {
+    position: absolute;
+    top: 0;
+    translate: -50% 0;
+    font-size: var(--fs-rotulo);
+    color: var(--prime-concreto);
+  }
+  .tabela-horario__regua span[aria-hidden]:nth-child(2) {
+    translate: 0 0;
+  }
+  .tabela-horario__regua span[aria-hidden]:last-child {
+    translate: -100% 0;
+  }
+  .tabela-horario__barra::before {
+    content: '';
+    position: absolute;
+    inset: 50% 0 auto;
+    height: 1px;
+    background: var(--prime-linha);
+  }
+  .tabela-horario__barra span {
+    position: absolute;
+    top: calc(50% - 1px);
+    height: 3px;
+    background: rgb(255 244 224 / 0.45);
+  }
+  .tabela-horario__hoje {
+    display: none;
+    margin-inline-start: 0.6em;
+    color: var(--prime-laranja);
+  }
+  tr[data-hoje] th,
+  tr[data-hoje] td:nth-child(2) {
+    color: var(--prime-luz);
+  }
+  tr[data-hoje] .tabela-horario__hoje {
+    display: inline;
+  }
+  tr[data-hoje] .tabela-horario__barra span {
+    background: var(--prime-luz);
+    box-shadow: 0 0 8px 1px rgb(255 244 224 / 0.5);
+  }
+  @media (max-width: 40rem) {
+    .tabela-horario__regua,
+    .tabela-horario__barra {
+      display: none;
+    }
+    .tabela-horario td:nth-child(2) {
+      width: auto;
+      text-align: end;
+    }
+  }
+</style>

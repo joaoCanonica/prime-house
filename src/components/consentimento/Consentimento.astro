@@ -1,0 +1,168 @@
+---
+// Banner de consentimento: Aceitar e Recusar com o mesmo peso. Só aparece com JS (sem JS nada de terceiro
+// carrega, então não há o que consentir). Também liga a medição sem cookie (src/lib/medicao.ts).
+import { consentimento as t } from '../../content/textos/index.ts';
+---
+
+<aside class="consentimento" data-consentimento aria-label={t.rotulo} hidden>
+  <div class="consentimento__quadro">
+    <p class="consentimento__texto t-pequeno">
+      <span class="consentimento__motivo" data-consentimento-motivo hidden>
+        {t.motivoMapa}
+      </span>
+      {t.texto} <a href="/privacidade">{t.saibaMais}</a>
+    </p>
+    <div class="consentimento__acoes">
+      <button type="button" class="consentimento__botao" data-consentir="aceito">
+        {t.aceitar}
+      </button>
+      <button type="button" class="consentimento__botao" data-consentir="recusado">
+        {t.recusar}
+      </button>
+    </div>
+  </div>
+</aside>
+
+<script>
+  import { iniciarMedicao } from '../../lib/medicao.ts';
+  import {
+    ABRIR,
+    MUDOU,
+    definirConsentimento,
+    lerConsentimento,
+    type Escolha,
+  } from './consentimento.ts';
+
+  iniciarMedicao();
+
+  const banner = document.querySelector<HTMLElement>('[data-consentimento]');
+  const motivo = banner?.querySelector<HTMLElement>('[data-consentimento-motivo]');
+  const raiz = document.documentElement;
+  let observador: ResizeObserver | null = null;
+  let ultimoFoco: HTMLElement | null = null;
+
+  function mostrar(focar: boolean, comMotivo?: string) {
+    if (!banner) return;
+    if (motivo) motivo.hidden = !comMotivo;
+    banner.hidden = false;
+    // o botão flutuante (celular) sobe para não ficar por baixo do banner
+    observador ??= new ResizeObserver(() =>
+      raiz.style.setProperty('--consentimento-altura', `${banner.offsetHeight}px`),
+    );
+    observador.observe(banner);
+    if (focar) banner.querySelector<HTMLButtonElement>('[data-consentir]')?.focus();
+  }
+  function esconder() {
+    if (!banner) return;
+    banner.hidden = true;
+    observador?.disconnect();
+    raiz.style.removeProperty('--consentimento-altura');
+  }
+
+  if (banner) {
+    for (const b of banner.querySelectorAll<HTMLButtonElement>('[data-consentir]')) {
+      b.addEventListener('click', () => {
+        const voltar = banner.contains(document.activeElement) ? ultimoFoco : null;
+        definirConsentimento(b.dataset['consentir'] as Escolha);
+        esconder();
+        voltar?.focus();
+      });
+    }
+    banner.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && lerConsentimento()) esconder();
+    });
+    // durante a abertura da home o banner espera ela acabar (não disputa o canto com "Pular abertura")
+    if (!lerConsentimento()) {
+      if (raiz.dataset['abertura'] === 'on')
+        document.addEventListener('ph:abertura-fim', () => mostrar(false), { once: true });
+      else mostrar(false);
+    }
+  }
+
+  // preferência no rodapé (e pedidos de outras partes, como o mapa)
+  addEventListener(ABRIR, (e) => {
+    ultimoFoco = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    mostrar(true, (e as CustomEvent<{ motivo?: string }>).detail?.motivo);
+  });
+
+  for (const b of document.querySelectorAll<HTMLButtonElement>('[data-preferencias]')) {
+    const estado = b.querySelector<HTMLElement>('[data-preferencias-estado]');
+    const atualizar = () => {
+      if (estado) estado.textContent = estado.dataset[lerConsentimento() ?? 'nenhum'] ?? '';
+    };
+    atualizar();
+    addEventListener(MUDOU, atualizar);
+    b.hidden = false;
+    b.addEventListener('click', () => dispatchEvent(new CustomEvent(ABRIR, { detail: {} })));
+  }
+</script>
+
+<style>
+  .consentimento {
+    position: fixed;
+    inset-inline: 0;
+    bottom: 0;
+    z-index: 60;
+    padding: var(--esp-4) var(--margem) max(var(--esp-4), env(safe-area-inset-bottom));
+    background: var(--prime-grafite);
+    border-top: 1px solid rgb(255 244 224 / 0.35);
+    box-shadow: 0 -1px 12px rgb(255 244 224 / 0.08);
+  }
+  .consentimento__quadro {
+    width: min(100%, var(--largura-max));
+    margin-inline: auto;
+    display: grid;
+    gap: var(--esp-3) var(--esp-6);
+    align-items: center;
+  }
+  .consentimento__texto {
+    max-width: 72ch;
+    color: var(--prime-nevoa);
+  }
+  .consentimento__texto a {
+    color: inherit;
+    text-underline-offset: 0.25em;
+  }
+  .consentimento__motivo {
+    display: block;
+    margin-bottom: var(--esp-2);
+    color: var(--prime-luz);
+  }
+  .consentimento__motivo[hidden] {
+    display: none;
+  }
+  /* mesmo peso: mesma forma, mesma cor, mesmo tamanho */
+  .consentimento__acoes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--esp-3);
+  }
+  .consentimento__botao {
+    min-height: 2.75rem;
+    min-width: 8rem;
+    padding: 0.6rem 1.25rem;
+    font: inherit;
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--prime-nevoa);
+    background: transparent;
+    border: 1px solid rgb(255 244 224 / 0.55);
+    cursor: pointer;
+    transition:
+      box-shadow var(--dur-1) var(--curva-saida),
+      border-color var(--dur-1) var(--curva-saida);
+  }
+  .consentimento__botao:hover,
+  .consentimento__botao:focus-visible {
+    border-color: var(--prime-luz);
+    color: var(--prime-luz);
+    box-shadow: 0 0 12px 0 rgb(255 244 224 / 0.3);
+  }
+  @media (min-width: 48rem) {
+    .consentimento__quadro {
+      grid-template-columns: minmax(0, 1fr) auto;
+    }
+  }
+</style>

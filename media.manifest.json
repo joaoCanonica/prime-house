@@ -1,0 +1,2054 @@
+{
+  "$schema": "./media.manifest.schema.json",
+  "versao": 1,
+  "atualizado": "2026-11-06",
+  "nota": "Fonte única da mídia. Originais em media-originais/ (intactos). Derivados gerados por pnpm media:prepare: publicáveis em public/media/, com consentimento pendente em media-privada/ (fora do git e do site).",
+  "originais": [
+    {
+      "id": "captura-00",
+      "numero": 0,
+      "arquivo": "media-originais/fotos/capturas/Captura de tela de 2026-08-08 23-55-01.png",
+      "tipo": "captura",
+      "post": null,
+      "texto": null,
+      "fala": null,
+      "pessoas": [],
+      "audioLiberado": false,
+      "problemas": ["captura de tela em baixa resolução (≈ 380–900 px); nunca vira imagem grande"],
+      "edicoes": [],
+      "naoUsar": true,
+      "descricao": "Arte \"Horário de funcionamento\" (dado conferido: seg–sex 05:00–00:00 · sáb 08:00–18:00 · dom 09:00–12:00 e 15:00–18:00)",
+      "uso": ["conferencia-de-dado"],
+      "resolucaoOriginal": {
+        "largura": 705,
+        "altura": 879
+      },
+      "resolucaoMax": null,
+      "consentimento": "nao-precisa",
+      "motivoNaoUsar": "arte de horário: serve só para conferência de dado"
+    },
+    {
+      "id": "captura-01",
+      "numero": 1,
+      "arquivo": "media-originais/fotos/capturas/Captura de tela de 2026-11-05 13-41-33.png",
+      "tipo": "captura",
+      "post": null,
+      "texto": null,
+      "fala": null,
+      "pessoas": [],
+      "audioLiberado": false,
+      "problemas": ["captura de tela em baixa resolução (≈ 380–900 px); nunca vira imagem grande"],
+      "edicoes": [],
+      "naoUsar": false,
+      "descricao": "Sala ampla, máquinas plate-loaded, teto com molduras de LED",
+      "uso": ["referencia-3d", "galeria-pequena"],
+      "resolucaoOriginal": {
+        "largura": 898,
+        "altura": 896
+      },
+      "resolucaoMax": {
+        "largura": 480,
+        "altura": 479
+      },
+      "consentimento": "nao-precisa"
+    },
+    {
+      "id": "captura-02",
+      "numero": 2,
+      "arquivo": "media-originais/fotos/capturas/Captura de tela de 2026-11-05 13-42-19.png",
+      "tipo": "captura",
+      "post": null,
+      "texto": null,
+      "fala": null,
+      "pessoas": [],
+      "audioLiberado": false,
+      "problemas": ["captura de tela em baixa resolução (≈ 380–900 px); nunca vira imagem grande"],
+      "edicoes": [],
+      "naoUsar": false,
+      "descricao": "Rack de halteres cromados, piso emborrachado, espelho",
+      "uso": ["referencia-3d", "galeria-pequena"],
+      "resolucaoOriginal": {
+        "largura": 380,
+        "altura": 514
+      },
+      "resolucaoMax": {
+        "largura": 380,
+        "altura": 514
+      },
+      "consentimento": "nao-precisa"
+    },
+    {
+      "id": "captura-03",
+      "numero": 3,
+      "arquivo": "media-originais/fotos/capturas/Captura de tela de 2026-11-05 13-42-33.png",
+      "tipo": "captura",
+      "post": null,
+      "texto": null,
+      "fala": null,
+      "pessoas": [],
+      "audioLiberado": false,
+      "problemas": ["captura de tela em baixa resolução (≈ 380–900 px); nunca vira imagem grande"],
+      "edicoes": [],
+      "naoUsar": false,
+      "descricao": "Letreiro da fachada (PRIME HOUSE branco + ACADEMIA vermelho-laranja, chapa metálica escura)",
+      "uso": ["referencia-3d", "galeria-pequena", "referencia-marca", "como-chegar"],
+      "resolucaoOriginal": {
+        "largura": 514,
+        "altura": 503
+      },
+      "resolucaoMax": {
+        "largura": 480,
+        "altura": 470
+      },
+      "consentimento": "nao-precisa"
+    },
+    {
+      "id": "captura-04",
+      "numero": 4,
+      "arquivo": "media-originais/fotos/capturas/Captura de tela de 2026-11-05 13-43-46.png",
+      "tipo": "captura",
+      "post": null,
+      "texto": null,
+      "fala": null,
+      "pessoas": [],
+      "audioLiberado": false,
+      "problemas": ["captura de tela em baixa resolução (≈ 380–900 px); nunca vira imagem grande"],
+      "edicoes": [],
+      "naoUsar": false,
+      "descricao": "Rack/gaiola de agachamento",
+      "uso": ["referencia-3d", "galeria-pequena"],
+      "resolucaoOriginal": {
+        "largura": 514,
+        "altura": 510
+      },
+      "resolucaoMax": {
+        "largura": 480,
+        "altura": 476
+      },
+      "consentimento": "nao-precisa"
+    },
+    {
+      "id": "captura-05",
+      "numero": 5,
+      "arquivo": "media-originais/fotos/capturas/Captura de tela de 2026-11-05 13-43-53.png",
+      "tipo": "captura",
+      "post": null,
+      "texto": null,
+      "fala": null,
+      "pessoas": [],
+      "audioLiberado": false,
+      "problemas": ["captura de tela em baixa resolução (≈ 380–900 px); nunca vira imagem grande"],
+      "edicoes": [],
+      "naoUsar": false,
+      "descricao": "Crossover Cimerian sob moldura de LED",
+      "uso": ["referencia-3d", "galeria-pequena"],
+      "resolucaoOriginal": {
+        "largura": 385,
+        "altura": 501
+      },
+      "resolucaoMax": {
+        "largura": 385,
+        "altura": 501
+      },
+      "consentimento": "nao-precisa"
+    },
+    {
+      "id": "captura-06",
+      "numero": 6,
+      "arquivo": "media-originais/fotos/capturas/Captura de tela de 2026-11-05 13-44-00.png",
+      "tipo": "captura",
+      "post": null,
+      "texto": null,
+      "fala": null,
+      "pessoas": [],
+      "audioLiberado": false,
+      "problemas": ["captura de tela em baixa resolução (≈ 380–900 px); nunca vira imagem grande"],
+      "edicoes": [],
+      "naoUsar": false,
+      "descricao": "Vista da sala: janelas altas, molduras de LED hexagonais e retangulares, máquinas pretas Cimerian, telas, ar-condicionado",
+      "uso": ["referencia-3d", "galeria-pequena", "luz-de-treino"],
+      "resolucaoOriginal": {
+        "largura": 378,
+        "altura": 506
+      },
+      "resolucaoMax": {
+        "largura": 378,
+        "altura": 506
+      },
+      "consentimento": "nao-precisa"
+    },
+    {
+      "id": "captura-07",
+      "numero": 7,
+      "arquivo": "media-originais/fotos/capturas/Captura de tela de 2026-11-05 13-44-08.png",
+      "tipo": "captura",
+      "post": null,
+      "texto": null,
+      "fala": null,
+      "pessoas": [],
+      "audioLiberado": false,
+      "problemas": ["captura de tela em baixa resolução (≈ 380–900 px); nunca vira imagem grande"],
+      "edicoes": [],
+      "naoUsar": false,
+      "descricao": "Vista da sala: janelas altas, molduras de LED hexagonais e retangulares, máquinas pretas Cimerian, telas, ar-condicionado",
+      "uso": ["referencia-3d", "galeria-pequena", "luz-de-treino"],
+      "resolucaoOriginal": {
+        "largura": 510,
+        "altura": 507
+      },
+      "resolucaoMax": {
+        "largura": 480,
+        "altura": 477
+      },
+      "consentimento": "nao-precisa"
+    },
+    {
+      "id": "captura-08",
+      "numero": 8,
+      "arquivo": "media-originais/fotos/capturas/Captura de tela de 2026-11-05 13-44-14.png",
+      "tipo": "captura",
+      "post": null,
+      "texto": null,
+      "fala": null,
+      "pessoas": [],
+      "audioLiberado": false,
+      "problemas": ["captura de tela em baixa resolução (≈ 380–900 px); nunca vira imagem grande"],
+      "edicoes": [],
+      "naoUsar": false,
+      "descricao": "Vista da sala: janelas altas, molduras de LED hexagonais e retangulares, máquinas pretas Cimerian, telas, ar-condicionado",
+      "uso": ["referencia-3d", "galeria-pequena", "luz-de-treino"],
+      "resolucaoOriginal": {
+        "largura": 505,
+        "altura": 509
+      },
+      "resolucaoMax": {
+        "largura": 480,
+        "altura": 484
+      },
+      "consentimento": "nao-precisa"
+    },
+    {
+      "id": "captura-09",
+      "numero": 9,
+      "arquivo": "media-originais/fotos/capturas/Captura de tela de 2026-11-05 13-44-24.png",
+      "tipo": "captura",
+      "post": null,
+      "texto": null,
+      "fala": null,
+      "pessoas": [],
+      "audioLiberado": false,
+      "problemas": ["captura de tela em baixa resolução (≈ 380–900 px); nunca vira imagem grande"],
+      "edicoes": [],
+      "naoUsar": false,
+      "descricao": "Vista da sala: janelas altas, molduras de LED hexagonais e retangulares, máquinas pretas Cimerian, telas, ar-condicionado",
+      "uso": ["referencia-3d", "galeria-pequena", "luz-de-treino"],
+      "resolucaoOriginal": {
+        "largura": 506,
+        "altura": 514
+      },
+      "resolucaoMax": {
+        "largura": 480,
+        "altura": 488
+      },
+      "consentimento": "nao-precisa"
+    },
+    {
+      "id": "captura-10",
+      "numero": 10,
+      "arquivo": "media-originais/fotos/capturas/Captura de tela de 2026-11-05 13-44-30.png",
+      "tipo": "captura",
+      "post": null,
+      "texto": null,
+      "fala": null,
+      "pessoas": [],
+      "audioLiberado": false,
+      "problemas": ["captura de tela em baixa resolução (≈ 380–900 px); nunca vira imagem grande"],
+      "edicoes": [],
+      "naoUsar": false,
+      "descricao": "Vista da sala: janelas altas, molduras de LED hexagonais e retangulares, máquinas pretas Cimerian, telas, ar-condicionado",
+      "uso": ["referencia-3d", "galeria-pequena", "luz-de-treino"],
+      "resolucaoOriginal": {
+        "largura": 508,
+        "altura": 510
+      },
+      "resolucaoMax": {
+        "largura": 480,
+        "altura": 482
+      },
+      "consentimento": "nao-precisa"
+    },
+    {
+      "id": "captura-11",
+      "numero": 11,
+      "arquivo": "media-originais/fotos/capturas/Captura de tela de 2026-11-05 13-44-42.png",
+      "tipo": "captura",
+      "post": null,
+      "texto": null,
+      "fala": null,
+      "pessoas": [],
+      "audioLiberado": false,
+      "problemas": ["captura de tela em baixa resolução (≈ 380–900 px); nunca vira imagem grande"],
+      "edicoes": [],
+      "naoUsar": false,
+      "descricao": "Vista da sala: janelas altas, molduras de LED hexagonais e retangulares, máquinas pretas Cimerian, telas, ar-condicionado",
+      "uso": ["referencia-3d", "galeria-pequena", "luz-de-treino"],
+      "resolucaoOriginal": {
+        "largura": 506,
+        "altura": 507
+      },
+      "resolucaoMax": {
+        "largura": 480,
+        "altura": 481
+      },
+      "consentimento": "nao-precisa"
+    },
+    {
+      "id": "captura-12",
+      "numero": 12,
+      "arquivo": "media-originais/fotos/capturas/Captura de tela de 2026-11-05 13-44-49.png",
+      "tipo": "captura",
+      "post": null,
+      "texto": null,
+      "fala": null,
+      "pessoas": [],
+      "audioLiberado": false,
+      "problemas": ["captura de tela em baixa resolução (≈ 380–900 px); nunca vira imagem grande"],
+      "edicoes": [],
+      "naoUsar": false,
+      "descricao": "Vista da sala: janelas altas, molduras de LED hexagonais e retangulares, máquinas pretas Cimerian, telas, ar-condicionado",
+      "uso": ["referencia-3d", "galeria-pequena", "luz-de-treino"],
+      "resolucaoOriginal": {
+        "largura": 512,
+        "altura": 505
+      },
+      "resolucaoMax": {
+        "largura": 480,
+        "altura": 473
+      },
+      "consentimento": "nao-precisa"
+    },
+    {
+      "id": "captura-13",
+      "numero": 13,
+      "arquivo": "media-originais/fotos/capturas/Captura de tela de 2026-11-05 13-44-56.png",
+      "tipo": "captura",
+      "post": null,
+      "texto": null,
+      "fala": null,
+      "pessoas": [],
+      "audioLiberado": false,
+      "problemas": ["captura de tela em baixa resolução (≈ 380–900 px); nunca vira imagem grande"],
+      "edicoes": [],
+      "naoUsar": false,
+      "descricao": "Vista da sala: janelas altas, molduras de LED hexagonais e retangulares, máquinas pretas Cimerian, telas, ar-condicionado",
+      "uso": ["referencia-3d", "galeria-pequena", "luz-de-treino"],
+      "resolucaoOriginal": {
+        "largura": 511,
+        "altura": 509
+      },
+      "resolucaoMax": {
+        "largura": 480,
+        "altura": 478
+      },
+      "consentimento": "nao-precisa"
+    },
+    {
+      "id": "diferencial-banheiro",
+      "numero": 14,
+      "arquivo": "media-originais/fotos/SaveClip.App_845977344_17911199055492781_3994501073168340219_n.jpg",
+      "tipo": "arte-instagram",
+      "post": "carrossel \"Diferenciais\"",
+      "texto": "BANHEIRO COMPLETO",
+      "fala": null,
+      "pessoas": [],
+      "audioLiberado": false,
+      "problemas": ["texto queimado na arte (não apagar por IA: só recorte)"],
+      "edicoes": [],
+      "naoUsar": false,
+      "uso": ["fonte-recorte"],
+      "resolucaoOriginal": {
+        "largura": 932,
+        "altura": 1166
+      },
+      "resolucaoMax": null,
+      "consentimento": "nao-precisa"
+    },
+    {
+      "id": "diferencial-geladeira",
+      "numero": 15,
+      "arquivo": "media-originais/fotos/SaveClip.App_846504646_17911198986492781_6260922188815430029_n.jpg",
+      "tipo": "arte-instagram",
+      "post": "carrossel \"Diferenciais\"",
+      "texto": "GELADEIRA RECHEADA",
+      "fala": null,
+      "pessoas": [],
+      "audioLiberado": false,
+      "problemas": [
+        "texto queimado na arte (não apagar por IA: só recorte)",
+        "marcas de terceiros visíveis (latas Monster, sucos)"
+      ],
+      "edicoes": [],
+      "naoUsar": false,
+      "uso": ["fonte-recorte"],
+      "resolucaoOriginal": {
+        "largura": 1080,
+        "altura": 1350
+      },
+      "resolucaoMax": null,
+      "consentimento": "nao-precisa"
+    },
+    {
+      "id": "diferencial-lanches",
+      "numero": 16,
+      "arquivo": "media-originais/fotos/SaveClip.App_846564071_17911199094492781_8240580773448899568_n.jpg",
+      "tipo": "arte-instagram",
+      "post": "carrossel \"Diferenciais\"",
+      "texto": "LANCHES",
+      "fala": null,
+      "pessoas": [],
+      "audioLiberado": false,
+      "problemas": ["texto queimado na arte (não apagar por IA: só recorte)"],
+      "edicoes": [],
+      "naoUsar": false,
+      "uso": ["fonte-recorte"],
+      "resolucaoOriginal": {
+        "largura": 1080,
+        "altura": 1350
+      },
+      "resolucaoMax": null,
+      "consentimento": "nao-precisa"
+    },
+    {
+      "id": "diferencial-treino-app",
+      "numero": 17,
+      "arquivo": "media-originais/fotos/SaveClip.App_847550139_17911199022492781_2178908052362222795_n.jpg",
+      "tipo": "arte-instagram",
+      "post": "carrossel \"Diferenciais\"",
+      "texto": "TREINO PERSONALIZADO",
+      "fala": null,
+      "pessoas": [],
+      "audioLiberado": false,
+      "problemas": [
+        "texto queimado na arte (não apagar por IA: só recorte)",
+        "mão de pessoa sem identificação (sem rosto)"
+      ],
+      "edicoes": [],
+      "naoUsar": false,
+      "uso": ["fonte-recorte"],
+      "resolucaoOriginal": {
+        "largura": 1080,
+        "altura": 1350
+      },
+      "resolucaoMax": null,
+      "consentimento": "nao-precisa"
+    },
+    {
+      "id": "diferencial-cafe",
+      "numero": 18,
+      "arquivo": "media-originais/fotos/SaveClip.App_847884739_17911198995492781_6593192510458779125_n.jpg",
+      "tipo": "arte-instagram",
+      "post": "carrossel \"Diferenciais\"",
+      "texto": "CAFÉZINHO",
+      "fala": null,
+      "pessoas": [],
+      "audioLiberado": false,
+      "problemas": [
+        "texto queimado na arte (não apagar por IA: só recorte)",
+        "marca de terceiro visível (Philips Walita)"
+      ],
+      "edicoes": [],
+      "naoUsar": false,
+      "uso": ["fonte-recorte"],
+      "resolucaoOriginal": {
+        "largura": 1014,
+        "altura": 1268
+      },
+      "resolucaoMax": null,
+      "consentimento": "nao-precisa"
+    },
+    {
+      "id": "diferencial-esteira-tv",
+      "numero": 19,
+      "arquivo": "media-originais/fotos/SaveClip.App_848072561_17911198983492781_6163979058481924784_n.jpg",
+      "tipo": "arte-instagram",
+      "post": "carrossel \"Diferenciais\"",
+      "texto": "ESTEIRA COM TV",
+      "fala": null,
+      "pessoas": [],
+      "audioLiberado": false,
+      "problemas": [
+        "texto queimado na arte (não apagar por IA: só recorte)",
+        "logos de terceiros na tela (YouTube, Netflix, Disney+, Prime Video, Spotify, X, Instagram, Facebook)"
+      ],
+      "edicoes": [],
+      "naoUsar": false,
+      "uso": ["fonte-recorte"],
+      "resolucaoOriginal": {
+        "largura": 1080,
+        "altura": 1350
+      },
+      "resolucaoMax": null,
+      "consentimento": "nao-precisa"
+    },
+    {
+      "id": "diferencial-parede-logo",
+      "numero": 20,
+      "arquivo": "media-originais/fotos/SaveClip.App_848412619_17911199010492781_1819738097922439789_n.jpg",
+      "tipo": "arte-instagram",
+      "post": "carrossel \"Diferenciais\"",
+      "texto": "SÓ TEM AQUI",
+      "fala": null,
+      "pessoas": [],
+      "audioLiberado": false,
+      "problemas": ["texto queimado na arte (não apagar por IA: só recorte)"],
+      "edicoes": [],
+      "naoUsar": false,
+      "uso": ["fonte-recorte"],
+      "resolucaoOriginal": {
+        "largura": 1080,
+        "altura": 1350
+      },
+      "resolucaoMax": null,
+      "consentimento": "nao-precisa"
+    },
+    {
+      "id": "diferencial-espaco-kids",
+      "numero": 21,
+      "arquivo": "media-originais/fotos/SaveClip.App_849332230_17911199019492781_5364042096927999151_n.jpg",
+      "tipo": "arte-instagram",
+      "post": "carrossel \"Diferenciais\"",
+      "texto": "ESPAÇO KIDS",
+      "fala": null,
+      "pessoas": [],
+      "audioLiberado": false,
+      "problemas": [
+        "texto queimado na arte (não apagar por IA: só recorte)",
+        "embalagens com personagens licenciados (Disney) visíveis",
+        "conferido: sem crianças na imagem, só brinquedos e material de desenho"
+      ],
+      "edicoes": [],
+      "naoUsar": false,
+      "uso": ["fonte-recorte"],
+      "resolucaoOriginal": {
+        "largura": 1004,
+        "altura": 1255
+      },
+      "resolucaoMax": null,
+      "consentimento": "nao-precisa"
+    },
+    {
+      "id": "nunca-e-tarde-1",
+      "numero": 22,
+      "arquivo": "media-originais/fotos/SaveClip.App_853932337_17913436257492781_179173914112890193_n.jpg",
+      "tipo": "arte-instagram",
+      "post": "carrossel \"Nunca é tarde\"",
+      "texto": "Na Prime House, cada pessoa tem sua história, seu ritmo e seus objetivos.",
+      "fala": null,
+      "pessoas": [
+        {
+          "quem": "alunos e/ou professores reais",
+          "consentimento": "pendente"
+        }
+      ],
+      "audioLiberado": false,
+      "problemas": [
+        "texto queimado na arte (não apagar por IA: só recorte)",
+        "alunos reais identificáveis: não publicar a foto; só o texto (sessão 5)"
+      ],
+      "edicoes": [],
+      "naoUsar": false,
+      "uso": ["texto-sessao-5"],
+      "resolucaoOriginal": {
+        "largura": 1080,
+        "altura": 1350
+      },
+      "resolucaoMax": null,
+      "consentimento": "pendente"
+    },
+    {
+      "id": "nunca-e-tarde-2",
+      "numero": 23,
+      "arquivo": "media-originais/fotos/SaveClip.App_864468457_17913436290492781_1061048777361938273_n.jpg",
+      "tipo": "arte-instagram",
+      "post": "carrossel \"Nunca é tarde\"",
+      "texto": "Treinar equilíbrio e força também contribui para mais segurança nas atividades do dia a dia.",
+      "fala": null,
+      "pessoas": [
+        {
+          "quem": "alunos e/ou professores reais",
+          "consentimento": "pendente"
+        }
+      ],
+      "audioLiberado": false,
+      "problemas": [
+        "texto queimado na arte (não apagar por IA: só recorte)",
+        "alunos reais identificáveis: não publicar a foto; só o texto (sessão 5)"
+      ],
+      "edicoes": [],
+      "naoUsar": false,
+      "uso": ["texto-sessao-5"],
+      "resolucaoOriginal": {
+        "largura": 1080,
+        "altura": 1350
+      },
+      "resolucaoMax": null,
+      "consentimento": "pendente"
+    },
+    {
+      "id": "nunca-e-tarde-3",
+      "numero": 24,
+      "arquivo": "media-originais/fotos/SaveClip.App_865463905_17913436317492781_19569915211908405_n.jpg",
+      "tipo": "arte-instagram",
+      "post": "carrossel \"Nunca é tarde\"",
+      "texto": "Envelhecer faz parte da vida. Perder sua independência não precisa fazer parte dos seus planos.",
+      "fala": null,
+      "pessoas": [
+        {
+          "quem": "alunos e/ou professores reais",
+          "consentimento": "pendente"
+        }
+      ],
+      "audioLiberado": false,
+      "problemas": [
+        "texto queimado na arte (não apagar por IA: só recorte)",
+        "alunos reais identificáveis: não publicar a foto; só o texto (sessão 5)"
+      ],
+      "edicoes": [],
+      "naoUsar": false,
+      "uso": ["texto-sessao-5"],
+      "resolucaoOriginal": {
+        "largura": 1080,
+        "altura": 1350
+      },
+      "resolucaoMax": null,
+      "consentimento": "pendente"
+    },
+    {
+      "id": "nunca-e-tarde-4",
+      "numero": 25,
+      "arquivo": "media-originais/fotos/SaveClip.App_868416070_17913436281492781_8390202927999876998_n.jpg",
+      "tipo": "arte-instagram",
+      "post": "carrossel \"Nunca é tarde\"",
+      "texto": "Você não precisa acompanhar o ritmo de ninguém. Precisa respeitar o seu e continuar evoluindo.",
+      "fala": null,
+      "pessoas": [
+        {
+          "quem": "alunos e/ou professores reais",
+          "consentimento": "pendente"
+        }
+      ],
+      "audioLiberado": false,
+      "problemas": [
+        "texto queimado na arte (não apagar por IA: só recorte)",
+        "alunos reais identificáveis: não publicar a foto; só o texto (sessão 5)"
+      ],
+      "edicoes": [],
+      "naoUsar": false,
+      "uso": ["texto-sessao-5"],
+      "resolucaoOriginal": {
+        "largura": 1080,
+        "altura": 1350
+      },
+      "resolucaoMax": null,
+      "consentimento": "pendente"
+    },
+    {
+      "id": "nunca-e-tarde-5",
+      "numero": 26,
+      "arquivo": "media-originais/fotos/SaveClip.App_868430560_17913436299492781_3877107341145945688_n.jpg",
+      "tipo": "arte-instagram",
+      "post": "carrossel \"Nunca é tarde\"",
+      "texto": "Mais qualidade de vida hoje. Mais autonomia para o amanhã.",
+      "fala": null,
+      "pessoas": [
+        {
+          "quem": "alunos e/ou professores reais",
+          "consentimento": "pendente"
+        }
+      ],
+      "audioLiberado": false,
+      "problemas": [
+        "texto queimado na arte (não apagar por IA: só recorte)",
+        "alunos reais identificáveis: não publicar a foto; só o texto (sessão 5)"
+      ],
+      "edicoes": [],
+      "naoUsar": false,
+      "uso": ["texto-sessao-5"],
+      "resolucaoOriginal": {
+        "largura": 1080,
+        "altura": 1350
+      },
+      "resolucaoMax": null,
+      "consentimento": "pendente"
+    },
+    {
+      "id": "nunca-e-tarde-6",
+      "numero": 27,
+      "arquivo": "media-originais/fotos/SaveClip.App_869133379_17913436248492781_3806003063243973995_n.jpg",
+      "tipo": "arte-instagram",
+      "post": "carrossel \"Nunca é tarde\"",
+      "texto": "O cuidado com você não tem idade.",
+      "fala": null,
+      "pessoas": [
+        {
+          "quem": "fisioterapeuta e aluna",
+          "consentimento": "pendente"
+        }
+      ],
+      "audioLiberado": false,
+      "problemas": [
+        "texto queimado na arte (não apagar por IA: só recorte)",
+        "alunos reais identificáveis: não publicar a foto; só o texto (sessão 5)"
+      ],
+      "edicoes": [],
+      "naoUsar": false,
+      "uso": ["texto-sessao-5"],
+      "resolucaoOriginal": {
+        "largura": 1080,
+        "altura": 1350
+      },
+      "resolucaoMax": null,
+      "consentimento": "pendente"
+    },
+    {
+      "id": "nunca-e-tarde-7",
+      "numero": 28,
+      "arquivo": "media-originais/fotos/SaveClip.App_871123010_17913436266492781_2611942064499383461_n.jpg",
+      "tipo": "arte-instagram",
+      "post": "carrossel \"Nunca é tarde\"",
+      "texto": "A musculação ajuda a preservar a força e a massa muscular.",
+      "fala": null,
+      "pessoas": [
+        {
+          "quem": "alunos e/ou professores reais",
+          "consentimento": "pendente"
+        }
+      ],
+      "audioLiberado": false,
+      "problemas": [
+        "texto queimado na arte (não apagar por IA: só recorte)",
+        "alunos reais identificáveis: não publicar a foto; só o texto (sessão 5)"
+      ],
+      "edicoes": [],
+      "naoUsar": false,
+      "uso": ["texto-sessao-5"],
+      "resolucaoOriginal": {
+        "largura": 1080,
+        "altura": 1350
+      },
+      "resolucaoMax": null,
+      "consentimento": "pendente"
+    },
+    {
+      "id": "cinco-sinais-1",
+      "numero": 29,
+      "arquivo": "media-originais/fotos/SaveClip.App_881518777_17914568712492781_7468329406845269891_n.jpg",
+      "tipo": "arte-instagram",
+      "post": "DfS0m0Co4yf (03/11/2026) · carrossel \"5 sinais\"",
+      "texto": "Você aumenta a carga sem ter certeza de que consegue manter a técnica.",
+      "fala": null,
+      "pessoas": [
+        {
+          "quem": "alunos e professores reais",
+          "consentimento": "pendente"
+        }
+      ],
+      "audioLiberado": false,
+      "problemas": [
+        "texto queimado na arte (não apagar por IA: só recorte)",
+        "alunos reais identificáveis: não publicar a foto; só o texto (sessão 5)"
+      ],
+      "edicoes": [],
+      "naoUsar": false,
+      "uso": ["texto-sessao-5"],
+      "resolucaoOriginal": {
+        "largura": 1080,
+        "altura": 1350
+      },
+      "resolucaoMax": null,
+      "consentimento": "pendente"
+    },
+    {
+      "id": "cinco-sinais-2",
+      "numero": 30,
+      "arquivo": "media-originais/fotos/SaveClip.App_881675739_17914568697492781_5192923115881241083_n.jpg",
+      "tipo": "arte-instagram",
+      "post": "DfS0m0Co4yf (03/11/2026) · carrossel \"5 sinais\"",
+      "texto": "Seu treino nunca muda, mesmo quando seus objetivos e sua capacidade evoluem.",
+      "fala": null,
+      "pessoas": [
+        {
+          "quem": "alunos e professores reais",
+          "consentimento": "pendente"
+        }
+      ],
+      "audioLiberado": false,
+      "problemas": [
+        "texto queimado na arte (não apagar por IA: só recorte)",
+        "alunos reais identificáveis: não publicar a foto; só o texto (sessão 5)"
+      ],
+      "edicoes": [],
+      "naoUsar": false,
+      "uso": ["texto-sessao-5"],
+      "resolucaoOriginal": {
+        "largura": 1080,
+        "altura": 1350
+      },
+      "resolucaoMax": null,
+      "consentimento": "pendente"
+    },
+    {
+      "id": "cinco-sinais-3",
+      "numero": 31,
+      "arquivo": "media-originais/fotos/SaveClip.App_887061865_17914568673492781_5183857489782217507_n.jpg",
+      "tipo": "arte-instagram",
+      "post": "DfS0m0Co4yf (03/11/2026) · carrossel \"5 sinais\"",
+      "texto": "5 sinais de que seu treino precisa de mais atenção.",
+      "fala": null,
+      "pessoas": [
+        {
+          "quem": "alunos e professores reais",
+          "consentimento": "pendente"
+        }
+      ],
+      "audioLiberado": false,
+      "problemas": [
+        "texto queimado na arte (não apagar por IA: só recorte)",
+        "alunos reais identificáveis: não publicar a foto; só o texto (sessão 5)"
+      ],
+      "edicoes": [],
+      "naoUsar": false,
+      "uso": ["texto-sessao-5"],
+      "resolucaoOriginal": {
+        "largura": 1080,
+        "altura": 1350
+      },
+      "resolucaoMax": null,
+      "consentimento": "pendente"
+    },
+    {
+      "id": "cinco-sinais-4",
+      "numero": 32,
+      "arquivo": "media-originais/fotos/SaveClip.App_887849578_17914568700492781_6938366137380403736_n.jpg",
+      "tipo": "arte-instagram",
+      "post": "DfS0m0Co4yf (03/11/2026) · carrossel \"5 sinais\"",
+      "texto": "Treinar com orientação faz diferença. Seu treino precisa acompanhar você, e não o contrário.",
+      "fala": null,
+      "pessoas": [
+        {
+          "quem": "alunos e professores reais",
+          "consentimento": "pendente"
+        }
+      ],
+      "audioLiberado": false,
+      "problemas": [
+        "texto queimado na arte (não apagar por IA: só recorte)",
+        "alunos reais identificáveis: não publicar a foto; só o texto (sessão 5)"
+      ],
+      "edicoes": [],
+      "naoUsar": false,
+      "uso": ["texto-sessao-5"],
+      "resolucaoOriginal": {
+        "largura": 1080,
+        "altura": 1350
+      },
+      "resolucaoMax": null,
+      "consentimento": "pendente"
+    },
+    {
+      "id": "cinco-sinais-5",
+      "numero": 33,
+      "arquivo": "media-originais/fotos/SaveClip.App_888159995_17914568721492781_6331262322135197026_n.jpg",
+      "tipo": "arte-instagram",
+      "post": "DfS0m0Co4yf (03/11/2026) · carrossel \"5 sinais\"",
+      "texto": "Você termina a sessão sem entender o que está tentando desenvolver.",
+      "fala": null,
+      "pessoas": [
+        {
+          "quem": "alunos e professores reais",
+          "consentimento": "pendente"
+        }
+      ],
+      "audioLiberado": false,
+      "problemas": [
+        "texto queimado na arte (não apagar por IA: só recorte)",
+        "alunos reais identificáveis: não publicar a foto; só o texto (sessão 5)"
+      ],
+      "edicoes": [],
+      "naoUsar": false,
+      "uso": ["texto-sessao-5"],
+      "resolucaoOriginal": {
+        "largura": 1080,
+        "altura": 1350
+      },
+      "resolucaoMax": null,
+      "consentimento": "pendente"
+    },
+    {
+      "id": "cinco-sinais-6",
+      "numero": 34,
+      "arquivo": "media-originais/fotos/SaveClip.App_888936613_17914568682492781_4871908470183985471_n.jpg",
+      "tipo": "arte-instagram",
+      "post": "DfS0m0Co4yf (03/11/2026) · carrossel \"5 sinais\"",
+      "texto": "Você faz os exercícios, mas não sabe se está executando corretamente.",
+      "fala": null,
+      "pessoas": [
+        {
+          "quem": "alunos e professores reais",
+          "consentimento": "pendente"
+        }
+      ],
+      "audioLiberado": false,
+      "problemas": [
+        "texto queimado na arte (não apagar por IA: só recorte)",
+        "alunos reais identificáveis: não publicar a foto; só o texto (sessão 5)"
+      ],
+      "edicoes": [],
+      "naoUsar": false,
+      "uso": ["texto-sessao-5"],
+      "resolucaoOriginal": {
+        "largura": 1080,
+        "altura": 1350
+      },
+      "resolucaoMax": null,
+      "consentimento": "pendente"
+    },
+    {
+      "id": "marca-logo",
+      "arquivo": "media-originais/marca/primehouse-logo.svg",
+      "tipo": "marca",
+      "post": null,
+      "texto": null,
+      "fala": null,
+      "pessoas": [],
+      "audioLiberado": false,
+      "problemas": ["laranja oficial e manual de marca pendentes"],
+      "edicoes": [],
+      "naoUsar": false,
+      "descricao": "logo vetorizado pela WAXLO a partir do avatar (laranja #EC8A2A provisório)",
+      "uso": ["marca"],
+      "resolucaoOriginal": null,
+      "resolucaoMax": null,
+      "consentimento": "nao-precisa"
+    },
+    {
+      "id": "marca-logo-linha",
+      "arquivo": "media-originais/marca/primehouse-logo-linha.svg",
+      "tipo": "marca",
+      "post": null,
+      "texto": null,
+      "fala": null,
+      "pessoas": [],
+      "audioLiberado": false,
+      "problemas": ["laranja oficial e manual de marca pendentes"],
+      "edicoes": [],
+      "naoUsar": false,
+      "descricao": "logo vetorizado pela WAXLO a partir do avatar (laranja #EC8A2A provisório)",
+      "uso": ["marca"],
+      "resolucaoOriginal": null,
+      "resolucaoMax": null,
+      "consentimento": "nao-precisa"
+    },
+    {
+      "id": "marca-logo-mono",
+      "arquivo": "media-originais/marca/primehouse-logo-mono.svg",
+      "tipo": "marca",
+      "post": null,
+      "texto": null,
+      "fala": null,
+      "pessoas": [],
+      "audioLiberado": false,
+      "problemas": ["laranja oficial e manual de marca pendentes"],
+      "edicoes": [],
+      "naoUsar": false,
+      "descricao": "logo vetorizado pela WAXLO a partir do avatar (laranja #EC8A2A provisório)",
+      "uso": ["marca"],
+      "resolucaoOriginal": null,
+      "resolucaoMax": null,
+      "consentimento": "nao-precisa"
+    },
+    {
+      "id": "marca-logo-preto",
+      "arquivo": "media-originais/marca/primehouse-logo-preto.svg",
+      "tipo": "marca",
+      "post": null,
+      "texto": null,
+      "fala": null,
+      "pessoas": [],
+      "audioLiberado": false,
+      "problemas": ["laranja oficial e manual de marca pendentes"],
+      "edicoes": [],
+      "naoUsar": false,
+      "descricao": "logo vetorizado pela WAXLO a partir do avatar (laranja #EC8A2A provisório)",
+      "uso": ["marca"],
+      "resolucaoOriginal": null,
+      "resolucaoMax": null,
+      "consentimento": "nao-precisa"
+    },
+    {
+      "id": "marca-avatar-png",
+      "numero": 35,
+      "arquivo": "media-originais/marca/primelogo.png",
+      "tipo": "marca",
+      "post": null,
+      "texto": null,
+      "fala": null,
+      "pessoas": [],
+      "audioLiberado": false,
+      "problemas": [],
+      "edicoes": [],
+      "naoUsar": true,
+      "descricao": "avatar do logo (150×150)",
+      "uso": [],
+      "resolucaoOriginal": {
+        "largura": 150,
+        "altura": 150
+      },
+      "resolucaoMax": null,
+      "consentimento": "nao-precisa",
+      "motivoNaoUsar": "substituído pelos SVG"
+    },
+    {
+      "id": "marca-comparacao-png",
+      "arquivo": "media-originais/marca/primehouse-logo-comparacao.png",
+      "tipo": "marca",
+      "post": null,
+      "texto": null,
+      "fala": null,
+      "pessoas": [],
+      "audioLiberado": false,
+      "problemas": [],
+      "edicoes": [],
+      "naoUsar": true,
+      "descricao": "comparação avatar × SVG (uso interno do João)",
+      "uso": [],
+      "resolucaoOriginal": {
+        "largura": 1240,
+        "altura": 560
+      },
+      "resolucaoMax": null,
+      "consentimento": "nao-precisa",
+      "motivoNaoUsar": "documento interno de comparação"
+    },
+    {
+      "id": "video-inauguracao",
+      "arquivo": "media-originais/videos/snapinsta-1793897411209.mp4",
+      "tipo": "video",
+      "post": "DXxvWdVsvU7 (fixado)",
+      "texto": null,
+      "fala": null,
+      "pessoas": [
+        {
+          "quem": "Lucas Moro",
+          "consentimento": "autorizado"
+        },
+        {
+          "quem": "equipe, convidados e público",
+          "consentimento": "pendente"
+        }
+      ],
+      "audioLiberado": false,
+      "problemas": [
+        "vídeo baixado do Instagram (720×1280, recomprimido)",
+        "legendas queimadas",
+        "áudio com música: direitos não confirmados (audioLiberado=false)"
+      ],
+      "edicoes": [],
+      "naoUsar": false,
+      "descricao": "Filme da inauguração (30/04/2026)",
+      "uso": ["fonte-trechos"],
+      "resolucaoOriginal": {
+        "largura": 720,
+        "altura": 1280
+      },
+      "duracao": 47.042,
+      "resolucaoMax": {
+        "largura": 720,
+        "altura": 1280
+      },
+      "consentimento": "pendente"
+    },
+    {
+      "id": "video-rotina",
+      "arquivo": "media-originais/videos/snapinsta-1793977583042.mp4",
+      "tipo": "video",
+      "post": null,
+      "texto": null,
+      "fala": null,
+      "pessoas": [
+        {
+          "quem": "alunos e professores",
+          "consentimento": "pendente"
+        }
+      ],
+      "audioLiberado": false,
+      "problemas": [
+        "vídeo baixado do Instagram (720×1280, recomprimido)",
+        "legendas queimadas",
+        "áudio com música: direitos não confirmados (audioLiberado=false)"
+      ],
+      "edicoes": [],
+      "naoUsar": false,
+      "descricao": "Fachada de dia + alunos treinando com professores (out/2026)",
+      "uso": ["fonte-trechos"],
+      "resolucaoOriginal": {
+        "largura": 720,
+        "altura": 1280
+      },
+      "duracao": 25.267,
+      "resolucaoMax": {
+        "largura": 720,
+        "altura": 1280
+      },
+      "consentimento": "pendente"
+    },
+    {
+      "id": "video-plano-prime",
+      "arquivo": "media-originais/videos/SaveClip.App_AQMofoIF_D-okmtBHcVLFjVlxGdTGkCywPKrJBYW4X6vn-uM3v5ZBNy-T1A4GMMCwd48wXj1LC5Xyj0CPCqObL8PcRqejgyUSN4WZuM.mp4",
+      "tipo": "video",
+      "post": null,
+      "texto": null,
+      "fala": "Aqui na Prime House a tua matrícula é gratuita, e você ainda tem quatorze dias de garantia. Se você vir e não gostar de qualquer coisa, a gente devolve 100% do teu dinheiro. Não são sete dias como normalmente o mercado fala, e isso é porque a gente confia muito no nosso trabalho. Além de tudo, no plano anual você ainda pode trancar ele por trinta dias e usar depois, pra você não perder absolutamente nada. Nós também temos a Sexta Prime, que você pode trazer toda sexta-feira algum amigo ou algum familiar pra treinar junto contigo de graça. E o melhor de tudo é que fechando hoje teu plano, o primeiro mês é por nossa conta. Chama a equipe e vem pra Prime House.",
+      "pessoas": [
+        {
+          "quem": "Lucas Moro",
+          "consentimento": "autorizado"
+        }
+      ],
+      "audioLiberado": false,
+      "problemas": [
+        "vídeo baixado do Instagram (720×1280, recomprimido)",
+        "legendas queimadas",
+        "áudio com música: direitos não confirmados (audioLiberado=false)"
+      ],
+      "edicoes": [],
+      "naoUsar": false,
+      "descricao": "Lucas: \"Benefícios do Plano Prime\"",
+      "uso": ["fonte-trechos"],
+      "resolucaoOriginal": {
+        "largura": 720,
+        "altura": 1280
+      },
+      "duracao": 36.467,
+      "resolucaoMax": {
+        "largura": 720,
+        "altura": 1280
+      },
+      "consentimento": "autorizado"
+    },
+    {
+      "id": "video-avaliacao-funcional",
+      "arquivo": "media-originais/videos/snapinsta-1793897488769.mp4",
+      "tipo": "video",
+      "post": "DfImcNABrpW (30/10/2026)",
+      "texto": null,
+      "fala": "Aqui na Prime House você não recebe um treino padrão [como em] outras academias. Você passa por uma avaliação funcional junto com o professor pra entender toda tua situação, todos os teus objetivos, e montar um treino específico pra você. E isso é lógico: [cada] aluno é diferente e teu treino tem que respeitar isso. Vem treinar com a gente e para de só ir pra academia e não ter resultado nenhum.",
+      "pessoas": [
+        {
+          "quem": "Lucas Moro",
+          "consentimento": "autorizado"
+        }
+      ],
+      "audioLiberado": false,
+      "problemas": [
+        "vídeo baixado do Instagram (720×1280, recomprimido)",
+        "legendas queimadas",
+        "áudio com música: direitos não confirmados (audioLiberado=false)"
+      ],
+      "edicoes": [],
+      "naoUsar": false,
+      "descricao": "Lucas: \"Seu treino feito para você\"",
+      "uso": ["fonte-trechos"],
+      "resolucaoOriginal": {
+        "largura": 720,
+        "altura": 1280
+      },
+      "duracao": 22.033,
+      "resolucaoMax": {
+        "largura": 720,
+        "altura": 1280
+      },
+      "consentimento": "autorizado"
+    },
+    {
+      "id": "video-plano-select",
+      "arquivo": "media-originais/videos/snapinsta-1793898722421.mp4",
+      "tipo": "video",
+      "post": "DfIBHAaO4ej (30/10/2026)",
+      "texto": null,
+      "fala": "Já pensou em ter um professor como personal dentro da academia? Com o Plano Select da Prime House você tem um professor dedicado exclusivamente a você durante o treino, com acompanhamento e orientação individualizados. Quer saber mais? Manda uma mensagem pra gente!",
+      "pessoas": [
+        {
+          "quem": "professora (nome pendente)",
+          "consentimento": "pendente"
+        }
+      ],
+      "audioLiberado": false,
+      "problemas": [
+        "vídeo baixado do Instagram (720×1280, recomprimido)",
+        "legendas queimadas",
+        "áudio com música: direitos não confirmados (audioLiberado=false)"
+      ],
+      "edicoes": [],
+      "naoUsar": false,
+      "descricao": "Professora: \"Seu treino com acompanhamento exclusivo\"",
+      "uso": ["fonte-trechos"],
+      "resolucaoOriginal": {
+        "largura": 720,
+        "altura": 1280
+      },
+      "duracao": 15.633,
+      "resolucaoMax": {
+        "largura": 720,
+        "altura": 1280
+      },
+      "consentimento": "pendente"
+    }
+  ],
+  "trechos": [
+    {
+      "natureza": "trecho-de-video",
+      "audioLiberado": false,
+      "pessoas": [],
+      "problemas": [
+        "em 1,71 s troca de plano: ACADEMIA fica esbranquiçado (balanço de branco do vídeo)"
+      ],
+      "naoUsar": false,
+      "loop": true,
+      "fala": null,
+      "saidas": {
+        "alturas": [1280, 960],
+        "formatos": ["mp4", "webm"]
+      },
+      "edicoes": ["corte de trecho", "áudio removido (mudo)"],
+      "id": "letreiro-aceso",
+      "origem": "video-inauguracao",
+      "in": 1.5,
+      "out": 3.1,
+      "pedido": {
+        "in": 1,
+        "out": 2.6
+      },
+      "posterEm": 1.6,
+      "uso": ["abertura", "hero"],
+      "consentimento": "nao-precisa",
+      "ajuste": "+0,5 s: até 1,5 s são máquinas Cimerian; em 1,50 s o letreiro está apagado e acende em 1,54 s",
+      "inteiro": false,
+      "resolucaoMax": {
+        "largura": 720,
+        "altura": 1280
+      }
+    },
+    {
+      "natureza": "trecho-de-video",
+      "audioLiberado": false,
+      "pessoas": [],
+      "problemas": [
+        "3 planos: interior com tela · janelas · molduras de LED",
+        "pessoas de camiseta laranja atrás das máquinas no 1º plano, sem rosto visível"
+      ],
+      "naoUsar": false,
+      "loop": true,
+      "fala": null,
+      "saidas": {
+        "alturas": [1280, 960],
+        "formatos": ["mp4", "webm"]
+      },
+      "edicoes": [
+        "corte de trecho",
+        "áudio removido (mudo)",
+        "recorte 16:9 por plano (720×404, sem upscale)"
+      ],
+      "id": "interior-noite",
+      "origem": "video-inauguracao",
+      "in": 32.9,
+      "out": 36.9,
+      "pedido": {
+        "in": 33,
+        "out": 36.5
+      },
+      "posterEm": 33.8,
+      "uso": ["hero", "loop-hero"],
+      "consentimento": "nao-precisa",
+      "ajuste": "início −0,1 s (corte em 32,83 s) e fim +0,4 s para incluir o plano das molduras de LED inteiro (corte em 36,96 s)",
+      "orcamentoBytes": 1200000,
+      "horizontal16x9": {
+        "cortes": [
+          {
+            "ate": 1.85,
+            "y": 300
+          },
+          {
+            "ate": 2.81,
+            "y": 150
+          },
+          {
+            "ate": 99,
+            "y": 60
+          }
+        ]
+      },
+      "inteiro": false,
+      "resolucaoMax": {
+        "largura": 720,
+        "altura": 1280
+      }
+    },
+    {
+      "natureza": "trecho-de-video",
+      "audioLiberado": false,
+      "pessoas": [],
+      "problemas": [],
+      "naoUsar": false,
+      "loop": true,
+      "fala": null,
+      "saidas": {
+        "alturas": [1280, 960],
+        "formatos": ["mp4", "webm"]
+      },
+      "edicoes": ["corte de trecho", "áudio removido (mudo)"],
+      "id": "drone-entardecer",
+      "origem": "video-inauguracao",
+      "in": 37,
+      "out": 38.5,
+      "pedido": {
+        "in": 37,
+        "out": 38.8
+      },
+      "posterEm": 37.5,
+      "uso": ["abertura", "como-chegar"],
+      "consentimento": "nao-precisa",
+      "ajuste": "fim −0,3 s: transição com clarão a partir de 38,54 s",
+      "inteiro": false,
+      "resolucaoMax": {
+        "largura": 720,
+        "altura": 1280
+      }
+    },
+    {
+      "natureza": "trecho-de-video",
+      "audioLiberado": false,
+      "pessoas": [],
+      "problemas": ["público na calçada visto do alto, não identificável"],
+      "naoUsar": false,
+      "loop": true,
+      "fala": null,
+      "saidas": {
+        "alturas": [1280, 960],
+        "formatos": ["mp4", "webm"]
+      },
+      "edicoes": [
+        "corte de trecho",
+        "áudio removido (mudo)",
+        "recorte 16:9 por plano (720×404, sem upscale; no drone, o recorte acompanha a descida da câmera)"
+      ],
+      "id": "drone-noite",
+      "origem": "video-inauguracao",
+      "in": 39,
+      "out": 41.65,
+      "pedido": {
+        "in": 39,
+        "out": 43.5
+      },
+      "posterEm": 40,
+      "uso": ["abertura", "como-chegar"],
+      "consentimento": "nao-precisa",
+      "ajuste": "fim −1,85 s (fora da tolerância): em 41,67 s corta para a cidade e o logo antigo aparece sobreposto a partir de ≈ 42,25 s",
+      "horizontal16x9": {
+        "cortes": [
+          {
+            "ate": 99,
+            "y": 540,
+            "vy": 40
+          }
+        ]
+      },
+      "inteiro": false,
+      "resolucaoMax": {
+        "largura": 720,
+        "altura": 1280
+      }
+    },
+    {
+      "natureza": "trecho-de-video",
+      "audioLiberado": false,
+      "pessoas": [
+        {
+          "quem": "Lucas Moro",
+          "consentimento": "autorizado"
+        },
+        {
+          "quem": "equipe de laranja",
+          "consentimento": "pendente"
+        }
+      ],
+      "problemas": [],
+      "naoUsar": false,
+      "loop": false,
+      "fala": null,
+      "saidas": {
+        "alturas": [1280, 960],
+        "formatos": ["mp4", "webm"]
+      },
+      "edicoes": ["corte de trecho", "áudio removido (mudo)"],
+      "id": "equipe",
+      "origem": "video-inauguracao",
+      "in": 22.5,
+      "out": 24.85,
+      "pedido": {
+        "in": 23,
+        "out": 24.8
+      },
+      "posterEm": 23.4,
+      "uso": ["historia"],
+      "consentimento": "pendente",
+      "ajuste": "início −0,5 s: a comemoração começa no corte de 22,46 s",
+      "inteiro": false,
+      "resolucaoMax": {
+        "largura": 720,
+        "altura": 1280
+      }
+    },
+    {
+      "natureza": "trecho-de-video",
+      "audioLiberado": false,
+      "pessoas": [
+        {
+          "quem": "Lucas Moro",
+          "consentimento": "autorizado"
+        },
+        {
+          "quem": "convidados em inserções coloridas (8,46–10,0 s; 13,46–15,25 s)",
+          "consentimento": "pendente"
+        }
+      ],
+      "problemas": [
+        "P&B intercalado com inserções coloridas de convidados identificáveis",
+        "legendas queimadas pequenas no centro"
+      ],
+      "naoUsar": false,
+      "loop": false,
+      "fala": null,
+      "saidas": {
+        "alturas": [1280, 960],
+        "formatos": ["mp4", "webm"]
+      },
+      "edicoes": ["corte de trecho", "áudio removido (mudo)"],
+      "id": "lucas-discurso",
+      "origem": "video-inauguracao",
+      "in": 6.25,
+      "out": 19.5,
+      "pedido": {
+        "in": 6,
+        "out": 19
+      },
+      "posterEm": 17.5,
+      "uso": ["historia"],
+      "consentimento": "pendente",
+      "ajuste": "início +0,25 s (1º quadro P&B) e fim +0,5 s (corte em 19,96 s)",
+      "inteiro": false,
+      "resolucaoMax": {
+        "largura": 720,
+        "altura": 1280
+      }
+    },
+    {
+      "natureza": "trecho-de-video",
+      "audioLiberado": false,
+      "pessoas": [
+        {
+          "quem": "Lucas Moro",
+          "consentimento": "autorizado"
+        }
+      ],
+      "problemas": ["legendas queimadas pequenas no centro"],
+      "naoUsar": false,
+      "loop": false,
+      "fala": null,
+      "saidas": {
+        "alturas": [1280, 960],
+        "formatos": ["mp4", "webm"]
+      },
+      "edicoes": ["corte de trecho", "áudio removido (mudo)"],
+      "id": "lucas-close",
+      "origem": "video-inauguracao",
+      "in": 15.3,
+      "out": 19.9,
+      "pedido": null,
+      "posterEm": 17.5,
+      "uso": ["historia"],
+      "consentimento": "autorizado",
+      "ajuste": "trecho extra (não pedido): o maior bloco contínuo só com o Lucas, publicável enquanto as inserções do discurso estão pendentes",
+      "inteiro": false,
+      "resolucaoMax": {
+        "largura": 720,
+        "altura": 1280
+      }
+    },
+    {
+      "natureza": "trecho-de-video",
+      "audioLiberado": false,
+      "pessoas": [],
+      "problemas": [],
+      "naoUsar": false,
+      "loop": true,
+      "fala": null,
+      "saidas": {
+        "alturas": [1280, 960],
+        "formatos": ["mp4", "webm"]
+      },
+      "edicoes": ["corte de trecho", "áudio removido (mudo)"],
+      "id": "fachada-dia",
+      "origem": "video-rotina",
+      "in": 0,
+      "out": 2.2,
+      "pedido": {
+        "in": 0,
+        "out": 1.8
+      },
+      "posterEm": 0.5,
+      "uso": ["como-chegar"],
+      "consentimento": "nao-precisa",
+      "ajuste": "fim +0,4 s: o plano da fachada vai até 2,27 s",
+      "inteiro": false,
+      "resolucaoMax": {
+        "largura": 720,
+        "altura": 1280
+      }
+    },
+    {
+      "natureza": "trecho-de-video",
+      "audioLiberado": false,
+      "pessoas": [
+        {
+          "quem": "alunos e professores",
+          "consentimento": "pendente"
+        }
+      ],
+      "problemas": [],
+      "naoUsar": false,
+      "loop": false,
+      "fala": null,
+      "saidas": {
+        "alturas": [1280, 960],
+        "formatos": ["mp4", "webm"]
+      },
+      "edicoes": ["corte de trecho", "áudio removido (mudo)"],
+      "id": "acompanhamento",
+      "origem": "video-rotina",
+      "in": 2.3,
+      "out": 24,
+      "pedido": {
+        "in": 2,
+        "out": 24
+      },
+      "posterEm": 10.5,
+      "uso": ["acompanhamento", "b-roll"],
+      "consentimento": "pendente",
+      "ajuste": "início +0,3 s: corte da fachada em 2,27 s",
+      "inteiro": false,
+      "resolucaoMax": {
+        "largura": 720,
+        "altura": 1280
+      }
+    },
+    {
+      "natureza": "trecho-de-video",
+      "audioLiberado": false,
+      "pessoas": [
+        {
+          "quem": "Lucas Moro",
+          "consentimento": "autorizado"
+        },
+        {
+          "quem": "equipe, convidados e público",
+          "consentimento": "pendente"
+        }
+      ],
+      "problemas": ["termina com o logo antigo (raster) sobreposto"],
+      "naoUsar": false,
+      "loop": false,
+      "fala": null,
+      "saidas": {
+        "alturas": [1280, 960],
+        "formatos": ["mp4", "webm"]
+      },
+      "edicoes": ["corte de trecho", "áudio removido (mudo)"],
+      "id": "filme-inauguracao",
+      "origem": "video-inauguracao",
+      "in": 0,
+      "out": 47.042,
+      "pedido": null,
+      "posterEm": 39.5,
+      "uso": ["historia"],
+      "consentimento": "pendente",
+      "ajuste": null,
+      "inteiro": true,
+      "resolucaoMax": {
+        "largura": 720,
+        "altura": 1280
+      }
+    },
+    {
+      "natureza": "trecho-de-video",
+      "audioLiberado": false,
+      "pessoas": [
+        {
+          "quem": "Lucas Moro",
+          "consentimento": "autorizado"
+        }
+      ],
+      "problemas": [
+        "título queimado \"BENEFÍCIOS DO PLANO PRIME\"",
+        "termos vetados na legenda queimada"
+      ],
+      "naoUsar": true,
+      "loop": false,
+      "fala": "Aqui na Prime House a tua matrícula é gratuita, e você ainda tem quatorze dias de garantia. Se você vir e não gostar de qualquer coisa, a gente devolve 100% do teu dinheiro. Não são sete dias como normalmente o mercado fala, e isso é porque a gente confia muito no nosso trabalho. Além de tudo, no plano anual você ainda pode trancar ele por trinta dias e usar depois, pra você não perder absolutamente nada. Nós também temos a Sexta Prime, que você pode trazer toda sexta-feira algum amigo ou algum familiar pra treinar junto contigo de graça. E o melhor de tudo é que fechando hoje teu plano, o primeiro mês é por nossa conta. Chama a equipe e vem pra Prime House.",
+      "saidas": {
+        "alturas": [1280, 960],
+        "formatos": ["mp4", "webm"]
+      },
+      "edicoes": ["corte de trecho", "áudio removido (mudo)"],
+      "id": "plano-prime",
+      "origem": "video-plano-prime",
+      "in": 0,
+      "out": 36.467,
+      "pedido": null,
+      "posterEm": 6,
+      "uso": ["pagina-planos"],
+      "consentimento": "autorizado",
+      "ajuste": null,
+      "motivoNaoUsar": "fala e legenda queimada com benefícios de campanha vetados (\"matrícula é gratuita\", \"de graça\", \"o primeiro mês é por nossa conta\") e comparação com o mercado; só o texto dos benefícios fixos é aproveitável",
+      "inteiro": true,
+      "resolucaoMax": {
+        "largura": 720,
+        "altura": 1280
+      }
+    },
+    {
+      "natureza": "trecho-de-video",
+      "audioLiberado": false,
+      "pessoas": [
+        {
+          "quem": "Lucas Moro",
+          "consentimento": "autorizado"
+        }
+      ],
+      "problemas": [
+        "fala compara com \"outras academias\" (seção 8: decidir com o João na sessão 9)",
+        "título queimado \"SEU TREINO FEITO PARA VOCÊ\""
+      ],
+      "naoUsar": false,
+      "loop": false,
+      "fala": "Aqui na Prime House você não recebe um treino padrão [como em] outras academias. Você passa por uma avaliação funcional junto com o professor pra entender toda tua situação, todos os teus objetivos, e montar um treino específico pra você. E isso é lógico: [cada] aluno é diferente e teu treino tem que respeitar isso. Vem treinar com a gente e para de só ir pra academia e não ter resultado nenhum.",
+      "saidas": {
+        "alturas": [1280, 960],
+        "formatos": ["mp4", "webm"]
+      },
+      "edicoes": ["corte de trecho", "áudio removido (mudo)"],
+      "id": "avaliacao-funcional",
+      "origem": "video-avaliacao-funcional",
+      "in": 0,
+      "out": 22.033,
+      "pedido": null,
+      "posterEm": 8,
+      "uso": ["como-funciona"],
+      "consentimento": "autorizado",
+      "ajuste": null,
+      "inteiro": true,
+      "resolucaoMax": {
+        "largura": 720,
+        "altura": 1280
+      }
+    },
+    {
+      "natureza": "trecho-de-video",
+      "audioLiberado": false,
+      "pessoas": [
+        {
+          "quem": "professora (nome pendente)",
+          "consentimento": "pendente"
+        }
+      ],
+      "problemas": ["título queimado \"SEU TREINO COM ACOMPANHAMENTO EXCLUSIVO\""],
+      "naoUsar": false,
+      "loop": false,
+      "fala": "Já pensou em ter um professor como personal dentro da academia? Com o Plano Select da Prime House você tem um professor dedicado exclusivamente a você durante o treino, com acompanhamento e orientação individualizados. Quer saber mais? Manda uma mensagem pra gente!",
+      "saidas": {
+        "alturas": [1280, 960],
+        "formatos": ["mp4", "webm"]
+      },
+      "edicoes": ["corte de trecho", "áudio removido (mudo)"],
+      "id": "plano-select",
+      "origem": "video-plano-select",
+      "in": 0,
+      "out": 15.633,
+      "pedido": null,
+      "posterEm": 8,
+      "uso": ["pagina-planos"],
+      "consentimento": "pendente",
+      "ajuste": null,
+      "inteiro": true,
+      "resolucaoMax": {
+        "largura": 720,
+        "altura": 1280
+      }
+    }
+  ],
+  "stills": [
+    {
+      "id": "still-letreiro-aceso",
+      "origem": "video-inauguracao",
+      "natureza": "quadro de vídeo",
+      "t": 1.6,
+      "pedidoT": 1.5,
+      "ajuste": "+0,1 s: em 1,50 s o letreiro ainda está apagado",
+      "uso": ["abertura", "poster"],
+      "resolucaoMax": {
+        "largura": 720,
+        "altura": 1280
+      },
+      "consentimento": "nao-precisa",
+      "pessoas": [],
+      "audioLiberado": false,
+      "edicoes": ["quadro extraído sem upscale"],
+      "problemas": ["quadro de vídeo recomprimido (720×1280)"],
+      "naoUsar": false
+    },
+    {
+      "id": "still-maquina-cimerian",
+      "origem": "video-inauguracao",
+      "natureza": "quadro de vídeo",
+      "t": 1.2,
+      "pedidoT": 0.3,
+      "ajuste": "+0,9 s (fora da tolerância): em 0,3 s é o drone da cidade; o logo CIMERIAN aparece de 1,0 a 1,37 s",
+      "uso": ["maquinario"],
+      "resolucaoMax": {
+        "largura": 720,
+        "altura": 1280
+      },
+      "consentimento": "nao-precisa",
+      "pessoas": [],
+      "audioLiberado": false,
+      "edicoes": ["quadro extraído sem upscale"],
+      "problemas": [
+        "quadro de vídeo recomprimido (720×1280)",
+        "logo da máquina cortado (\"CIME…\")"
+      ],
+      "naoUsar": false
+    },
+    {
+      "id": "still-anilha",
+      "origem": "video-inauguracao",
+      "natureza": "quadro de vídeo",
+      "t": 10.1,
+      "pedidoT": 10,
+      "ajuste": null,
+      "uso": ["maquinario"],
+      "resolucaoMax": {
+        "largura": 720,
+        "altura": 1280
+      },
+      "consentimento": "nao-precisa",
+      "pessoas": [],
+      "audioLiberado": false,
+      "edicoes": ["quadro extraído sem upscale"],
+      "problemas": ["quadro de vídeo recomprimido (720×1280)"],
+      "naoUsar": false
+    },
+    {
+      "id": "still-halteres",
+      "origem": "video-inauguracao",
+      "natureza": "quadro de vídeo",
+      "t": 32.4,
+      "pedidoT": 32,
+      "ajuste": "+0,4 s: em 32,0 s ainda é o drone (corte em 32,13 s)",
+      "uso": ["maquinario"],
+      "resolucaoMax": {
+        "largura": 720,
+        "altura": 1280
+      },
+      "consentimento": "nao-precisa",
+      "pessoas": [],
+      "audioLiberado": false,
+      "edicoes": ["quadro extraído sem upscale"],
+      "problemas": ["quadro de vídeo recomprimido (720×1280)"],
+      "naoUsar": false
+    },
+    {
+      "id": "still-interior",
+      "origem": "video-inauguracao",
+      "natureza": "quadro de vídeo",
+      "t": 34,
+      "pedidoT": 34,
+      "ajuste": null,
+      "uso": ["hero", "poster"],
+      "resolucaoMax": {
+        "largura": 720,
+        "altura": 1280
+      },
+      "consentimento": "nao-precisa",
+      "pessoas": [],
+      "audioLiberado": false,
+      "edicoes": ["quadro extraído sem upscale"],
+      "problemas": [
+        "quadro de vídeo recomprimido (720×1280)",
+        "pessoas atrás das máquinas, sem rosto visível"
+      ],
+      "naoUsar": false
+    },
+    {
+      "id": "still-drone-noite",
+      "origem": "video-inauguracao",
+      "natureza": "quadro de vídeo",
+      "t": 40,
+      "pedidoT": 40,
+      "ajuste": null,
+      "uso": ["abertura", "como-chegar"],
+      "resolucaoMax": {
+        "largura": 720,
+        "altura": 1280
+      },
+      "consentimento": "nao-precisa",
+      "pessoas": [],
+      "audioLiberado": false,
+      "edicoes": ["quadro extraído sem upscale"],
+      "problemas": ["quadro de vídeo recomprimido (720×1280)"],
+      "naoUsar": false
+    },
+    {
+      "id": "still-fachada-dia",
+      "origem": "video-rotina",
+      "natureza": "quadro de vídeo",
+      "t": 0.5,
+      "pedidoT": 0.5,
+      "ajuste": null,
+      "uso": ["como-chegar"],
+      "resolucaoMax": {
+        "largura": 720,
+        "altura": 1280
+      },
+      "consentimento": "nao-precisa",
+      "pessoas": [],
+      "audioLiberado": false,
+      "edicoes": ["quadro extraído sem upscale"],
+      "problemas": ["quadro de vídeo recomprimido (720×1280)"],
+      "naoUsar": false
+    },
+    {
+      "id": "still-logo-final",
+      "origem": "video-inauguracao",
+      "natureza": "quadro de vídeo",
+      "t": 45,
+      "pedidoT": 45,
+      "ajuste": null,
+      "uso": ["referencia-marca"],
+      "resolucaoMax": {
+        "largura": 720,
+        "altura": 1280
+      },
+      "consentimento": "nao-precisa",
+      "pessoas": [],
+      "audioLiberado": false,
+      "edicoes": ["quadro extraído sem upscale"],
+      "problemas": [
+        "quadro de vídeo recomprimido (720×1280)",
+        "logo antigo em raster sobre preto: só referência"
+      ],
+      "naoUsar": true,
+      "motivoNaoUsar": "logo raster do vídeo: o site usa os SVG"
+    }
+  ],
+  "recortes": [
+    {
+      "id": "conforto-banheiro",
+      "origem": "diferencial-banheiro",
+      "natureza": "recorte",
+      "caixa": {
+        "x": 0,
+        "y": 0,
+        "largura": 932,
+        "altura": 840
+      },
+      "uso": ["conforto"],
+      "legendaOriginal": "BANHEIRO COMPLETO",
+      "resolucaoMax": {
+        "largura": 932,
+        "altura": 840
+      },
+      "consentimento": "nao-precisa",
+      "pessoas": [],
+      "audioLiberado": false,
+      "edicoes": ["recorte que remove o texto queimado (sem IA)"],
+      "problemas": [],
+      "naoUsar": false
+    },
+    {
+      "id": "conforto-geladeira",
+      "origem": "diferencial-geladeira",
+      "natureza": "recorte",
+      "caixa": {
+        "x": 0,
+        "y": 0,
+        "largura": 1080,
+        "altura": 972
+      },
+      "uso": ["conforto"],
+      "legendaOriginal": "GELADEIRA RECHEADA",
+      "resolucaoMax": {
+        "largura": 1080,
+        "altura": 972
+      },
+      "consentimento": "nao-precisa",
+      "pessoas": [],
+      "audioLiberado": false,
+      "edicoes": ["recorte que remove o texto queimado (sem IA)"],
+      "problemas": ["marcas de terceiros visíveis (latas Monster, sucos)"],
+      "naoUsar": false
+    },
+    {
+      "id": "conforto-lanches",
+      "origem": "diferencial-lanches",
+      "natureza": "recorte",
+      "caixa": {
+        "x": 0,
+        "y": 0,
+        "largura": 1080,
+        "altura": 972
+      },
+      "uso": ["conforto"],
+      "legendaOriginal": "LANCHES",
+      "resolucaoMax": {
+        "largura": 1080,
+        "altura": 972
+      },
+      "consentimento": "nao-precisa",
+      "pessoas": [],
+      "audioLiberado": false,
+      "edicoes": ["recorte que remove o texto queimado (sem IA)"],
+      "problemas": [],
+      "naoUsar": false
+    },
+    {
+      "id": "conforto-treino-app",
+      "origem": "diferencial-treino-app",
+      "natureza": "recorte",
+      "caixa": {
+        "x": 0,
+        "y": 0,
+        "largura": 1080,
+        "altura": 972
+      },
+      "uso": ["conforto"],
+      "legendaOriginal": "TREINO PERSONALIZADO",
+      "resolucaoMax": {
+        "largura": 1080,
+        "altura": 972
+      },
+      "consentimento": "nao-precisa",
+      "pessoas": [],
+      "audioLiberado": false,
+      "edicoes": ["recorte que remove o texto queimado (sem IA)"],
+      "problemas": ["mão de pessoa sem identificação (sem rosto)"],
+      "naoUsar": false
+    },
+    {
+      "id": "conforto-cafe",
+      "origem": "diferencial-cafe",
+      "natureza": "recorte",
+      "caixa": {
+        "x": 0,
+        "y": 0,
+        "largura": 1014,
+        "altura": 913
+      },
+      "uso": ["conforto"],
+      "legendaOriginal": "CAFÉZINHO",
+      "resolucaoMax": {
+        "largura": 1014,
+        "altura": 913
+      },
+      "consentimento": "nao-precisa",
+      "pessoas": [],
+      "audioLiberado": false,
+      "edicoes": ["recorte que remove o texto queimado (sem IA)"],
+      "problemas": ["marca de terceiro visível (Philips Walita)"],
+      "naoUsar": false
+    },
+    {
+      "id": "conforto-esteira-tv",
+      "origem": "diferencial-esteira-tv",
+      "natureza": "recorte",
+      "caixa": {
+        "x": 0,
+        "y": 0,
+        "largura": 1080,
+        "altura": 972
+      },
+      "uso": ["conforto"],
+      "legendaOriginal": "ESTEIRA COM TV",
+      "resolucaoMax": {
+        "largura": 1080,
+        "altura": 972
+      },
+      "consentimento": "nao-precisa",
+      "pessoas": [],
+      "audioLiberado": false,
+      "edicoes": ["recorte que remove o texto queimado (sem IA)"],
+      "problemas": [
+        "logos de terceiros na tela (YouTube, Netflix, Disney+, Prime Video, Spotify, X, Instagram, Facebook)"
+      ],
+      "naoUsar": false
+    },
+    {
+      "id": "conforto-parede-logo",
+      "origem": "diferencial-parede-logo",
+      "natureza": "recorte",
+      "caixa": {
+        "x": 0,
+        "y": 0,
+        "largura": 1080,
+        "altura": 1026
+      },
+      "uso": ["conforto"],
+      "legendaOriginal": "SÓ TEM AQUI",
+      "resolucaoMax": {
+        "largura": 1080,
+        "altura": 1026
+      },
+      "consentimento": "nao-precisa",
+      "pessoas": [],
+      "audioLiberado": false,
+      "edicoes": ["recorte que remove o texto queimado (sem IA)"],
+      "problemas": [],
+      "naoUsar": false
+    },
+    {
+      "id": "conforto-espaco-kids",
+      "origem": "diferencial-espaco-kids",
+      "natureza": "recorte",
+      "caixa": {
+        "x": 0,
+        "y": 0,
+        "largura": 1004,
+        "altura": 904
+      },
+      "uso": ["conforto"],
+      "legendaOriginal": "ESPAÇO KIDS",
+      "resolucaoMax": {
+        "largura": 1004,
+        "altura": 904
+      },
+      "consentimento": "nao-precisa",
+      "pessoas": [],
+      "audioLiberado": false,
+      "edicoes": ["recorte que remove o texto queimado (sem IA)"],
+      "problemas": [
+        "embalagens com personagens licenciados (Disney) visíveis",
+        "conferido: sem crianças na imagem, só brinquedos e material de desenho"
+      ],
+      "naoUsar": false
+    }
+  ]
+}

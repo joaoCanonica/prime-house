@@ -1,0 +1,59 @@
+---
+// <head> de SEO de todas as páginas: título, descrição, robots, canonical, Open Graph e JSON-LD.
+// Tudo sai da config; o audit-seo (scripts/audit-seo.mjs) confere o resultado no dist/.
+import { SITE_URL, indexavel, robots, seo } from '../../config/seo.ts';
+import { home } from '../../content/textos/index.ts';
+import type { Meta } from '../../content/textos/tipos.ts';
+import { absoluta, academiaLd, serializar, trilhaLd, type No } from './ld.ts';
+import { OG } from './og.ts';
+
+interface Props {
+  meta: Meta;
+  /** rota canônica ("/", "/planos"…) */
+  rota: string;
+  /** nome da página na trilha (BreadcrumbList); a home não tem */
+  trilha?: string | undefined;
+  /** JSON-LD extra da página (FAQPage, VideoObject…) */
+  ld?: (No | null)[] | undefined;
+  /** páginas sem canonical (404) */
+  semCanonical?: boolean | undefined;
+}
+const { meta, rota, trilha, ld = [], semCanonical = false } = Astro.props;
+const base = SITE_URL;
+const canonical = base && !semCanonical ? absoluta(base, rota === '/' ? '/' : `${rota}/`) : null;
+const imagem = absoluta(base, OG.caminho);
+const nos: No[] = [
+  academiaLd({ base, descricao: home.resposta, imagem: OG.caminho }),
+  ...(trilha
+    ? [
+        trilhaLd(base, [
+          { nome: 'Início', rota: '/' },
+          { nome: trilha, rota: `${rota}/` },
+        ]),
+      ]
+    : []),
+  ...ld.filter((n): n is No => n !== null),
+];
+---
+
+<meta name="robots" content={robots()} />
+<title>{meta.title}</title>
+<meta name="description" content={meta.description} />
+{canonical && <link rel="canonical" href={canonical} />}
+<link rel="describedby" href="/llms.txt" type="text/markdown" />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content={seo.localidade} />
+<meta property="og:site_name" content="Prime House Academia" />
+<meta property="og:title" content={meta.title} />
+<meta property="og:description" content={meta.description} />
+{canonical && <meta property="og:url" content={canonical} />}
+<meta property="og:image" content={imagem} />
+<meta property="og:image:type" content={OG.tipo} />
+<meta property="og:image:width" content={String(OG.largura)} />
+<meta property="og:image:height" content={String(OG.altura)} />
+<meta property="og:image:alt" content={OG.alt} />
+<meta name="twitter:card" content="summary_large_image" />
+{indexavel() && base && <link rel="sitemap" href="/sitemap.xml" type="application/xml" />}
+{nos.map((n) => (
+  <script type="application/ld+json" set:html={serializar(n)} />
+))}

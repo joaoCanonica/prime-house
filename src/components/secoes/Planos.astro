@@ -1,0 +1,139 @@
+---
+// 7 · PLANOS — gesto: três colunas tipográficas, sem caixas nem preço; o Select dentro de uma moldura de luz.
+// Benefícios fixos confirmados (08/11/2026). "O que inclui" do Prime segue provisório (Txt: selo no preview, fora da produção).
+import BotaoWhatsApp from '../base/BotaoWhatsApp.astro';
+import { home, planos, whatsapp } from '../../content/textos/index.ts';
+import Secao from './Secao.astro';
+import Txt from './Txt.astro';
+
+const p = planos.itens;
+const colunas = [
+  {
+    id: 'prime',
+    nome: p.prime.nome,
+    resumo: p.prime.resumo,
+    gancho: null,
+    msg: whatsapp.planoPrime,
+  },
+  {
+    id: 'select',
+    nome: p.select.nome,
+    resumo: p.select.resumo,
+    gancho: p.select.gancho,
+    msg: whatsapp.planoSelect,
+  },
+  { id: 'duo', nome: p.duo.nome, resumo: p.duo.resumo, gancho: null, msg: whatsapp.planoDuo },
+] as const;
+---
+
+<Secao id="planos" rotulo={home.planos.rotulo} titulo={home.planos.titulo} class="planos">
+  <p class="t-secundario planos__intro">{home.planos.intro}</p>
+  <ol class="planos__colunas">
+    {colunas.map((c, i) => (
+      <li class:list={['plano', `plano--${c.id}`]}>
+        <span class="plano__n t-tabular" aria-hidden="true">
+          {String(i + 1).padStart(2, '0')}
+        </span>
+        <h3 class="plano__nome">{c.nome}</h3>
+        {c.gancho && <Txt texto={c.gancho} class="plano__gancho" />}
+        <Txt texto={c.resumo} class="plano__resumo" />
+        <BotaoWhatsApp
+          mensagem={c.msg}
+          texto={`Quero o ${c.nome}`}
+          class="plano__botao"
+          plano={c.id}
+        />
+      </li>
+    ))}
+  </ol>
+  <div class="planos__beneficios">
+    <h3 class="t-rotulo t-secundario">{planos.beneficios.titulo}</h3>
+    <ul>
+      {planos.beneficios.itens.map((b) => (
+        <li>
+          <strong>{b.titulo}.</strong> {b.texto}
+        </li>
+      ))}
+    </ul>
+  </div>
+  <p class="planos__chamada t-lead">{home.planos.chamada}</p>
+</Secao>
+
+<style>
+  .planos__intro {
+    max-width: 46ch;
+    margin-bottom: var(--esp-7);
+  }
+  .planos__colunas {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: var(--esp-6);
+  }
+  .plano {
+    position: relative;
+    display: grid;
+    align-content: start;
+    gap: var(--esp-4);
+    padding: var(--esp-6) 0;
+    border-top: 1px solid var(--prime-linha);
+    max-width: none;
+  }
+  .plano__n {
+    color: var(--prime-concreto);
+    font-size: var(--fs-pequeno);
+  }
+  .plano__nome {
+    font-family: var(--fonte-titulo);
+    font-stretch: var(--largura-display);
+    font-weight: 740;
+    text-transform: uppercase;
+    font-size: clamp(2.5rem, 1.6rem + 3.2vw, 4.25rem);
+    line-height: 0.9;
+    letter-spacing: var(--ls-display);
+  }
+  .plano :global(.plano__gancho) {
+    font-family: var(--fonte-acento);
+    font-style: italic;
+    font-size: 1.25rem;
+    line-height: 1.3;
+  }
+  .plano :global(.plano__resumo) {
+    color: var(--prime-concreto);
+  }
+  .plano :global(.plano__botao) {
+    justify-self: start;
+    margin-top: var(--esp-2);
+  }
+  /* o Select dentro de uma moldura de luz */
+  .plano--select {
+    padding-inline: var(--esp-5);
+    border-top-color: transparent;
+    outline: 1px solid var(--prime-luz);
+    outline-offset: -1px;
+    box-shadow: 0 0 14px rgb(255 244 224 / 0.22);
+  }
+  .planos__beneficios {
+    margin-top: var(--esp-7);
+    display: grid;
+    gap: var(--esp-3);
+  }
+  .planos__beneficios ul {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: var(--esp-3);
+  }
+  .planos__chamada {
+    margin-top: var(--esp-7);
+  }
+  @media (min-width: 64rem) {
+    .planos__colunas {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--esp-6);
+    }
+    .plano {
+      padding-inline: var(--esp-5);
+    }
+  }
+</style>

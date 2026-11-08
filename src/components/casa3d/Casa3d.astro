@@ -1,0 +1,486 @@
+---
+// A Casa em 3D: zonas como abas em HTML (role=tablist) + hotspots na cena, sincronizados.
+// Sem JS / sem WebGL / Save-Data/2g / movimento reduzido / erro: imagem + vídeo da zona e a lista de zonas (fallback).
+// Maquete esquemática: selo visível; em produção só com aprovação (config/tour3d.ts).
+import BotaoWhatsApp from '../base/BotaoWhatsApp.astro';
+import MolduraVideo from '../base/MolduraVideo.astro';
+import Poster from '../base/Poster.astro';
+import { imagem, video } from '../base/midia.ts';
+import Provisorio from '../Provisorio.astro';
+import { modoAtual } from '../../config/modo.ts';
+import { tour3d } from '../../config/tour3d.ts';
+import { exibir } from '../../config/tipos.ts';
+import { equipamentos } from '../../content/dados/equipamentos.ts';
+import { zonas } from '../../content/dados/zonas.ts';
+import { aCasa, alt, videos } from '../../content/textos/index.ts';
+import { mensagens } from '../../lib/whatsapp.ts';
+import type { ZonaTour } from '../../tres/tipos.ts';
+
+const modo = modoAtual();
+const esquematicaOk = exibir(tour3d.maqueteEsquematicaAprovada, modo) === true;
+const textos = aCasa.zonas as Record<string, { titulo: string; texto: string }>;
+const alts = alt as Record<string, string>;
+const descVideos = videos as Record<string, string>;
+
+/** primeira mídia publicável da zona: vídeo se houver, senão imagem */
+function midiaDa(ids: readonly string[]) {
+  for (const id of ids) {
+    try {
+      video(id);
+      return { tipo: 'video' as const, id };
+    } catch {
+      /* não é vídeo */
+    }
+  }
+  for (const id of ids) {
+    try {
+      imagem(id);
+      return { tipo: 'imagem' as const, id };
+    } catch {
+      /* não publicável */
+    }
+  }
+  return null;
+}
+
+const lista = [...zonas]
+  .sort((a, b) => a.ordem - b.ordem)
+  .map((z) => ({
+    ...z,
+    titulo: textos[z.id]?.titulo ?? z.nome,
+    texto: textos[z.id]?.texto ?? z.descricao,
+    equip: equipamentos.filter((e) => e.zona === z.id && e.confirmado),
+    midia: midiaDa(z.midia),
+    subzonas: (z.subzonas ?? []).map((s) => ({ ...s, texto: textos[s.id]?.texto ?? '' })),
+  }));
+const paraTour: ZonaTour[] = lista.map((z) => ({
+  id: z.id,
+  nome: z.titulo,
+  camera: z.fonteLayout !== 'pendente' && z.camera ? z.camera : null,
+}));
+const inicial = 'musculacao';
+---
+
+<div
+  class="casa3d"
+  data-casa3d
+  data-zonas={JSON.stringify(paraTour)}
+  data-inicial={inicial}
+  data-esquematica-ok={String(esquematicaOk)}
+>
+  <div class="casa3d__palco">
+    <div class="casa3d__alvo" data-casa3d-alvo></div>
+    <div class="casa3d__fallback" data-casa3d-fallback>
+      <Poster
+        id="still-interior"
+        alt={alts['still-interior'] ?? ''}
+        sizes="(min-width: 64rem) 62vw, 100vw"
+        class="casa3d__fallback-img"
+      />
+    </div>
+    <p class="casa3d__selo t-rotulo" data-casa3d-selo hidden>
+      Representação esquemática — em breve, o tour real
+    </p>
+    <div class="casa3d__estado" data-casa3d-estado hidden role="status">
+      <span data-casa3d-estado-texto></span>
+      <span class="casa3d__barra" aria-hidden="true">
+        <span data-casa3d-barra></span>
+      </span>
+      <button type="button" class="casa3d__mini t-rotulo" data-casa3d-cancelar hidden>
+        Cancelar
+      </button>
+    </div>
+    <div class="casa3d__acoes-palco">
+      <button type="button" class="casa3d__carregar t-rotulo" data-casa3d-carregar hidden>
+        Carregar o tour 3D
+      </button>
+      <button type="button" class="casa3d__mini t-rotulo" data-casa3d-sair-real hidden>
+        Voltar à maquete
+      </button>
+    </div>
+    <p class="casa3d__como t-pequeno" data-casa3d-como hidden>
+      {aCasa.intro.comoUsar}
+    </p>
+  </div>
+
+  <div
+    class="casa3d__abas"
+    role="tablist"
+    aria-label="Zonas da academia"
+    aria-orientation="horizontal"
+    data-casa3d-abas
+  >
+    {lista.map((z) => (
+      <button
+        type="button"
+        role="tab"
+        id={`aba-${z.id}`}
+        aria-controls={`painel-${z.id}`}
+        aria-selected={z.id === inicial ? 'true' : 'false'}
+        tabindex={z.id === inicial ? 0 : -1}
+        data-zona={z.id}
+        class="casa3d__aba"
+      >
+        {z.titulo}
+      </button>
+    ))}
+  </div>
+
+  <div class="casa3d__paineis" data-casa3d-paineis>
+    {lista.map((z) => (
+      <section
+        class="casa3d__painel"
+        role="tabpanel"
+        id={`painel-${z.id}`}
+        aria-labelledby={`aba-${z.id}`}
+        tabindex="-1"
+        data-painel={z.id}
+        data-ativo={z.id === inicial ? 'true' : 'false'}
+      >
+        <button type="button" class="casa3d__fechar t-rotulo" data-casa3d-fechar>
+          Fechar
+        </button>
+        <h2 class="t-h2 casa3d__titulo">{z.titulo}</h2>
+        <p class="casa3d__texto">{z.texto}</p>
+        {z.subzonas.length > 0 && (
+          <ul class="casa3d__sub">
+            {z.subzonas.map((s) => (
+              <li>
+                <strong>{s.nome}.</strong> {s.texto}
+              </li>
+            ))}
+          </ul>
+        )}
+        {z.equip.length > 0 && (
+          <div class="casa3d__equip">
+            <h3 class="t-rotulo t-secundario">Equipamentos confirmados</h3>
+            <ul>
+              {z.equip.map((e) => (
+                <li>
+                  <span>
+                    {e.nome}
+                    {e.quantidade ? ` · ${e.quantidade} unidades` : ''}
+                  </span>
+                  <span class="t-pequeno t-secundario">{e.musculos.join(', ')}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+        {z.itens && z.itens.length > 0 && (
+          <p class="t-pequeno t-secundario">{z.itens.join(' · ')}</p>
+        )}
+        {z.midia?.tipo === 'video' && (
+          <div class="casa3d__midia">
+            <MolduraVideo id={z.midia.id} descricao={descVideos[z.midia.id] ?? z.titulo} />
+          </div>
+        )}
+        {z.midia?.tipo === 'imagem' && (
+          <div class="casa3d__midia">
+            <Poster
+              id={z.midia.id}
+              alt={alts[z.midia.id] ?? ''}
+              sizes="(min-width: 64rem) 28vw, 80vw"
+            />
+          </div>
+        )}
+        <div class="casa3d__botoes">
+          <BotaoWhatsApp
+            mensagem={mensagens.zona(z.nomeNoTour)}
+            texto="Quero conhecer esta área"
+            origem="tour-3d"
+            zona={z.id}
+          />
+          <button type="button" class="casa3d__real t-rotulo" data-ver-real={z.id} hidden>
+            Ver de verdade
+          </button>
+        </div>
+      </section>
+    ))}
+  </div>
+  {modo === 'preview' && !esquematicaOk && (
+    <Provisorio motivo="maquete esquemática ainda não aprovada">
+      Em produção, só a lista e as fotos das zonas.
+    </Provisorio>
+  )}
+</div>
+
+<script>
+  import './casa3d.ts';
+</script>
+
+<style>
+  .casa3d {
+    display: grid;
+    gap: var(--esp-5);
+  }
+  .casa3d__palco {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    max-height: 78svh;
+    width: 100%;
+    overflow: hidden;
+    background: var(--prime-breu);
+    border: 1px solid var(--prime-linha);
+  }
+  .casa3d__alvo {
+    position: absolute;
+    inset: 0;
+  }
+  .casa3d__alvo :global(.tour3d__canvas) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    touch-action: pan-y;
+    cursor: grab;
+  }
+  .casa3d__alvo :global(.tour3d__rotulos) {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  .casa3d__alvo :global(.tour3d__rotulo) {
+    position: absolute;
+    left: 0;
+    top: 0;
+    pointer-events: auto;
+    padding: 0.2rem 0.5rem;
+    background: rgb(12 11 10 / 0.72);
+    color: var(--prime-nevoa);
+    border: 1px solid var(--prime-linha);
+    font: 600 0.75rem/1.3 var(--fonte-texto);
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+    transition:
+      border-color var(--dur-1) var(--curva-saida),
+      box-shadow var(--dur-1) var(--curva-saida);
+  }
+  .casa3d__alvo :global(.tour3d__rotulo.ativo),
+  .casa3d__alvo :global(.tour3d__rotulo:hover) {
+    border-color: var(--prime-luz);
+    box-shadow: var(--luz-borda);
+  }
+  .casa3d__alvo :global(.tour3d__fps) {
+    position: absolute;
+    left: var(--esp-3);
+    bottom: var(--esp-3);
+    font:
+      600 0.75rem/1 ui-monospace,
+      monospace;
+    color: var(--prime-luz);
+    background: rgb(12 11 10 / 0.7);
+    padding: 0.3rem 0.5rem;
+  }
+  .casa3d__fallback {
+    position: absolute;
+    inset: 0;
+  }
+  .casa3d__fallback :global(.casa3d__fallback-img) {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: auto !important;
+    opacity: 0.55;
+  }
+  .casa3d[data-modo='3d'] .casa3d__fallback {
+    display: none;
+  }
+  .casa3d__selo {
+    position: absolute;
+    top: var(--esp-3);
+    left: var(--esp-3);
+    right: var(--esp-3);
+    width: fit-content;
+    padding: 0.35rem 0.6rem;
+    background: rgb(12 11 10 / 0.82);
+    color: var(--prime-luz);
+    border: 1px solid rgb(255 244 224 / 0.45);
+  }
+  .casa3d__estado {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    translate: -50% -50%;
+    display: grid;
+    gap: var(--esp-2);
+    justify-items: center;
+    padding: var(--esp-4);
+    background: rgb(12 11 10 / 0.85);
+    border: 1px solid var(--prime-linha);
+    min-width: 14rem;
+    text-align: center;
+  }
+  .casa3d__barra {
+    width: 100%;
+    height: 1px;
+    background: var(--prime-linha);
+  }
+  .casa3d__barra span {
+    display: block;
+    height: 1px;
+    width: 0;
+    background: var(--prime-luz);
+    box-shadow: 0 0 6px rgb(255 244 224 / 0.7);
+  }
+  .casa3d__acoes-palco {
+    position: absolute;
+    right: var(--esp-3);
+    bottom: var(--esp-3);
+    display: flex;
+    gap: var(--esp-2);
+  }
+  .casa3d__carregar,
+  .casa3d__real {
+    min-height: 2.75rem;
+    padding: 0.6rem 1rem;
+    background: var(--prime-luz);
+    color: var(--prime-breu);
+    border: 1px solid var(--prime-luz);
+  }
+  .casa3d__mini,
+  .casa3d__fechar {
+    min-height: 2.75rem;
+    padding: 0.5rem 0.9rem;
+    background: rgb(12 11 10 / 0.75);
+    color: var(--prime-nevoa);
+    border: 1px solid rgb(255 244 224 / 0.4);
+  }
+  .casa3d__como {
+    position: absolute;
+    left: var(--esp-3);
+    bottom: var(--esp-3);
+    max-width: 17rem;
+    font-size: 0.8125rem;
+    color: var(--prime-concreto);
+    background: rgb(12 11 10 / 0.6);
+    padding: 0.25rem 0.5rem;
+  }
+  @media (max-width: 63.99rem) {
+    .casa3d__como {
+      display: none;
+    }
+    /* no celular o topo da cena tem os rótulos das zonas: o selo desce (o canto de baixo fica livre) */
+    .casa3d__selo {
+      top: auto;
+      bottom: var(--esp-3);
+    }
+  }
+  .casa3d__abas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--esp-2);
+  }
+  .casa3d__aba {
+    min-height: 2.75rem;
+    padding: 0.5rem 1rem;
+    background: transparent;
+    color: var(--prime-nevoa);
+    border: 1px solid var(--prime-linha);
+    transition:
+      border-color var(--dur-1) var(--curva-saida),
+      box-shadow var(--dur-1) var(--curva-saida),
+      color var(--dur-1);
+  }
+  .casa3d__aba:hover {
+    border-color: rgb(255 244 224 / 0.6);
+  }
+  .casa3d__aba[aria-selected='true'] {
+    border-color: var(--prime-luz);
+    color: var(--prime-luz);
+    box-shadow: var(--luz-borda);
+  }
+  .casa3d__painel {
+    display: grid;
+    gap: var(--esp-4);
+    align-content: start;
+    padding: var(--esp-5) 0;
+    border-top: 1px solid var(--prime-linha);
+  }
+  .casa3d__fechar {
+    display: none;
+  }
+  .casa3d__texto {
+    max-width: 46ch;
+  }
+  .casa3d__sub,
+  .casa3d__equip ul {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: var(--esp-2);
+  }
+  .casa3d__equip ul li {
+    display: grid;
+    border-bottom: 1px solid var(--prime-linha);
+    padding-bottom: var(--esp-2);
+  }
+  .casa3d__midia {
+    width: min(100%, 18rem);
+  }
+  .casa3d__botoes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--esp-3);
+    align-items: center;
+  }
+  /* com JS: só o painel ativo aparece (sem JS, todos ficam em lista) */
+  @media (scripting: enabled) {
+    .casa3d__painel[data-ativo='false'] {
+      display: none;
+    }
+  }
+  /* celular: o painel vira gaveta inferior */
+  @media (max-width: 63.99rem) and (scripting: enabled) {
+    .casa3d__paineis {
+      position: fixed;
+      inset: auto 0 0;
+      z-index: 60;
+      max-height: 62svh;
+      overflow-y: auto;
+      padding: var(--esp-4) var(--margem) max(var(--esp-5), env(safe-area-inset-bottom));
+      background: var(--prime-grafite);
+      border-top: 1px solid var(--prime-luz);
+      box-shadow: 0 -10px 30px rgb(0 0 0 / 0.5);
+      translate: 0 105%;
+      visibility: hidden;
+      transition:
+        translate var(--dur-3) var(--curva-saida),
+        visibility 0s linear var(--dur-3);
+    }
+    .casa3d[data-gaveta='aberta'] .casa3d__paineis {
+      translate: 0 0;
+      visibility: visible;
+      transition-delay: 0s;
+    }
+    .casa3d__painel {
+      border-top: 0;
+      padding-top: 0;
+    }
+    .casa3d__fechar {
+      display: inline-flex;
+      justify-self: end;
+    }
+  }
+  @media (min-width: 64rem) {
+    .casa3d {
+      grid-template-columns: minmax(0, 1.7fr) minmax(19rem, 1fr);
+      grid-template-areas: 'palco painel' 'abas painel';
+      column-gap: var(--esp-7);
+      align-items: start;
+    }
+    .casa3d__palco {
+      grid-area: palco;
+      aspect-ratio: 16 / 10;
+    }
+    .casa3d__abas {
+      grid-area: abas;
+    }
+    .casa3d__paineis {
+      grid-area: painel;
+    }
+    .casa3d__painel {
+      border-top: 0;
+      padding-top: 0;
+    }
+  }
+</style>

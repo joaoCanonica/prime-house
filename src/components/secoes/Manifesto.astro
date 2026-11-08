@@ -1,0 +1,63 @@
+---
+// 1 · MANIFESTO — gesto: uma frase gigante em duas linhas; a moldura de luz acende em volta, uma vez.
+import MolduraLuz from '../marca/MolduraLuz.astro';
+import { home } from '../../content/textos/index.ts';
+import { comAcento } from './texto.ts';
+
+const [linha1 = '', linha2 = ''] = home.manifesto.frase.texto.split(' / ');
+---
+
+<section id="manifesto" class="manifesto" aria-labelledby="manifesto-titulo">
+  <MolduraLuz forma="retangulo" respiro={0} class="manifesto__moldura">
+    <div class="manifesto__corpo">
+      <h2 id="manifesto-titulo" class="manifesto__frase">
+        <span set:html={comAcento(linha1)} />
+        <span set:html={comAcento(linha2)} />
+      </h2>
+      <p class="manifesto__apoio t-lead">{home.manifesto.apoio.texto}</p>
+    </div>
+  </MolduraLuz>
+</section>
+
+<style>
+  .manifesto {
+    padding: var(--secao) var(--margem);
+  }
+  .manifesto :global(.manifesto__moldura) {
+    width: min(100%, var(--largura-max));
+    margin-inline: auto;
+  }
+  .manifesto :global(.manifesto__moldura .moldura-luz__conteudo) {
+    background: transparent;
+    overflow: visible;
+  }
+  .manifesto__corpo {
+    display: grid;
+    gap: clamp(1.5rem, 1rem + 2vw, 3rem);
+    padding: clamp(2.5rem, 1rem + 7vw, 8rem) clamp(1.25rem, 0.5rem + 5vw, 7rem);
+  }
+  .manifesto__frase {
+    display: grid;
+    font-family: var(--fonte-titulo);
+    font-stretch: var(--largura-display);
+    font-weight: 760;
+    text-transform: uppercase;
+    font-size: clamp(2.4rem, 0.4rem + 5.9vw, 7.25rem);
+    line-height: 0.9;
+    letter-spacing: var(--ls-display);
+  }
+  @media (min-width: 64rem) {
+    .manifesto__frase span {
+      white-space: nowrap;
+    }
+  }
+  .manifesto__frase span:last-child {
+    padding-inline-start: clamp(0rem, -2rem + 6vw, 6rem);
+    color: var(--prime-luz);
+  }
+  .manifesto__apoio {
+    max-width: 30ch;
+    justify-self: end;
+    color: var(--prime-concreto);
+  }
+</style>

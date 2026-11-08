@@ -1,0 +1,26 @@
+{
+  "data": "2026-11-08T00:20:57.351Z",
+  "parte": "lcp",
+  "comAbertura": {
+    "medianaMs": 3844,
+    "execucoes": [
+      3960,
+      3844,
+      3968,
+      3812,
+      3808
+    ],
+    "elemento": "h1.hero__titulo"
+  },
+  "semAbertura": {
+    "medianaMs": 320,
+    "execucoes": [
+      320,
+      320,
+      296,
+      348,
+      320
+    ],
+    "elemento": "h1.hero__titulo"
+  }
+}
