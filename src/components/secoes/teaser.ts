@@ -90,7 +90,9 @@ for (const palco of document.querySelectorAll<HTMLElement>('[data-tour3d]')) {
       tour.irPara(a.dataset['zona'] ?? '');
     });
   }
-  if (podeCarregarSozinho() && !reduzido && temWebGL() && alvo) {
+  // sem 3D no build (produção sem a maquete aprovada) não há o que carregar: nem tenta, nem avisa erro
+  const tem3d = palco.dataset['tem3d'] === 'true';
+  if (tem3d && podeCarregarSozinho() && !reduzido && temWebGL() && alvo) {
     const io = new IntersectionObserver(
       ([e]) => {
         if (!e?.isIntersecting) return;

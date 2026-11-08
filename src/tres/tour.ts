@@ -248,7 +248,8 @@ export async function montarTour(o: OpcoesTour): Promise<Tour> {
   canvas.addEventListener('pointerdown', aoDescer);
   window.addEventListener('pointermove', aoMover, { passive: true });
   window.addEventListener('pointerup', aoSubir);
-  window.addEventListener('pointercancel', () => (arrasto = null));
+  const aoCancelar = () => (arrasto = null);
+  window.addEventListener('pointercancel', aoCancelar);
 
   // ---------- tamanho
   const ajustar = () => {
@@ -405,6 +406,8 @@ export async function montarTour(o: OpcoesTour): Promise<Tour> {
       document.removeEventListener('visibilitychange', rodar);
       window.removeEventListener('pointermove', aoMover);
       window.removeEventListener('pointerup', aoSubir);
+      // sem isto a janela segurava a cena inteira (vazamento medido na sessão 9: +0,2 MB e +9 nós por ciclo)
+      window.removeEventListener('pointercancel', aoCancelar);
       sairDoReal();
       cena.traverse((n) => {
         if (n instanceof Mesh || n instanceof LineSegments) {

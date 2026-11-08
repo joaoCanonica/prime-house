@@ -180,9 +180,12 @@ const cssFiltro = filtros
   }
   .maq__item {
     max-width: none;
+    min-width: 0;
   }
+  /* coluna explícita: com a implícita (auto), o WebKit estica a coluna até a largura natural da foto */
   .maq__item article {
     display: grid;
+    grid-template-columns: minmax(0, 1fr);
     gap: var(--esp-2);
   }
   .maq__objeto {

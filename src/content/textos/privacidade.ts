@@ -19,17 +19,17 @@ export const privacidade = {
     {
       titulo: 'WhatsApp',
       texto:
-        'Quando você toca em "Falar com a equipe", o WhatsApp abre com uma mensagem pronta. Você decide se envia. A conversa segue as regras do WhatsApp e é atendida pela equipe da academia.',
+        'Quando você toca em “Falar com a equipe”, o WhatsApp abre com uma mensagem pronta. Você decide se envia. A conversa segue as regras do WhatsApp e é atendida pela equipe da academia.',
     },
     {
       titulo: 'Mapas e vídeos de terceiros',
       texto:
-        'O mapa interativo do Google usa cookies e só carrega se você clicar e aceitar. Antes disso, nenhum dado vai para o Google. Você muda essa escolha a qualquer momento em "Preferências de cookies", no rodapé.',
+        'O mapa interativo do Google usa cookies e só carrega se você clicar e aceitar. Antes disso, nenhum dado vai para o Google. Você muda essa escolha a qualquer momento em “Preferências de cookies”, no rodapé.',
     },
     {
       titulo: 'Medição de visitas',
       texto: provisorio(
-        'O site conta visitas e cliques (por exemplo, em "Falar com a equipe" ou no tour 3D) de forma agregada, sem cookies e sem identificar você, com o Plausible, pelo próprio endereço do site. Se o seu navegador pede para não ser rastreado (Global Privacy Control ou Do Not Track), nada é contado.',
+        'O site conta visitas e cliques (por exemplo, em “Falar com a equipe” ou no tour 3D) de forma agregada, sem cookies e sem identificar você, com o Plausible, pelo próprio endereço do site. Se o seu navegador pede para não ser rastreado (Global Privacy Control ou Do Not Track), nada é contado.',
         'medição só liga quando o domínio do site e a conta do Plausible forem definidos',
       ),
     },

@@ -1,0 +1,34 @@
+{
+  "data": "2026-11-08T00:29:55.561Z",
+  "parte": "fps",
+  "desktop1440": {
+    "medianaFps": 49,
+    "amostras": [
+      60,
+      47,
+      45,
+      56,
+      44,
+      45,
+      57,
+      49
+    ],
+    "info": "49 fps · 23 draw calls · 156 tri",
+    "renderizador": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)"
+  },
+  "androidIntermediario": {
+    "medianaFps": 35,
+    "amostras": [
+      54,
+      35,
+      35,
+      35,
+      32,
+      34,
+      31,
+      31
+    ],
+    "info": "31 fps · 22 draw calls · 144 tri",
+    "renderizador": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)"
+  }
+}

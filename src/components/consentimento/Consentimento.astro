@@ -71,7 +71,12 @@ import { consentimento as t } from '../../content/textos/index.ts';
     banner.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && lerConsentimento()) esconder();
     });
-    if (!lerConsentimento()) mostrar(false);
+    // durante a abertura da home o banner espera ela acabar (não disputa o canto com "Pular abertura")
+    if (!lerConsentimento()) {
+      if (raiz.dataset['abertura'] === 'on')
+        document.addEventListener('ph:abertura-fim', () => mostrar(false), { once: true });
+      else mostrar(false);
+    }
   }
 
   // preferência no rodapé (e pedidos de outras partes, como o mapa)

@@ -10,4 +10,34 @@ export default defineConfig({
   trailingSlash: 'ignore',
   build: { format: 'directory', inlineStylesheets: 'always' },
   devToolbar: { enabled: false },
+  // CSP por hash (meta em cada página): todo <script> e <style> que o Astro gera entra com o seu SHA-256.
+  // Exceções documentadas em docs/DEPLOY.md:
+  //  · 'wasm-unsafe-eval' — decodificadores WebAssembly do 3D (Meshopt; Draco/KTX2 e Spark sob demanda);
+  //  · worker-src blob: — workers que o Spark (splats) cria a partir de blob;
+  //  · img-src data: blob: — LQIP embutido e texturas do three.js;
+  //  · style-src-attr 'unsafe-inline' — atributos style="" de posição (régua do horário, molduras);
+  //  · frame-src www.google.com — o mapa interativo, só depois do clique e do "Aceitar".
+  // frame-ancestors não vale em <meta>: vai como cabeçalho (vercel.json).
+  security: {
+    csp: {
+      algorithm: 'SHA-256',
+      directives: [
+        "default-src 'self'",
+        "img-src 'self' data: blob:",
+        "media-src 'self'",
+        "font-src 'self'",
+        "connect-src 'self'",
+        "worker-src 'self' blob:",
+        'frame-src https://www.google.com',
+        "object-src 'none'",
+        "base-uri 'self'",
+        "form-action 'self'",
+        "manifest-src 'self'",
+      ],
+      scriptDirective: { resources: ["'self'", "'wasm-unsafe-eval'"] },
+      styleDirective: {
+        resources: ["'self'", { resource: "'unsafe-inline'", kind: 'attribute' }],
+      },
+    },
+  },
 });

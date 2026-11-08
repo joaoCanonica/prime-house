@@ -1,0 +1,35 @@
+{
+  "data": "2026-11-08T00:30:17.938Z",
+  "parte": "memoria",
+  "ciclos": [
+    {
+      "momento": "antes",
+      "heapMB": 2.81,
+      "nos": 767,
+      "ouvintes": 62,
+      "canvas": 0
+    },
+    {
+      "momento": "depois do 1º abrir/fechar",
+      "heapMB": 2.89,
+      "nos": 767,
+      "ouvintes": 62,
+      "canvas": 0
+    },
+    {
+      "momento": "depois do 2º abrir/fechar",
+      "heapMB": 2.98,
+      "nos": 767,
+      "ouvintes": 62,
+      "canvas": 0
+    },
+    {
+      "momento": "depois do 3º abrir/fechar",
+      "heapMB": 3.01,
+      "nos": 767,
+      "ouvintes": 62,
+      "canvas": 0
+    }
+  ],
+  "crescimentoHeapEntre1e3MB": 0.12
+}

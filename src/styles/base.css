@@ -60,6 +60,28 @@ h4 {
   font-weight: inherit;
   font-size: inherit;
 }
+/* <details>: sem o triângulo do navegador; um "+" fino que gira para "×" quando abre (igual em todo o site) */
+summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--esp-4);
+}
+summary::-webkit-details-marker {
+  display: none;
+}
+summary::after {
+  content: '+';
+  flex: none;
+  font-weight: 400;
+  transition: rotate var(--dur-1) var(--curva-saida);
+}
+details[open] > summary::after {
+  rotate: 45deg;
+}
+
 ::selection {
   background: var(--prime-luz);
   color: var(--prime-breu);

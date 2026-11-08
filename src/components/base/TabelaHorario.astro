@@ -38,11 +38,14 @@ const marcas = [0, 6, 12, 18, 24];
       <th scope="col" class="t-rotulo">
         Horário
       </th>
-      <td class="tabela-horario__regua" aria-hidden="true">
+      <th scope="col" class="tabela-horario__regua">
+        <span class="sr-only">Régua do dia (0h a 24h)</span>
         {marcas.map((h) => (
-          <span style={{ left: `${(h / 24) * 100}%` }}>{h}h</span>
+          <span aria-hidden="true" style={{ left: `${(h / 24) * 100}%` }}>
+            {h}h
+          </span>
         ))}
-      </td>
+      </th>
     </tr>
   </thead>
   <tbody>
@@ -105,17 +108,17 @@ const marcas = [0, 6, 12, 18, 24];
     position: relative;
     min-width: 8rem;
   }
-  .tabela-horario__regua span {
+  .tabela-horario__regua span[aria-hidden] {
     position: absolute;
     top: 0;
     translate: -50% 0;
     font-size: var(--fs-rotulo);
     color: var(--prime-concreto);
   }
-  .tabela-horario__regua span:first-child {
+  .tabela-horario__regua span[aria-hidden]:nth-child(2) {
     translate: 0 0;
   }
-  .tabela-horario__regua span:last-child {
+  .tabela-horario__regua span[aria-hidden]:last-child {
     translate: -100% 0;
   }
   .tabela-horario__barra::before {

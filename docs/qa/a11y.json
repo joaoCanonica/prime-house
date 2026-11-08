@@ -1,0 +1,167 @@
+{
+  "data": "2026-11-08T00:24:02.354Z",
+  "tags": [
+    "wcag2a",
+    "wcag2aa",
+    "wcag21a",
+    "wcag21aa",
+    "wcag22aa",
+    "best-practice"
+  ],
+  "resultado": [
+    {
+      "rota": "/",
+      "largura": 390,
+      "violacoes": [],
+      "aprovadas": 47,
+      "incompletas": 2
+    },
+    {
+      "rota": "/",
+      "largura": 1440,
+      "violacoes": [],
+      "aprovadas": 47,
+      "incompletas": 2
+    },
+    {
+      "rota": "/a-casa/",
+      "largura": 390,
+      "violacoes": [],
+      "aprovadas": 45,
+      "incompletas": 0
+    },
+    {
+      "rota": "/a-casa/",
+      "largura": 1440,
+      "violacoes": [],
+      "aprovadas": 45,
+      "incompletas": 2
+    },
+    {
+      "rota": "/como-funciona/",
+      "largura": 390,
+      "violacoes": [],
+      "aprovadas": 37,
+      "incompletas": 3
+    },
+    {
+      "rota": "/como-funciona/",
+      "largura": 1440,
+      "violacoes": [],
+      "aprovadas": 37,
+      "incompletas": 3
+    },
+    {
+      "rota": "/equipe/",
+      "largura": 390,
+      "violacoes": [],
+      "aprovadas": 39,
+      "incompletas": 0
+    },
+    {
+      "rota": "/equipe/",
+      "largura": 1440,
+      "violacoes": [],
+      "aprovadas": 38,
+      "incompletas": 0
+    },
+    {
+      "rota": "/horarios-e-como-chegar/",
+      "largura": 390,
+      "violacoes": [],
+      "aprovadas": 48,
+      "incompletas": 2
+    },
+    {
+      "rota": "/horarios-e-como-chegar/",
+      "largura": 1440,
+      "violacoes": [],
+      "aprovadas": 47,
+      "incompletas": 2
+    },
+    {
+      "rota": "/maquinario/",
+      "largura": 390,
+      "violacoes": [],
+      "aprovadas": 41,
+      "incompletas": 2
+    },
+    {
+      "rota": "/maquinario/",
+      "largura": 1440,
+      "violacoes": [],
+      "aprovadas": 40,
+      "incompletas": 2
+    },
+    {
+      "rota": "/perguntas-frequentes/",
+      "largura": 390,
+      "violacoes": [],
+      "aprovadas": 37,
+      "incompletas": 1
+    },
+    {
+      "rota": "/perguntas-frequentes/",
+      "largura": 1440,
+      "violacoes": [],
+      "aprovadas": 37,
+      "incompletas": 1
+    },
+    {
+      "rota": "/planos/",
+      "largura": 390,
+      "violacoes": [],
+      "aprovadas": 40,
+      "incompletas": 1
+    },
+    {
+      "rota": "/planos/",
+      "largura": 1440,
+      "violacoes": [],
+      "aprovadas": 40,
+      "incompletas": 0
+    },
+    {
+      "rota": "/privacidade/",
+      "largura": 390,
+      "violacoes": [],
+      "aprovadas": 36,
+      "incompletas": 0
+    },
+    {
+      "rota": "/privacidade/",
+      "largura": 1440,
+      "violacoes": [],
+      "aprovadas": 35,
+      "incompletas": 0
+    },
+    {
+      "rota": "/trabalhe-conosco/",
+      "largura": 390,
+      "violacoes": [],
+      "aprovadas": 37,
+      "incompletas": 1
+    },
+    {
+      "rota": "/trabalhe-conosco/",
+      "largura": 1440,
+      "violacoes": [],
+      "aprovadas": 36,
+      "incompletas": 0
+    },
+    {
+      "rota": "/404.html",
+      "largura": 390,
+      "violacoes": [],
+      "aprovadas": 36,
+      "incompletas": 1
+    },
+    {
+      "rota": "/404.html",
+      "largura": 1440,
+      "violacoes": [],
+      "aprovadas": 35,
+      "incompletas": 1
+    }
+  ]
+}

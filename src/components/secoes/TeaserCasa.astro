@@ -23,6 +23,7 @@ const destaque = ['musculacao', 'cardio', 'conveniencia'] as const;
     class="teaser__palco"
     data-tour3d
     data-esquematica-ok={String(esquematicaOk)}
+    data-tem3d={String(tem3d)}
     data-modulo="__PH_TOUR_URL__"
   >
     <div class="teaser__poster">
@@ -39,7 +40,8 @@ const destaque = ['musculacao', 'cardio', 'conveniencia'] as const;
       <p class="teaser__selo t-rotulo">Representação esquemática — em breve, o tour real</p>
     </div>
     <div class="teaser__controles">
-      <p class="t-pequeno teaser__como">{aCasa.intro.comoUsar}</p>
+      {/* a instrução de arrastar só existe se houver 3D para arrastar */}
+      {tem3d && <p class="t-pequeno teaser__como">{aCasa.intro.comoUsar}</p>}
       <ul class="teaser__zonas" aria-label="Zonas">
         {destaque.map((z) => (
           <li>

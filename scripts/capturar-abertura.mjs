@@ -46,7 +46,12 @@ try {
       const p = await ctx.newPage();
       await p.goto(`${base}/?abertura=${t}`, { waitUntil: 'networkidle' });
       await p.evaluate(() => document.fonts.ready);
-      await p.waitForFunction(() => [...document.images].every((i) => i.complete));
+      // só as imagens da primeira dobra (as lazy de baixo nunca carregam sem rolar)
+      await p.waitForFunction(() =>
+        [...document.images]
+          .filter((i) => i.loading !== 'lazy' && i.getBoundingClientRect().top < innerHeight)
+          .every((i) => i.complete),
+      );
       await p.waitForTimeout(150);
       const arq = join(destino, `abertura__${largura}__${String(t).padStart(4, '0')}ms.png`);
       await p.screenshot({ path: arq });

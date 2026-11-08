@@ -14,7 +14,7 @@ Legenda: **[trava]** impede a produção · **[aviso]** não impede.
   Se o João quiser, atualizamos o texto do CLAUDE.md (precisa de ordem expressa, pois o bloco é "sem alterar").
 - **[aviso] Git LFS para `modelos-originais/`** (GLB e splat fonte): aguardando autorização do João. Até lá a pasta fica vazia e nenhum arquivo pesado entra no git.
 - **[aviso] Domínio definitivo.** `site` no `astro.config.mjs` não foi definido (necessário para sitemap e URLs canônicas na sessão 8).
-- **[aviso] Scripts ainda não implementados** (saem com erro de propósito, para nunca darem falso "verde"): `audit-pesos` e `model:prepare` (6B), `audit-seo` (8), `audit-a11y` e `audit-lighthouse` (9). (`media:prepare` na sessão 1; `validate-config` e `audit-compliance` na sessão 2.)
+- **[resolvido na sessão 9] Scripts de auditoria:** todos implementados (`audit-pesos`, `audit-seo`, `audit-a11y`, `audit-lighthouse`). `scripts/pendente.mjs` fica para scripts futuros.
 
 ## Da sessão 1 (mídia)
 
@@ -120,6 +120,19 @@ Detalhes em `docs/3d/README.md` (como entregar) e `docs/3d/RELATORIO.md` (pesos 
 - **[aviso] FAQ:** o Google retirou o rich result de FAQ em 07/05/2026. O FAQPage segue no site para Bing e IAs, mas não gera destaque no Google.
 - **[aviso] Imagem social:** usa a captura 01 (≈ 900 px) a 470 px. Trocar por foto em alta da sala com as luzes acesas quando chegar.
 - **[aviso] Checklist fora do site** (ficha, avaliações sem incentivo, NAP no Instagram/WhatsApp Business/Apple/Bing, post com "2553", teste mensal): `docs/SEO_GEO.md` §3.
+
+## Da sessão 9 (QA, conferência e deploy)
+
+Detalhes em `docs/QA.md`, `docs/CONFERENCIA_FINAL.md` e `docs/DEPLOY.md`.
+
+- **[aviso] Abertura × LCP:** com a abertura (1ª visita da sessão), o H1 do hero só entra em ≈ 2,35 s e o LCP medido no celular fica em ≈ 3,8 s. Sem abertura, ≈ 0,32 s. Antecipar o H1 exige mudar o voo do logo (testado: colide com o logo grande). Decisão do João: manter, encurtar ou redesenhar o fim da abertura.
+- **[aviso] CREF do responsável técnico:** recomendo não indexar sem ele no rodapé (exigência do conselho para academias).
+- **[aviso] Marcas de terceiros na foto da esteira com TV** (logos de streaming e redes sociais na tela) e no texto do card: trocar a foto ou aprovar o uso.
+- **[aviso] Deploy:** o build precisa de ffmpeg; na Vercel, usar `vercel build` + `vercel deploy --prebuilt` (ou instalar ffmpeg no build). Definir `SITE_URL` em Production. Conferir com `pnpm conferir-deploy <url>` (compressão do GLB não confirmada na documentação da Vercel).
+- **[aviso] CSP:** sem splat nem GLB com Draco/KTX2 hoje, o "Ver de verdade" real não foi testado sob a CSP. Conferir no primeiro splat.
+- **[aviso] HSTS sem `preload`:** incluir na lista de preload é decisão do João (difícil de desfazer).
+- **[aviso] WebKit:** 1 erro de JS intermitente em 1 de 8 rodadas do teste de teclado (não reproduzido em 5 tentativas). Conferir num iPhone real.
+- **[aviso] fps e memória medidos por software** (sem GPU). Conferir num Android intermediário real.
 
 ## Do cliente (herdado do pacote de prompts, seção C)
 

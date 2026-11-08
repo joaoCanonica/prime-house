@@ -13,6 +13,7 @@ import { execFileSync, spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import {
   existsSync,
+  copyFileSync,
   mkdirSync,
   readdirSync,
   readFileSync,
@@ -51,6 +52,18 @@ const hash = (...p) =>
 const hashArq = (f) => createHash('sha256').update(readFileSync(f)).digest('hex').slice(0, 16);
 const estado = !forcar && existsSync(CACHE) ? JSON.parse(readFileSync(CACHE, 'utf8')) : {};
 mkdirSync(join(SAIDA, 'splats'), { recursive: true });
+// decodificadores do three.js (só baixam se o GLB pedir Draco ou KTX2): /modelos/libs/{draco,basis}/
+for (const [de, para, arquivos] of [
+  ['draco/gltf', 'draco', ['draco_decoder.js', 'draco_decoder.wasm', 'draco_wasm_wrapper.js']],
+  ['basis', 'basis', ['basis_transcoder.js', 'basis_transcoder.wasm']],
+]) {
+  mkdirSync(join(SAIDA, 'libs', para), { recursive: true });
+  for (const a of arquivos)
+    copyFileSync(
+      join(RAIZ, 'node_modules', 'three', 'examples', 'jsm', 'libs', de, a),
+      join(SAIDA, 'libs', para, a),
+    );
+}
 mkdirSync(join(RAIZ, 'docs', '3d'), { recursive: true });
 
 await MeshoptEncoder.ready;
